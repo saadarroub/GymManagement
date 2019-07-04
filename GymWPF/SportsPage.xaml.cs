@@ -47,7 +47,7 @@ namespace GymWPF
 
             da.SelectCommand.CommandText = "select t.IdType as IdType,s.nom_Salle as nom_Salle,t.nom_Type as nom_Type,ss.prix as prix from Salle s join SportSalle ss on s.IdSalle=ss.IdSalle join  Type_Sport t on ss.IdType=t.IdType";
             da.Fill(ds, "sport");
-            ListViewSports.DataContext = ds.Tables["sport"].DefaultView;
+            ListViewSports.DataContext = ds.Tables["sport"];
         }
 
         private void BtnAjouter_Click(object sender, RoutedEventArgs e)
@@ -117,6 +117,23 @@ namespace GymWPF
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var item = (sender as FrameworkElement).DataContext;
+            int index = ListViewSports.Items.IndexOf(item);
+            DataRowView row = ListViewSports.Items.GetItemAt(index) as DataRowView;
+
+            MessageBoxResult messageBoxResult = MessageBox.Show("voulez vous vraiment supprimer ?", "Message", MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                cn.Open();
+                cmd.Connection = cn;
+                cmd.CommandText = "delete from Type_Sport where IdType = '" + row.Row[0].ToString() + "'";
+                cmd.ExecuteNonQuery();
+                cn.Close();
             }
         }
     }

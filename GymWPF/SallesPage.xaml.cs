@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 
+
 namespace GymWPF
 {
     /// <summary>
@@ -47,6 +48,7 @@ namespace GymWPF
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             LoadResoource();  
+            
         }
 
         private void ListViewSalles_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -107,6 +109,25 @@ namespace GymWPF
             }        
 
 
+        }
+
+       
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var item = (sender as FrameworkElement).DataContext;
+            int index = ListViewSalles.Items.IndexOf(item);
+            DataRowView row = ListViewSalles.Items.GetItemAt(index) as DataRowView;
+            
+            MessageBoxResult messageBoxResult = MessageBox.Show("voulez vous vraiment supprimer ?", "Message" , MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                cn.Open();
+                cmd.Connection = cn;
+                cmd.CommandText = "delete from Salle where IdSalle = '" + row.Row[0].ToString() + "'";
+                cmd.ExecuteNonQuery();
+                cn.Close();
+            }
         }
     }
 }
