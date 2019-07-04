@@ -1,0 +1,64 @@
+﻿<Page x:Class="GymWPF.ClientsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GymWPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="603" d:DesignWidth="839"
+      Title="ClientsPage"  Background="#FF272727" Foreground="White">
+
+    <Grid>
+        <StackPanel>
+
+            <TextBlock Text="Gestion des Clients" FontFamily="Segoe UI Light" FontSize="36" Foreground="#FFFFCC00" Margin="30 30 0 0"/>
+            <WrapPanel>
+                <TextBlock Text="Rechercher :" FontFamily="Segoe UI Light" FontSize="24" Foreground="White" Margin="40 10 30 10"/>
+                <TextBox Name="SalleName" Width="197" Height="30" Background="#333333" BorderBrush="#c7c7c7" Margin="20 10 10 10" FontSize="18" Foreground="White" VerticalContentAlignment="Center" Padding="5,0"/>
+
+            </WrapPanel>
+            <ListView Name = "ListView" Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="247" Margin="20 10 20 0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header = "ID"  Width = "100"/>
+                        <GridViewColumn Header = "Nom"  Width = "100"/>
+                        <GridViewColumn Header = "Prenom"  Width = "100"/>
+                        <GridViewColumn Header = "Tel"  Width = "100"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <WrapPanel Height="201">
+                <StackPanel Width="638" Height="201">
+                    <WrapPanel Height="201" >
+                        <StackPanel Height="201" Width="320">
+                            <WrapPanel Width="318" Margin="0 20 0 0">
+                                <TextBlock Text="Nom :" FontFamily="Segoe UI Light" FontSize="18"  Height="30" Foreground="White" Margin="20 5 10 0"/>
+                                <TextBox Name="NomTextBox" Width="167" Height="30"  Margin="57 5 10 0" Background="#333333" BorderBrush="#c7c7c7" FontSize="16" VerticalContentAlignment="Center" Padding="5 0 5 0" Foreground="White"/>
+
+                            </WrapPanel>
+                            <WrapPanel Width="318" Margin="0 20 0 0">
+                                <TextBlock Text="Prenom :" FontFamily="Segoe UI Light" FontSize="18"  Height="30" Foreground="White" Margin="20 5 10 0"/>
+                                <TextBox Name="PrenomTextBox" Width="167" Height="30"  Margin="36 5 10 0" Background="#333333" BorderBrush="#c7c7c7" FontSize="16" VerticalContentAlignment="Center" Padding="5 0 5 0" Foreground="White"/>
+
+                            </WrapPanel>
+                            <WrapPanel Width="318" Margin="0 20 0 0">
+                                <TextBlock Text="Telephone :" FontFamily="Segoe UI Light" FontSize="18"  Height="30" Foreground="White" Margin="20 5 10 0"/>
+                                <TextBox Name="TelTextBox" Width="167" Height="30"  Margin="18 5 10 0" Background="#333333" BorderBrush="#c7c7c7" FontSize="16" VerticalContentAlignment="Center" Padding="5 0 5 0" Foreground="White"/>
+
+                            </WrapPanel>
+                        </StackPanel>
+                        <StackPanel Height="201" Width="318">
+                            <Image Height="160" Width="140" Source="/Resource/avatar.png" Stretch="Fill"  Margin="0 5 0 0"/>
+                            <Button Height="30" Width="140" Content="Parcourir" Style="{StaticResource CamoflableBtn2}"/>
+                        </StackPanel>
+                    </WrapPanel>
+                </StackPanel>
+                <StackPanel Width="201">
+                    <Button Name="BtnAjouter" Height="37" Width="167" Style="{StaticResource GreenBtn}" Content="Ajouter" Margin="0 30 0 0"/>
+                    <Button Name="BtnModifier" Height="37" Width="167" Style="{StaticResource GreenBtn}" Content="Modifier" Margin="0 30 0 0"/>
+                </StackPanel>
+            </WrapPanel>
+        </StackPanel>
+
+    </Grid>
+</Page>
