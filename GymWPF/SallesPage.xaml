@@ -18,7 +18,7 @@
                     <Button Name="BtnModifier" Content="Modifier" Width="87" Height="37" Style="{StaticResource GreenBtn}" Margin="20 10 0 10" Click="BtnModifier_Click"/>
                 </WrapPanel>
                 <TextBlock Text="Liste des Salles" FontFamily="Segoe UI Light" FontSize="24" Foreground="White" Margin="20 30 0 0"/>
-        <ListView Name = "ListViewSalles" Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="342" Margin="20 20 20 0" ItemsSource="{Binding Path=Table}" SelectionChanged="ListViewSalles_SelectionChanged">
+        <ListView Name = "ListViewSalles" Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="342" Margin="20 20 20 0" ItemsSource="{Binding}" SelectionChanged="ListViewSalles_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header = "ID"  Width = "100" DisplayMemberBinding="{Binding Path=IdSalle}"/>
