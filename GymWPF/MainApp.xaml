@@ -6,13 +6,14 @@
         xmlns:local="clr-namespace:GymWPF"
         mc:Ignorable="d"
         Title="MainApp" Height="640" Width="1039" BorderBrush="Black" Background="#272727" WindowStyle="None" WindowStartupLocation="CenterScreen" 
-        ResizeMode="NoResize" MouseDown="Window_MouseDown">
+        ResizeMode="NoResize" MouseDown="Window_MouseDown"
+        Loaded="Window_Loaded">
 
     <Grid>
 
         <StackPanel>
             <Grid Height="37" Background="#333333" MouseDown="Grid_MouseDown">
-                <TextBlock Text="Laatarsi Salaheddine" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 289 0" Foreground="#FFC7C7C7" FontFamily="Segoe UI Light" FontSize="14" TextDecorations="{x:Null}" LineHeight="20"/>
+                <TextBlock Name="UserName" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 289 0" Foreground="#FFC7C7C7" FontFamily="Segoe UI Light" FontSize="14" TextDecorations="{x:Null}" LineHeight="20"/>
                 <Button Name="ShowHideMenuBtn" Click="ShowHideMenuBtn_Click" Style="{StaticResource BtnSolid}" HorizontalAlignment="Right" Height="37" Width="37" Margin="0 0 247 0" Background="#FF333333" Foreground="White" BorderBrush="{x:Null}" BorderThickness="0" Cursor="Hand">
                     <Grid>
                         <TextBlock   Text="&#xf078;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="14" />

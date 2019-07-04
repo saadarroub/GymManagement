@@ -25,8 +25,13 @@ namespace GymWPF
         UtilisateursPage utilisateurs;
         RollesPage rolles;
         ClientsPage clients;
-        public MainApp()
+
+        string nom, prenom;
+        
+        public MainApp(string nom,string prenom)
         {
+            this.nom = nom;
+            this.prenom = prenom;
             InitializeComponent();
 
             salles = new SallesPage(this);
@@ -35,6 +40,10 @@ namespace GymWPF
             rolles = new RollesPage(this);
             clients = new ClientsPage(this);
             
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            UserName.Text = nom + " " + prenom;
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -121,6 +130,8 @@ namespace GymWPF
         {
             HideShowMenuPanel();
         }
+
+      
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {

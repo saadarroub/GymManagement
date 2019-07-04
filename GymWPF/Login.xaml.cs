@@ -65,7 +65,7 @@ namespace GymWPF
                 {
                     string nom = dr[1].ToString();
                     string prenom = dr[2].ToString();
-                    MainApp app = new MainApp();
+                    MainApp app = new MainApp(nom, prenom);
                     mw.Hide();
                     app.Show();
                 }
