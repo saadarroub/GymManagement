@@ -29,7 +29,7 @@ namespace GymWPF
         DataSet ds = new DataSet();
         SqlDataReader dr;
         //------------------------------------//
-
+        
         MainApp dade;
         public SallesPage(MainApp dade)
         {
@@ -37,12 +37,16 @@ namespace GymWPF
             this.dade = dade;
             
         }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        public void LoadResoource()
         {
             da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
             da.Fill(ds, "Salle");
             ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadResoource();  
         }
 
         private void ListViewSalles_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -94,6 +98,7 @@ namespace GymWPF
                 cmd.ExecuteNonQuery();
                 cn.Close();
                 MessageBox.Show("votre salle est bien modifier");
+                LoadResoource();
             }
             catch (Exception ex)
             {

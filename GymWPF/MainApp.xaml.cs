@@ -85,10 +85,12 @@ namespace GymWPF
             }
         }
        
+       
 
         private void MainAppNavBtnToSalles_Click(object sender, RoutedEventArgs e)
         {
             HideShowRecNavBtn(RecSalles);
+            
             MainFrame.Navigate(salles);
         }
 
