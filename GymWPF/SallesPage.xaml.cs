@@ -106,9 +106,7 @@ namespace GymWPF
             {
 
                 MessageBox.Show(ex.Message);
-            }        
-
-
+            }
         }
 
        
