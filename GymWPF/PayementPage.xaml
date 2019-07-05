@@ -12,15 +12,7 @@
     <Grid>
         <StackPanel>
             <TextBlock Text="Gestion des Payements" FontFamily="Segoe UI Light" FontSize="36" Foreground="#FFFFCC00" Margin="30 30 0 0"/>
-            <ItemsControl Name="ListView">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Height="100" Width="100">
-                            <TextBlock Text="hello"/>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            
         </StackPanel>
     </Grid>
 </Page>
