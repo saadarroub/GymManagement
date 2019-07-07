@@ -66,10 +66,10 @@ namespace GymWPF
         {
             RecSalles.Visibility = Visibility.Hidden;
             RecSports.Visibility = Visibility.Hidden;
-            RecRolles.Visibility = Visibility.Hidden;
+           
             RecUsers.Visibility = Visibility.Hidden;
             RecClients.Visibility = Visibility.Hidden;
-            RecPayements.Visibility = Visibility.Hidden;
+           
             RecDepenses.Visibility = Visibility.Hidden;
             active.Visibility = Visibility.Visible;
         }
@@ -106,11 +106,7 @@ namespace GymWPF
             MainFrame.Navigate(utilisateurs);
         }
 
-        private void MainAppNavBtnToRolles_Click(object sender, RoutedEventArgs e)
-        {
-            HideShowRecNavBtn(RecRolles);
-            MainFrame.Navigate(rolles);
-        }
+        
 
         private void MainAppNavBtnToClients_Click(object sender, RoutedEventArgs e)
         {
@@ -118,10 +114,7 @@ namespace GymWPF
             MainFrame.Navigate(clients);
         }
 
-        private void MainAppNavBtnToPayments_Click(object sender, RoutedEventArgs e)
-        {
-            HideShowRecNavBtn(RecPayements);
-        }
+        
 
         private void MainAppNavBtnToDepenses_Click(object sender, RoutedEventArgs e)
         {

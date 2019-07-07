@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
-
+using System.ComponentModel;
 
 namespace GymWPF
 {
@@ -29,6 +29,7 @@ namespace GymWPF
         SqlDataAdapter da = new SqlDataAdapter("", "Data Source=.;Initial Catalog=NSS_Salle_Application;Integrated Security=True");
         DataSet ds = new DataSet();
         SqlDataReader dr;
+       
         //------------------------------------//
         
         MainApp dade;
@@ -40,6 +41,11 @@ namespace GymWPF
         }
         public void LoadResoource()
         {
+            if (ds.Tables["Salle"] != null)
+            {
+                ds.Tables["Salle"].Clear();
+            }
+
             da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
             da.Fill(ds, "Salle");
             ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
@@ -53,9 +59,12 @@ namespace GymWPF
 
         private void ListViewSalles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int index = ListViewSalles.SelectedIndex;
-            DataRowView row = ListViewSalles.Items.GetItemAt(index) as DataRowView;
-            SalleName.Text = row.Row[1].ToString();
+            
+                int index = ListViewSalles.SelectedIndex;
+                DataRowView row = ListViewSalles.Items.GetItemAt(index) as DataRowView;
+                SalleName.Text = row.Row[1].ToString();
+            
+                
         }
 
         private void BtnAjouter_Click(object sender, RoutedEventArgs e)
@@ -66,18 +75,26 @@ namespace GymWPF
                 {
                     MessageBox.Show("saisir le nom de la salle");
                 }
-                else if (ds.Tables["Salle"].Rows.Count > 2)
+                else if (ds.Tables["Salle"].Rows.Count > 1)
                 {
                     MessageBox.Show("you have just two salle in youre liscence");
                 }
                 else
                 {
-                    cn.Open();
-                    cmd.Connection = cn;
-                    cmd.CommandText = "insert into Salle values ('" + SalleName.Text + "')";
-                    cmd.ExecuteNonQuery();
-                    cn.Close();
-                    MessageBox.Show("votre salle est bien ajouter");
+                    //cn.Open();
+                    //cmd.Connection = cn;
+                    //cmd.CommandText = "insert into Salle values ('" + SalleName.Text + "')";
+                    //cmd.ExecuteNonQuery();
+                    //cn.Close();
+                    //MessageBox.Show("votre salle est bien ajouter");
+                    DataRow r = ds.Tables["Salle"].NewRow();
+                    r[1] = SalleName.Text;
+                    ds.Tables["Salle"].Rows.Add(r);
+                    da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
+                    SqlCommandBuilder cb = new SqlCommandBuilder(da);
+                    da.Update(ds, "Salle");
+                    ListViewSalles.UnselectAll();
+
                 }
             }
             catch (Exception ex)
@@ -88,19 +105,29 @@ namespace GymWPF
 
         private void BtnModifier_Click(object sender, RoutedEventArgs e)
         {
+
             int index = ListViewSalles.SelectedIndex;
             DataRowView row = ListViewSalles.Items.GetItemAt(index) as DataRowView;
             int id = int.Parse(row.Row[0].ToString());
 
             try
             {
-                cn.Open();
-                cmd.Connection = cn;
-                cmd.CommandText = "update Salle set nom_Salle = '" + SalleName.Text + "' where IdSalle = '" + id + "'";
-                cmd.ExecuteNonQuery();
-                cn.Close();
-                MessageBox.Show("votre salle est bien modifier");
-                LoadResoource();
+                //cn.Open();
+                //cmd.Connection = cn;
+                //cmd.CommandText = "update Salle set nom_Salle = '" + SalleName.Text + "' where IdSalle = '" + id + "'";
+                //cmd.ExecuteNonQuery();
+                //cn.Close();
+                //MessageBox.Show("votre salle est bien modifier");
+                DataRow r = ds.Tables["Salle"].Select("IdSalle="+id.ToString())[0];
+                r.BeginEdit();
+                r[1] = SalleName.Text;
+                r.EndEdit();
+                da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
+                SqlCommandBuilder cb = new SqlCommandBuilder(da);
+                da.Update(ds, "Salle");
+                ListViewSalles.UnselectAll();
+
+
             }
             catch (Exception ex)
             {

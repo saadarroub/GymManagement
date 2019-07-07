@@ -33,7 +33,7 @@
                 <StackPanel Grid.Column="0" Background="#1c1c1c">
                     <Button Name="MainAppNavBtnToSalles"  BorderBrush="White" Foreground="White" 
                         Height="37" Width="200" HorizontalContentAlignment="Left" 
-                        Style="{StaticResource MainAppNavBtn}" BorderThickness="10" 
+                        Style="{StaticResource MainAppNavBtn}" BorderThickness="10" Margin="0 17 0 0"
                         IsTabStop="False" Click="MainAppNavBtnToSalles_Click">
                         <Grid Width="200"  Height="37">
                             <Rectangle Name="RecSalles" Height="37" Width="5" Fill="#ffcc00" Margin="0" HorizontalAlignment="Left" Visibility="Hidden"/>
@@ -61,16 +61,7 @@
                             <TextBlock Text="UTILISATEURS" HorizontalAlignment="Center" VerticalAlignment="Center"  FontFamily="Segoe UI Light" FontSize="14"   />
                         </Grid>
                     </Button>
-                    <Button Name="MainAppNavBtnToRolles"  BorderBrush="White" Foreground="White" 
-                        Height="37" Width="200" HorizontalContentAlignment="Left" 
-                        Style="{StaticResource MainAppNavBtn}" BorderThickness="10" 
-                        IsTabStop="False" Click="MainAppNavBtnToRolles_Click">
-                        <Grid Width="200"  Height="37">
-                            <Rectangle Name="RecRolles" Height="37" Width="5" Fill="#ffcc00" Margin="0" HorizontalAlignment="Left" Visibility="Hidden"/>
-                            <TextBlock Text="&#xf542;" HorizontalAlignment="Left"  VerticalAlignment="Center"  Margin="10 0 0 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="22" Foreground="#c7c7c7"/>
-                            <TextBlock Text="ROLLES" HorizontalAlignment="Center" VerticalAlignment="Center"  FontFamily="Segoe UI Light" FontSize="14"   />
-                        </Grid>
-                    </Button>
+                    
                     <Button Name="MainAppNavBtnToClients"  BorderBrush="White" Foreground="White" 
                         Height="37" Width="200" HorizontalContentAlignment="Left" 
                         Style="{StaticResource MainAppNavBtn}" BorderThickness="10" 
@@ -81,16 +72,7 @@
                             <TextBlock Text="CLIENTS" HorizontalAlignment="Center" VerticalAlignment="Center"  FontFamily="Segoe UI Light" FontSize="14"   />
                         </Grid>
                     </Button>
-                    <Button Name="MainAppNavBtnToPayments"  BorderBrush="White" Foreground="White" 
-                        Height="37" Width="200" HorizontalContentAlignment="Left" 
-                        Style="{StaticResource MainAppNavBtn}" BorderThickness="10" 
-                        IsTabStop="False" Click="MainAppNavBtnToPayments_Click">
-                        <Grid Width="200"  Height="37">
-                            <Rectangle Name="RecPayements" Height="37" Width="5" Fill="#ffcc00" Margin="0" HorizontalAlignment="Left" Visibility="Hidden"/>
-                            <TextBlock Text="&#xf4c0;" HorizontalAlignment="Left"  VerticalAlignment="Center"  Margin="10 0 0 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="22" Foreground="#c7c7c7"/>
-                            <TextBlock Text="PAYEMENTS" HorizontalAlignment="Center" VerticalAlignment="Center"  FontFamily="Segoe UI Light" FontSize="14"   />
-                        </Grid>
-                    </Button>
+                    
                     <Button Name="MainAppNavBtnToDepenses"  BorderBrush="White" Foreground="White" 
                         Height="37" Width="200" HorizontalContentAlignment="Left" 
                         Style="{StaticResource MainAppNavBtn}" BorderThickness="10" 
