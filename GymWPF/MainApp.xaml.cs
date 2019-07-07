@@ -23,7 +23,6 @@ namespace GymWPF
         SallesPage salles;
         SportsPage sports;
         UtilisateursPage utilisateurs;
-        RollesPage rolles;
         ClientsPage clients;
 
         string nom, prenom;
@@ -37,7 +36,6 @@ namespace GymWPF
             salles = new SallesPage(this);
             sports = new SportsPage(this);
             utilisateurs = new UtilisateursPage(this);
-            rolles = new RollesPage(this);
             clients = new ClientsPage(this);
             
         }

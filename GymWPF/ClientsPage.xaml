@@ -6,10 +6,64 @@
       xmlns:local="clr-namespace:GymWPF"
       mc:Ignorable="d" 
       d:DesignHeight="603" d:DesignWidth="839"
-      Title="ClientsPage"  Background="#FF272727" Foreground="White">
+      Title="ClientsPage"  Background="#272727" Foreground="White" MouseDown="Page_MouseDown">
 
-    <Grid>
-        
+    <Grid Name="GridGlobal" >
 
+        <StackPanel MouseDown="Page_MouseDown">
+            <TextBlock Text="Gestion des Clients et Payements" FontFamily="Segoe UI Light" FontSize="36" Foreground="#FFFFCC00" Margin="30 30 0 0"/>
+            <WrapPanel Margin="0 20 0 0">
+                <TextBlock Text="Chercher" FontFamily="Segoe UI Light" FontSize="18" Margin="160 10 0 10" Padding="0 10"/>
+                <TextBox Width="197" Height="37" Background="#333333" BorderBrush="#c7c7c7" Margin="30 10 0 10" Foreground="White" VerticalContentAlignment="Center"/>
+                <Button Style="{StaticResource CamoflableBtn}" Margin="100 10 0 10">
+                    <WrapPanel>
+                        <TextBlock Text=" Ajouter Client"  Margin="0 10 0 10" FontFamily="Segoe UI Light" FontSize="16"/>
+                        <TextBlock Text="&#xf055;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="29" Margin="10 5 10 5"/>
+                    </WrapPanel>
+                </Button>
+            </WrapPanel>
+            <ScrollViewer  Height="440" ScrollChanged="ScrollViewer_ScrollChanged">
+                <ItemsControl Name="ListClient" MouseDown="ListClient_MouseDown" Background="#272727">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Height="200" Width="140" Margin="32 10" Padding="5" BorderBrush="#ffcc00" BorderThickness="1">
+                                <Grid>
+                                    <Button Name="MenuClientBtn" MouseDown="MenuClientBtn_MouseDown" Click="MenuClientBtn_Click" VerticalAlignment="Top" Height="10" Width="25" Style="{StaticResource CamoflableBtn}" HorizontalAlignment="Right" >
+                                        <Grid>
+                                            <TextBlock Text="&#xf141;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="10" />
+                                        </Grid>
+                                    </Button>
+                                    <Image Source="/Resource/avatar.png" Stretch="Fill" Height="140" Width="120" VerticalAlignment="Top" Margin="0 15 0 0"/>
+                                    <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Margin="5 0 0 15" FontFamily="Segoe UI Light" FontSize="14"/>
+                                    <TextBlock Text="{Binding Tel}" VerticalAlignment="Bottom" Margin="5 0 0 0"/>
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel MouseDown="WrapPanel_MouseDown"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+
+        </StackPanel>
+        <Grid Name="MenuClientModal" Background="#333333"  Height="90" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Visibility="Collapsed" RenderTransformOrigin="0.5,0.5" >
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="3"/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <StackPanel>
+                <Button Name="PayementsClientModalBtn" Content="Payements"  Height="30" Style="{StaticResource CamoflableBtn2}"/>
+                <Button Content="Modifier" Height="30" Style="{StaticResource CamoflableBtn2}"/>
+                <Button Content="Supprimer" Height="30" Style="{StaticResource CamoflableBtn2}"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
