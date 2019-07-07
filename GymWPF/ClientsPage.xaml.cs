@@ -109,5 +109,11 @@ namespace GymWPF
                 MenuClientModal.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void AjouterClientBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AjouterClient ac = new AjouterClient();
+            ac.ShowDialog();
+        }
     }
 }
