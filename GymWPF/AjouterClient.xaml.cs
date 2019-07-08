@@ -8,14 +8,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
-
+using Microsoft.Win32;
 
 namespace GymWPF
 {
@@ -42,55 +41,52 @@ namespace GymWPF
             dade.Effect = null;
             this.Hide();
         }
-        string chemin;
+        string chemin = " ";
         private void Upload_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog op = new OpenFileDialog();
-            op.Title = "Select a picture";
-            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
-              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
-              "Portable Network Graphic (*.png)|*.png";
-            if (op.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+
+            OpenFileDialog fl = new OpenFileDialog();
+            fl.Title = "Selectionnez votre Photo";
+            if (fl.ShowDialog() == true)
             {
-                chemin = op.FileName;
-                image.Source = new BitmapImage(new Uri(chemin));
+                image.Source = new BitmapImage(new Uri(fl.FileName));
+                chemin = fl.FileName;
 
             }
-
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //if (NomTextBox.Text=="" || PrenomTextBox.Text=="")
-            //{
-            //    System.Windows.Forms.MessageBox.Show("errors");
+            if (NomTextBox.Text == "" || PrenomTextBox.Text == "")
+            {
+                System.Windows.Forms.MessageBox.Show("errors");
 
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        byte[] tabimg = null;
-            //        FileStream fs = new FileStream(chemin, FileMode.Open);
-            //        BinaryReader br = new BinaryReader(fs);
-            //        tabimg = br.ReadBytes((int)fs.Length);
-            //        fs.Close();
+            }
+            else
+            {
+                try
+                {
+                    byte[] tabimg = null;
+                    FileStream fs = new FileStream(chemin, FileMode.Open);
+                    BinaryReader br = new BinaryReader(fs);
+                    tabimg = br.ReadBytes((int)fs.Length);
+                    fs.Close();
 
-            //        cn.Open();
-            //        cmd.Connection = cn;
-            //        cmd.CommandText = "insert into Client values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "','" + tabimg + "')";
-            //        cmd.ExecuteNonQuery();
-            //        cn.Close();
-            //        System.Windows.Forms.MessageBox.Show("ok");
-            //    }
-            //    catch (Exception ex)
-            //    {
+                    cn.Open();
+                    cmd.Connection = cn;
+                    cmd.CommandText = "insert into Clients values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "','" + tabimg + "')";
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
+                    System.Windows.Forms.MessageBox.Show("ok");
+                }
+                catch (Exception ex)
+                {
 
-            //        System.Windows.Forms.MessageBox.Show(ex.Message);
-            //    }
-            //}
-            
+                    System.Windows.Forms.MessageBox.Show(ex.Message);
+                }
+            }
+
         }
     }
 }
