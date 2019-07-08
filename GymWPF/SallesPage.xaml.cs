@@ -47,8 +47,10 @@ namespace GymWPF
             }
 
             da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
+            da.MissingSchemaAction = MissingSchemaAction.AddWithKey;
             da.Fill(ds, "Salle");
             ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
+
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -81,18 +83,14 @@ namespace GymWPF
                 }
                 else
                 {
-                    //cn.Open();
-                    //cmd.Connection = cn;
-                    //cmd.CommandText = "insert into Salle values ('" + SalleName.Text + "')";
-                    //cmd.ExecuteNonQuery();
-                    //cn.Close();
-                    //MessageBox.Show("votre salle est bien ajouter");
                     DataRow r = ds.Tables["Salle"].NewRow();
                     r[1] = SalleName.Text;
                     ds.Tables["Salle"].Rows.Add(r);
                     da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
                     SqlCommandBuilder cb = new SqlCommandBuilder(da);
                     da.Update(ds, "Salle");
+                    MessageBox.Show("Record added");
+                    ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
                     ListViewSalles.UnselectAll();
 
                 }
@@ -112,20 +110,17 @@ namespace GymWPF
 
             try
             {
-                //cn.Open();
-                //cmd.Connection = cn;
-                //cmd.CommandText = "update Salle set nom_Salle = '" + SalleName.Text + "' where IdSalle = '" + id + "'";
-                //cmd.ExecuteNonQuery();
-                //cn.Close();
-                //MessageBox.Show("votre salle est bien modifier");
-                DataRow r = ds.Tables["Salle"].Select("IdSalle="+id.ToString())[0];
+
+
+                DataRow r = ds.Tables["Salle"].Rows.Find(id.ToString());
                 r.BeginEdit();
                 r[1] = SalleName.Text;
                 r.EndEdit();
                 da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
                 SqlCommandBuilder cb = new SqlCommandBuilder(da);
                 da.Update(ds, "Salle");
-                ListViewSalles.UnselectAll();
+                MessageBox.Show("updated..");
+                ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;               
 
 
             }
@@ -143,15 +138,20 @@ namespace GymWPF
             var item = (sender as FrameworkElement).DataContext;
             int index = ListViewSalles.Items.IndexOf(item);
             DataRowView row = ListViewSalles.Items.GetItemAt(index) as DataRowView;
-            
+            int id = int.Parse(row.Row[0].ToString());
+
+
             MessageBoxResult messageBoxResult = MessageBox.Show("voulez vous vraiment supprimer ?", "Message" , MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
-                cn.Open();
-                cmd.Connection = cn;
-                cmd.CommandText = "delete from Salle where IdSalle = '" + row.Row[0].ToString() + "'";
-                cmd.ExecuteNonQuery();
-                cn.Close();
+
+                DataRow r = ds.Tables["Salle"].Rows.Find(id);
+                r.Delete();
+                SqlCommandBuilder cb = new SqlCommandBuilder(da);
+                da.Update(ds, "Salle");
+                MessageBox.Show("Record Deleted");
+                ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
+
             }
         }
     }

@@ -37,17 +37,32 @@ namespace GymWPF
             this.dade = dade;
         }
 
+        
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            da.SelectCommand.CommandText = "select * from Salle";
-            da.Fill(ds, "Salle");
-            SallesComboBox.ItemsSource = ds.Tables["Salle"].DefaultView;
+            loaded();
+        }
+        public void loaded()
+        {
+            cn.Open();
+            cmd.Connection = cn;
+            cmd.CommandText = "select * from Salle";
+            dr = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(dr);
+            SallesComboBox.ItemsSource = dt.DefaultView;
             SallesComboBox.DisplayMemberPath = "nom_Salle";
             SallesComboBox.SelectedValuePath = "IdSalle";
+            cn.Close();
 
-            da.SelectCommand.CommandText = "select t.IdType as IdType,s.nom_Salle as nom_Salle,t.nom_Type as nom_Type,ss.prix as prix from Salle s join SportSalle ss on s.IdSalle=ss.IdSalle join  Type_Sport t on ss.IdType=t.IdType";
-            da.Fill(ds, "sport");
-            ListViewSports.DataContext = ds.Tables["sport"];
+            cn.Open();
+            cmd.Connection = cn;
+            cmd.CommandText = "select t.IdType as IdType,s.nom_Salle as nom_Salle,t.nom_Type as nom_Type,ss.prix as prix from Salle s join SportSalle ss on s.IdSalle=ss.IdSalle join  Type_Sport t on ss.IdType=t.IdType";
+            dr = cmd.ExecuteReader();
+            DataTable dt2 = new DataTable();
+            dt2.Load(dr);
+            ListViewSports.DataContext = dt2;
+            cn.Close();
         }
 
         private void BtnAjouter_Click(object sender, RoutedEventArgs e)
@@ -68,6 +83,9 @@ namespace GymWPF
                     cmd.ExecuteNonQuery();
 
                     cn.Close();
+                    loaded();
+                    ListViewSports.UnselectAll();
+
                     MessageBox.Show("ok");
 
                 }
@@ -94,8 +112,7 @@ namespace GymWPF
         private void BtnModifier_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
-               
+            {               
                     int index = ListViewSports.SelectedIndex;
                     DataRowView row = ListViewSports.Items.GetItemAt(index) as DataRowView;
                     int id = int.Parse(row.Row[0].ToString());
@@ -109,10 +126,12 @@ namespace GymWPF
                     cmd.ExecuteNonQuery();
 
                     cn.Close();
-                    MessageBox.Show("ok");
+                    loaded();
 
-                
-              
+
+                MessageBox.Show("ok");
+                   
+
             }
             catch (Exception ex)
             {
@@ -134,6 +153,8 @@ namespace GymWPF
                 cmd.CommandText = "delete from Type_Sport where IdType = '" + row.Row[0].ToString() + "'";
                 cmd.ExecuteNonQuery();
                 cn.Close();
+                loaded();
+                
             }
         }
     }
