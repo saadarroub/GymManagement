@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
+using System.Windows.Media.Effects;
+
 
 namespace GymWPF
 {
@@ -112,7 +114,8 @@ namespace GymWPF
 
         private void AjouterClientBtn_Click(object sender, RoutedEventArgs e)
         {
-            AjouterClient ac = new AjouterClient();
+            dade.Effect = new BlurEffect();
+            AjouterClient ac = new AjouterClient(dade);
             ac.ShowDialog();
         }
     }

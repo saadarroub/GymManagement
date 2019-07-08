@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 
+
 namespace GymWPF
 {
     /// <summary>
@@ -23,9 +24,11 @@ namespace GymWPF
     /// </summary>
     public partial class AjouterClient : Window
     {
-        public AjouterClient()
+        MainApp dade;
+        public AjouterClient(MainApp d)
         {
             InitializeComponent();
+            this.dade = d;
         }
 
         SqlConnection cn = new SqlConnection("Data Source=.;Initial Catalog=NSS_Salle_Application;Integrated Security=True");
@@ -36,6 +39,7 @@ namespace GymWPF
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
+            dade.Effect = null;
             this.Hide();
         }
         string chemin;

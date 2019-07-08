@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GymWPF"
         mc:Ignorable="d"
-        Title="ModifierClient" Height="342" Width="627" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#272727">
+        Title="ModifierClient" Height="342" Width="627" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#272727" BorderBrush="#ffcc00" BorderThickness="1">
     <Grid>
         <StackPanel>
             <TextBlock Text="Modifier Client" FontFamily="Segoe UI Light" FontSize="28" Foreground="#FFFFCC00" Margin="30 30 0 0"/>

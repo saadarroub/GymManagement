@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:GymWPF"
       mc:Ignorable="d" 
       d:DesignHeight="603" d:DesignWidth="839"
-      Title="ClientsPage"  Background="#272727" Foreground="White" MouseDown="Page_MouseDown">
+      Title="ClientsPage"  Background="#272727" Foreground="White" MouseDown="Page_MouseDown" >
+    
 
     <Grid Name="GridGlobal" >
 
