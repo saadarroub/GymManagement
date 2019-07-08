@@ -25,11 +25,11 @@
                     </WrapPanel>
                 </StackPanel>
                 <StackPanel Height="206" Width="176">
-                    <Image Source="/Resource/avatar.png" Height="160" Width="140" Stretch="Fill" />
-                    <Button Style="{StaticResource CamoflableBtn2}" Content="Parcourir" Width="100" Height="30" Margin="0 10"/>
+                    <Image Name="image" Source="/Resource/avatar.png" Height="160" Width="140" Stretch="Fill" />
+                    <Button Name="upload" Style="{StaticResource CamoflableBtn2}" Content="Parcourir" Width="100" Height="30" Margin="0 10" Click="Upload_Click"/>
                 </StackPanel>
             </WrapPanel>
-            <Button Height="37" Width="147" Margin="250 20 0 0" Style="{StaticResource YellowBtn}" Content="Ajouter"/>
+            <Button Height="37" Width="147" Margin="250 20 0 0" Style="{StaticResource YellowBtn}" Content="Ajouter" Click="Button_Click"/>
         </StackPanel>
         <Button Name="CloseBtn" Click="CloseBtn_Click" Height="30" Width="30" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource CamoflableBtn}">
             <Grid>
