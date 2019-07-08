@@ -11,25 +11,21 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Media.Effects;
 
 namespace GymWPF
 {
     /// <summary>
-    /// Logique d'interaction pour AjouterClient.xaml
+    /// Logique d'interaction pour PayementsPage.xaml
     /// </summary>
-    public partial class AjouterClient : Window
+    public partial class PayementsPage : Window
     {
-        MainApp dade;
-        public AjouterClient(MainApp d)
+        public PayementsPage()
         {
             InitializeComponent();
-            this.dade = d;
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
-            dade.Effect = null;
             this.Hide();
         }
     }

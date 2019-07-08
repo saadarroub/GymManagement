@@ -68,6 +68,12 @@
     <Compile Include="DepensesPage.xaml.cs">
       <DependentUpon>DepensesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ModifierClient.xaml.cs">
+      <DependentUpon>ModifierClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PayementsPage.xaml.cs">
+      <DependentUpon>PayementsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SallesPage.xaml.cs">
       <DependentUpon>SallesPage.xaml</DependentUpon>
     </Compile>
@@ -118,7 +124,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ModifierClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PasseChange.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PayementsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
