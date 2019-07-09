@@ -35,14 +35,14 @@
                         <TextBox Name="PassTextBox"  Width="167" Height="30"  Margin="0 5 10 0" Background="#333333" BorderBrush="#c7c7c7" FontSize="16" VerticalContentAlignment="Center" Padding="5 0 5 0" Foreground="White"/>
                     </WrapPanel>
                 </WrapPanel>
-                <WrapPanel Height="126" Margin="0 10 0 0">
-                    <WrapPanel Width="318" Height="126">
+                <WrapPanel Height="78" Margin="0 10 0 0">
+                    <WrapPanel Width="318" Height="78">
                         <TextBlock Text="Sport :" FontFamily="Segoe UI Light" FontSize="18"  Height="30" Foreground="White" Margin="20 20 10 0"/>
-                        <ComboBox x:Name="SportsComboBox"  Width="167" Height="30"  Margin="54 20 10 0" Background="#333333" BorderBrush="#c7c7c7" FontSize="16" VerticalContentAlignment="Center" Padding="5 0 5 0" Foreground="White" ItemsSource="{Binding}"/>
+                        <ComboBox x:Name="SportsComboBox"  Width="167" Height="30"  Margin="54 20 10 0" Background="#333333" BorderBrush="#c7c7c7" FontSize="16" VerticalContentAlignment="Center" Padding="5 0 5 0" Foreground="Black" ItemsSource="{Binding}"/>
                     </WrapPanel>
                     <WrapPanel Width="318">
-                        <RadioButton x:Name="ch1" Content="admin" Height="36" Width="79" Foreground="White" FontSize="20px" GroupName="x"/>
-                        <RadioButton x:Name="ch2" Content="editeur" Foreground="White" FontSize="20px" Height="39" Width="89" GroupName="x"/>
+                        <RadioButton x:Name="ch1" Content="admin" Height="39" Width="89" Foreground="White" FontSize="22" GroupName="x" VerticalContentAlignment="Center"/>
+                        <RadioButton x:Name="ch2" Content="editeur" Foreground="White" FontSize="22" Height="39" Width="89" GroupName="x" VerticalContentAlignment="Center"/>
                     </WrapPanel>
                 </WrapPanel>
 
