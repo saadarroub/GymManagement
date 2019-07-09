@@ -24,6 +24,7 @@ namespace GymWPF
         SportsPage sports;
         UtilisateursPage utilisateurs;
         ClientsPage clients;
+        DepensesPage depenses;
 
         string nom, prenom;
         
@@ -37,6 +38,7 @@ namespace GymWPF
             sports = new SportsPage(this);
             utilisateurs = new UtilisateursPage(this);
             clients = new ClientsPage(this);
+            depenses = new DepensesPage(this);
             
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -117,6 +119,7 @@ namespace GymWPF
         private void MainAppNavBtnToDepenses_Click(object sender, RoutedEventArgs e)
         {
             HideShowRecNavBtn(RecDepenses);
+            MainFrame.Navigate(depenses);
         }
 
         private void ShowHideMenuBtn_Click(object sender, RoutedEventArgs e)

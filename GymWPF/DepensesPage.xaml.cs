@@ -20,9 +20,11 @@ namespace GymWPF
     /// </summary>
     public partial class DepensesPage : Page
     {
-        public DepensesPage()
+        MainApp dade;
+        public DepensesPage(MainApp d)
         {
             InitializeComponent();
+            this.dade = d;
         }
     }
 }
