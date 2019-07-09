@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:GymWPF"
       mc:Ignorable="d" 
       d:DesignHeight="603" d:DesignWidth="839"
-      Title="UtilisateursPage" Background="#272727">
+      Title="UtilisateursPage" Background="#272727"
+      Loaded="Page_Loaded">
 
     <StackPanel>
         <TextBlock Text="Gestion des Utilisateurs" FontFamily="Segoe UI Light" FontSize="36" Foreground="#FFFFCC00" Margin="30 30 0 0"/>
@@ -37,35 +38,33 @@
                 <WrapPanel Height="126" Margin="0 10 0 0">
                     <WrapPanel Width="318" Height="126">
                         <TextBlock Text="Sport :" FontFamily="Segoe UI Light" FontSize="18"  Height="30" Foreground="White" Margin="20 20 10 0"/>
-                        <ComboBox x:Name="SportsComboBox"  Width="167" Height="30"  Margin="54 20 10 0" Background="#333333" BorderBrush="#c7c7c7" FontSize="16" VerticalContentAlignment="Center" Padding="5 0 5 0" Foreground="White"/>
+                        <ComboBox x:Name="SportsComboBox"  Width="167" Height="30"  Margin="54 20 10 0" Background="#333333" BorderBrush="#c7c7c7" FontSize="16" VerticalContentAlignment="Center" Padding="5 0 5 0" Foreground="White" ItemsSource="{Binding}"/>
                     </WrapPanel>
                     <WrapPanel Width="318">
-                        <TextBlock Text="Confirm :" FontFamily="Segoe UI Light" FontSize="18"  Height="30" Foreground="White" Margin="20 5 10 0"/>
-                        <PasswordBox x:Name="ConfirmPassTextBox"  Width="167" Height="30"   Margin="41 5 10 0" Background="#333333" BorderBrush="#c7c7c7" FontSize="16" VerticalContentAlignment="Center" Padding="5 0 5 0" Foreground="White"/>
-
-
+                        <RadioButton x:Name="ch1" Content="admin" Height="36" Width="79" Foreground="White" FontSize="20px" GroupName="x"/>
+                        <RadioButton x:Name="ch2" Content="editeur" Foreground="White" FontSize="20px" Height="39" Width="89" GroupName="x"/>
                     </WrapPanel>
                 </WrapPanel>
 
             </StackPanel>
             <StackPanel Width="202" Height="239">
-                <Button Name="BtnAjouter" Height="37" Width="167" Style="{StaticResource GreenBtn}" Content="Ajouter" Margin="0 30 0 0"/>
-                <Button Name="BtnModifier" Height="37" Width="167" Style="{StaticResource GreenBtn}" Content="Modifier" Margin="0 30 0 0"/>
+                <Button Name="BtnAjouter" Height="37" Width="167" Style="{StaticResource GreenBtn}" Content="Ajouter" Margin="0 30 0 0" Click="BtnAjouter_Click"/>
+                <Button Name="BtnModifier" Height="37" Width="167" Style="{StaticResource GreenBtn}" Content="Modifier" Margin="0 30 0 0" Click="BtnModifier_Click"/>
             </StackPanel>
         </WrapPanel>
-        <ListView Name = "ListViewUtilisateurs" Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="332" Margin="20 10 20 0">
+        <ListView Name = "ListViewUtilisateurs" Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="332" Margin="20 10 20 0" ItemsSource="{Binding}" SelectionChanged="ListViewUtilisateurs_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header = "ID"  Width = "100"/>
-                    <GridViewColumn Header = "Nom "  Width = "100"/>
-                    <GridViewColumn Header = "Prenom"  Width = "100"/>
-                    <GridViewColumn Header = "Pseudo"  Width = "100"/>
-                    <GridViewColumn Header = "Mot de pass"  Width = "120"/>
-                    <GridViewColumn Header = "Sport"  Width = "120"/>
+                    <GridViewColumn Header = "ID"  Width = "100" DisplayMemberBinding="{Binding Path=IdUser}"/>
+                    <GridViewColumn Header = "Nom "  Width = "100" DisplayMemberBinding="{Binding Path=Nom}"/>
+                    <GridViewColumn Header = "Prenom"  Width = "100" DisplayMemberBinding="{Binding Path=Prenom}"/>
+                    <GridViewColumn Header = "Pseudo"  Width = "100" DisplayMemberBinding="{Binding Path=UserName}"/>
+                    <GridViewColumn Header = "Mot de pass"  Width = "120" DisplayMemberBinding="{Binding Path=Password_User}"/>
+                    <GridViewColumn Header = "Sport"  Width = "120" DisplayMemberBinding="{Binding Path=Sport}"/>
                     <GridViewColumn Header = "Supprimer"  Width = "120">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Style="{StaticResource CamoflableBtn2}">
+                                <Button Style="{StaticResource CamoflableBtn2}" Click="Button_Click">
                                     <Grid Height="30" Width="50">
                                         <TextBlock Text="&#xf2ed;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="19" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Grid>
