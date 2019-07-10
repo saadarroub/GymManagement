@@ -485,7 +485,7 @@
                             <GridViewRowPresenter HorizontalAlignment="Stretch" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Width="Auto" Margin="0" Content="{TemplateBinding Content}"/>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsFocused" Value="True">
+                            <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="Foreground" Value="#ffcc00"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
@@ -522,6 +522,17 @@
                             <Storyboard>
                                 <ColorAnimation Storyboard.TargetProperty="(ListViewItem.Background).(SolidColorBrush.Color)"
                                                 From="#5b5b5b" To="#272727" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+
+                </EventTrigger>
+                <EventTrigger RoutedEvent="ListViewItem.Selected">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(ListViewItem.Background).(SolidColorBrush.Color)"
+                                                From="#5b5b5b" To="#909090" Duration="0:0:0.2" />
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger.Actions>
