@@ -41,8 +41,9 @@
                         <ComboBox x:Name="SportsComboBox"  Width="167" Height="30"  Margin="54 20 10 0" Background="#333333" BorderBrush="#c7c7c7" FontSize="16" VerticalContentAlignment="Center" Padding="5 0 5 0" Foreground="Black" ItemsSource="{Binding}"/>
                     </WrapPanel>
                     <WrapPanel Width="318">
-                        <RadioButton x:Name="ch1" Content="admin" Height="39" Width="89" Foreground="White" FontSize="22" GroupName="x" VerticalContentAlignment="Center"/>
+                        <RadioButton x:Name="ch1" Content="admin" Height="39" Width="89" Foreground="White" FontSize="22" GroupName="x" VerticalContentAlignment="Center" Background="White" />
                         <RadioButton x:Name="ch2" Content="editeur" Foreground="White" FontSize="22" Height="39" Width="89" GroupName="x" VerticalContentAlignment="Center"/>
+                        
                     </WrapPanel>
                 </WrapPanel>
 

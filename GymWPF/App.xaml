@@ -477,13 +477,20 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ListViewItem}">
-                        <Border      BorderBrush="Transparent"
-                                     BorderThickness="0"
-                                     Background="{TemplateBinding Background}"
-                                     Height="40">
+                        <Border Name="border"     
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                Background="{TemplateBinding Background}"
+                                Height="40">
                             <GridViewRowPresenter HorizontalAlignment="Stretch" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Width="Auto" Margin="0" Content="{TemplateBinding Content}"/>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Foreground" Value="#ffcc00"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
+                    
                 </Setter.Value>
             </Setter>
             <Setter Property="ListViewItem.Background">
