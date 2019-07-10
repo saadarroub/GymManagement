@@ -26,24 +26,47 @@ namespace GymWPF
         ClientsPage clients;
         DepensesPage depenses;
 
-        string nom, prenom;
-        
-        public MainApp(string nom,string prenom)
+        string nom, prenom, ConnectedSalle, ConnectedSport;
+        bool valid;
+
+
+        public MainApp(string nom,string prenom, bool valid,string ConnectedSalle,string ConnectedSport)
         {
             this.nom = nom;
             this.prenom = prenom;
+            this.valid = valid;
+            this.ConnectedSalle = ConnectedSalle;
+            this.ConnectedSport = ConnectedSport;
             InitializeComponent();
 
             salles = new SallesPage(this);
             sports = new SportsPage(this);
             utilisateurs = new UtilisateursPage(this);
-            clients = new ClientsPage(this);
+            clients = new ClientsPage(this, ConnectedSalle, ConnectedSport);
             depenses = new DepensesPage(this);
             
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            UserName.Text = nom + " " + prenom;
+           UserName.Text = nom+' '+prenom;
+            if (ConnectedSalle.ToString() =="" && ConnectedSport.ToString() =="")
+            {
+                MainAppNavBtnToClients.IsEnabled = false;
+                MainAppNavBtnToDepenses.IsEnabled = false;
+                MainAppNavBtnToClients.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+                MainAppNavBtnToDepenses.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+
+            }
+            else if (valid == false)
+            {
+                MainAppNavBtnToSalles.IsEnabled = false;
+                MainAppNavBtnToSprorts.IsEnabled = false;
+                MainAppNavBtnToUsers.IsEnabled = false;
+
+                MainAppNavBtnToSalles.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+                MainAppNavBtnToSprorts.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+                MainAppNavBtnToUsers.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+            }
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)

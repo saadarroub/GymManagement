@@ -14,7 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.Windows.Media.Effects;
-
+using System.Data.SqlClient;
+using System.Data;
+using System.IO;
 
 namespace GymWPF
 {
@@ -25,37 +27,58 @@ namespace GymWPF
     {
         MainApp dade;
         Point p2;
+        string ConnectedSalle, ConnectedSport;
 
-        public ClientsPage(MainApp dade)
+        public ClientsPage(MainApp dade ,string ConnectedSalle, string ConnectedSport)
         {
+            this.ConnectedSalle = ConnectedSalle;
+            this.ConnectedSport = ConnectedSport;
+
             InitializeComponent();
             this.dade = dade;
-            List<TodoItem> items = new List<TodoItem>();
-            items.Add(new TodoItem() { Title = "Complete this WPF tutorial", Tel = 0666666693 });
-            items.Add(new TodoItem() { Title = "Learn C#", Tel = 0680739829 });
-            items.Add(new TodoItem() { Title = "Wash the car", Tel = 0627381793 });
-            items.Add(new TodoItem() { Title = "Complete this WPF tutorial", Tel = 0666666693 });
-            items.Add(new TodoItem() { Title = "Learn C#", Tel = 0680739829 });
-            items.Add(new TodoItem() { Title = "Wash the car", Tel = 0627381793 });
-            items.Add(new TodoItem() { Title = "Complete this WPF tutorial", Tel = 0666666693 });
-            items.Add(new TodoItem() { Title = "Learn C#", Tel = 0680739829 });
-            items.Add(new TodoItem() { Title = "Wash the car", Tel = 0627381793 });
-            items.Add(new TodoItem() { Title = "Complete this WPF tutorial", Tel = 0666666693 });
-            items.Add(new TodoItem() { Title = "Learn C#", Tel = 0680739829 });
-            items.Add(new TodoItem() { Title = "Wash the car", Tel = 0627381793 });
-            items.Add(new TodoItem() { Title = "Complete this WPF tutorial", Tel = 0666666693 });
-            items.Add(new TodoItem() { Title = "Learn C#", Tel = 0680739829 });
-            items.Add(new TodoItem() { Title = "Wash the car", Tel = 0627381793 });
+            //List<TodoItem> items = new List<TodoItem>();
+            //items.Add(new TodoItem() { Title = "Complete this WPF tutorial", Tel = 0666666693 });
+            //items.Add(new TodoItem() { Title = "Learn C#", Tel = 0680739829 });
+            //items.Add(new TodoItem() { Title = "Wash the car", Tel = 0627381793 });
+            //items.Add(new TodoItem() { Title = "Complete this WPF tutorial", Tel = 0666666693 });
+            //items.Add(new TodoItem() { Title = "Learn C#", Tel = 0680739829 });
+            //items.Add(new TodoItem() { Title = "Wash the car", Tel = 0627381793 });
+            //items.Add(new TodoItem() { Title = "Complete this WPF tutorial", Tel = 0666666693 });
+            //items.Add(new TodoItem() { Title = "Learn C#", Tel = 0680739829 });
+            //items.Add(new TodoItem() { Title = "Wash the car", Tel = 0627381793 });
+            //items.Add(new TodoItem() { Title = "Complete this WPF tutorial", Tel = 0666666693 });
+            //items.Add(new TodoItem() { Title = "Learn C#", Tel = 0680739829 });
+            //items.Add(new TodoItem() { Title = "Wash the car", Tel = 0627381793 });
+            //items.Add(new TodoItem() { Title = "Complete this WPF tutorial", Tel = 0666666693 });
+            //items.Add(new TodoItem() { Title = "Learn C#", Tel = 0680739829 });
+            //items.Add(new TodoItem() { Title = "Wash the car", Tel = 0627381793 });
 
-            ListClient.ItemsSource = items;
+            //ListClient.ItemsSource = items;
            
 
         }
-        public class TodoItem
+        //declaration --------------------------------------
+        SqlConnection cn = new SqlConnection("Data Source=.;Initial Catalog=NSS_Salle_Application;Integrated Security=True");
+        SqlCommand cmd = new SqlCommand();
+        SqlDataAdapter da = new SqlDataAdapter("", "Data Source=.;Initial Catalog=NSS_Salle_Application;Integrated Security=True");
+        DataSet ds = new DataSet();
+        SqlDataReader dr;
+        //------------------------------------------------------
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            public string Title { get; set; }
-            public int Tel { get; set; }
+            da.SelectCommand.CommandText = "select c.IdClient,c.nom+' - '+c.prenom as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient where s.IdSalle='" + ConnectedSalle.ToString() + "' and s.IdType='" + ConnectedSport.ToString() + "'";
+            da.Fill(ds, "clients");
+            ListClient.ItemsSource = ds.Tables["clients"].DefaultView;
+            
         }
+
+
+        //public class TodoItem
+        //{
+        //    public string Title { get; set; }
+        //    public int Tel { get; set; }
+        //}
 
         private void MenuClientBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -111,11 +134,12 @@ namespace GymWPF
                 MenuClientModal.Visibility = Visibility.Collapsed;
             }
         }
+       
 
         private void AjouterClientBtn_Click(object sender, RoutedEventArgs e)
         {
             dade.Effect = new BlurEffect();
-            AjouterClient ac = new AjouterClient(dade);
+            AjouterClient ac = new AjouterClient(dade, ConnectedSalle, ConnectedSport);
             ac.ShowDialog();
         }
     }

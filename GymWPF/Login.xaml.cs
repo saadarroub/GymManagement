@@ -59,13 +59,19 @@ namespace GymWPF
             {
                 cn.Open();
                 cmd.Connection = cn;
-                cmd.CommandText = "select * from Utilisateur where UserName = '" + UsertextBox.Text + "' and Password_User = '" + PassTextBox.Password + "'";
+                cmd.CommandText = "select * from Utilisateur u left join UtilisateurSportSalle us on u.IdUser=us.IdUser where u.UserName = '" + UsertextBox.Text + "' and Password_User = '" + PassTextBox.Password + "'";
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
                     string nom = dr[1].ToString();
                     string prenom = dr[2].ToString();
-                    MainApp app = new MainApp(nom, prenom);
+
+                    string ConnectedSalle = dr[6].ToString();
+                    string ConnectedSport = dr[7].ToString();
+
+                    bool valid = (bool)dr[5];
+
+                    MainApp app = new MainApp(nom, prenom,valid,ConnectedSalle,ConnectedSport);
                     mw.Hide();
                     app.Show();
                 }

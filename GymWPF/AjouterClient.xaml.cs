@@ -28,17 +28,22 @@ namespace GymWPF
     public partial class AjouterClient : Window
     {
         MainApp dade;
-        public AjouterClient(MainApp d)
+        string ConnectedSalle, ConnectedSport;
+        public AjouterClient(MainApp d , string ConnectedSalle, string ConnectedSport)
         {
+            this.ConnectedSalle = ConnectedSalle;
+            this.ConnectedSport = ConnectedSport;
             InitializeComponent();
             this.dade = d;
         }
 
+        //declaration --------------------------------------
         SqlConnection cn = new SqlConnection("Data Source=.;Initial Catalog=NSS_Salle_Application;Integrated Security=True");
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter da = new SqlDataAdapter("", "Data Source=.;Initial Catalog=NSS_Salle_Application;Integrated Security=True");
         DataSet ds = new DataSet();
         SqlDataReader dr;
+        //------------------------------------------------------
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -89,13 +94,15 @@ namespace GymWPF
                     cmd.Connection = cn;
                     cmd.CommandText = "insert into Clients values('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "',@img)";
                     cmd.Parameters.AddWithValue("img", imgByte);
-                    int result = cmd.ExecuteNonQuery();
-                    if (result == 1)
-                     {
-                            MessageBox.Show("clients added successfully.");                                
-                     }
-                        
-                    
+                    cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = "select MAX(IdClient) from Clients";
+                    int id = int.Parse(cmd.ExecuteScalar().ToString());
+
+                    cmd.CommandText = "insert into SportClients values ('" + id + "','" + ConnectedSalle + "','" + ConnectedSport + "')";
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("ok");
+
                 }
             }
             catch (Exception ex)
