@@ -52,9 +52,9 @@
                 <Button Name="BtnModifier" Height="37" Width="167" Style="{StaticResource GreenBtn}" Content="Modifier" Margin="0 30 0 0" Click="BtnModifier_Click"/>
             </StackPanel>
         </WrapPanel>
-        <ListView Name = "ListViewUtilisateurs" Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="332" Margin="20 10 20 0" ItemsSource="{Binding}" SelectionChanged="ListViewUtilisateurs_SelectionChanged">
+        <ListView ItemContainerStyle="{StaticResource ListItemHover}" Name = "ListViewUtilisateurs" Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="332" Margin="20 10 20 0" ItemsSource="{Binding}" SelectionChanged="ListViewUtilisateurs_SelectionChanged">
             <ListView.View>
-                <GridView>
+                <GridView ColumnHeaderContainerStyle="{StaticResource ListViewHeader}">
                     <GridViewColumn Header = "ID"  Width = "100" DisplayMemberBinding="{Binding Path=IdUser}"/>
                     <GridViewColumn Header = "Nom "  Width = "100" DisplayMemberBinding="{Binding Path=Nom}"/>
                     <GridViewColumn Header = "Prenom"  Width = "100" DisplayMemberBinding="{Binding Path=Prenom}"/>
@@ -64,7 +64,7 @@
                     <GridViewColumn Header = "Supprimer"  Width = "120">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Style="{StaticResource CamoflableBtn2}" Click="Button_Click">
+                                <Button Style="{StaticResource ListViewBtnDelete}" Click="Button_Click">
                                     <Grid Height="30" Width="50">
                                         <TextBlock Text="&#xf2ed;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="19" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Grid>

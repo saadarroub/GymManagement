@@ -23,9 +23,9 @@
             <Button Name="BtnModifier" Content="Modifier" Width="87" Height="37" Style="{StaticResource GreenBtn}" Margin="20 10 0 10" Click="BtnModifier_Click"/>
         </WrapPanel>
         <TextBlock Text="Liste des Sports Par Salle :" FontFamily="Segoe UI Light" FontSize="24" Foreground="White" Margin="20 20 0 0"/>
-        <ListView Name = "ListViewSports"  Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="291" Margin="20 20 20 0" ItemsSource="{Binding}" SelectionChanged="ListViewSports_SelectionChanged">
+        <ListView ItemContainerStyle="{StaticResource ListItemHover}" Name = "ListViewSports"  Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="291" Margin="20 20 20 0" ItemsSource="{Binding}" SelectionChanged="ListViewSports_SelectionChanged">
             <ListView.View>
-                <GridView>
+                <GridView ColumnHeaderContainerStyle="{StaticResource ListViewHeader}">
                     <GridViewColumn Header = "ID"  Width = "100" DisplayMemberBinding="{Binding Path=IdType}"/>
                     <GridViewColumn Header = "Nom de Salle"  Width = "200" DisplayMemberBinding="{Binding Path=nom_Salle}"/>
                     <GridViewColumn Header = "Sport"  Width = "200" DisplayMemberBinding="{Binding Path=nom_Type}"/>
@@ -33,7 +33,7 @@
                     <GridViewColumn Header = "Supprimer"  Width = "100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Style="{StaticResource CamoflableBtn2}" Click="Button_Click" Name="btnRemove">
+                                <Button Style="{StaticResource ListViewBtnDelete}" Click="Button_Click" Name="btnRemove">
                                     <Grid Height="30" Width="50">
                                         <TextBlock Text="&#xf2ed;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="19" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Grid>

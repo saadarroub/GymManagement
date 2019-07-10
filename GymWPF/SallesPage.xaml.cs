@@ -59,9 +59,17 @@ namespace GymWPF
         private void ListViewSalles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
-                int index = ListViewSalles.SelectedIndex;
+            int index = ListViewSalles.SelectedIndex;
+            if(index >= 0)
+            {
                 DataRowView row = ListViewSalles.Items.GetItemAt(index) as DataRowView;
                 SalleName.Text = row.Row[1].ToString();
+            }
+            else
+            {
+                SalleName.Text = "";
+            }
+                
             
                 
         }
