@@ -135,7 +135,25 @@ namespace GymWPF
                 MenuClientModal.Visibility = Visibility.Collapsed;
             }
         }
-       
+
+        private void PayementsClientModalBtn_Click(object sender, RoutedEventArgs e)
+        {
+            dade.Effect = new BlurEffect();
+            PayementsPage pp = new PayementsPage(dade);
+            pp.ShowDialog();
+        }
+
+        private void ModifierClientModalBtn_Click(object sender, RoutedEventArgs e)
+        {
+            dade.Effect = new BlurEffect();
+            ModifierClient mc = new ModifierClient(dade);
+            mc.ShowDialog();
+        }
+
+        private void SupprimerClientModalBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
         private void AjouterClientBtn_Click(object sender, RoutedEventArgs e)
         {

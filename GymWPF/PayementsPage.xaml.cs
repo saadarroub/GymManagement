@@ -19,13 +19,16 @@ namespace GymWPF
     /// </summary>
     public partial class PayementsPage : Window
     {
-        public PayementsPage()
+        MainApp dade;
+        public PayementsPage(MainApp d)
         {
             InitializeComponent();
+            this.dade = d;
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
+            dade.Effect = null;
             this.Hide();
         }
     }

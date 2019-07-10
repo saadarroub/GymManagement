@@ -62,9 +62,9 @@
                 </TransformGroup>
             </Grid.RenderTransform>
             <StackPanel>
-                <Button Name="PayementsClientModalBtn" Content="Payements"  Height="30" Style="{StaticResource CamoflableBtn2}"/>
-                <Button Content="Modifier" Height="30" Style="{StaticResource CamoflableBtn2}"/>
-                <Button Content="Supprimer" Height="30" Style="{StaticResource CamoflableBtn2}"/>
+                <Button Name="PayementsClientModalBtn" Click="PayementsClientModalBtn_Click" Content="Payements"  Height="30" Style="{StaticResource CamoflableBtn2}"/>
+                <Button Name="ModifierClientModalBtn" Click="ModifierClientModalBtn_Click" Content="Modifier" Height="30" Style="{StaticResource CamoflableBtn2}"/>
+                <Button Name="SupprimerClientModalBtn" Click="SupprimerClientModalBtn_Click" Content="Supprimer" Height="30" Style="{StaticResource CamoflableBtn2}"/>
             </StackPanel>
         </Grid>
     </Grid>
