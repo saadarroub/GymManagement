@@ -67,10 +67,6 @@ namespace GymWPF
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if (ds.Tables["clients"] != null)
-            {
-                ds.Tables["clients"].Clear();
-            }
 
             da.SelectCommand.CommandText = "select c.IdClient,c.nom+' - '+c.prenom as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient where s.IdSalle='" + ConnectedSalle.ToString() + "' and s.IdType='" + ConnectedSport.ToString() + "'";
             da.Fill(ds, "clients");

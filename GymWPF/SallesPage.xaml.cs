@@ -41,10 +41,7 @@ namespace GymWPF
         }
         public void LoadResoource()
         {
-            if (ds.Tables["Salle"] != null)
-            {
-                ds.Tables["Salle"].Clear();
-            }
+           
 
             da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
             da.MissingSchemaAction = MissingSchemaAction.AddWithKey;

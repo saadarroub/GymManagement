@@ -39,11 +39,9 @@ namespace GymWPF
             this.ConnectedSport = ConnectedSport;
             InitializeComponent();
 
-            salles = new SallesPage(this);
-            sports = new SportsPage(this);
-            utilisateurs = new UtilisateursPage(this);
-            clients = new ClientsPage(this, ConnectedSalle, ConnectedSport);
-            depenses = new DepensesPage(this);
+            
+            
+            
             
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -113,19 +111,21 @@ namespace GymWPF
         private void MainAppNavBtnToSalles_Click(object sender, RoutedEventArgs e)
         {
             HideShowRecNavBtn(RecSalles);
-            
+            salles = new SallesPage(this);
             MainFrame.Navigate(salles);
         }
 
         private void MainAppNavBtnToSprorts_Click(object sender, RoutedEventArgs e)
         {
             HideShowRecNavBtn(RecSports);
+            sports = new SportsPage(this);
             MainFrame.Navigate(sports);
         }
 
         private void MainAppNavBtnToUsers_Click(object sender, RoutedEventArgs e)
         {
             HideShowRecNavBtn(RecUsers);
+            utilisateurs = new UtilisateursPage(this);
             MainFrame.Navigate(utilisateurs);
         }
 
@@ -134,6 +134,7 @@ namespace GymWPF
         private void MainAppNavBtnToClients_Click(object sender, RoutedEventArgs e)
         {
             HideShowRecNavBtn(RecClients);
+            clients = new ClientsPage(this, ConnectedSalle, ConnectedSport);
             MainFrame.Navigate(clients);
         }
 
@@ -142,6 +143,7 @@ namespace GymWPF
         private void MainAppNavBtnToDepenses_Click(object sender, RoutedEventArgs e)
         {
             HideShowRecNavBtn(RecDepenses);
+            depenses = new DepensesPage(this);
             MainFrame.Navigate(depenses);
         }
 
