@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GymWPF"
         mc:Ignorable="d"
-        Title="PayementsPage" Height="550" Width="800" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#272727" BorderBrush="#ffcc00" BorderThickness="1">
-    <Grid>
+        Title="PayementsPage" Height="650" Width="890" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#272727" BorderThickness="50" AllowsTransparency="True">
+    <Grid Background="#272727">
+        <Grid.Effect>
+            <DropShadowEffect ShadowDepth="0" BlurRadius="50" />
+        </Grid.Effect>
         <Button Name="CloseBtn" Click="CloseBtn_Click" Height="30" Width="30" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource CamoflableBtn}">
             <Grid>
                 <TextBlock Text="&#xf00d;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="14"/>
@@ -14,7 +17,7 @@
         </Button>
         <StackPanel>
             <TextBlock Text="Gestion des Payements" FontFamily="Segoe UI Light" FontSize="28" Foreground="#FFFFCC00" Margin="30 30 0 0"/>
-            <ListView ItemContainerStyle="{StaticResource ListItemHover}" Margin="0 20 0 0" Height="350" Background="#333333">
+            <ListView ItemContainerStyle="{StaticResource ListItemHover}" Margin="0 20 0 0" Height="350" Background="#333333" Width="770">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource ListViewHeader}">
                         <GridViewColumn Header="Client" Width="100"/>
