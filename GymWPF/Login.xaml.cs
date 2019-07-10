@@ -63,6 +63,7 @@ namespace GymWPF
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
+                    string iduser = dr[0].ToString();
                     string nom = dr[1].ToString();
                     string prenom = dr[2].ToString();
 
@@ -71,7 +72,7 @@ namespace GymWPF
 
                     bool valid = (bool)dr[5];
 
-                    MainApp app = new MainApp(nom, prenom,valid,ConnectedSalle,ConnectedSport);
+                    MainApp app = new MainApp(nom, prenom,valid,ConnectedSalle,ConnectedSport,iduser);
                     mw.Hide();
                     app.Show();
                 }

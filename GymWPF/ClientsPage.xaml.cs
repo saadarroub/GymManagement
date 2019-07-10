@@ -68,7 +68,7 @@ namespace GymWPF
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
 
-            da.SelectCommand.CommandText = "select c.IdClient,c.nom+' - '+c.prenom as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient where s.IdSalle='" + ConnectedSalle.ToString() + "' and s.IdType='" + ConnectedSport.ToString() + "'";
+            da.SelectCommand.CommandText = "select c.IdClient,c.nom+' '+c.prenom as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient where s.IdSalle='" + ConnectedSalle.ToString() + "' and s.IdType='" + ConnectedSport.ToString() + "'";
             da.Fill(ds, "clients");
             ListClient.ItemsSource = ds.Tables["clients"].DefaultView;
             
@@ -136,6 +136,7 @@ namespace GymWPF
             }
         }
 
+
         private void PayementsClientModalBtn_Click(object sender, RoutedEventArgs e)
         {
             dade.Effect = new BlurEffect();
@@ -152,6 +153,12 @@ namespace GymWPF
 
         private void SupprimerClientModalBtn_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ds.Tables["clients"].DefaultView.RowFilter = "Title like '%" + search.Text + "%'";
 
         }
 

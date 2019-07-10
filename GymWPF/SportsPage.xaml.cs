@@ -102,11 +102,15 @@ namespace GymWPF
 
         private void ListViewSports_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int index = ListViewSports.SelectedIndex;
-            DataRowView row = ListViewSports.Items.GetItemAt(index) as DataRowView;
-            SallesComboBox.SelectedItem = row.Row[1].ToString();
-            SportName.Text = row.Row[2].ToString();
-            SportPrix.Text = row.Row[3].ToString();
+            if (ListViewSports.SelectedIndex != -1)
+            {
+                int index = ListViewSports.SelectedIndex;
+                DataRowView row = ListViewSports.Items.GetItemAt(index) as DataRowView;
+                SallesComboBox.SelectedItem = row.Row[1].ToString();
+                SportName.Text = row.Row[2].ToString();
+                SportPrix.Text = row.Row[3].ToString();
+            }
+            
         }
 
         private void BtnModifier_Click(object sender, RoutedEventArgs e)

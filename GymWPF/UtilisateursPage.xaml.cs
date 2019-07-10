@@ -88,7 +88,7 @@ namespace GymWPF
                 cmd.CommandText = "select MAX(IdUser) from Utilisateur";
                 int IdUser = int.Parse(cmd.ExecuteScalar().ToString());
 
-                cmd.CommandText = "select IdSalle from SportSalle where IdType='"+SportsComboBox.SelectedValue+"'";
+                cmd.CommandText = "select IdSalle from SportSalle where IdType='" + SportsComboBox.SelectedValue + "'";
                 int IdSalle = int.Parse(cmd.ExecuteScalar().ToString());
 
                 cmd.CommandText = "insert into UtilisateurSportSalle values ('" + IdSalle + "','" + SportsComboBox.SelectedValue + "','" + IdUser + "')";
@@ -113,18 +113,57 @@ namespace GymWPF
 
         private void ListViewUtilisateurs_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            int index = ListViewUtilisateurs.SelectedIndex;
-            DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
-            NomTextBox.Text = row.Row[1].ToString();
-            PrenomTextBox.Text = row.Row[2].ToString();
-            UserNameTextBox.Text = row.Row[3].ToString();
-            PassTextBox.Text = row.Row[4].ToString();
+            if (ListViewUtilisateurs.SelectedIndex != -1)
+            {
+                int index = ListViewUtilisateurs.SelectedIndex;
+                DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
+                NomTextBox.Text = row.Row[1].ToString();
+                PrenomTextBox.Text = row.Row[2].ToString();
+                UserNameTextBox.Text = row.Row[3].ToString();
+                PassTextBox.Text = row.Row[4].ToString();
+            }
+            
 
         }
 
         private void BtnModifier_Click(object sender, RoutedEventArgs e)
         {
-           
+            try
+            {
+                int index = ListViewUtilisateurs.SelectedIndex;
+                DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
+                int id = int.Parse(row.Row[0].ToString());
+
+                cn.Open();
+                cmd.Connection = cn;
+                cmd.CommandText = "update Utilisateur set Nom = '" + NomTextBox.Text + "' , Prenom = '" + PrenomTextBox.Text + "' , UserName = '" + UserNameTextBox.Text + "',Password_User = '" + PassTextBox.Text + "', Valide = @valid where IdUser = '"+id+"'";
+                if (ch1.IsChecked == true)
+                {
+                    cmd.Parameters.AddWithValue("@valid", true);
+                    cmd.ExecuteNonQuery();
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("@valid", false);
+                    cmd.ExecuteNonQuery();
+                }
+
+                cmd.CommandText = "select IdSalle from SportSalle where IdType='" + SportsComboBox.SelectedValue + "'";
+                int IdSalle = int.Parse(cmd.ExecuteScalar().ToString());
+
+                cmd.CommandText = "update UtilisateurSportSalle set IdSalle = '" + IdSalle + "', IdType = '" + SportsComboBox.SelectedValue + "' where IdUser = '" + id + "'";
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("ok");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+                loaded();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
