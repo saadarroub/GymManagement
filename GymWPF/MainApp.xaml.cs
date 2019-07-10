@@ -26,17 +26,18 @@ namespace GymWPF
         ClientsPage clients;
         DepensesPage depenses;
 
-        string nom, prenom, ConnectedSalle, ConnectedSport;
+        string nom, prenom, ConnectedSalle, ConnectedSport,iduser;
         bool valid;
 
 
-        public MainApp(string nom,string prenom, bool valid,string ConnectedSalle,string ConnectedSport)
+        public MainApp(string nom,string prenom, bool valid,string ConnectedSalle,string ConnectedSport,string iduser)
         {
             this.nom = nom;
             this.prenom = prenom;
             this.valid = valid;
             this.ConnectedSalle = ConnectedSalle;
             this.ConnectedSport = ConnectedSport;
+            this.iduser = iduser;
             InitializeComponent();
 
             
@@ -143,7 +144,7 @@ namespace GymWPF
         private void MainAppNavBtnToDepenses_Click(object sender, RoutedEventArgs e)
         {
             HideShowRecNavBtn(RecDepenses);
-            depenses = new DepensesPage(this);
+            depenses = new DepensesPage(this , ConnectedSalle, ConnectedSport, iduser);
             MainFrame.Navigate(depenses);
         }
 
