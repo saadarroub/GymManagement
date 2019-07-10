@@ -484,11 +484,11 @@
                                 Height="40">
                             <GridViewRowPresenter HorizontalAlignment="Stretch" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Width="Auto" Margin="0" Content="{TemplateBinding Content}"/>
                         </Border>
-                        <ControlTemplate.Triggers>
+                        <!--<ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="Foreground" Value="#ffcc00"/>
                             </Trigger>
-                        </ControlTemplate.Triggers>
+                        </ControlTemplate.Triggers>-->
                     </ControlTemplate>
                     
                 </Setter.Value>
@@ -531,8 +531,19 @@
                     <EventTrigger.Actions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <ColorAnimation Storyboard.TargetProperty="(ListViewItem.Background).(SolidColorBrush.Color)"
-                                                From="#5b5b5b" To="#909090" Duration="0:0:0.2" />
+                                <ColorAnimation Storyboard.TargetProperty="(ListViewItem.Foreground).(SolidColorBrush.Color)"
+                                                From="White" To="#ffcc00" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+
+                </EventTrigger>
+                <EventTrigger RoutedEvent="ListViewItem.Unselected">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(ListViewItem.Foreground).(SolidColorBrush.Color)"
+                                                From="#ffcc00" To="White" Duration="0:0:0.2" />
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger.Actions>
