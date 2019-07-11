@@ -25,7 +25,7 @@
                 </Button>
             </WrapPanel>
             <ScrollViewer  Height="440" ScrollChanged="ScrollViewer_ScrollChanged">
-                <ItemsControl Name="ListClient" MouseDown="ListClient_MouseDown" Background="#272727" ItemsSource="{Binding}">
+                <ItemsControl Name="ListClient" MouseDown="ListClient_MouseDown" Background="#272727" ItemsSource="{Binding}" >
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Border Height="200" Width="140" Margin="32 10" Padding="5" BorderBrush="#ffcc00" BorderThickness="1">
@@ -38,6 +38,7 @@
                                     <Image Name="images" Source="{Binding Path=Photo}" Stretch="Fill" Height="140" Width="120" VerticalAlignment="Top" Margin="0 15 0 0" />
                                     <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Margin="5 0 0 15" FontFamily="Segoe UI Light" FontSize="14" />
                                     <TextBlock Text="{Binding Tel}" VerticalAlignment="Bottom" Margin="5 0 0 0"/>
+                                    <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=(ItemsControl.AlternationIndex)}"/>
 
                                 </Grid>
                             </Border>
@@ -64,7 +65,7 @@
             <StackPanel>
                 <Button Name="PayementsClientModalBtn" Click="PayementsClientModalBtn_Click" Content="Payements"  Height="30" Style="{StaticResource CamoflableBtn2}"/>
                 <Button Name="ModifierClientModalBtn" Click="ModifierClientModalBtn_Click" Content="Modifier" Height="30" Style="{StaticResource CamoflableBtn2}"/>
-                <Button Name="SupprimerClientModalBtn" Click="SupprimerClientModalBtn_Click" Content="Supprimer" Height="30" Style="{StaticResource CamoflableBtn2}"/>
+                <Button Name="SupprimerClientModalBtn"  Content="Supprimer" Height="30" Style="{StaticResource CamoflableBtn2}"/>
             </StackPanel>
         </Grid>
     </Grid>

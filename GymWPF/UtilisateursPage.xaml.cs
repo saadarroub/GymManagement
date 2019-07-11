@@ -67,47 +67,63 @@ namespace GymWPF
 
         private void BtnAjouter_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (BtnAjouter.Content.ToString() == "Nouveau")
             {
-                cn.Open();
-                cmd.Connection = cn;
-                cmd.CommandText = "insert into Utilisateur values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + UserNameTextBox.Text + "','" + PassTextBox.Text + "',@valide)";
-                if (ch1.IsChecked == true)
+                BtnAjouter.Content = "Ajouter";
+                NomTextBox.Text = null;
+                PrenomTextBox.Text = null;
+                UserNameTextBox.Text = null;
+                PassTextBox.Text = null;
+                SportsComboBox.SelectedIndex = -1;
+                ListViewUtilisateurs.UnselectAll();
+            }
+            else if (BtnAjouter.Content.ToString() == "Ajouter")
+            
                 {
-                    cmd.Parameters.AddWithValue("@valide", true);
+                try
+                {
+                    cn.Open();
+                    cmd.Connection = cn;
+                    cmd.CommandText = "insert into Utilisateur values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + UserNameTextBox.Text + "','" + PassTextBox.Text + "',@valide)";
+                    if (ch1.IsChecked == true)
+                    {
+                        cmd.Parameters.AddWithValue("@valide", true);
+                        cmd.ExecuteNonQuery();
+
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@valide", false);
+                        cmd.ExecuteNonQuery();
+
+                    }
+
+                    cmd.CommandText = "select MAX(IdUser) from Utilisateur";
+                    int IdUser = int.Parse(cmd.ExecuteScalar().ToString());
+
+                    cmd.CommandText = "select IdSalle from SportSalle where IdType='" + SportsComboBox.SelectedValue + "'";
+                    int IdSalle = int.Parse(cmd.ExecuteScalar().ToString());
+
+                    cmd.CommandText = "insert into UtilisateurSportSalle values ('" + IdSalle + "','" + SportsComboBox.SelectedValue + "','" + IdUser + "')";
+
+
                     cmd.ExecuteNonQuery();
 
+                    MessageBox.Show("ok");
                 }
-                else
+                catch (Exception ex)
                 {
-                    cmd.Parameters.AddWithValue("@valide", false);
-                    cmd.ExecuteNonQuery();
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    cn.Close();
 
+                    loaded();
                 }
 
-                cmd.CommandText = "select MAX(IdUser) from Utilisateur";
-                int IdUser = int.Parse(cmd.ExecuteScalar().ToString());
-
-                cmd.CommandText = "select IdSalle from SportSalle where IdType='" + SportsComboBox.SelectedValue + "'";
-                int IdSalle = int.Parse(cmd.ExecuteScalar().ToString());
-
-                cmd.CommandText = "insert into UtilisateurSportSalle values ('" + IdSalle + "','" + SportsComboBox.SelectedValue + "','" + IdUser + "')";
-
-
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show("ok");
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                cn.Close();
-
-                loaded();
-            }
+               
 
         }
 
@@ -115,6 +131,8 @@ namespace GymWPF
         {
             if (ListViewUtilisateurs.SelectedIndex != -1)
             {
+                BtnAjouter.Content = "Nouveau";
+
                 int index = ListViewUtilisateurs.SelectedIndex;
                 DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
                 NomTextBox.Text = row.Row[1].ToString();

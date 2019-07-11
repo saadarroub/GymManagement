@@ -67,43 +67,57 @@ namespace GymWPF
 
         private void BtnAjouter_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (BtnAjouter.Content.ToString() == "Nouveau")
             {
-                if (SportName.Text != "" && SallesComboBox.SelectedItem != null && SportPrix.Text != "")
+                BtnAjouter.Content = "Ajouter";
+                SportName.Text = null;
+                SportPrix.Text = null;
+                SallesComboBox.SelectedIndex = -1;
+                ListViewSports.UnselectAll();
+            }
+            else if (BtnAjouter.Content.ToString() == "Ajouter")
+            {
+                try
                 {
-                    cn.Open();
-                    cmd.Connection = cn;
-                    cmd.CommandText = "insert into Type_Sport values ('" + SportName.Text + "')";
-                    cmd.ExecuteNonQuery();
+                    if (SportName.Text != "" && SallesComboBox.SelectedItem != null && SportPrix.Text != "")
+                    {
+                        cn.Open();
+                        cmd.Connection = cn;
+                        cmd.CommandText = "insert into Type_Sport values ('" + SportName.Text + "')";
+                        cmd.ExecuteNonQuery();
 
-                    cmd.CommandText = "select MAX(IdType) from Type_Sport";
-                    int id = int.Parse(cmd.ExecuteScalar().ToString());
+                        cmd.CommandText = "select MAX(IdType) from Type_Sport";
+                        int id = int.Parse(cmd.ExecuteScalar().ToString());
 
-                    cmd.CommandText = "insert into SportSalle values ('" + SallesComboBox.SelectedValue + "','" + id + "','" + SportPrix.Text + "')";
-                    cmd.ExecuteNonQuery();
+                        cmd.CommandText = "insert into SportSalle values ('" + SallesComboBox.SelectedValue + "','" + id + "','" + SportPrix.Text + "')";
+                        cmd.ExecuteNonQuery();
 
-                    cn.Close();
-                    loaded();
-                    ListViewSports.UnselectAll();
+                        cn.Close();
+                        loaded();
+                        ListViewSports.UnselectAll();
 
-                    MessageBox.Show("ok");
+                        MessageBox.Show("ok");
 
+                    }
+                    else
+                    {
+                        MessageBox.Show("errors");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("errors");
+                    MessageBox.Show(ex.Message);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }  
+
+               
         }
 
         private void ListViewSports_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ListViewSports.SelectedIndex != -1)
             {
+                BtnAjouter.Content = "Nouveau";
                 int index = ListViewSports.SelectedIndex;
                 DataRowView row = ListViewSports.Items.GetItemAt(index) as DataRowView;
                 SallesComboBox.SelectedItem = row.Row[1].ToString();

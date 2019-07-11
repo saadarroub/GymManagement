@@ -151,16 +151,13 @@ namespace GymWPF
             mc.ShowDialog();
         }
 
-        private void SupprimerClientModalBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             ds.Tables["clients"].DefaultView.RowFilter = "Title like '%" + search.Text + "%'";
 
-        }
+        }        
 
         private void AjouterClientBtn_Click(object sender, RoutedEventArgs e)
         {
