@@ -94,7 +94,9 @@ namespace GymWPF
 
                         cn.Close();
                         loaded();
-                        ListViewSports.UnselectAll();
+                        SportName.Text = null;
+                        SportPrix.Text = null;
+                        SallesComboBox.SelectedIndex = -1;
 
                         MessageBox.Show("ok");
 
@@ -144,7 +146,13 @@ namespace GymWPF
                     cmd.ExecuteNonQuery();
 
                     cn.Close();
-                    loaded();
+                BtnAjouter.Content = "Ajouter";
+                SportName.Text = null;
+                SportPrix.Text = null;
+                SallesComboBox.SelectedIndex = -1;
+                ListViewSports.UnselectAll();
+
+                loaded();
 
 
                 MessageBox.Show("ok");
@@ -171,6 +179,11 @@ namespace GymWPF
                 cmd.CommandText = "delete from Type_Sport where IdType = '" + row.Row[0].ToString() + "'";
                 cmd.ExecuteNonQuery();
                 cn.Close();
+                BtnAjouter.Content = "Ajouter";
+                SportName.Text = null;
+                SportPrix.Text = null;
+                SallesComboBox.SelectedIndex = -1;
+                ListViewSports.UnselectAll();
                 loaded();
                 
             }

@@ -107,6 +107,8 @@ namespace GymWPF
                         MessageBox.Show("Record added");
                         ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
                         ListViewSalles.UnselectAll();
+                        SalleName.Text = null;
+
 
                     }
                 }
@@ -137,7 +139,11 @@ namespace GymWPF
                 SqlCommandBuilder cb = new SqlCommandBuilder(da);
                 da.Update(ds, "Salle");
                 MessageBox.Show("updated..");
-                ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;               
+                ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;  
+                BtnAjouter.Content = "Ajouter";
+                SalleName.Text = null;
+                ListViewSalles.UnselectAll();
+
 
 
             }
@@ -166,8 +172,12 @@ namespace GymWPF
                 r.Delete();
                 SqlCommandBuilder cb = new SqlCommandBuilder(da);
                 da.Update(ds, "Salle");
-                MessageBox.Show("Record Deleted");
+                BtnAjouter.Content = "Ajouter";
+                SalleName.Text = null;
+                ListViewSalles.UnselectAll();
                 ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
+                MessageBox.Show("Record Deleted");
+
 
             }
         }

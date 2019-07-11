@@ -48,15 +48,8 @@ namespace GymWPF
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
            UserName.Text = nom+' '+prenom;
-            if (ConnectedSalle.ToString() =="" && ConnectedSport.ToString() =="")
-            {
-                MainAppNavBtnToClients.IsEnabled = false;
-                MainAppNavBtnToDepenses.IsEnabled = false;
-                MainAppNavBtnToClients.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
-                MainAppNavBtnToDepenses.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
-
-            }
-            else if (valid == false)
+           
+             if (valid == false)
             {
                 MainAppNavBtnToSalles.IsEnabled = false;
                 MainAppNavBtnToSprorts.IsEnabled = false;

@@ -75,6 +75,8 @@ namespace GymWPF
                 UserNameTextBox.Text = null;
                 PassTextBox.Text = null;
                 SportsComboBox.SelectedIndex = -1;
+                ch1.IsChecked = false;
+                ch2.IsChecked = false;
                 ListViewUtilisateurs.UnselectAll();
             }
             else if (BtnAjouter.Content.ToString() == "Ajouter")
@@ -118,7 +120,14 @@ namespace GymWPF
                 finally
                 {
                     cn.Close();
-
+                    
+                    NomTextBox.Text = null;
+                    PrenomTextBox.Text = null;
+                    UserNameTextBox.Text = null;
+                    PassTextBox.Text = null;
+                    SportsComboBox.SelectedIndex = -1;
+                    ch1.IsChecked = false;
+                    ch2.IsChecked = false;
                     loaded();
                 }
 
@@ -180,6 +189,15 @@ namespace GymWPF
             finally
             {
                 cn.Close();
+                BtnAjouter.Content = "Ajouter";
+                NomTextBox.Text = null;
+                PrenomTextBox.Text = null;
+                UserNameTextBox.Text = null;
+                PassTextBox.Text = null;
+                SportsComboBox.SelectedIndex = -1;
+                ch1.IsChecked = false;
+                ch2.IsChecked = false;
+                ListViewUtilisateurs.UnselectAll();
                 loaded();
             }
         }
@@ -198,6 +216,15 @@ namespace GymWPF
                 cmd.CommandText = "delete from Utilisateur where IdUser = '" + row.Row[0].ToString() + "'";
                 cmd.ExecuteNonQuery();
                 cn.Close();
+                BtnAjouter.Content = "Ajouter";
+                NomTextBox.Text = null;
+                PrenomTextBox.Text = null;
+                UserNameTextBox.Text = null;
+                PassTextBox.Text = null;
+                SportsComboBox.SelectedIndex = -1;
+                ch1.IsChecked = false;
+                ch2.IsChecked = false;
+                ListViewUtilisateurs.UnselectAll();
                 loaded();
 
             }

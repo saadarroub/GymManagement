@@ -37,7 +37,29 @@ namespace GymWPF
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            loaded();
+            if (ConnectedSalle.ToString() == "" && ConnectedSport.ToString() == "")
+            {
+                BtnAjouter.IsEnabled = false;
+                BtnModifier.IsEnabled = false;
+                DepensesTextBox.IsEnabled = false;
+                DateTimePicker.IsEnabled = false;
+                PrixTextBox.IsEnabled = false;
+                BtnAjouter.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+                BtnModifier.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+                cn.Open();
+                cmd.Connection = cn;
+                cmd.CommandText = "select d.IdDep as IdDep, d.Depense as Depense,d.date_dep as date_dep,d.prix as prix,u.UserName as UserName,s.nom_Salle as nom_Salle,t.nom_Type as nom_Type,d.IdSalle,d.IdType,d.IdUser from Depenses d join Utilisateur u on d.IdUser=u.IdUser join Salle s on d.IdSalle=s.IdSalle join Type_Sport t on d.IdType=t.IdType ";
+                dr = cmd.ExecuteReader();
+                DataTable dt = new DataTable();
+                dt.Load(dr);
+                ListViewUtilisateurs.DataContext = dt;
+                cn.Close();
+            }
+            else
+            {
+                loaded();
+
+            }
         }
         private void loaded()
         {
@@ -87,11 +109,11 @@ namespace GymWPF
             finally
             {
                 cn.Close();
+                BtnAjouter.Content = "Ajouter";
                 DepensesTextBox.Text = null;
                 DateTimePicker.Text = null;
                 PrixTextBox.Text = null;
                 ListViewUtilisateurs.UnselectAll();
-                BtnAjouter.Content = "Ajouter";
 
                 loaded();
             }
@@ -110,7 +132,11 @@ namespace GymWPF
                 cmd.CommandText = "delete from Depenses where IdDep = '" + row.Row[0].ToString() + "'";
                 cmd.ExecuteNonQuery();
                 cn.Close();
-               
+                BtnAjouter.Content = "Ajouter";
+                DepensesTextBox.Text = null;
+                DateTimePicker.Text = null;
+                PrixTextBox.Text = null;
+                ListViewUtilisateurs.UnselectAll();
                 loaded();
 
             }

@@ -67,10 +67,19 @@ namespace GymWPF
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            if (ConnectedSalle.ToString() == "" && ConnectedSport.ToString() == "")
+            {
+                AjouterClientBtn.IsEnabled = false;
+                AjouterClientBtn.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+            }
+            else
+            {
+                da.SelectCommand.CommandText = "select c.IdClient,c.nom+' '+c.prenom as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient where s.IdSalle='" + ConnectedSalle.ToString() + "' and s.IdType='" + ConnectedSport.ToString() + "'";
+                da.Fill(ds, "clients");
+                ListClient.ItemsSource = ds.Tables["clients"].DefaultView;
+            }
 
-            da.SelectCommand.CommandText = "select c.IdClient,c.nom+' '+c.prenom as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient where s.IdSalle='" + ConnectedSalle.ToString() + "' and s.IdType='" + ConnectedSport.ToString() + "'";
-            da.Fill(ds, "clients");
-            ListClient.ItemsSource = ds.Tables["clients"].DefaultView;
+           
             
         }
 
