@@ -95,11 +95,12 @@ namespace GymWPF
 
         private void Page_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            ListClient.UnselectAll();
             if (MenuClientModal.Visibility == Visibility.Visible)
             {
                 MenuClientModal.Visibility = Visibility.Collapsed;
             }
-            ListClient.UnselectAll();
+           
         }
 
         
