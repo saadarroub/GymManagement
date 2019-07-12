@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -12,11 +11,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Forms;
 using System.Windows.Media.Effects;
 using System.Data.SqlClient;
 using System.Data;
 using System.IO;
+using System.Windows.Controls;
 
 namespace GymWPF
 {
@@ -74,7 +73,7 @@ namespace GymWPF
             }
             else
             {
-                da.SelectCommand.CommandText = "select c.IdClient,c.nom+' '+c.prenom as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient where s.IdSalle='" + ConnectedSalle.ToString() + "' and s.IdType='" + ConnectedSport.ToString() + "'";
+                da.SelectCommand.CommandText = "select c.IdClient as id,c.nom+' '+c.prenom as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient where s.IdSalle='" + ConnectedSalle.ToString() + "' and s.IdType='" + ConnectedSport.ToString() + "'";
                 da.Fill(ds, "clients");
                 ListClient.ItemsSource = ds.Tables["clients"].DefaultView;
             }
@@ -138,11 +137,15 @@ namespace GymWPF
             dade.Effect = new BlurEffect();
             ModifierClient mc = new ModifierClient(dade);
             mc.ShowDialog();
+
+            //int index = ListClient.SelectedIndex;
+            //DataRowView row = ListClient.Items.GetItemAt(index) as DataRowView;
+            //MessageBox.Show(row.Row[0].ToString());
         }
 
-        
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+
+            private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             ds.Tables["clients"].DefaultView.RowFilter = "Title like '%" + search.Text + "%'";
 

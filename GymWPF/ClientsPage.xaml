@@ -32,7 +32,17 @@
                             <DataTemplate>
                                 <Border Height="200" Width="140" Margin="25 10" Padding="5" BorderBrush="#ffcc00" BorderThickness="1">
                                     <Grid>
-                                        <Image Name="images" Source="{Binding Path=Photo}" Stretch="Fill" Height="140" Width="120" VerticalAlignment="Top" Margin="0 15 0 0" />
+
+                                        <Button Name="MenuClientBtn" MouseDown="MenuClientBtn_MouseDown" Click="MenuClientBtn_Click" VerticalAlignment="Top" Height="10" Width="25" Style="{StaticResource CamoflableBtn}" HorizontalAlignment="Right" >
+                                            <Grid>
+                                                <TextBlock Text="&#xf141;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="10" />
+                                            </Grid>
+                                        </Button>
+                                    <TextBlock Text="{Binding id}" VerticalAlignment="Bottom" Margin="5 0 0 15" FontFamily="Segoe UI Light" FontSize="14" Foreground="White" Visibility="Hidden"/>
+                                    <Image Name="images" Source="{Binding Path=Photo}" Stretch="Fill" Height="140" Width="120" VerticalAlignment="Top" Margin="0 15 0 0" />
+
+                                        
+
                                         <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Margin="5 0 0 15" FontFamily="Segoe UI Light" FontSize="14" Foreground="White" />
                                         <TextBlock Text="{Binding Tel}" VerticalAlignment="Bottom" Margin="5 0 0 0" Foreground="White"/>
                                     </Grid>
