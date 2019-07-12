@@ -24,31 +24,33 @@
                     </WrapPanel>
                 </Button>
             </WrapPanel>
-            <ScrollViewer  Height="440" ScrollChanged="ScrollViewer_ScrollChanged">
-                <ItemsControl Name="ListClient" MouseDown="ListClient_MouseDown" Background="#272727" ItemsSource="{Binding}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Border Height="200" Width="140" Margin="32 10" Padding="5" BorderBrush="#ffcc00" BorderThickness="1">
-                                <Grid>
-                                    <Button Name="MenuClientBtn" MouseDown="MenuClientBtn_MouseDown" Click="MenuClientBtn_Click" VerticalAlignment="Top" Height="10" Width="25" Style="{StaticResource CamoflableBtn}" HorizontalAlignment="Right" >
-                                        <Grid>
-                                            <TextBlock Text="&#xf141;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="10" />
-                                        </Grid>
-                                    </Button>
-                                    <Image Name="images" Source="{Binding Path=Photo}" Stretch="Fill" Height="140" Width="120" VerticalAlignment="Top" Margin="0 15 0 0" />
-                                    <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Margin="5 0 0 15" FontFamily="Segoe UI Light" FontSize="14" />
-                                    <TextBlock Text="{Binding Tel}" VerticalAlignment="Bottom" Margin="5 0 0 0"/>
+            <ScrollViewer  Height="440" Width="839" ScrollChanged="ScrollViewer_ScrollChanged">
+                
+                    <ListBox Name="ListClient" MouseDown="ListClient_MouseDown" Background="#272727" ItemsSource="{Binding}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border Height="200" Width="140" Margin="25 10" Padding="5" BorderBrush="#ffcc00" BorderThickness="1">
+                                    <Grid>
+                                        <Button Name="MenuClientBtn" MouseDown="MenuClientBtn_MouseDown" Click="MenuClientBtn_Click" VerticalAlignment="Top" Height="10" Width="25" Style="{StaticResource CamoflableBtn}" HorizontalAlignment="Right" >
+                                            <Grid>
+                                                <TextBlock Text="&#xf141;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="10" />
+                                            </Grid>
+                                        </Button>
+                                        <Image Name="images" Source="{Binding Path=Photo}" Stretch="Fill" Height="140" Width="120" VerticalAlignment="Top" Margin="0 15 0 0" />
+                                        <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Margin="5 0 0 15" FontFamily="Segoe UI Light" FontSize="14" />
+                                        <TextBlock Text="{Binding Tel}" VerticalAlignment="Bottom" Margin="5 0 0 0"/>
 
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel MouseDown="WrapPanel_MouseDown"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                            <WrapPanel Width="839" MouseDown="WrapPanel_MouseDown"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ListBox>
+                
             </ScrollViewer>
 
         </StackPanel>
