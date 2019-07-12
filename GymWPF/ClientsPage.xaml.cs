@@ -174,7 +174,7 @@ namespace GymWPF
         private void ListClient_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             p2 = Mouse.GetPosition(GridGlobal);
-            MenuClientModal.Margin = new Thickness(p2.X, p2.Y, 0, 0);
+            MenuClientModal.Margin = new Thickness(p2.X+5, p2.Y+5, 0, 0);
 
             if (MenuClientModal.Visibility == Visibility.Collapsed)
             {

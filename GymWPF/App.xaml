@@ -632,5 +632,139 @@
             </Style.Triggers>
 
         </Style>
+        <!-- List Box Items hover -->
+        <Style x:Key="ListBoxItemsHover" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="border" 
+                            BorderThickness="0"
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="ListBoxItem.Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#272727"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ListBoxItem.Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="White"/>
+                </Setter.Value>
+            </Setter>
+            
+            <Style.Triggers>
+                
+                <EventTrigger RoutedEvent="ListBoxItem.MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                
+                                <ColorAnimation Storyboard.TargetProperty="(ListBoxItem.Background).(SolidColorBrush.Color)"
+                                                From="#272727" To="#333333" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="ListBoxItem.MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                
+                                <ColorAnimation Storyboard.TargetProperty="(ListBoxItem.Background).(SolidColorBrush.Color)"
+                                                From="#333333" To="#272727" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+
+                </EventTrigger>
+                <!--<Trigger Property="IsSelected" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(ListBoxItem.Foreground).(SolidColorBrush.Color)"
+                                                From="White" To="#ffcc00" Duration="0:0:0.2" />
+                                <ColorAnimation Storyboard.TargetProperty="(ListBoxItem.Background).(SolidColorBrush.Color)"
+                                                From="#272727" To="#333333" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(ListBoxItem.Foreground).(SolidColorBrush.Color)"
+                                                From="#ffcc00" To="White" Duration="0:0:0.2" />
+                                <ColorAnimation Storyboard.TargetProperty="(ListBoxItem.Background).(SolidColorBrush.Color)"
+                                                From="#333333" To="#272727" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(ListBoxItem.Foreground).(SolidColorBrush.Color)"
+                                                From="White" To="#ffcc00" Duration="0:0:0.2" />
+                                <ColorAnimation Storyboard.TargetProperty="(ListBoxItem.Background).(SolidColorBrush.Color)"
+                                                From="#272727" To="#333333" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(ListBoxItem.Foreground).(SolidColorBrush.Color)"
+                                                From="#ffcc00" To="White" Duration="0:0:0.2" />
+                                <ColorAnimation Storyboard.TargetProperty="(ListBoxItem.Background).(SolidColorBrush.Color)"
+                                                From="#333333" To="#272727" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>-->
+                
+                <EventTrigger RoutedEvent="ListBoxItem.Selected">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(ListBoxItem.Foreground).(SolidColorBrush.Color)"
+                                                From="White" To="#ffcc00" Duration="0:0:0.2" />
+                                
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+
+                </EventTrigger>
+                <EventTrigger RoutedEvent="ListBoxItem.Unselected">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(ListBoxItem.Foreground).(SolidColorBrush.Color)"
+                                                From="#ffcc00" To="White" Duration="0:0:0.2" />
+                                
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+
+                </EventTrigger>
+                
+            </Style.Triggers>
+
+        </Style>
+        
+       
+
     </Application.Resources>
 </Application>
