@@ -92,13 +92,7 @@ namespace GymWPF
 
         
 
-        private void MenuClientBtn_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (MenuClientModal.Visibility == Visibility.Visible)
-            {
-                MenuClientModal.Visibility = Visibility.Collapsed;
-            }
-        }
+        
 
         private void Page_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -106,30 +100,29 @@ namespace GymWPF
             {
                 MenuClientModal.Visibility = Visibility.Collapsed;
             }
+            ListClient.UnselectAll();
         }
 
-        private void ScrollViewer_ScrollChanged(object sender, ScrollChangedEventArgs e)
-        {
-            if (MenuClientModal.Visibility == Visibility.Visible)
-            {
-                MenuClientModal.Visibility = Visibility.Collapsed;
-            }
-        }
+        
 
         private void ListClient_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            ListClient.UnselectAll();
             if (MenuClientModal.Visibility == Visibility.Visible)
             {
                 MenuClientModal.Visibility = Visibility.Collapsed;
             }
+           
         }
 
         private void WrapPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            ListClient.UnselectAll();
             if (MenuClientModal.Visibility == Visibility.Visible)
             {
                 MenuClientModal.Visibility = Visibility.Collapsed;
             }
+           
         }
 
 
@@ -157,14 +150,17 @@ namespace GymWPF
 
         private void WrapPanel_MouseWheel(object sender, MouseWheelEventArgs e)
         {
+            ListClient.UnselectAll();
             if (MenuClientModal.Visibility == Visibility.Visible)
             {
                 MenuClientModal.Visibility = Visibility.Collapsed;
             }
+            
         }
 
         private void WrapPanel_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
+            ListClient.UnselectAll();
             if (MenuClientModal.Visibility == Visibility.Visible)
             {
                 MenuClientModal.Visibility = Visibility.Collapsed;
