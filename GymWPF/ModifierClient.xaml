@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GymWPF"
         mc:Ignorable="d"
-        Title="ModifierClient" Height="442" Width="747"  WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#272727" BorderThickness="50"  AllowsTransparency="True">
+        Title="ModifierClient" Height="442" Width="747"  WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#272727" BorderThickness="50"  AllowsTransparency="True"
+        Loaded="Window_Loaded">
     <Grid Background="#272727">
         <Grid.Effect>
             <DropShadowEffect ShadowDepth="0" BlurRadius="50" />
@@ -28,11 +29,11 @@
                     </WrapPanel>
                 </StackPanel>
                 <StackPanel Height="206" Width="176">
-                    <Image Source="/Resource/avatar.png" Height="160" Width="140" Stretch="Fill" />
-                    <Button Style="{StaticResource CamoflableBtn2}" Content="Changer" Width="100" Height="30" Margin="0 10"/>
+                    <Image Name="image" Source="/Resource/avatar.png" Height="160" Width="140" Stretch="Fill" />
+                    <Button Style="{StaticResource CamoflableBtn2}" Content="Changer" Width="100" Height="30" Margin="0 10" Click="Button_Click"/>
                 </StackPanel>
             </WrapPanel>
-            <Button Height="37" Width="147" Margin="250 20 0 0" Style="{StaticResource YellowBtn}" Content="Modifier"/>
+            <Button Height="37" Width="147" Margin="250 20 0 0" Style="{StaticResource YellowBtn}" Content="Modifier" Click="Button_Click_1"/>
         </StackPanel>
         <Button Name="CloseBtn" Click="CloseBtn_Click" Height="30" Width="30" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource CamoflableBtn}">
             <Grid>

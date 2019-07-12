@@ -40,14 +40,11 @@ namespace GymWPF
             
         }
         public void LoadResoource()
-        {
-
-           
+        {           
             da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
             da.MissingSchemaAction = MissingSchemaAction.AddWithKey;
             da.Fill(ds, "Salle");
             ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
-
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

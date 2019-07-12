@@ -66,30 +66,40 @@ namespace GymWPF
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            loaded();            
+        }
+        DataTable dt = new DataTable();
+        private void loaded()
+        {
             if (ConnectedSalle.ToString() == "" && ConnectedSport.ToString() == "")
             {
                 AjouterClientBtn.IsEnabled = false;
                 AjouterClientBtn.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+                cn.Open();
+                cmd.Connection = cn;
+                cmd.CommandText = "select c.IdClient as id,c.nom+' '+c.prenom as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient ";
+                dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                ListClient.DataContext = dt;
+                cn.Close();
             }
             else
-            {
-                da.SelectCommand.CommandText = "select c.IdClient as id,c.nom+' '+c.prenom as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient where s.IdSalle='" + ConnectedSalle.ToString() + "' and s.IdType='" + ConnectedSport.ToString() + "'";
-                da.Fill(ds, "clients");
-                ListClient.ItemsSource = ds.Tables["clients"].DefaultView;
+            {     
+                cn.Open();
+                cmd.Connection = cn;
+                cmd.CommandText = "select c.IdClient as id,c.nom+' '+c.prenom as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient where s.IdSalle='" + ConnectedSalle.ToString() + "' and s.IdType='" + ConnectedSport.ToString() + "'";
+                dr = cmd.ExecuteReader();
+                dt.Load(dr);
+                ListClient.DataContext = dt;
+                cn.Close();
             }
-
-           
-            
         }
-
 
         //public class TodoItem
         //{
         //    public string Title { get; set; }
         //    public int Tel { get; set; }
-        //}
-
-        
+        //}      
 
         
 
@@ -135,21 +145,20 @@ namespace GymWPF
 
         private void ModifierClientModalBtn_Click(object sender, RoutedEventArgs e)
         {
-            dade.Effect = new BlurEffect();
-            ModifierClient mc = new ModifierClient(dade);
-            mc.ShowDialog();
+            int index = ListClient.SelectedIndex;
+            DataRowView row = ListClient.Items.GetItemAt(index) as DataRowView;
+            string id = row.Row[0].ToString();
 
-            //int index = ListClient.SelectedIndex;
-            //DataRowView row = ListClient.Items.GetItemAt(index) as DataRowView;
-            //MessageBox.Show(row.Row[0].ToString());
+            dade.Effect = new BlurEffect();
+            ModifierClient mc = new ModifierClient(dade,id);
+            mc.ShowDialog();            
         }
 
 
 
-            private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ds.Tables["clients"].DefaultView.RowFilter = "Title like '%" + search.Text + "%'";
-
+            dt.DefaultView.RowFilter = "Title like '%" + search.Text + "%'";
         }
 
         private void WrapPanel_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -179,6 +188,25 @@ namespace GymWPF
             if (MenuClientModal.Visibility == Visibility.Collapsed)
             {
                 MenuClientModal.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void SupprimerClientModalBtn_Click(object sender, RoutedEventArgs e)
+        {
+            int index = ListClient.SelectedIndex;
+            DataRowView row = ListClient.Items.GetItemAt(index) as DataRowView;
+            int id = int.Parse(row.Row[0].ToString());
+
+            MessageBoxResult messageBoxResult = MessageBox.Show("voulez vous vraiment supprimer ?", "Message", MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                cn.Open();
+                cmd.Connection = cn;
+                cmd.CommandText = "delete from Clients where IdClient = '" + id + "'";
+                cmd.ExecuteNonQuery();
+                cn.Close();
+                MessageBox.Show("ok");
+                loaded();
             }
         }
 

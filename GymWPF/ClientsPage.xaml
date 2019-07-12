@@ -58,7 +58,7 @@
             <StackPanel>
                 <Button Name="PayementsClientModalBtn" Click="PayementsClientModalBtn_Click" Content="Payements"  Height="30" Style="{StaticResource CamoflableBtn2}"/>
                 <Button Name="ModifierClientModalBtn" Click="ModifierClientModalBtn_Click" Content="Modifier" Height="30" Style="{StaticResource CamoflableBtn2}"/>
-                <Button Name="SupprimerClientModalBtn"  Content="Supprimer" Height="30" Style="{StaticResource CamoflableBtn2}"/>
+                <Button Name="SupprimerClientModalBtn" Click="SupprimerClientModalBtn_Click"  Content="Supprimer" Height="30" Style="{StaticResource CamoflableBtn2}"/>
             </StackPanel>
         </Grid>
     </Grid>
