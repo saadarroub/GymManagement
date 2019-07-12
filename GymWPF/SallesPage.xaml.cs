@@ -41,8 +41,8 @@ namespace GymWPF
         }
         public void LoadResoource()
         {
-           
 
+           
             da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
             da.MissingSchemaAction = MissingSchemaAction.AddWithKey;
             da.Fill(ds, "Salle");
@@ -62,6 +62,7 @@ namespace GymWPF
             int index = ListViewSalles.SelectedIndex;
             if(index >= 0)
             {
+                BtnAjouter.Content = "Nouveau";
                 DataRowView row = ListViewSalles.Items.GetItemAt(index) as DataRowView;
                 SalleName.Text = row.Row[1].ToString();
             }
@@ -76,34 +77,47 @@ namespace GymWPF
 
         private void BtnAjouter_Click(object sender, RoutedEventArgs e)
         {
-            try
+               
+            if (BtnAjouter.Content.ToString() == "Nouveau")
             {
-                if (SalleName.Text == "")
+                BtnAjouter.Content = "Ajouter";
+                SalleName.Text = null;
+                ListViewSalles.UnselectAll();
+            }
+            else if (BtnAjouter.Content.ToString() == "Ajouter")
+            {
+                try
                 {
-                    MessageBox.Show("saisir le nom de la salle");
-                }
-                else if (ds.Tables["Salle"].Rows.Count > 1)
-                {
-                    MessageBox.Show("you have just two salle in youre liscence");
-                }
-                else
-                {
-                    DataRow r = ds.Tables["Salle"].NewRow();
-                    r[1] = SalleName.Text;
-                    ds.Tables["Salle"].Rows.Add(r);
-                    da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
-                    SqlCommandBuilder cb = new SqlCommandBuilder(da);
-                    da.Update(ds, "Salle");
-                    MessageBox.Show("Record added");
-                    ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
-                    ListViewSalles.UnselectAll();
+                    if (SalleName.Text == "")
+                    {
+                        MessageBox.Show("saisir le nom de la salle");
+                    }
+                    else if (ds.Tables["Salle"].Rows.Count > 1)
+                    {
+                        MessageBox.Show("you have just two salle in youre liscence");
+                    }
+                    else
+                    {
+                        DataRow r = ds.Tables["Salle"].NewRow();
+                        r[1] = SalleName.Text;
+                        ds.Tables["Salle"].Rows.Add(r);
+                        da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
+                        SqlCommandBuilder cb = new SqlCommandBuilder(da);
+                        da.Update(ds, "Salle");
+                        MessageBox.Show("Record added");
+                        ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
+                        ListViewSalles.UnselectAll();
+                        SalleName.Text = null;
 
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }           
+                    
         }
 
         private void BtnModifier_Click(object sender, RoutedEventArgs e)
@@ -125,7 +139,11 @@ namespace GymWPF
                 SqlCommandBuilder cb = new SqlCommandBuilder(da);
                 da.Update(ds, "Salle");
                 MessageBox.Show("updated..");
-                ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;               
+                ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;  
+                BtnAjouter.Content = "Ajouter";
+                SalleName.Text = null;
+                ListViewSalles.UnselectAll();
+
 
 
             }
@@ -154,8 +172,12 @@ namespace GymWPF
                 r.Delete();
                 SqlCommandBuilder cb = new SqlCommandBuilder(da);
                 da.Update(ds, "Salle");
-                MessageBox.Show("Record Deleted");
+                BtnAjouter.Content = "Ajouter";
+                SalleName.Text = null;
+                ListViewSalles.UnselectAll();
                 ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
+                MessageBox.Show("Record Deleted");
+
 
             }
         }

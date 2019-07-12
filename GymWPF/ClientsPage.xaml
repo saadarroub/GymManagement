@@ -24,6 +24,7 @@
                     </WrapPanel>
                 </Button>
             </WrapPanel>
+
             <ScrollViewer  Height="440" Width="839" ScrollChanged="ScrollViewer_ScrollChanged">
                 
                     <ListBox Name="ListClient" MouseDown="ListClient_MouseDown" Background="#272727" ItemsSource="{Binding}">
@@ -66,7 +67,7 @@
             <StackPanel>
                 <Button Name="PayementsClientModalBtn" Click="PayementsClientModalBtn_Click" Content="Payements"  Height="30" Style="{StaticResource CamoflableBtn2}"/>
                 <Button Name="ModifierClientModalBtn" Click="ModifierClientModalBtn_Click" Content="Modifier" Height="30" Style="{StaticResource CamoflableBtn2}"/>
-                <Button Name="SupprimerClientModalBtn" Click="SupprimerClientModalBtn_Click" Content="Supprimer" Height="30" Style="{StaticResource CamoflableBtn2}"/>
+                <Button Name="SupprimerClientModalBtn"  Content="Supprimer" Height="30" Style="{StaticResource CamoflableBtn2}"/>
             </StackPanel>
         </Grid>
     </Grid>
