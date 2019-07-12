@@ -90,20 +90,7 @@ namespace GymWPF
         //    public int Tel { get; set; }
         //}
 
-        private void MenuClientBtn_Click(object sender, RoutedEventArgs e)
-        {
-            
-            
-            p2 = Mouse.GetPosition(GridGlobal);
-            MenuClientModal.Margin = new Thickness(p2.X - 100, p2.Y, 0, 0);
-
-            if (MenuClientModal.Visibility == Visibility.Collapsed)
-            {
-                MenuClientModal.Visibility = Visibility.Visible;
-            }
-            
-
-        }
+        
 
         private void MenuClientBtn_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -181,6 +168,17 @@ namespace GymWPF
             if (MenuClientModal.Visibility == Visibility.Visible)
             {
                 MenuClientModal.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void ListClient_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            p2 = Mouse.GetPosition(GridGlobal);
+            MenuClientModal.Margin = new Thickness(p2.X, p2.Y, 0, 0);
+
+            if (MenuClientModal.Visibility == Visibility.Collapsed)
+            {
+                MenuClientModal.Visibility = Visibility.Visible;
             }
         }
 

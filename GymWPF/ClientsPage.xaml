@@ -27,26 +27,21 @@
 
             <!--<ScrollViewer ScrollChanged="ScrollViewer_ScrollChanged">-->
             <WrapPanel Height="440" MouseWheel="WrapPanel_MouseWheel"  PreviewMouseWheel="WrapPanel_PreviewMouseWheel">
-                    <ListBox Name="ListClient" MouseDown="ListClient_MouseDown" Background="#272727" ItemsSource="{Binding}">
+                    <ListBox Name="ListClient" MouseDown="ListClient_MouseDown" SelectionChanged="ListClient_SelectionChanged" Background="#272727" ItemsSource="{Binding}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Border Height="200" Width="140" Margin="25 10" Padding="5" BorderBrush="#ffcc00" BorderThickness="1">
                                     <Grid>
-                                        <Button Name="MenuClientBtn" MouseDown="MenuClientBtn_MouseDown" Click="MenuClientBtn_Click" VerticalAlignment="Top" Height="10" Width="25" Style="{StaticResource CamoflableBtn}" HorizontalAlignment="Right" >
-                                            <Grid>
-                                                <TextBlock Text="&#xf141;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="10" />
-                                            </Grid>
-                                        </Button>
                                         <Image Name="images" Source="{Binding Path=Photo}" Stretch="Fill" Height="140" Width="120" VerticalAlignment="Top" Margin="0 15 0 0" />
                                         <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Margin="5 0 0 15" FontFamily="Segoe UI Light" FontSize="14" Foreground="White" />
                                         <TextBlock Text="{Binding Tel}" VerticalAlignment="Bottom" Margin="5 0 0 0" Foreground="White"/>
-                                </Grid>
+                                    </Grid>
                                 </Border>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                            <WrapPanel Width="800"  MouseDown="WrapPanel_MouseDown"/>
+                            <WrapPanel Width="810"  MouseDown="WrapPanel_MouseDown"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                     </ListBox>
@@ -55,14 +50,7 @@
 
         </StackPanel>
         <Grid Name="MenuClientModal" Background="#333333"  Height="90" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Visibility="Collapsed" RenderTransformOrigin="0.5,0.5" >
-            <Grid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="3"/>
-                </TransformGroup>
-            </Grid.RenderTransform>
+            
             <StackPanel>
                 <Button Name="PayementsClientModalBtn" Click="PayementsClientModalBtn_Click" Content="Payements"  Height="30" Style="{StaticResource CamoflableBtn2}"/>
                 <Button Name="ModifierClientModalBtn" Click="ModifierClientModalBtn_Click" Content="Modifier" Height="30" Style="{StaticResource CamoflableBtn2}"/>
