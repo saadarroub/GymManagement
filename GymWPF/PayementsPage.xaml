@@ -5,11 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GymWPF"
         mc:Ignorable="d"
-        Title="PayementsPage" Height="650" Width="890" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#272727" BorderThickness="50" AllowsTransparency="True">
+        Title="PayementsPage" Height="550" Width="800" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" BorderBrush="#ffcc00" Background="#272727" BorderThickness="1" >
     <Grid Background="#272727">
-        <Grid.Effect>
-            <DropShadowEffect ShadowDepth="0" BlurRadius="50" />
-        </Grid.Effect>
+       
         <Button Name="CloseBtn" Click="CloseBtn_Click" Height="30" Width="30" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource CamoflableBtn}">
             <Grid>
                 <TextBlock Text="&#xf00d;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="14"/>

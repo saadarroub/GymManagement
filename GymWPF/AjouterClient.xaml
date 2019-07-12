@@ -5,12 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GymWPF"
         mc:Ignorable="d"
-        Title="AjouterClient" Height="442" Width="747" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#272727"  BorderThickness="50" WindowStyle="None" AllowsTransparency="True">
+        Title="AjouterClient" Height="342" Width="647" ResizeMode="NoResize" BorderBrush="#ffcc00" WindowStartupLocation="CenterScreen" Background="#272727"  BorderThickness="1" WindowStyle="None" >
 
     <Grid Background="#272727">
-        <Grid.Effect>
-            <DropShadowEffect ShadowDepth="0" BlurRadius="50" />
-        </Grid.Effect>
+        
         <StackPanel>
             
             <TextBlock Text="Ajouter Client" FontFamily="Segoe UI Light" FontSize="28" Foreground="#FFFFCC00" Margin="30 30 0 0"/>
