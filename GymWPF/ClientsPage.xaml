@@ -37,7 +37,8 @@
                                                 <TextBlock Text="&#xf141;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="10" />
                                             </Grid>
                                         </Button>
-                                        <Image Name="images" Source="{Binding Path=Photo}" Stretch="Fill" Height="140" Width="120" VerticalAlignment="Top" Margin="0 15 0 0" />
+                                    <TextBlock Text="{Binding id}" VerticalAlignment="Bottom" Margin="5 0 0 15" FontFamily="Segoe UI Light" FontSize="14" Foreground="White" Visibility="Hidden"/>
+                                    <Image Name="images" Source="{Binding Path=Photo}" Stretch="Fill" Height="140" Width="120" VerticalAlignment="Top" Margin="0 15 0 0" />
                                         <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Margin="5 0 0 15" FontFamily="Segoe UI Light" FontSize="14" Foreground="White" />
                                         <TextBlock Text="{Binding Tel}" VerticalAlignment="Bottom" Margin="5 0 0 0" Foreground="White"/>
                                 </Grid>
