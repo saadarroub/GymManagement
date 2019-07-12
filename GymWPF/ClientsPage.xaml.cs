@@ -166,7 +166,23 @@ namespace GymWPF
         {
             ds.Tables["clients"].DefaultView.RowFilter = "Title like '%" + search.Text + "%'";
 
-        }        
+        }
+
+        private void WrapPanel_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (MenuClientModal.Visibility == Visibility.Visible)
+            {
+                MenuClientModal.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void WrapPanel_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (MenuClientModal.Visibility == Visibility.Visible)
+            {
+                MenuClientModal.Visibility = Visibility.Collapsed;
+            }
+        }
 
         private void AjouterClientBtn_Click(object sender, RoutedEventArgs e)
         {

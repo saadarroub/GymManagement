@@ -25,8 +25,8 @@
                 </Button>
             </WrapPanel>
 
-            <ScrollViewer  Height="440" Width="839" ScrollChanged="ScrollViewer_ScrollChanged">
-                
+            <!--<ScrollViewer ScrollChanged="ScrollViewer_ScrollChanged">-->
+            <WrapPanel Height="440" MouseWheel="WrapPanel_MouseWheel"  PreviewMouseWheel="WrapPanel_PreviewMouseWheel">
                     <ListBox Name="ListClient" MouseDown="ListClient_MouseDown" Background="#272727" ItemsSource="{Binding}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -38,21 +38,20 @@
                                             </Grid>
                                         </Button>
                                         <Image Name="images" Source="{Binding Path=Photo}" Stretch="Fill" Height="140" Width="120" VerticalAlignment="Top" Margin="0 15 0 0" />
-                                        <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Margin="5 0 0 15" FontFamily="Segoe UI Light" FontSize="14" />
-                                        <TextBlock Text="{Binding Tel}" VerticalAlignment="Bottom" Margin="5 0 0 0"/>
-
-                                    </Grid>
+                                        <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Margin="5 0 0 15" FontFamily="Segoe UI Light" FontSize="14" Foreground="White" />
+                                        <TextBlock Text="{Binding Tel}" VerticalAlignment="Bottom" Margin="5 0 0 0" Foreground="White"/>
+                                </Grid>
                                 </Border>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                            <WrapPanel Width="839" MouseDown="WrapPanel_MouseDown"/>
+                            <WrapPanel Width="800"  MouseDown="WrapPanel_MouseDown"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                     </ListBox>
-                
-            </ScrollViewer>
+            </WrapPanel>
+            <!--</ScrollViewer>-->
 
         </StackPanel>
         <Grid Name="MenuClientModal" Background="#333333"  Height="90" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Visibility="Collapsed" RenderTransformOrigin="0.5,0.5" >
