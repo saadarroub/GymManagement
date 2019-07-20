@@ -138,8 +138,12 @@ namespace GymWPF
 
         private void PayementsClientModalBtn_Click(object sender, RoutedEventArgs e)
         {
+            int index = ListClient.SelectedIndex;
+            DataRowView row = ListClient.Items.GetItemAt(index) as DataRowView;
+            string id = row.Row[0].ToString();
+
             dade.Effect = new BlurEffect();
-            PayementsPage pp = new PayementsPage(dade);
+            PayementsPage pp = new PayementsPage(dade, id, ConnectedSalle, ConnectedSport);
             pp.ShowDialog();
         }
 

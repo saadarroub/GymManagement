@@ -37,6 +37,7 @@ namespace GymWPF
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            
             if (ConnectedSalle.ToString() == "" && ConnectedSport.ToString() == "")
             {
                 BtnAjouter.IsEnabled = false;

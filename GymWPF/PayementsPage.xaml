@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GymWPF"
         mc:Ignorable="d"
-        Title="PayementsPage" Height="550" Width="800" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" BorderBrush="#ffcc00" Background="#272727" BorderThickness="1" >
+        Title="PayementsPage" Height="550" Width="800" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" BorderBrush="#ffcc00" Background="#272727" BorderThickness="1" 
+        Loaded="Window_Loaded">
     <Grid Background="#272727">
        
         <Button Name="CloseBtn" Click="CloseBtn_Click" Height="30" Width="30" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource CamoflableBtn}">
@@ -15,18 +16,19 @@
         </Button>
         <StackPanel>
             <TextBlock Text="Gestion des Payements" FontFamily="Segoe UI Light" FontSize="28" Foreground="#FFFFCC00" Margin="30 30 0 0"/>
-            <ListView ItemContainerStyle="{StaticResource ListItemHover}" Margin="0 20 0 0" Height="350" Background="#333333" Width="770">
+            <ListView Name="ListPayments" ItemContainerStyle="{StaticResource ListItemHover}" Margin="0 20 0 0" Height="350" Background="#333333" Width="770" ItemsSource="{Binding}" SelectionChanged="ListPayments_SelectionChanged">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource ListViewHeader}">
-                        <GridViewColumn Header="Client" Width="100"/>
-                        <GridViewColumn Header="Salle" Width="100"/>
-                        <GridViewColumn Header="Sport" Width="100"/>
-                        <GridViewColumn Header="Date Payement" Width="100"/>
-                        <GridViewColumn Header="Prix" Width="100"/>
+                        <GridViewColumn Header="ID" Width="30" DisplayMemberBinding="{Binding Path=ID}"/>
+                        <GridViewColumn Header="Client" Width="100" DisplayMemberBinding="{Binding Path=clinet}"/>
+                        <GridViewColumn Header="Salle" Width="100" DisplayMemberBinding="{Binding Path=salle}"/>
+                        <GridViewColumn Header="Sport" Width="100" DisplayMemberBinding="{Binding Path=sport}"/>
+                        <GridViewColumn Header="Date Payement" Width="130" DisplayMemberBinding="{Binding Path=date}"/>
+                        <GridViewColumn Header="Prix" Width="100" DisplayMemberBinding="{Binding Path=prix}"/>
                         <GridViewColumn Header = "Supprimer"  Width = "auto" >
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Style="{StaticResource ListViewBtnDelete}" Name="btnRemove">
+                                    <Button Style="{StaticResource ListViewBtnDelete}" Name="btnRemove" Click="BtnRemove_Click">
                                         <Grid Height="30" Width="50">
                                             <TextBlock Text="&#xf2ed;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="19" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Grid>
@@ -45,8 +47,8 @@
                 <DatePicker Name="NomTextBox" Width="167" Height="30"  Margin="57 5 10 0" Background="#333333" BorderBrush="#c7c7c7" FontSize="16" VerticalContentAlignment="Center" Padding="5 0 5 0" Foreground="Black" HorizontalContentAlignment="Stretch"/>
             </WrapPanel>
             <WrapPanel Margin="0 0 0 0">
-                <Button Height="37" Width="147" Margin="450 20 0 5" Style="{StaticResource CamoflableBtn2}" Content="Modifer"/>
-                <Button Height="37" Width="147" Margin="30 20 0 5" Style="{StaticResource YellowBtn}" Content="Ajouter"/>
+                <Button Name="modifier" Click="Modifier_Click" Height="37" Width="147" Margin="450 20 0 5" Style="{StaticResource CamoflableBtn2}" Content="Modifer"/>
+                <Button Name="ajouter" Click="Button_Click" Height="37" Width="147" Margin="30 20 0 5" Style="{StaticResource YellowBtn}" Content="Ajouter"/>
             </WrapPanel>
         </StackPanel>
     </Grid>
