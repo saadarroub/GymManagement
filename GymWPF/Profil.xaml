@@ -1,0 +1,23 @@
+﻿<Page x:Class="GymWPF.Profil"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GymWPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="603" d:DesignWidth="839"
+      Background="#272727"
+      Title="Profil">
+
+    <Grid>
+        <StackPanel>
+            <WrapPanel>
+                <TextBlock Text="BIENVENUE" FontSize="46" Foreground="White" Margin="50 20 0 0"/>
+                <TextBlock Text="UserName" FontSize="28" Foreground="White" Margin="20 35 0 0"/>
+            </WrapPanel>
+            <WrapPanel>
+                
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</Page>
