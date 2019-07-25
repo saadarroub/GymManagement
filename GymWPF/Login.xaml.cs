@@ -123,5 +123,24 @@ namespace GymWPF
                 mw.connexionFrame.GoForward();
             }
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            cn.Open();
+            cmd.Connection = cn;
+            cmd.CommandText = "select count(*) from Utilisateur";
+            int count = int.Parse(cmd.ExecuteScalar().ToString());
+            if (count == 0)
+            {
+                ChangerPasseBtn.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                   AjouterPricipaleUtilisateur.Visibility = Visibility.Hidden;
+                ChangerPasseBtn.Visibility = Visibility.Visible;
+
+            }
+            cn.Close();
+        }
     }
 }
