@@ -31,7 +31,7 @@
             </Grid>
             <Grid Height="50"></Grid>
             <Grid Height="50">
-                <Button Name="LoginBtn" Width="107" Height="37" Content="Se Connecter" HorizontalAlignment="Right" Margin="0 0 50 0" Style="{StaticResource YellowBtn}" Click="LoginBtn_Click" />
+                <Button Name="LoginBtn" Width="107" Height="37" Content="Se Connecter" HorizontalAlignment="Right" Margin="0 0 50 0" FontSize="14" Style="{StaticResource YellowBtn}" Click="LoginBtn_Click" />
                 <Button Name="ChangerPasseBtn" Width="160" Height="27" Content="Changer Votre Mot de Passe" HorizontalAlignment="Left" Margin="55 0 0 0"  Style="{StaticResource CamoflableBtn}" Cursor="Hand" Click="ChangerPasseBtn_Click"/>
             </Grid>
             
