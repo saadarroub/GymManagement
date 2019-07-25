@@ -39,23 +39,8 @@ namespace GymWPF
        
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (NomtextBox.Text == null || PrenomtextBox.Text==null || UsertextBox.Text== null || pass.Text == null )
+            if (NomtextBox.Text == null || PrenomtextBox.Text == null || UsertextBox.Text == null ||  Pass.Text== null)
             {
-
-                MessageBox.Show("errors");
-
-
-            }
-            try
-            {
-                cn.Open();
-                cmd.Connection = cn;
-                cmd.CommandText = "insert into Utilisateur values ('" + NomtextBox.Text + "','" + PrenomtextBox.Text + "','" + UsertextBox.Text + "','" + pass.Text + "',)";
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
 
             }
             else
@@ -64,7 +49,7 @@ namespace GymWPF
                 {
                     cn.Open();
                     cmd.Connection = cn;
-                    cmd.CommandText = "insert into Utilisateur values ('" + NomtextBox.Text + "','" + PrenomtextBox.Text + "','" + UsertextBox.Text + "','" + pass.Text + "','"+true+"')";
+                    cmd.CommandText = "insert into Utilisateur values ('" + NomtextBox.Text + "','" + PrenomtextBox.Text + "','" + UsertextBox.Text + "','" + Pass.Text + "','" + true + "')";
                     cmd.ExecuteNonQuery();
                     mw.connexionFrame.GoBack();
                 }
