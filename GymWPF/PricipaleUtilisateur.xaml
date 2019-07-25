@@ -13,12 +13,23 @@
         <TextBlock Text=" Utilisateur Principale" Width="300" Height="80" VerticalAlignment="Top" FontFamily="Segoe UI Light" FontSize="28" HorizontalAlignment="Center" Foreground="#FFFFCC00"  Padding="35,20,0,0" Margin="0,60,0,0"/>
         <StackPanel Margin="0 100 0 0">
             <Grid Height="50" Margin="0 60 0 0">
-                <TextBox Name="NomtextBox" Height="37" Width="297" Background="#FF272727" BorderBrush="#FF909090" Foreground="White" SelectionBrush="#FF909090" Padding="30,0,0,0"   VerticalContentAlignment="Center" FontFamily="Yu Gothic UI Light" FontSize="16"/>
-                <Label Width="20" Height="20" HorizontalAlignment="Left" Margin="100,15,0,15" Content="&#xf508;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="12" Background="{x:Null}" Foreground="#FFFFCC00" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Padding="0"/>
+                <TextBox Name="NomtextBox" Height="37" Width="297" Background="#FF272727" BorderBrush="#FF909090" Foreground="White" SelectionBrush="#FF909090" Padding="5,0,0,0"    VerticalContentAlignment="Center" FontFamily="Yu Gothic UI Light" FontSize="16"/>
+                <TextBlock IsHitTestVisible="False" Text="Nom" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="100,0,0,0" Foreground="DarkGray">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=NomtextBox}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
             </Grid>
             <Grid Height="50" Margin="0 30 0 0">
                 <TextBox Name="PrenomtextBox" Height="37" Width="297" Background="#FF272727" BorderBrush="#FF909090" Foreground="White" SelectionBrush="#FF909090" Padding="5,0,0,0"   VerticalContentAlignment="Center" FontFamily="Yu Gothic UI Light" FontSize="16"/>
-                <TextBlock IsHitTestVisible="False" Text="Search" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="100,0,0,0" Foreground="DarkGray">
+                <TextBlock IsHitTestVisible="False" Text="Prenom" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="100,0,0,0" Foreground="DarkGray">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
                             <Setter Property="Visibility" Value="Collapsed"/>
@@ -33,12 +44,39 @@
 
             </Grid>
             <Grid Height="50" Margin="0 30 0 0">
-                <TextBox Name="UsertextBox" Height="37" Width="297" Background="#FF272727" BorderBrush="#FF909090" Foreground="White" SelectionBrush="#FF909090" Padding="30,0,0,0"   VerticalContentAlignment="Center" FontFamily="Yu Gothic UI Light" FontSize="16"/>
-                <Label Width="20" Height="20" HorizontalAlignment="Left" Margin="100,15,0,15" Content="&#xf508;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="12" Background="{x:Null}" Foreground="#FFFFCC00" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Padding="0"/>
+                <TextBox Name="UsertextBox" Height="37" Width="297" Background="#FF272727" BorderBrush="#FF909090" Foreground="White" SelectionBrush="#FF909090" Padding="5,0,0,0"    VerticalContentAlignment="Center" FontFamily="Yu Gothic UI Light" FontSize="16"/>
+                <TextBlock IsHitTestVisible="False" Text="Nom Utilisateur" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="100,0,0,0" Foreground="DarkGray">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=UsertextBox}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
             </Grid>
             <Grid Height="50" Margin="0 30 0 0">
+
                 <TextBox Name="pass" Height="37" Width="297" Background="#FF272727" BorderBrush="#FF909090" Foreground="White" SelectionBrush="#FF909090" Padding="30,0,0,0"   VerticalContentAlignment="Center" FontFamily="Yu Gothic UI Light" FontSize="16"/>
                 <Label Width="20" Height="20" HorizontalAlignment="Left" Margin="100,15,0,15" Content="&#xf023;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="12" Background="{x:Null}" Foreground="#FFFFCC00" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Padding="0"/>
+
+                <TextBox Name="pass" Height="37" Width="297" Background="#FF272727" BorderBrush="#FF909090" Foreground="White" SelectionBrush="#FF909090" Padding="5,0,0,0"    VerticalContentAlignment="Center" FontFamily="Yu Gothic UI Light" FontSize="16"/>
+                <TextBlock IsHitTestVisible="False" Text="Mot de Pass" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="100,0,0,0" Foreground="DarkGray">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Text, ElementName=pass}" Value="">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
             </Grid>
         </StackPanel>
         <Button Name="AddBtn" Width="107" Height="37" Content="Ajouter" VerticalAlignment="Bottom" FontSize="14" HorizontalAlignment="Right" Margin="0 0 50 50" Style="{StaticResource YellowBtn}"  />
