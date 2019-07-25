@@ -39,6 +39,10 @@ namespace GymWPF
        
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (NomtextBox.Text == null || PrenomtextBox.Text==null || UsertextBox== null  )
+            {
+
+            }
             try
             {
                 cn.Open();
