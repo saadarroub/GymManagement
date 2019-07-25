@@ -37,7 +37,7 @@
                 <Label Width="20" Height="20" HorizontalAlignment="Left" Margin="100,15,0,15" Content="&#xf508;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="12" Background="{x:Null}" Foreground="#FFFFCC00" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Padding="0"/>
             </Grid>
             <Grid Height="50" Margin="0 30 0 0">
-                <TextBox Name="PasstextBox" Height="37" Width="297" Background="#FF272727" BorderBrush="#FF909090" Foreground="White" SelectionBrush="#FF909090" Padding="30,0,0,0"   VerticalContentAlignment="Center" FontFamily="Yu Gothic UI Light" FontSize="16"/>
+                <TextBox Name="pass" Height="37" Width="297" Background="#FF272727" BorderBrush="#FF909090" Foreground="White" SelectionBrush="#FF909090" Padding="30,0,0,0"   VerticalContentAlignment="Center" FontFamily="Yu Gothic UI Light" FontSize="16"/>
                 <Label Width="20" Height="20" HorizontalAlignment="Left" Margin="100,15,0,15" Content="&#xf023;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="12" Background="{x:Null}" Foreground="#FFFFCC00" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Padding="0"/>
             </Grid>
         </StackPanel>

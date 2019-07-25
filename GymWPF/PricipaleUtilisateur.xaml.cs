@@ -39,25 +39,30 @@ namespace GymWPF
        
         private void AddBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (NomtextBox.Text == null || PrenomtextBox.Text==null || UsertextBox== null  )
+            if (NomtextBox.Text == null || PrenomtextBox.Text==null || UsertextBox.Text== null || pass.Text == null )
             {
-
+                MessageBox.Show("errors");
             }
-            try
+            else
             {
-                cn.Open();
-                cmd.Connection = cn;
-                cmd.CommandText = "insert into Utilisateur values ('" + NomtextBox.Text + "','" + PrenomtextBox.Text + "','" + UsertextBox.Text + "','" + PasstextBox.Text + "',)";
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cn.Open();
+                    cmd.Connection = cn;
+                    cmd.CommandText = "insert into Utilisateur values ('" + NomtextBox.Text + "','" + PrenomtextBox.Text + "','" + UsertextBox.Text + "','" + pass.Text + "','"+true+"')";
+                    cmd.ExecuteNonQuery();
+                    mw.connexionFrame.GoBack();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    cn.Close();
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                cn.Close();
-            }
+           
         }
     }
 }
