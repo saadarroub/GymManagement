@@ -47,7 +47,7 @@ namespace GymWPF
             {
                 cn.Open();
                 cmd.Connection = cn;
-                cmd.CommandText = "insert into Utilisateur values ('" + NomtextBox.Text + "','" + PrenomtextBox.Text + "','" + UsertextBox.Text + "','" + PasstextBox.Text + "',)";
+                cmd.CommandText = "insert into Utilisateur values ('" + NomtextBox.Text + "','" + PrenomtextBox.Text + "','" + UsertextBox.Text + "','" + pass.Text + "',)";
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
