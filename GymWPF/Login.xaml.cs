@@ -33,6 +33,7 @@ namespace GymWPF
         
         PasseChange p;
         MainWindow mw;
+        PricipaleUtilisateur pu;
         public Login( MainWindow w)
         {
             InitializeComponent();
@@ -107,6 +108,19 @@ namespace GymWPF
             if (e.Key == Key.Enter)
             {
                 connexion();
+            }
+        }
+
+        private void AjouterPricipaleUtilisateur_Click(object sender, RoutedEventArgs e)
+        {
+            if (!mw.connexionFrame.CanGoForward)
+            {
+                pu = new PricipaleUtilisateur(mw);
+                mw.connexionFrame.Navigate(pu);
+            }
+            else
+            {
+                mw.connexionFrame.GoForward();
             }
         }
     }

@@ -34,8 +34,8 @@
                 <Button Name="LoginBtn" Width="107" Height="37" Content="Se Connecter" HorizontalAlignment="Right" Margin="0 0 50 0" Style="{StaticResource YellowBtn}" Click="LoginBtn_Click" />
                 <Button Name="ChangerPasseBtn" Width="160" Height="27" Content="Changer Votre Mot de Passe" HorizontalAlignment="Left" Margin="55 0 0 0"  Style="{StaticResource CamoflableBtn}" Cursor="Hand" Click="ChangerPasseBtn_Click"/>
             </Grid>
-
+            
         </StackPanel>
-
+        <Button Name="AjouterPricipaleUtilisateur" Width="270" Height="27" Content="Ajouter Utilisateur Pricipale de Votre application" Margin="0 0 0 20" Padding="5 0" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Style="{StaticResource CamoflableBtn2}" Cursor="Hand" Click="AjouterPricipaleUtilisateur_Click"/>
     </Grid>
 </Page>
