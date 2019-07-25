@@ -59,7 +59,7 @@ namespace GymWPF
 
             cn.Open();
             cmd.Connection = cn;
-            cmd.CommandText = "select u.IdUser as IdUser,u.Nom as Nom,u.Prenom as Prenom,u.UserName as UserName,u.Password_User as Password_User,s.nom_Salle+t.nom_Type as Sport from Utilisateur u join UtilisateurSportSalle uss on u.IdUser=uss.IdUser join Salle s on uss.IdSalle=s.IdSalle join Type_Sport t on uss.IdType=t.IdType ";
+            cmd.CommandText = "select u.IdUser as IdUser,u.Nom as Nom,u.Prenom as Prenom,u.UserName as UserName,u.Password_User as Password_User,s.nom_Salle+' '+t.nom_Type as Sport from Utilisateur u join UtilisateurSportSalle uss on u.IdUser=uss.IdUser join Salle s on uss.IdSalle=s.IdSalle join Type_Sport t on uss.IdType=t.IdType ";
             dr = cmd.ExecuteReader();
             DataTable dt2 = new DataTable();
             dt2.Load(dr);
@@ -149,8 +149,7 @@ namespace GymWPF
                 PrenomTextBox.Text = row.Row[2].ToString();
                 UserNameTextBox.Text = row.Row[3].ToString();
                 PassTextBox.Text = row.Row[4].ToString();
-            }
-            
+            }           
 
         }
 
