@@ -119,7 +119,7 @@ namespace GymWPF
         private void MainAppNavBtnToUsers_Click(object sender, RoutedEventArgs e)
         {
             HideShowRecNavBtn(RecUsers);
-            utilisateurs = new UtilisateursPage(this);
+            utilisateurs = new UtilisateursPage(this, iduser);
             MainFrame.Navigate(utilisateurs);
         }
 

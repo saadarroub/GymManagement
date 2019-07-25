@@ -28,8 +28,7 @@ namespace GymWPF
         SqlCommand cmd = new SqlCommand();
         SqlDataAdapter da = new SqlDataAdapter("", "Data Source=.;Initial Catalog=NSS_Salle_Application;Integrated Security=True");
         DataSet ds = new DataSet();
-        SqlDataReader dr;
-       
+        SqlDataReader dr;       
         //------------------------------------//
         
         MainApp dade;
@@ -49,8 +48,7 @@ namespace GymWPF
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadResoource();  
-            
+            LoadResoource();              
         }
 
         private void ListViewSalles_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -66,8 +64,7 @@ namespace GymWPF
             else
             {
                 SalleName.Text = "";
-            }
-                
+            }             
             
                 
         }
@@ -105,8 +102,6 @@ namespace GymWPF
                         ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
                         ListViewSalles.UnselectAll();
                         SalleName.Text = null;
-
-
                     }
                 }
                 catch (Exception ex)
@@ -119,36 +114,33 @@ namespace GymWPF
 
         private void BtnModifier_Click(object sender, RoutedEventArgs e)
         {
-
-            int index = ListViewSalles.SelectedIndex;
+            if (ListViewSalles.SelectedIndex != -1)
+            {
+                int index = ListViewSalles.SelectedIndex;
             DataRowView row = ListViewSalles.Items.GetItemAt(index) as DataRowView;
             int id = int.Parse(row.Row[0].ToString());
 
-            try
-            {
-
-
-                DataRow r = ds.Tables["Salle"].Rows.Find(id.ToString());
-                r.BeginEdit();
-                r[1] = SalleName.Text;
-                r.EndEdit();
-                da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
-                SqlCommandBuilder cb = new SqlCommandBuilder(da);
-                da.Update(ds, "Salle");
-                MessageBox.Show("updated..");
-                ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;  
-                BtnAjouter.Content = "Ajouter";
-                SalleName.Text = null;
-                ListViewSalles.UnselectAll();
-
-
-
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
+                try
+                {
+                    DataRow r = ds.Tables["Salle"].Rows.Find(id.ToString());
+                    r.BeginEdit();
+                    r[1] = SalleName.Text;
+                    r.EndEdit();
+                    da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
+                    SqlCommandBuilder cb = new SqlCommandBuilder(da);
+                    da.Update(ds, "Salle");
+                    MessageBox.Show("updated..");
+                    ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
+                    BtnAjouter.Content = "Ajouter";
+                    SalleName.Text = null;
+                    ListViewSalles.UnselectAll();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }          
+            
         }
 
        
@@ -164,7 +156,6 @@ namespace GymWPF
             MessageBoxResult messageBoxResult = MessageBox.Show("voulez vous vraiment supprimer ?", "Message" , MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
-
                 DataRow r = ds.Tables["Salle"].Rows.Find(id);
                 r.Delete();
                 SqlCommandBuilder cb = new SqlCommandBuilder(da);
@@ -174,8 +165,6 @@ namespace GymWPF
                 ListViewSalles.UnselectAll();
                 ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
                 MessageBox.Show("Record Deleted");
-
-
             }
         }
     }

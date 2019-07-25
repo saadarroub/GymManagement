@@ -31,8 +31,10 @@ namespace GymWPF
         //------------------------------------//
 
         MainApp dade;
-        public UtilisateursPage(MainApp dade)
+        string iduser;
+        public UtilisateursPage(MainApp dade, string iduser)
         {
+            this.iduser = iduser;
             InitializeComponent();
             this.dade = dade;
         }
@@ -57,7 +59,7 @@ namespace GymWPF
 
             cn.Open();
             cmd.Connection = cn;
-            cmd.CommandText = "select u.IdUser as IdUser,u.Nom as Nom,u.Prenom as Prenom,u.UserName as UserName,u.Password_User as Password_User,s.nom_Salle+t.nom_Type as Sport from Utilisateur u join UtilisateurSportSalle uss on u.IdUser=uss.IdUser join Salle s on uss.IdSalle=s.IdSalle join Type_Sport t on uss.IdType=t.IdType";
+            cmd.CommandText = "select u.IdUser as IdUser,u.Nom as Nom,u.Prenom as Prenom,u.UserName as UserName,u.Password_User as Password_User,s.nom_Salle+t.nom_Type as Sport from Utilisateur u join UtilisateurSportSalle uss on u.IdUser=uss.IdUser join Salle s on uss.IdSalle=s.IdSalle join Type_Sport t on uss.IdType=t.IdType ";
             dr = cmd.ExecuteReader();
             DataTable dt2 = new DataTable();
             dt2.Load(dr);
@@ -86,18 +88,17 @@ namespace GymWPF
                 {
                     cn.Open();
                     cmd.Connection = cn;
-                    cmd.CommandText = "insert into Utilisateur values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + UserNameTextBox.Text + "','" + PassTextBox.Text + "',@valide)";
+                    
                     if (ch1.IsChecked == true)
                     {
-                        cmd.Parameters.AddWithValue("@valide", true);
+                    cmd.CommandText = "insert into Utilisateur values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + UserNameTextBox.Text + "','" + PassTextBox.Text + "','"+true+"')";
                         cmd.ExecuteNonQuery();
 
                     }
-                    else
+                    else if (ch1.IsChecked == false)
                     {
-                        cmd.Parameters.AddWithValue("@valide", false);
+                        cmd.CommandText = "insert into Utilisateur values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + UserNameTextBox.Text + "','" + PassTextBox.Text + "','" + false + "')";
                         cmd.ExecuteNonQuery();
-
                     }
 
                     cmd.CommandText = "select MAX(IdUser) from Utilisateur";
@@ -208,26 +209,32 @@ namespace GymWPF
             int index = ListViewUtilisateurs.Items.IndexOf(item);
             DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
 
-            MessageBoxResult messageBoxResult = MessageBox.Show("voulez vous vraiment supprimer ?", "Message", MessageBoxButton.YesNo);
-            if (messageBoxResult == MessageBoxResult.Yes)
+            if (row.Row[0].ToString() == iduser)
             {
-                cn.Open();
-                cmd.Connection = cn;
-                cmd.CommandText = "delete from Utilisateur where IdUser = '" + row.Row[0].ToString() + "'";
-                cmd.ExecuteNonQuery();
-                cn.Close();
-                BtnAjouter.Content = "Ajouter";
-                NomTextBox.Text = null;
-                PrenomTextBox.Text = null;
-                UserNameTextBox.Text = null;
-                PassTextBox.Text = null;
-                SportsComboBox.SelectedIndex = -1;
-                ch1.IsChecked = false;
-                ch2.IsChecked = false;
-                ListViewUtilisateurs.UnselectAll();
-                loaded();
-
+                MessageBox.Show("errors");
             }
+            else
+            {
+                MessageBoxResult messageBoxResult = MessageBox.Show("voulez vous vraiment supprimer ?", "Message", MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    cn.Open();
+                    cmd.Connection = cn;
+                    cmd.CommandText = "delete from Utilisateur where IdUser = '" + row.Row[0].ToString() + "'";
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
+                    BtnAjouter.Content = "Ajouter";
+                    NomTextBox.Text = null;
+                    PrenomTextBox.Text = null;
+                    UserNameTextBox.Text = null;
+                    PassTextBox.Text = null;
+                    SportsComboBox.SelectedIndex = -1;
+                    ch1.IsChecked = false;
+                    ch2.IsChecked = false;
+                    ListViewUtilisateurs.UnselectAll();
+                    loaded();
+                }
+            }            
         }
     }
 }
