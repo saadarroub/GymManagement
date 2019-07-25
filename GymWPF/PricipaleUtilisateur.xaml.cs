@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace GymWPF
 {
@@ -20,11 +22,38 @@ namespace GymWPF
     /// </summary>
     public partial class PricipaleUtilisateur : Page
     {
+        //declaration --------------------------------------
+        SqlConnection cn = new SqlConnection("Data Source=.;Initial Catalog=NSS_Salle_Application;Integrated Security=True");
+        SqlCommand cmd = new SqlCommand();
+        SqlDataAdapter da = new SqlDataAdapter("", "Data Source=.;Initial Catalog=NSS_Salle_Application;Integrated Security=True");
+        DataSet ds = new DataSet();
+        SqlDataReader dr;
+        //------------------------------------------------------
+
         MainWindow mw;
         public PricipaleUtilisateur(MainWindow w)
         {
             InitializeComponent();
             this.mw = w;
+        }
+       
+        private void AddBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                cn.Open();
+                cmd.Connection = cn;
+                cmd.CommandText = "insert into Utilisateur values ('" + NomtextBox.Text + "','" + PrenomtextBox.Text + "','" + UsertextBox.Text + "','" + PasstextBox.Password + "',)";
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
         }
     }
 }
