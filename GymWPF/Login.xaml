@@ -8,7 +8,8 @@
       d:DesignHeight="600" d:DesignWidth="479"
       Title="Login"
       Background="#272727"
-      PreviewKeyDown="Page_PreviewKeyDown">
+      PreviewKeyDown="Page_PreviewKeyDown"
+      Loaded="Page_Loaded">
 
     <Grid>
         <TextBlock Text="CONNEXION" Width="300" Height="80" VerticalAlignment="Top" FontFamily="Segoe UI Light" FontSize="36" HorizontalAlignment="Center" Foreground="#FFFFCC00" Padding="60,20,0,0" Margin="0,60,0,0"/>

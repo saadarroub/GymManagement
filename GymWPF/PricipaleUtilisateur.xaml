@@ -77,6 +77,6 @@
 
             </Grid>
         </StackPanel>
-        <Button Name="AddBtn" Width="107" Height="37" Content="Ajouter" VerticalAlignment="Bottom" FontSize="14" HorizontalAlignment="Right" Margin="0 0 50 50" Style="{StaticResource YellowBtn}"  />
+        <Button Name="AddBtn" Width="107" Height="37" Content="Ajouter" VerticalAlignment="Bottom" FontSize="14" HorizontalAlignment="Right" Margin="0 0 50 50" Style="{StaticResource YellowBtn}" Click="AddBtn_Click_1" />
     </Grid>
 </Page>
