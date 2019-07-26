@@ -57,7 +57,7 @@ namespace GymWPF
 
             cn.Open();
             cmd.Connection = cn;
-            cmd.CommandText = "select t.IdType as IdType,s.nom_Salle as nom_Salle,t.nom_Type as nom_Type,ss.prix as prix from Salle s join SportSalle ss on s.IdSalle=ss.IdSalle join  Type_Sport t on ss.IdType=t.IdType";
+            cmd.CommandText = "select t.IdType as IdType,s.nom_Salle as nom_Salle,t.nom_Type as nom_Type,ss.prix as prix,s.IdSalle as IdSalle from Salle s join SportSalle ss on s.IdSalle=ss.IdSalle join  Type_Sport t on ss.IdType=t.IdType";
             dr = cmd.ExecuteReader();
             DataTable dt2 = new DataTable();
             dt2.Load(dr);
@@ -119,10 +119,12 @@ namespace GymWPF
         {
             if (ListViewSports.SelectedIndex != -1)
             {
-                BtnAjouter.Content = "Nouveau";
                 int index = ListViewSports.SelectedIndex;
                 DataRowView row = ListViewSports.Items.GetItemAt(index) as DataRowView;
-                SallesComboBox.SelectedItem = row.Row[1].ToString();
+
+                BtnAjouter.Content = "Nouveau";
+                
+                SallesComboBox.SelectedValue = row.Row[4].ToString();
                 SportName.Text = row.Row[2].ToString();
                 SportPrix.Text = row.Row[3].ToString();
             }

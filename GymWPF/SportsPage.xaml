@@ -14,13 +14,13 @@
         <TextBlock Text="Gestion des Sports" FontFamily="Segoe UI Light" FontSize="36" Foreground="#FFFFCC00" Margin="30 30 0 0"/>
         <WrapPanel Margin="0 30 0 0">
             <TextBlock Text="Nom Salle :" FontFamily="Segoe UI Light" FontSize="24" Foreground="White" Margin="20 10 0 10"/>
-            <ComboBox Name="SallesComboBox" Width="177" Height="37" Background="#333333" Margin="5 0 0 0" ItemsSource="{Binding}" VerticalContentAlignment="Center"/>
+            <ComboBox Name="SallesComboBox" Width="177" Height="30" FontSize="16" Background="#333333" Margin="5 0 0 0" ItemsSource="{Binding}" VerticalContentAlignment="Center"/>
             <TextBlock Text="Nom Sport :" FontFamily="Segoe UI Light" FontSize="24" Foreground="White" Margin="10 10 5 10"/>
-            <TextBox Name="SportName" Width="197" Height="37" Background="#333333" BorderBrush="#c7c7c7" Margin="5 10 5 10" FontSize="18" Foreground="White" VerticalContentAlignment="Center" Padding="5,0"/>
+            <TextBox Name="SportName" Width="197" Height="30" Background="#333333" BorderBrush="#c7c7c7" Margin="5 10 5 10" FontSize="18" Foreground="White" VerticalContentAlignment="Center" Padding="5,0"/>
             <TextBlock Text="Prix:" FontFamily="Segoe UI Light" FontSize="24" Foreground="White" Margin="10 10 5 10"/>
-            <TextBox Name="SportPrix" Width="97" Height="37" Background="#333333" BorderBrush="#c7c7c7" Margin="5 10 5 10" FontSize="18" Foreground="White" VerticalContentAlignment="Center" Padding="5,0"/>
-            <Button Name="BtnAjouter" Content="Ajouter" Width="87" Height="37" Style="{StaticResource GreenBtn}" Margin="20 10 0 10" Click="BtnAjouter_Click"/>
-            <Button Name="BtnModifier" Content="Modifier" Width="87" Height="37" Style="{StaticResource GreenBtn}" Margin="20 10 0 10" Click="BtnModifier_Click"/>
+            <TextBox Name="SportPrix" Width="97" Height="30" Background="#333333" BorderBrush="#c7c7c7" Margin="5 10 5 10" FontSize="18" Foreground="White" VerticalContentAlignment="Center" Padding="5,0"/>
+            <Button Name="BtnAjouter" Content="Ajouter" Width="147" Height="37" Style="{StaticResource GreenBtn}" Margin="20 10 0 10" Click="BtnAjouter_Click"/>
+            <Button Name="BtnModifier" Content="Modifier" Width="147" Height="37" Style="{StaticResource GreenBtn}" Margin="20 10 0 10" Click="BtnModifier_Click"/>
         </WrapPanel>
         <TextBlock Text="Liste des Sports Par Salle :" FontFamily="Segoe UI Light" FontSize="24" Foreground="White" Margin="20 20 0 0"/>
         <ListView ItemContainerStyle="{StaticResource ListItemHover}" Name = "ListViewSports"  Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="291" Margin="20 20 20 0" ItemsSource="{Binding}" SelectionChanged="ListViewSports_SelectionChanged">

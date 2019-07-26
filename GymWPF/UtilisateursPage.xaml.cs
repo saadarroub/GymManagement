@@ -141,14 +141,20 @@ namespace GymWPF
         {
             if (ListViewUtilisateurs.SelectedIndex != -1)
             {
-                BtnAjouter.Content = "Nouveau";
-
                 int index = ListViewUtilisateurs.SelectedIndex;
                 DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
+
+                cn.Open();
+                cmd.Connection = cn;
+                cmd.CommandText = "select t.IdType from Utilisateur u join UtilisateurSportSalle uss on u.IdUser=uss.IdUser join Salle s on uss.IdSalle=s.IdSalle join Type_Sport t on uss.IdType=t.IdType where uss.IdUser ='" + row.Row[0].ToString()+"'";
+                int x = int.Parse(cmd.ExecuteScalar().ToString());
+                cn.Close();
+                BtnAjouter.Content = "Nouveau";
                 NomTextBox.Text = row.Row[1].ToString();
                 PrenomTextBox.Text = row.Row[2].ToString();
                 UserNameTextBox.Text = row.Row[3].ToString();
                 PassTextBox.Text = row.Row[4].ToString();
+                SportsComboBox.SelectedValue = x;
             }           
 
         }
