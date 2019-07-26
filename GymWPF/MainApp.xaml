@@ -86,7 +86,7 @@
 
                 </StackPanel>
 
-                <Frame Grid.Column="1" Name="MainFrame" NavigationUIVisibility="Hidden" Source="WelcomePage.xaml"/>
+                <Frame Grid.Column="1" Name="MainFrame" NavigationUIVisibility="Hidden" Source="Profil.xaml"/>
             </Grid>
 
         </StackPanel>
