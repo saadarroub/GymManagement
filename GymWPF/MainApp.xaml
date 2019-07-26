@@ -94,7 +94,7 @@
             <StackPanel.Effect>
                 <DropShadowEffect Direction="270" BlurRadius="10" Opacity="0.5"/>
             </StackPanel.Effect>
-            <Button Name="MenuProfilBtn" Style="{StaticResource CamoflableBtn2}"  Height="30" Width="167">
+            <Button Name="MenuProfilBtn" Style="{StaticResource CamoflableBtn2}"  Height="30" Width="167" Click="MenuProfilBtn_Click">
                 <Grid Width="167">
                     <TextBlock Text="Profil" HorizontalAlignment="Left" Margin="10 0 0 0"/>
                 </Grid>
@@ -104,7 +104,7 @@
                     <TextBlock Text="Preferences" HorizontalAlignment="Left" Margin="10 0 0 0"/>
                 </Grid>
             </Button>
-            <Button Name="MenuDeconnexionBtn" Style="{StaticResource CamoflableBtn2}"  Height="30" Width="167">
+            <Button Name="MenuDeconnexionBtn" Style="{StaticResource CamoflableBtn2}"  Height="30" Width="167" Click="MenuDeconnexionBtn_Click">
                 <Grid Width="167">
                     <TextBlock Text="Deconnexion" HorizontalAlignment="Left" Margin="10 0 0 0"/>
                 </Grid>

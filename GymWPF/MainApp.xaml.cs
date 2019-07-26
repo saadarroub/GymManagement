@@ -79,6 +79,14 @@ namespace GymWPF
         {
             this.WindowState = WindowState.Minimized;
         }
+        public void HideShowRecNavBtn()
+        {
+            RecSalles.Visibility = Visibility.Hidden;
+            RecSports.Visibility = Visibility.Hidden;
+            RecUsers.Visibility = Visibility.Hidden;
+            RecClients.Visibility = Visibility.Hidden;
+            RecDepenses.Visibility = Visibility.Hidden;
+        }
 
         public void HideShowRecNavBtn(Rectangle active)
         {
@@ -126,7 +134,19 @@ namespace GymWPF
             MainFrame.Navigate(utilisateurs);
         }
 
-        
+        private void MenuProfilBtn_Click(object sender, RoutedEventArgs e)
+        {
+            HideShowRecNavBtn();
+            HideShowMenuPanel();
+            MainFrame.Navigate(profil);
+        }
+
+        private void MenuDeconnexionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            MainWindow m = new MainWindow();
+            m.Show();
+        }
 
         private void MainAppNavBtnToClients_Click(object sender, RoutedEventArgs e)
         {
