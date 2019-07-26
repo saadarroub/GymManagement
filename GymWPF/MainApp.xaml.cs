@@ -25,6 +25,7 @@ namespace GymWPF
         UtilisateursPage utilisateurs;
         ClientsPage clients;
         DepensesPage depenses;
+        Profil profil;
 
         string nom, prenom, ConnectedSalle, ConnectedSport,iduser;
         bool valid;
@@ -59,6 +60,8 @@ namespace GymWPF
                 MainAppNavBtnToSprorts.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
                 MainAppNavBtnToUsers.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
             }
+            profil = new Profil(this , ConnectedSalle, ConnectedSport, iduser, nom, prenom);
+            MainFrame.Navigate(profil);
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
