@@ -69,7 +69,9 @@ namespace GymWPF
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                string msg = ex.Message;
+                MessageForm m = new MessageForm(msg);
+                m.ShowDialog();
             }
 
         }
@@ -83,7 +85,9 @@ namespace GymWPF
         {
             if (NomTextBox.Text==""|| PrenomTextBox.Text=="")
             {
-                MessageBox.Show("remplire");
+                string msg = "Merci de remplire tout les champs";
+                MessageForm m = new MessageForm(msg);
+                m.ShowDialog();
             }
             else
             {
@@ -108,7 +112,10 @@ namespace GymWPF
 
                         cmd.CommandText = "insert into SportClients values ('" + id + "','" + ConnectedSalle + "','" + ConnectedSport + "')";
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("ok");
+
+                        string msg = "Client ajouté avec success";
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
 
                     }
                     else
@@ -123,12 +130,17 @@ namespace GymWPF
 
                         cmd.CommandText = "insert into SportClients values ('" + id + "','" + ConnectedSalle + "','" + ConnectedSport + "')";
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("ok");
+
+                        string msg = "Client ajouté avec success";
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    string msg = ex.Message;
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
                 }
                 finally
                 {

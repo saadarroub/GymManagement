@@ -86,14 +86,14 @@ namespace GymWPF
                 {
                 if (NomTextBox.Text == "" || UserNameTextBox.Text == "" || PrenomTextBox.Text == "" || PassTextBox.Text == "" || SportsComboBox.SelectedIndex == -1 || ch1.IsChecked == false && ch2.IsChecked == false)
                 {
-                    MessageBox.Show("remplire");
+                    string msg = "Merci de remplire tout les champs";
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
                 }
                 else
                 {
                     try
                     {
-
-
                         cn.Open();
                         cmd.Connection = cn;
 
@@ -120,12 +120,16 @@ namespace GymWPF
 
                         cmd.ExecuteNonQuery();
 
-                        MessageBox.Show("ok");
+                        string msg = "Utilisateur ajouter avec success";
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
 
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        string msg = ex.Message;
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
                     }
                     finally
                     {
@@ -179,7 +183,9 @@ namespace GymWPF
         {
             if (NomTextBox.Text == "" || UserNameTextBox.Text == "" || PrenomTextBox.Text == "" || PassTextBox.Text == "" || SportsComboBox.SelectedIndex == -1 || ch1.IsChecked == false && ch2.IsChecked == false)
             {
-                MessageBox.Show("remplire");
+                string msg = "Merci de remplire tout les champs";
+                MessageForm m = new MessageForm(msg);
+                m.ShowDialog();
             }
             else
             {
@@ -207,11 +213,16 @@ namespace GymWPF
 
                     cmd.CommandText = "update UtilisateurSportSalle set IdSalle = '" + IdSalle + "', IdType = '" + SportsComboBox.SelectedValue + "' where IdUser = '" + id + "'";
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("ok");
+
+                    string msg = "Utilisateur modifier avec success";
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    string msg = ex.Message;
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
                 }
                 finally
                 {
@@ -236,12 +247,7 @@ namespace GymWPF
             int index = ListViewUtilisateurs.Items.IndexOf(item);
             DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
 
-            if (row.Row[0].ToString() == iduser)
-            {
-                MessageBox.Show("errors");
-            }
-            else
-            {
+           
                 MessageBoxResult messageBoxResult = MessageBox.Show("voulez vous vraiment supprimer ?", "Message", MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
@@ -261,7 +267,7 @@ namespace GymWPF
                     ListViewUtilisateurs.UnselectAll();
                     loaded();
                 }
-            }            
+                       
         }
     }
 }

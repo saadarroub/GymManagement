@@ -92,7 +92,9 @@ namespace GymWPF
         {
             if (DepensesTextBox.Text == "" || DateTimePicker.Text == "" || PrixTextBox.Text == "")
             {
-                MessageBox.Show("remplire");
+                string msg = "Merci de remplire tout les champs";
+                MessageForm m = new MessageForm(msg);
+                m.ShowDialog();
             }
             else
             {
@@ -106,11 +108,16 @@ namespace GymWPF
                     cmd.Connection = cn;
                     cmd.CommandText = "update Depenses set  Depense ='" + DepensesTextBox.Text + "', date_dep = '" + DateTimePicker.Text + "', prix ='" + PrixTextBox.Text + "' where IdDep = '" + id + "'";
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("ok");
+
+                    string msg = "Dépense modifier avec success";
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    string msg = ex.Message;
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
                 }
                 finally
                 {
@@ -173,7 +180,9 @@ namespace GymWPF
             {
                 if (DepensesTextBox.Text=="" || DateTimePicker.Text=="" || PrixTextBox.Text=="")
                 {
-                    MessageBox.Show("remplire");
+                    string msg = "Merci de remplire tout les champs";
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
                 }
                 else
                 {
@@ -183,11 +192,16 @@ namespace GymWPF
                         cmd.Connection = cn;
                         cmd.CommandText = "insert into Depenses values ('" + DepensesTextBox.Text + "','" + DateTimePicker.Text + "','" + PrixTextBox.Text + "','" + ConnectedSalle + "','" + ConnectedSport + "','" + iduser + "')";
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("ok");
+
+                        string msg = "Dépense ajouter avec success";
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        string msg = ex.Message;
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
                     }
                     finally
                     {

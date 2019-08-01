@@ -8,9 +8,11 @@
         Background="#272727"
         BorderBrush="#ffcc00"
         BorderThickness="1"
-        Title="MessageForm" Height="150" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        Title="MessageForm" Height="150" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None"
+        Loaded="Window_Loaded"
+        >
     <Grid>
-        <TextBlock Text="Bien Fait" Foreground="White" FontSize="18" Margin="14,32,6,0"/>
-        <Button Height="30" Width="90" Content="OK" Style="{StaticResource GreenBtn}" Margin="0 70 0 0"/>
+        <TextBlock Name="message" Text="Bien Fait" Foreground="White" FontSize="18" Margin="14,32,6,0"/>
+        <Button Height="30" Width="90" Content="OK" Style="{StaticResource GreenBtn}" Margin="0 70 0 0" Click="Button_Click"/>
     </Grid>
 </Window>

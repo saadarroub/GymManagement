@@ -79,7 +79,9 @@ namespace GymWPF
                 }
                 else
                 {
-                    MessageBox.Show("errors");
+                    string msg = "Nom d'utilisateur ou mot de passe incorrect";
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
                 }
                 dr.Close();
 
@@ -87,7 +89,9 @@ namespace GymWPF
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message);
+                string msg = ex.Message;
+                MessageForm m = new MessageForm(msg);
+                m.ShowDialog();
 
             }
             finally

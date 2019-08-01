@@ -97,7 +97,9 @@ namespace GymWPF
         {
             if (PrixTextBox.Text == "" || NomTextBox.Text == "")
             {
-                MessageBox.Show("remplire");
+                string msg = "Merci de remplire tout les champs";
+                MessageForm m = new MessageForm(msg);
+                m.ShowDialog();
             }
             else
             {
@@ -112,13 +114,18 @@ namespace GymWPF
 
                     cmd.CommandText = "update  Payments set date_Payment ='" + NomTextBox.Text + "', Prix ='" + PrixTextBox.Text + "' where IdPayment ='" + id + "'";
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("ok");
+
+                    string msg = "Payement modifier avec success";
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
 
 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    string msg = ex.Message;
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
                 }
                 finally
                 {
@@ -154,7 +161,9 @@ namespace GymWPF
             {
                 if (PrixTextBox.Text=="" || NomTextBox.Text=="")
                 {
-                    MessageBox.Show("remplire");
+                    string msg = "Merci de remplire tout les champs";
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
                 }
                 else
                 {
@@ -165,11 +174,15 @@ namespace GymWPF
                         cmd.CommandText = "insert into Payments values ('" + NomTextBox.Text + "','" + id.ToString() + "','" + ConnectedSalle.ToString() + "','" + ConnectedSport.ToString() + "','" + PrixTextBox.Text + "')";
                         cmd.ExecuteNonQuery();
 
-                        MessageBox.Show("ok");
+                        string msg = "Payement ajouter avec success";
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        string msg = ex.Message;
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
                     }
                     finally
                     {

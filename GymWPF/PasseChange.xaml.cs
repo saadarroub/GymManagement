@@ -86,38 +86,55 @@ namespace GymWPF
 
         public void changePass()
         {
-            try
+            if (UsertextBox.Text=="" || OldPassTextBox.Password=="")
             {
-                cn.Open();
-                cmd.Connection = cn;
-                cmd.CommandText = "select * from Utilisateur where UserName = '" + UsertextBox.Text + "' and Password_User = '" + OldPassTextBox.Password + "'";
-                dr = cmd.ExecuteReader();
-                if (dr.Read() && NewPassTextBox.Password == ConfirmNewPassTextBox.Password && NewPassTextBox.Password.Length >= 8)
+                string msg = "Merci de saisir tout les informations";
+                MessageForm m = new MessageForm(msg);
+                m.ShowDialog();
+            }
+            else
+            {
+                try
                 {
-                    dr.Close();                   
+                    cn.Open();
+                    cmd.Connection = cn;
+                    cmd.CommandText = "select * from Utilisateur where UserName = '" + UsertextBox.Text + "' and Password_User = '" + OldPassTextBox.Password + "'";
+                    dr = cmd.ExecuteReader();
+                    if (dr.Read() && NewPassTextBox.Password == ConfirmNewPassTextBox.Password && NewPassTextBox.Password.Length >= 8)
+                    {
+                        dr.Close();
                         cmd.CommandText = "update Utilisateur set Password_User = '" + NewPassTextBox.Password + "' where UserName ='" + UsertextBox.Text + "'";
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("changed");
-                    
-                                     
+
+                        string msg = "mot de passe modifier avec success";
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
+
+
+                    }
+                    else
+                    {
+                        string msg = "Merci de confirmer votre mot de passe";
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
+                    }
+
+
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("errors");
+
+                    string msg = ex.Message;
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
+
                 }
-                
-
+                finally
+                {
+                    cn.Close();
+                }
             }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-
-            }
-            finally
-            {
-                cn.Close();
-            }
+            
         }
 
         private void ChangerPassBtn_Click(object sender, RoutedEventArgs e)

@@ -84,13 +84,12 @@ namespace GymWPF
                 {
                     if (SalleName.Text == "")
                     {
-                        MessageBox.Show("saisir le nom de la salle");
+                        string msg = "Merci de remplire tout les champs";
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
                     }
-                    else if (ds.Tables["Salle"].Rows.Count > 1)
-                    {
-                        MessageBox.Show("you have just two salle in youre liscence");
-                    }
-                    else
+                    
+                    else 
                     {
                         DataRow r = ds.Tables["Salle"].NewRow();
                         r[1] = SalleName.Text;
@@ -98,7 +97,11 @@ namespace GymWPF
                         da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
                         SqlCommandBuilder cb = new SqlCommandBuilder(da);
                         da.Update(ds, "Salle");
-                        MessageBox.Show("Record added");
+
+                        string msg = "Salle ajouter avec success";
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
+
                         ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
                         ListViewSalles.UnselectAll();
                         SalleName.Text = null;
@@ -106,7 +109,9 @@ namespace GymWPF
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    string msg = ex.Message;
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
                 }
             }
                     
@@ -124,7 +129,9 @@ namespace GymWPF
                 {
                     if (SalleName.Text == "")
                     {
-                        MessageBox.Show("saisir le nom de la salle");
+                        string msg = "Merci de remplire tout les champs";
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
                     }
                     else
                     {
@@ -135,7 +142,11 @@ namespace GymWPF
                         da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
                         SqlCommandBuilder cb = new SqlCommandBuilder(da);
                         da.Update(ds, "Salle");
-                        MessageBox.Show("updated..");
+
+                        string msg = "Salle modifier avec success";
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
+
                         ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
                         BtnAjouter.Content = "Ajouter";
                         SalleName.Text = null;
@@ -145,7 +156,9 @@ namespace GymWPF
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    string msg = ex.Message;
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
                 }
             }          
             
@@ -172,7 +185,6 @@ namespace GymWPF
                 SalleName.Text = null;
                 ListViewSalles.UnselectAll();
                 ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
-                MessageBox.Show("Record Deleted");
             }
         }
     }

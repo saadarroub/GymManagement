@@ -19,9 +19,23 @@ namespace GymWPF
     /// </summary>
     public partial class MessageForm : Window
     {
-        public MessageForm()
+        string msg;
+        public MessageForm(string msg)
         {
             InitializeComponent();
+            this.msg = msg;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            message.Text = msg;
+        }        
+
+       
     }
 }

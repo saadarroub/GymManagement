@@ -79,14 +79,15 @@ namespace GymWPF
             {
                 if (SportName.Text == "" || SportPrix.Text == "" ||  SallesComboBox.SelectedIndex == -1 )
                 {
-                    MessageBox.Show("remplire");
+                    string msg = "Merci de remplire tout les champs";
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
                 }
                 else
                 {
                     try
                     {
-                        if (SportName.Text != "" && SallesComboBox.SelectedItem != null && SportPrix.Text != "")
-                        {
+                        
                             cn.Open();
                             cmd.Connection = cn;
                             cmd.CommandText = "insert into Type_Sport values ('" + SportName.Text + "')";
@@ -104,17 +105,19 @@ namespace GymWPF
                             SportPrix.Text = null;
                             SallesComboBox.SelectedIndex = -1;
 
-                            MessageBox.Show("ok");
 
-                        }
-                        else
-                        {
-                            MessageBox.Show("errors");
-                        }
+                            string msg = "Sport ajouter avec success";
+                            MessageForm m = new MessageForm(msg);
+                            m.ShowDialog();
+
+                        
+                       
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message);
+                        string msg = ex.Message;
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
                     }
                 }               
             }
@@ -142,7 +145,9 @@ namespace GymWPF
         {
             if (SportName.Text == "" || SportPrix.Text == "" || SallesComboBox.SelectedIndex == -1)
             {
-                MessageBox.Show("remplire");
+                string msg = "Merci de remplire tout les champs";
+                MessageForm m = new MessageForm(msg);
+                m.ShowDialog();
             }
             else
             {
@@ -170,13 +175,17 @@ namespace GymWPF
                     loaded();
 
 
-                    MessageBox.Show("ok");
+                    string msg = "Sport modifier avec success";
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
 
 
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    string msg = ex.Message;
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
                 }
             }
            

@@ -47,23 +47,28 @@ namespace GymWPF
                 {
                     if (NomtextBox.Text =="" || PrenomtextBox.Text =="" || UsertextBox.Text =="" || Pass.Text =="")
                     {
-                        MessageBox.Show("errors");
-                    }
+                    string msg = "Merci de remplire tout les champs";
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
+                }
                 else
                 {
                     cn.Open();
                     cmd.Connection = cn;
                     cmd.CommandText = "insert into Utilisateur values ('" + NomtextBox.Text + "','" + PrenomtextBox.Text + "','" + UsertextBox.Text + "','" + Pass.Text + "','" + true + "')";
                     cmd.ExecuteNonQuery();
-                    mw.connexionFrame.GoBack();
+                    
+                    //dire hna yrjer l conexion page
 
                 }
 
             }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
-                }
+                string msg = ex.Message;
+                MessageForm m = new MessageForm(msg);
+                m.ShowDialog();
+            }
                 finally
                 {
                     cn.Close();

@@ -95,7 +95,9 @@ namespace GymWPF
         {
             if (NomTextBox.Text == "" || PrenomTextBox.Text == "")
             {
-                MessageBox.Show("remplire");
+                string msg = "Merci de remplire tout les champs";
+                MessageForm m = new MessageForm(msg);
+                m.ShowDialog();
             }
             else
             {
@@ -114,7 +116,10 @@ namespace GymWPF
                         cmd.CommandText = "update Clients set nom = '" + NomTextBox.Text + "', prenom ='" + PrenomTextBox.Text + "', Tel ='" + TelTextBox.Text + "', img = @img  where IdClient = '" + id + "'";
                         cmd.Parameters.AddWithValue("img", imgByte);
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("ok");
+
+                        string msg = "Client modifier avec success";
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog(); 
 
                     }
                     else
@@ -123,12 +128,17 @@ namespace GymWPF
                         cmd.Connection = cn;
                         cmd.CommandText = "update Clients set nom = '" + NomTextBox.Text + "', prenom ='" + PrenomTextBox.Text + "', Tel ='" + TelTextBox.Text + "', img = NULL  where IdClient = '" + id + "'";
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("ok");
+
+                        string msg = "Client modifier avec success";
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    string msg = ex.Message;
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
                 }
                 finally
                 {
@@ -156,7 +166,9 @@ namespace GymWPF
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                string msg = ex.Message;
+                MessageForm m = new MessageForm(msg);
+                m.ShowDialog();
             }
         }
     }
