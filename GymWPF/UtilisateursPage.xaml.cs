@@ -84,53 +84,63 @@ namespace GymWPF
             else if (BtnAjouter.Content.ToString() == "Ajouter")
             
                 {
-                try
+                if (NomTextBox.Text == "" || UserNameTextBox.Text == "" || PrenomTextBox.Text == "" || PassTextBox.Text == "" || SportsComboBox.SelectedIndex == -1 || ch1.IsChecked == false && ch2.IsChecked == false)
                 {
-                    cn.Open();
-                    cmd.Connection = cn;
-                    
-                    if (ch1.IsChecked == true)
+                    MessageBox.Show("remplire");
+                }
+                else
+                {
+                    try
                     {
-                    cmd.CommandText = "insert into Utilisateur values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + UserNameTextBox.Text + "','" + PassTextBox.Text + "','"+true+"')";
+
+
+                        cn.Open();
+                        cmd.Connection = cn;
+
+                        if (ch1.IsChecked == true)
+                        {
+                            cmd.CommandText = "insert into Utilisateur values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + UserNameTextBox.Text + "','" + PassTextBox.Text + "','" + true + "')";
+                            cmd.ExecuteNonQuery();
+
+                        }
+                        else if (ch1.IsChecked == false)
+                        {
+                            cmd.CommandText = "insert into Utilisateur values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + UserNameTextBox.Text + "','" + PassTextBox.Text + "','" + false + "')";
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        cmd.CommandText = "select MAX(IdUser) from Utilisateur";
+                        int IdUser = int.Parse(cmd.ExecuteScalar().ToString());
+
+                        cmd.CommandText = "select IdSalle from SportSalle where IdType='" + SportsComboBox.SelectedValue + "'";
+                        int IdSalle = int.Parse(cmd.ExecuteScalar().ToString());
+
+                        cmd.CommandText = "insert into UtilisateurSportSalle values ('" + IdSalle + "','" + SportsComboBox.SelectedValue + "','" + IdUser + "')";
+
+
                         cmd.ExecuteNonQuery();
 
+                        MessageBox.Show("ok");
+
                     }
-                    else if (ch1.IsChecked == false)
+                    catch (Exception ex)
                     {
-                        cmd.CommandText = "insert into Utilisateur values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + UserNameTextBox.Text + "','" + PassTextBox.Text + "','" + false + "')";
-                        cmd.ExecuteNonQuery();
+                        MessageBox.Show(ex.Message);
                     }
+                    finally
+                    {
+                        cn.Close();
 
-                    cmd.CommandText = "select MAX(IdUser) from Utilisateur";
-                    int IdUser = int.Parse(cmd.ExecuteScalar().ToString());
-
-                    cmd.CommandText = "select IdSalle from SportSalle where IdType='" + SportsComboBox.SelectedValue + "'";
-                    int IdSalle = int.Parse(cmd.ExecuteScalar().ToString());
-
-                    cmd.CommandText = "insert into UtilisateurSportSalle values ('" + IdSalle + "','" + SportsComboBox.SelectedValue + "','" + IdUser + "')";
-
-
-                    cmd.ExecuteNonQuery();
-
-                    MessageBox.Show("ok");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    cn.Close();
-                    
-                    NomTextBox.Text = null;
-                    PrenomTextBox.Text = null;
-                    UserNameTextBox.Text = null;
-                    PassTextBox.Text = null;
-                    SportsComboBox.SelectedIndex = -1;
-                    ch1.IsChecked = false;
-                    ch2.IsChecked = false;
-                    loaded();
-                }
+                        NomTextBox.Text = null;
+                        PrenomTextBox.Text = null;
+                        UserNameTextBox.Text = null;
+                        PassTextBox.Text = null;
+                        SportsComboBox.SelectedIndex = -1;
+                        ch1.IsChecked = false;
+                        ch2.IsChecked = false;
+                        loaded();
+                    }
+                }              
 
             }
                
@@ -148,6 +158,8 @@ namespace GymWPF
                 cmd.Connection = cn;
                 cmd.CommandText = "select t.IdType from Utilisateur u join UtilisateurSportSalle uss on u.IdUser=uss.IdUser join Salle s on uss.IdSalle=s.IdSalle join Type_Sport t on uss.IdType=t.IdType where uss.IdUser ='" + row.Row[0].ToString()+"'";
                 int x = int.Parse(cmd.ExecuteScalar().ToString());
+                cmd.CommandText = "select Valide from Utilisateur where IdUser = '" + row.Row[0].ToString() + "'";
+                bool valide = Convert.ToBoolean(cmd.ExecuteScalar().ToString());
                 cn.Close();
                 BtnAjouter.Content = "Nouveau";
                 NomTextBox.Text = row.Row[1].ToString();
@@ -155,57 +167,67 @@ namespace GymWPF
                 UserNameTextBox.Text = row.Row[3].ToString();
                 PassTextBox.Text = row.Row[4].ToString();
                 SportsComboBox.SelectedValue = x;
+                if (valide == true)                
+                    ch1.IsChecked = true;                
+                else                
+                    ch2.IsChecked = true;                
             }           
 
         }
 
         private void BtnModifier_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (NomTextBox.Text == "" || UserNameTextBox.Text == "" || PrenomTextBox.Text == "" || PassTextBox.Text == "" || SportsComboBox.SelectedIndex == -1 || ch1.IsChecked == false && ch2.IsChecked == false)
             {
-                int index = ListViewUtilisateurs.SelectedIndex;
-                DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
-                int id = int.Parse(row.Row[0].ToString());
-
-                cn.Open();
-                cmd.Connection = cn;
-                cmd.CommandText = "update Utilisateur set Nom = '" + NomTextBox.Text + "' , Prenom = '" + PrenomTextBox.Text + "' , UserName = '" + UserNameTextBox.Text + "',Password_User = '" + PassTextBox.Text + "', Valide = @valid where IdUser = '"+id+"'";
-                if (ch1.IsChecked == true)
+                MessageBox.Show("remplire");
+            }
+            else
+            {
+                try
                 {
-                    cmd.Parameters.AddWithValue("@valid", true);
+                    int index = ListViewUtilisateurs.SelectedIndex;
+                    DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
+                    int id = int.Parse(row.Row[0].ToString());
+
+                    cn.Open();
+                    cmd.Connection = cn;
+                    if (ch1.IsChecked == true)
+                    {
+                        cmd.CommandText = "update Utilisateur set Nom = '" + NomTextBox.Text + "' , Prenom = '" + PrenomTextBox.Text + "' , UserName = '" + UserNameTextBox.Text + "',Password_User = '" + PassTextBox.Text + "', Valide = '"+true+"' where IdUser = '" + id + "'";
+                        cmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        cmd.CommandText = "update Utilisateur set Nom = '" + NomTextBox.Text + "' , Prenom = '" + PrenomTextBox.Text + "' , UserName = '" + UserNameTextBox.Text + "',Password_User = '" + PassTextBox.Text + "', Valide = '" + false + "' where IdUser = '" + id + "'";
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    cmd.CommandText = "select IdSalle from SportSalle where IdType='" + SportsComboBox.SelectedValue + "'";
+                    int IdSalle = int.Parse(cmd.ExecuteScalar().ToString());
+
+                    cmd.CommandText = "update UtilisateurSportSalle set IdSalle = '" + IdSalle + "', IdType = '" + SportsComboBox.SelectedValue + "' where IdUser = '" + id + "'";
                     cmd.ExecuteNonQuery();
+                    MessageBox.Show("ok");
                 }
-                else
+                catch (Exception ex)
                 {
-                    cmd.Parameters.AddWithValue("@valid", false);
-                    cmd.ExecuteNonQuery();
+                    MessageBox.Show(ex.Message);
                 }
-
-                cmd.CommandText = "select IdSalle from SportSalle where IdType='" + SportsComboBox.SelectedValue + "'";
-                int IdSalle = int.Parse(cmd.ExecuteScalar().ToString());
-
-                cmd.CommandText = "update UtilisateurSportSalle set IdSalle = '" + IdSalle + "', IdType = '" + SportsComboBox.SelectedValue + "' where IdUser = '" + id + "'";
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("ok");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                cn.Close();
-                BtnAjouter.Content = "Ajouter";
-                NomTextBox.Text = null;
-                PrenomTextBox.Text = null;
-                UserNameTextBox.Text = null;
-                PassTextBox.Text = null;
-                SportsComboBox.SelectedIndex = -1;
-                ch1.IsChecked = false;
-                ch2.IsChecked = false;
-                ListViewUtilisateurs.UnselectAll();
-                loaded();
-            }
+                finally
+                {
+                    cn.Close();
+                    BtnAjouter.Content = "Ajouter";
+                    NomTextBox.Text = null;
+                    PrenomTextBox.Text = null;
+                    UserNameTextBox.Text = null;
+                    PassTextBox.Text = null;
+                    SportsComboBox.SelectedIndex = -1;
+                    ch1.IsChecked = false;
+                    ch2.IsChecked = false;
+                    ListViewUtilisateurs.UnselectAll();
+                    loaded();
+                }
+            }           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

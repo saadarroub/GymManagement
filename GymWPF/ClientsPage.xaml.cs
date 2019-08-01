@@ -91,7 +91,7 @@ namespace GymWPF
                 dr = cmd.ExecuteReader();
                 dt.Load(dr);
                 ListClient.DataContext = dt;
-                cn.Close();
+                cn.Close();                
             }
         }
 

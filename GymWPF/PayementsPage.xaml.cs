@@ -46,7 +46,7 @@ namespace GymWPF
         {
             cn.Open();
             cmd.Connection = cn;
-            cmd.CommandText = "select p.IdPayment as ID,c.nom+' '+c.prenom as clinet,s.nom_Salle as salle,t.nom_Type as sport,FORMAT (p.date_Payment , 'dd-MM-yyyy') as date,p.Prix as prix,c.IdClient,s.IdSalle,t.IdType from Payments p join Clients c on p.IdClient=c.IdClient join Salle s on p.IdSalle=s.IdSalle join Type_Sport t on p.IdType=t.IdType where c.IdClient='" + id+"' and s.IdSalle = '"+ConnectedSalle+"' and t.IdType = '"+ConnectedSport+"'";
+            cmd.CommandText = "select p.IdPayment as ID,c.nom+' '+c.prenom as clinet,s.nom_Salle as salle,t.nom_Type as sport,p.date_Payment as date,p.Prix as prix,c.IdClient,s.IdSalle,t.IdType from Payments p join Clients c on p.IdClient=c.IdClient join Salle s on p.IdSalle=s.IdSalle join Type_Sport t on p.IdType=t.IdType where c.IdClient='" + id+"' and s.IdSalle = '"+ConnectedSalle+"' and t.IdType = '"+ConnectedSport+"'";
             dr = cmd.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(dr);
@@ -95,35 +95,43 @@ namespace GymWPF
 
         private void Modifier_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (PrixTextBox.Text == "" || NomTextBox.Text == "")
             {
-                int index = ListPayments.SelectedIndex;
-                DataRowView row = ListPayments.Items.GetItemAt(index) as DataRowView;
-                int id = int.Parse(row.Row[0].ToString());
-
-                cn.Open();
-                cmd.Connection = cn;             
-
-                cmd.CommandText = "update  Payments set date_Payment ='" + NomTextBox.Text + "', Prix ='" + PrixTextBox.Text + "' where IdPayment ='" + id + "'";
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("ok");
-
-
+                MessageBox.Show("remplire");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                cn.Close();
-                ajouter.Content = "Ajouter";
-                NomTextBox.Text = null;
-                PrixTextBox.Text = null;
-                ListPayments.UnselectAll();
+                try
+                {
+                    int index = ListPayments.SelectedIndex;
+                    DataRowView row = ListPayments.Items.GetItemAt(index) as DataRowView;
+                    int id = int.Parse(row.Row[0].ToString());
 
-                loaded();
+                    cn.Open();
+                    cmd.Connection = cn;
+
+                    cmd.CommandText = "update  Payments set date_Payment ='" + NomTextBox.Text + "', Prix ='" + PrixTextBox.Text + "' where IdPayment ='" + id + "'";
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("ok");
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    cn.Close();
+                    ajouter.Content = "Ajouter";
+                    NomTextBox.Text = null;
+                    PrixTextBox.Text = null;
+                    ListPayments.UnselectAll();
+
+                    loaded();
+                }
             }
+           
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -143,26 +151,34 @@ namespace GymWPF
             }
             else if (ajouter.Content.ToString() == "Ajouter")
             {
-                try
+                if (PrixTextBox.Text=="" || NomTextBox.Text=="")
                 {
-                    cn.Open();
-                    cmd.Connection = cn;
-                    cmd.CommandText = "insert into Payments values ('" + NomTextBox.Text + "','" + id.ToString() + "','" + ConnectedSalle.ToString() + "','" + ConnectedSport.ToString() + "','" + PrixTextBox.Text + "')";
-                    cmd.ExecuteNonQuery();
-                   
-                    MessageBox.Show("ok");
+                    MessageBox.Show("remplire");
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    try
+                    {
+                        cn.Open();
+                        cmd.Connection = cn;
+                        cmd.CommandText = "insert into Payments values ('" + NomTextBox.Text + "','" + id.ToString() + "','" + ConnectedSalle.ToString() + "','" + ConnectedSport.ToString() + "','" + PrixTextBox.Text + "')";
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("ok");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        cn.Close();
+                        loaded();
+                        NomTextBox.Text = null;
+                        PrixTextBox.Text = null;
+                    }
                 }
-                finally
-                {
-                    cn.Close();
-                    loaded();
-                    NomTextBox.Text = null;
-                    PrixTextBox.Text = null;
-                }
+               
             }
 
               

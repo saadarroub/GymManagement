@@ -65,21 +65,25 @@ namespace GymWPF
                     PrenomTextBox.Text = row[2].ToString();
                     TelTextBox.Text = row[3].ToString();
 
-                    byte[] blob = (byte[])row[4];
-                    MemoryStream stream = new MemoryStream();
-                    stream.Write(blob, 0, blob.Length);
-                    stream.Position = 0;
+                    if (row[4].ToString() != "")
+                    {
+                        byte[] blob = (byte[])row[4];
+                        MemoryStream stream = new MemoryStream();
+                        stream.Write(blob, 0, blob.Length);
+                        stream.Position = 0;
 
-                    System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
-                    BitmapImage bi = new BitmapImage();
-                    bi.BeginInit();
+                        System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
+                        BitmapImage bi = new BitmapImage();
+                        bi.BeginInit();
 
-                    MemoryStream ms = new MemoryStream();
-                    img.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-                    ms.Seek(0, SeekOrigin.Begin);
-                    bi.StreamSource = ms;
-                    bi.EndInit();
-                    image.Source = bi;
+                        MemoryStream ms = new MemoryStream();
+                        img.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+                        ms.Seek(0, SeekOrigin.Begin);
+                        bi.StreamSource = ms;
+                        bi.EndInit();
+                        image.Source = bi;
+                    }
+                    
                     
                 }
             }
@@ -88,33 +92,49 @@ namespace GymWPF
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            try
+            if (NomTextBox.Text == "" || PrenomTextBox.Text == "")
             {
-                if (imageName != "")
+                MessageBox.Show("remplire");
+            }
+            else
+            {
+                try
                 {
-                    FileStream fs = new FileStream(imageName, FileMode.Open, FileAccess.Read);
-                    byte[] imgByte = new byte[fs.Length];
-                    fs.Read(imgByte, 0, Convert.ToInt32(fs.Length));
-                    fs.Close();
+                    if (imageName != null)
+                    {
+                        FileStream fs = new FileStream(imageName, FileMode.Open, FileAccess.Read);
+                        byte[] imgByte = new byte[fs.Length];
+                        fs.Read(imgByte, 0, Convert.ToInt32(fs.Length));
+                        fs.Close();
 
 
-                    cn.Open();
-                    cmd.Connection = cn;
-                    cmd.CommandText = "update Clients set nom = '" + NomTextBox.Text + "', prenom ='" + PrenomTextBox.Text + "', Tel ='" + TelTextBox.Text + "', img = @img  where IdClient = '"+id+"'";
-                    cmd.Parameters.AddWithValue("img", imgByte);
-                    cmd.ExecuteNonQuery();                    
-                    MessageBox.Show("ok");
+                        cn.Open();
+                        cmd.Connection = cn;
+                        cmd.CommandText = "update Clients set nom = '" + NomTextBox.Text + "', prenom ='" + PrenomTextBox.Text + "', Tel ='" + TelTextBox.Text + "', img = @img  where IdClient = '" + id + "'";
+                        cmd.Parameters.AddWithValue("img", imgByte);
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("ok");
 
+                    }
+                    else
+                    {
+                        cn.Open();
+                        cmd.Connection = cn;
+                        cmd.CommandText = "update Clients set nom = '" + NomTextBox.Text + "', prenom ='" + PrenomTextBox.Text + "', Tel ='" + TelTextBox.Text + "', img = NULL  where IdClient = '" + id + "'";
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("ok");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    cn.Close();
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                cn.Close();
-            }
+           
         }
         string strName, imageName;
 

@@ -122,18 +122,26 @@ namespace GymWPF
 
                 try
                 {
-                    DataRow r = ds.Tables["Salle"].Rows.Find(id.ToString());
-                    r.BeginEdit();
-                    r[1] = SalleName.Text;
-                    r.EndEdit();
-                    da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
-                    SqlCommandBuilder cb = new SqlCommandBuilder(da);
-                    da.Update(ds, "Salle");
-                    MessageBox.Show("updated..");
-                    ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
-                    BtnAjouter.Content = "Ajouter";
-                    SalleName.Text = null;
-                    ListViewSalles.UnselectAll();
+                    if (SalleName.Text == "")
+                    {
+                        MessageBox.Show("saisir le nom de la salle");
+                    }
+                    else
+                    {
+                        DataRow r = ds.Tables["Salle"].Rows.Find(id.ToString());
+                        r.BeginEdit();
+                        r[1] = SalleName.Text;
+                        r.EndEdit();
+                        da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
+                        SqlCommandBuilder cb = new SqlCommandBuilder(da);
+                        da.Update(ds, "Salle");
+                        MessageBox.Show("updated..");
+                        ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
+                        BtnAjouter.Content = "Ajouter";
+                        SalleName.Text = null;
+                        ListViewSalles.UnselectAll();
+                    }
+                   
                 }
                 catch (Exception ex)
                 {

@@ -90,34 +90,41 @@ namespace GymWPF
 
         private void BtnModifier_Click(object sender, RoutedEventArgs e)
         {
-            
-            try
+            if (DepensesTextBox.Text == "" || DateTimePicker.Text == "" || PrixTextBox.Text == "")
             {
-                int index = ListViewUtilisateurs.SelectedIndex;
-                DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
-                int id = int.Parse(row.Row[0].ToString());
+                MessageBox.Show("remplire");
+            }
+            else
+            {
+                try
+                {
+                    int index = ListViewUtilisateurs.SelectedIndex;
+                    DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
+                    int id = int.Parse(row.Row[0].ToString());
 
-                cn.Open();
-                cmd.Connection = cn;
-                cmd.CommandText = "update Depenses set  Depense ='" + DepensesTextBox.Text + "', date_dep = '" + DateTimePicker.Text + "', prix ='" + PrixTextBox.Text + "' where IdDep = '" + id + "'";
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("ok");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                cn.Close();
-                BtnAjouter.Content = "Ajouter";
-                DepensesTextBox.Text = null;
-                DateTimePicker.Text = null;
-                PrixTextBox.Text = null;
-                ListViewUtilisateurs.UnselectAll();
+                    cn.Open();
+                    cmd.Connection = cn;
+                    cmd.CommandText = "update Depenses set  Depense ='" + DepensesTextBox.Text + "', date_dep = '" + DateTimePicker.Text + "', prix ='" + PrixTextBox.Text + "' where IdDep = '" + id + "'";
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("ok");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    cn.Close();
+                    BtnAjouter.Content = "Ajouter";
+                    DepensesTextBox.Text = null;
+                    DateTimePicker.Text = null;
+                    PrixTextBox.Text = null;
+                    ListViewUtilisateurs.UnselectAll();
 
-                loaded();
+                    loaded();
+                }
             }
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -164,26 +171,34 @@ namespace GymWPF
             else if (BtnAjouter.Content.ToString() == "Ajouter")
 
             {
-                try
+                if (DepensesTextBox.Text=="" || DateTimePicker.Text=="" || PrixTextBox.Text=="")
                 {
-                    cn.Open();
-                    cmd.Connection = cn;
-                    cmd.CommandText = "insert into Depenses values ('" + DepensesTextBox.Text + "','" + DateTimePicker.Text + "','" + PrixTextBox.Text + "','" + ConnectedSalle + "','" + ConnectedSport + "','" + iduser + "')";
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("ok");
+                    MessageBox.Show("remplire");
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
+                    try
+                    {
+                        cn.Open();
+                        cmd.Connection = cn;
+                        cmd.CommandText = "insert into Depenses values ('" + DepensesTextBox.Text + "','" + DateTimePicker.Text + "','" + PrixTextBox.Text + "','" + ConnectedSalle + "','" + ConnectedSport + "','" + iduser + "')";
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("ok");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        cn.Close();
+                        DepensesTextBox.Text = null;
+                        DateTimePicker.Text = null;
+                        PrixTextBox.Text = null;
+                        loaded();
+                    }
                 }
-                finally
-                {
-                    cn.Close();
-                    DepensesTextBox.Text = null;
-                    DateTimePicker.Text = null;
-                    PrixTextBox.Text = null;
-                    loaded();
-                }
+               
             }
                
         }
