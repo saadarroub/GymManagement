@@ -65,8 +65,14 @@
     <Compile Include="ClientsPage.xaml.cs">
       <DependentUpon>ClientsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConfirmForm.xaml.cs">
+      <DependentUpon>ConfirmForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DepensesPage.xaml.cs">
       <DependentUpon>DepensesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageForm.xaml.cs">
+      <DependentUpon>MessageForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="ModifierClient.xaml.cs">
       <DependentUpon>ModifierClient.xaml</DependentUpon>
@@ -100,6 +106,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ConfirmForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DepensesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -130,6 +140,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MessageForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ModifierClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

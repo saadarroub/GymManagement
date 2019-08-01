@@ -48,6 +48,7 @@ namespace GymWPF
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             dade.Effect = null;
+            dade.Opacity = 1;
             this.Hide();
         }
         string strName, imageName;
