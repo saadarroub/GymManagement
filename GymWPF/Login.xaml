@@ -12,7 +12,11 @@
       Loaded="Page_Loaded">
 
     <Grid>
-        <TextBlock Text="CONNEXION" Width="300" Height="80" VerticalAlignment="Top" FontFamily="Segoe UI Light" FontSize="36" HorizontalAlignment="Center" Foreground="#FFFFCC00" Padding="60,20,0,0" Margin="0,60,0,0"/>
+        <Image  Height="117" Width="117" VerticalAlignment="Top"  HorizontalAlignment="Center"  Source="/resource/fitness-facilities.png" Margin="0 30 0 0" Stretch="Fill" >
+            <Image.Effect>
+                <DropShadowEffect Direction="250" RenderingBias="Quality" ShadowDepth="0" BlurRadius="10" Opacity="0.5"/>
+            </Image.Effect>
+        </Image>
         <StackPanel Height="300" Width="400">
 
             <Grid Height="50">
@@ -35,7 +39,7 @@
                 <Button Name="LoginBtn" Width="107" Height="37" Content="Se Connecter" HorizontalAlignment="Right" Margin="0 0 50 0" FontSize="14" Style="{StaticResource YellowBtn}" Click="LoginBtn_Click" />
                 <Button Name="ChangerPasseBtn" Width="160" Height="27" Content="Changer Votre Mot de Passe" HorizontalAlignment="Left" Margin="55 0 0 0"  Style="{StaticResource CamoflableBtn}" Cursor="Hand" Click="ChangerPasseBtn_Click"/>
             </Grid>
-            
+
         </StackPanel>
         <Button Name="AjouterPricipaleUtilisateur" Width="270" Height="27" Content="Ajouter Utilisateur Pricipale de Votre application" Margin="0 0 0 20" Padding="5 0" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Style="{StaticResource CamoflableBtn2}" Cursor="Hand" Click="AjouterPricipaleUtilisateur_Click"/>
     </Grid>

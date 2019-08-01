@@ -28,7 +28,7 @@
             </WrapPanel>
             <Grid Margin="0 30 0 0">
                 <WrapPanel HorizontalAlignment="Center">
-                    <TextBlock Name="icon1" Text="&#xf594;"  Margin="20 0 0 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="29" Foreground="#c7c7c7"/>
+                    <TextBlock Name="icon1" Text="&#xf594;"  Margin="20 0 0 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="29" Foreground="#c7c7c7" ToolTip="Kda"/>
                     <TextBlock Name="icon2" Text="&#xf21e;"  Margin="20 0 0 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="29" Foreground="#c7c7c7"/>
                     <TextBlock Name="icon3" Text="&#xf509;"  Margin="20 0 0 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="29" Foreground="#c7c7c7"/>
                     <TextBlock Name="icon4" Text="&#xf0c0;"  Margin="20 0 0 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="29" Foreground="#c7c7c7"/>
