@@ -50,15 +50,15 @@ namespace GymWPF
         {            
             if (NewPassTextBox.Password.Length < 8)
             {
-                valid1.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                valid1.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
             }
             else if (NewPassTextBox.Password.Length >= 8 && NewPassTextBox.Password.Length < 11)
             {
-                valid1.Foreground = new SolidColorBrush(Color.FromRgb(255, 155, 0));
+                valid1.Fill = new SolidColorBrush(Color.FromRgb(255, 155, 0));
             }
             else
             {
-                valid1.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                valid1.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
             }           
             
         }
@@ -66,11 +66,11 @@ namespace GymWPF
         {
             if (NewPassTextBox.Password != ConfirmNewPassTextBox.Password)
             {
-                valid2.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                valid2.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
             }
             else
             {
-                valid2.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                valid2.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
             }
         }
         private void NewPassTextBox_PasswordChanged(object sender, RoutedEventArgs e)
