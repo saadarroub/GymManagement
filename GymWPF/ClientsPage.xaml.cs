@@ -142,6 +142,7 @@ namespace GymWPF
             DataRowView row = ListClient.Items.GetItemAt(index) as DataRowView;
             string id = row.Row[0].ToString();
 
+            dade.Opacity = 0.5;
             dade.Effect = new BlurEffect();
             PayementsPage pp = new PayementsPage(dade, id, ConnectedSalle, ConnectedSport);
             pp.ShowDialog();
@@ -153,6 +154,7 @@ namespace GymWPF
             DataRowView row = ListClient.Items.GetItemAt(index) as DataRowView;
             string id = row.Row[0].ToString();
 
+            dade.Opacity = 0.5;
             dade.Effect = new BlurEffect();
             ModifierClient mc = new ModifierClient(dade,id);
             mc.ShowDialog();            
@@ -216,6 +218,7 @@ namespace GymWPF
 
         private void AjouterClientBtn_Click(object sender, RoutedEventArgs e)
         {
+            dade.Opacity = 0.5;
             dade.Effect = new BlurEffect();
             AjouterClient ac = new AjouterClient(dade, ConnectedSalle, ConnectedSport);
             ac.ShowDialog();
