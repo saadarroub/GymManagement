@@ -1,0 +1,18 @@
+﻿<Window x:Class="GymWPF.ConfirmForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GymWPF"
+        mc:Ignorable="d"
+        Background="#272727"
+        BorderBrush="#ffcc00"
+        BorderThickness="1"
+        Title="ConfirmForm" Height="150" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" >
+    <Grid>
+        <TextBlock Text="Vous voullez vraiment supprimer ?" Foreground="White" FontSize="18" Margin="14,32,6,-22"/>
+        <Button Height="30" Width="90" Content="Oui" Style="{StaticResource GreenBtn}" Margin="40,100,168,18"/>
+        <Button Height="30" Width="90" Content="Non" Style="{StaticResource GreenBtn}" Margin="168,100,40,18"/>
+
+    </Grid>
+</Window>
