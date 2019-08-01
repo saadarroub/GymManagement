@@ -77,39 +77,46 @@ namespace GymWPF
             }
             else if (BtnAjouter.Content.ToString() == "Ajouter")
             {
-                try
+                if (SportName.Text == "" || SportPrix.Text == "" ||  SallesComboBox.SelectedIndex == -1 )
                 {
-                    if (SportName.Text != "" && SallesComboBox.SelectedItem != null && SportPrix.Text != "")
-                    {
-                        cn.Open();
-                        cmd.Connection = cn;
-                        cmd.CommandText = "insert into Type_Sport values ('" + SportName.Text + "')";
-                        cmd.ExecuteNonQuery();
-
-                        cmd.CommandText = "select MAX(IdType) from Type_Sport";
-                        int id = int.Parse(cmd.ExecuteScalar().ToString());
-
-                        cmd.CommandText = "insert into SportSalle values ('" + SallesComboBox.SelectedValue + "','" + id + "','" + SportPrix.Text + "')";
-                        cmd.ExecuteNonQuery();
-
-                        cn.Close();
-                        loaded();
-                        SportName.Text = null;
-                        SportPrix.Text = null;
-                        SallesComboBox.SelectedIndex = -1;
-
-                        MessageBox.Show("ok");
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("errors");
-                    }
+                    MessageBox.Show("remplire");
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
-                }
+                    try
+                    {
+                        if (SportName.Text != "" && SallesComboBox.SelectedItem != null && SportPrix.Text != "")
+                        {
+                            cn.Open();
+                            cmd.Connection = cn;
+                            cmd.CommandText = "insert into Type_Sport values ('" + SportName.Text + "')";
+                            cmd.ExecuteNonQuery();
+
+                            cmd.CommandText = "select MAX(IdType) from Type_Sport";
+                            int id = int.Parse(cmd.ExecuteScalar().ToString());
+
+                            cmd.CommandText = "insert into SportSalle values ('" + SallesComboBox.SelectedValue + "','" + id + "','" + SportPrix.Text + "')";
+                            cmd.ExecuteNonQuery();
+
+                            cn.Close();
+                            loaded();
+                            SportName.Text = null;
+                            SportPrix.Text = null;
+                            SallesComboBox.SelectedIndex = -1;
+
+                            MessageBox.Show("ok");
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("errors");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }               
             }
 
                
@@ -133,38 +140,46 @@ namespace GymWPF
 
         private void BtnModifier_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {               
+            if (SportName.Text == "" || SportPrix.Text == "" || SallesComboBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("remplire");
+            }
+            else
+            {
+                try
+                {
                     int index = ListViewSports.SelectedIndex;
                     DataRowView row = ListViewSports.Items.GetItemAt(index) as DataRowView;
                     int id = int.Parse(row.Row[0].ToString());
 
                     cn.Open();
                     cmd.Connection = cn;
-                    cmd.CommandText = "update Type_Sport set nom_Type = '" + SportName.Text + "' where IdType ='"+id+"'";
+                    cmd.CommandText = "update Type_Sport set nom_Type = '" + SportName.Text + "' where IdType ='" + id + "'";
                     cmd.ExecuteNonQuery();
-                    
+
                     cmd.CommandText = "update  SportSalle set IdSalle ='" + SallesComboBox.SelectedValue + "', prix ='" + SportPrix.Text + "' where IdType ='" + id + "'";
                     cmd.ExecuteNonQuery();
 
                     cn.Close();
-                BtnAjouter.Content = "Ajouter";
-                SportName.Text = null;
-                SportPrix.Text = null;
-                SallesComboBox.SelectedIndex = -1;
-                ListViewSports.UnselectAll();
+                    BtnAjouter.Content = "Ajouter";
+                    SportName.Text = null;
+                    SportPrix.Text = null;
+                    SallesComboBox.SelectedIndex = -1;
+                    ListViewSports.UnselectAll();
 
-                loaded();
+                    loaded();
 
 
-                MessageBox.Show("ok");
-                   
+                    MessageBox.Show("ok");
 
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -81,39 +81,60 @@ namespace GymWPF
 
         private void insertclient()
         {
-            try
+            if (NomTextBox.Text==""|| PrenomTextBox.Text=="")
             {
-                if (imageName != "")
+                MessageBox.Show("remplire");
+            }
+            else
+            {
+                try
                 {
-                    FileStream fs = new FileStream(imageName, FileMode.Open, FileAccess.Read);
-                    byte[] imgByte = new byte[fs.Length];
-                    fs.Read(imgByte, 0, Convert.ToInt32(fs.Length));
-                    fs.Close();
+                    if (imageName != null)
+                    {
+                        FileStream fs = new FileStream(imageName, FileMode.Open, FileAccess.Read);
+                        byte[] imgByte = new byte[fs.Length];
+                        fs.Read(imgByte, 0, Convert.ToInt32(fs.Length));
+                        fs.Close();
 
-                   
-                    cn.Open();
-                    cmd.Connection = cn;
-                    cmd.CommandText = "insert into Clients values('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "',@img)";
-                    cmd.Parameters.AddWithValue("img", imgByte);
-                    cmd.ExecuteNonQuery();
 
-                    cmd.CommandText = "select MAX(IdClient) from Clients";
-                    int id = int.Parse(cmd.ExecuteScalar().ToString());
+                        cn.Open();
+                        cmd.Connection = cn;
+                        cmd.CommandText = "insert into Clients values('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "',@img)";
+                        cmd.Parameters.AddWithValue("img", imgByte);
+                        cmd.ExecuteNonQuery();
 
-                    cmd.CommandText = "insert into SportClients values ('" + id + "','" + ConnectedSalle + "','" + ConnectedSport + "')";
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("ok");
+                        cmd.CommandText = "select MAX(IdClient) from Clients";
+                        int id = int.Parse(cmd.ExecuteScalar().ToString());
 
+                        cmd.CommandText = "insert into SportClients values ('" + id + "','" + ConnectedSalle + "','" + ConnectedSport + "')";
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("ok");
+
+                    }
+                    else
+                    {
+                        cn.Open();
+                        cmd.Connection = cn;
+                        cmd.CommandText = "insert into Clients values('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "',NULL)";
+                        cmd.ExecuteNonQuery();
+
+                        cmd.CommandText = "select MAX(IdClient) from Clients";
+                        int id = int.Parse(cmd.ExecuteScalar().ToString());
+
+                        cmd.CommandText = "insert into SportClients values ('" + id + "','" + ConnectedSalle + "','" + ConnectedSport + "')";
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("ok");
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                cn.Close();
-            }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    cn.Close();
+                }
+            }  
         }
     }
 }
