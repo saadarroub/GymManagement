@@ -26,7 +26,7 @@ namespace GymWPF
     public partial class ModifierClient : Window
     {
         MainApp dade;
-        string id;
+        string id, ConnectedSalle, ConnectedSport;
 
 
         //declaration --------------------------------------
@@ -36,11 +36,13 @@ namespace GymWPF
         DataSet ds = new DataSet();
         SqlDataReader dr;
         //------------------------------------------------------
-        public ModifierClient(MainApp d,string id)
+        public ModifierClient(MainApp d, string id, string ConnectedSalle, string ConnectedSport)
         {
             this.id = id;
             InitializeComponent();
             this.dade = d;
+            this.ConnectedSalle = ConnectedSalle;
+            this.ConnectedSport = ConnectedSport;
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -95,9 +97,8 @@ namespace GymWPF
         {
             if (NomTextBox.Text == "" || PrenomTextBox.Text == "")
             {
-                string msg = "Merci de remplire tout les champs";
-                MessageForm m = new MessageForm(msg);
-                m.ShowDialog();
+                messageContent.Text = "Merci de remplire tout les champs";
+                animateBorder(borderMessage);
             }
             else
             {
@@ -141,6 +142,11 @@ namespace GymWPF
                 finally
                 {
                     cn.Close();
+
+                    dade.MainFrame.Navigate(new ClientsPage(dade, ConnectedSalle, ConnectedSport));
+                    dade.Effect = null;
+                    dade.Opacity = 1;
+                    this.Close();
                 }
             }
            

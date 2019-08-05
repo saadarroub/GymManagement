@@ -15,6 +15,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Animation;
+using System.Text.RegularExpressions;
 
 namespace GymWPF
 {
@@ -109,11 +110,16 @@ namespace GymWPF
 
         private void Modifier_Click(object sender, RoutedEventArgs e)
         {
-            if (PrixTextBox.Text == "" || NomTextBox.Text == "")
+            if (ListPayments.SelectedIndex == -1)
             {
-                string msg = "Merci de remplire tout les champs";
-                MessageForm m = new MessageForm(msg);
-                m.ShowDialog();
+                messageContent.Text = "veuillez selectioner une ligne";
+                animateBorder(borderMessage);
+            }
+            else
+            {  if (PrixTextBox.Text == "" || NomTextBox.Text == "")
+            {
+                messageContent.Text = "Merci de remplire tout les champs";
+                animateBorder(borderMessage);
             }
             else
             {
@@ -151,6 +157,9 @@ namespace GymWPF
                     loaded();
                 }
             }
+
+            }
+          
            
         }
 
@@ -159,6 +168,12 @@ namespace GymWPF
             dade.Effect = null;
             dade.Opacity = 1;
             this.Hide();
+        }
+
+        private void PrixTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex reg = new Regex(@"\D");
+            e.Handled = reg.IsMatch(e.Text);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -174,9 +189,8 @@ namespace GymWPF
             {
                 if (PrixTextBox.Text=="" || NomTextBox.Text=="")
                 {
-                    string msg = "Merci de remplire tout les champs";
-                    MessageForm m = new MessageForm(msg);
-                    m.ShowDialog();
+                    messageContent.Text = "Merci de remplire tout les champs";
+                    animateBorder(borderMessage);
                 }
                 else
                 {

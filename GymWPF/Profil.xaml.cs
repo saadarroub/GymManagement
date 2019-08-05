@@ -41,7 +41,7 @@ namespace GymWPF
 
             if (ds.Tables["infos"].Rows.Count != 0 )
             {
-                UserName.Text = ds.Tables["infos"].Rows[0][0].ToString() + " " + ds.Tables["infos"].Rows[0][1].ToString();
+                UserName.Text =  ds.Tables["infos"].Rows[0][1].ToString().ToUpper();
                 SalleName.Text = ds.Tables["infos"].Rows[0][2].ToString();
                 SportName.Text = ds.Tables["infos"].Rows[0][3].ToString();
                 if (Convert.ToBoolean(ds.Tables["infos"].Rows[0][4]) == true)
@@ -51,7 +51,7 @@ namespace GymWPF
                     icon2.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                     icon3.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                     icon4.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                    icon5.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                    icon5.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));                  
 
                 }
                 else 

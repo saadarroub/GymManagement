@@ -16,6 +16,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Animation;
+using System.Text.RegularExpressions;
 
 namespace GymWPF
 {
@@ -92,11 +93,17 @@ namespace GymWPF
 
         private void BtnModifier_Click(object sender, RoutedEventArgs e)
         {
-            if (DepensesTextBox.Text == "" || DateTimePicker.Text == "" || PrixTextBox.Text == "")
+            if (ListViewUtilisateurs.SelectedIndex == -1)
             {
-                string msg = "Merci de remplire tout les champs";
-                MessageForm m = new MessageForm(msg);
-                m.ShowDialog();
+                messageContent.Text = "veuillez selectioner une ligne";
+                animateBorder(borderMessage);
+            }
+            else
+            {
+             if (DepensesTextBox.Text == "" || DateTimePicker.Text == "" || PrixTextBox.Text == "")
+            {
+                messageContent.Text = "Merci de remplire tout les champs";
+                animateBorder(borderMessage);
             }
             else
             {
@@ -132,6 +139,9 @@ namespace GymWPF
                     loaded();
                 }
             }
+            }
+
+           
            
         }
 
@@ -178,6 +188,13 @@ namespace GymWPF
             InitializeComponent();
             this.dade = d;
         }
+
+        private void PrixTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex reg = new Regex(@"\D");
+            e.Handled = reg.IsMatch(e.Text);
+        }
+
         private void BtnAjouter_Click(object sender, RoutedEventArgs e)
         {
             if (BtnAjouter.Content.ToString() == "Nouveau")
@@ -193,9 +210,8 @@ namespace GymWPF
             {
                 if (DepensesTextBox.Text=="" || DateTimePicker.Text=="" || PrixTextBox.Text=="")
                 {
-                    string msg = "Merci de remplire tout les champs";
-                    MessageForm m = new MessageForm(msg);
-                    m.ShowDialog();
+                    messageContent.Text = "Merci de remplire tout les champs";
+                    animateBorder(borderMessage);
                 }
                 else
                 {

@@ -43,12 +43,14 @@ namespace GymWPF
         DataSet ds = new DataSet();
         SqlDataReader dr;
         //------------------------------------------------------
-
+        bool close = false;
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
         {
             dade.Effect = null;
             dade.Opacity = 1;
-            this.Hide();
+            dade.MainFrame.Navigate(new ClientsPage(dade, ConnectedSalle, ConnectedSport));
+            this.Close();
+
         }
         string strName, imageName;
         private void Upload_Click(object sender, RoutedEventArgs e)
@@ -160,6 +162,9 @@ namespace GymWPF
                     PrenomTextBox.Text = null;
                     TelTextBox.Text = null;
                     image.Source = null;
+
+                    dade.MainFrame.Navigate(new ClientsPage(dade, ConnectedSalle, ConnectedSport));
+
                 }
             }  
         }

@@ -54,8 +54,6 @@ namespace GymWPF
             //items.Add(new TodoItem() { Title = "Wash the car", Tel = 0627381793 });
 
             //ListClient.ItemsSource = items;
-           
-
         }
         //declaration --------------------------------------
         SqlConnection cn = new SqlConnection("Data Source=.;Initial Catalog=NSS_Salle_Application;Integrated Security=True");
@@ -67,8 +65,12 @@ namespace GymWPF
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+          
             loaded();            
         }
+
+       
+
         DataTable dt = new DataTable();
         private void loaded()
         {
@@ -161,7 +163,7 @@ namespace GymWPF
 
             dade.Opacity = 0.5;
             dade.Effect = new BlurEffect();
-            ModifierClient mc = new ModifierClient(dade,id);
+            ModifierClient mc = new ModifierClient(dade, id, ConnectedSalle, ConnectedSport);
             mc.ShowDialog();            
         }
 
@@ -238,6 +240,9 @@ namespace GymWPF
             AjouterClient ac = new AjouterClient(dade, ConnectedSalle, ConnectedSport);
             ac.ShowDialog();
         }
+
+       
+
         public void animateBorder(Border c)
         {
             ((Storyboard)GridGlobal.Resources["animate"]).Begin(c);

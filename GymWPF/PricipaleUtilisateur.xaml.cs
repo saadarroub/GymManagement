@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Media.Animation;
 
 namespace GymWPF
 {
@@ -47,9 +48,8 @@ namespace GymWPF
                 {
                     if (NomtextBox.Text =="" || PrenomtextBox.Text =="" || UsertextBox.Text =="" || Pass.Text =="")
                     {
-                    string msg = "Merci de remplire tout les champs";
-                    MessageForm m = new MessageForm(msg);
-                    m.ShowDialog();
+                    messageContent.Text = "Merci de remplire tout les champs";
+                    animateBorder(borderMessage);
                 }
                 else
                 {
@@ -74,6 +74,10 @@ namespace GymWPF
                     cn.Close();
                 }
             }
+        public void animateBorder(Border c)
+        {
+            ((Storyboard)GridGlobal.Resources["animate"]).Begin(c);
         }
+    }
     }
 

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Media.Animation;
 
 namespace GymWPF
 {
@@ -79,9 +80,8 @@ namespace GymWPF
                 }
                 else
                 {
-                    string msg = "Nom d'utilisateur ou mot de passe incorrect";
-                    MessageForm m = new MessageForm(msg);
-                    m.ShowDialog();
+                    messageContent.Text = "Nom d'utilisateur ou mot de passe incorrect";
+                    animateBorder(borderMessage);
                 }
                 dr.Close();
 
@@ -145,6 +145,10 @@ namespace GymWPF
 
             }
             cn.Close();
+        }
+        public void animateBorder(Border c)
+        {
+            ((Storyboard)GridGlobal.Resources["animate"]).Begin(c);
         }
     }
 }
