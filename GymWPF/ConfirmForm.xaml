@@ -8,11 +8,13 @@
         Background="#272727"
         BorderBrush="#ffcc00"
         BorderThickness="1"
-        Title="ConfirmForm" Height="150" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" >
+        
+        Title="ConfirmForm" Height="150" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None"
+        >
     <Grid>
-        <TextBlock Text="Vous voullez vraiment supprimer ?" Foreground="White" FontSize="12" Margin="14,32,6,-22"/>
-        <Button Height="30" Width="90" Content="Oui" Style="{StaticResource GreenBtn}" Margin="40,100,168,18"/>
-        <Button Height="30" Width="90" Content="Non" Style="{StaticResource GreenBtn}" Margin="168,100,40,18"/>
+        <TextBlock Text="Vous voullez vraiment supprimer ?" Foreground="White" FontSize="12" Margin="14,32,6,-22" Name="mssg"/>
+        <Button Height="30" Width="90" Content="Oui" Style="{StaticResource GreenBtn}" Margin="40,100,168,18" Click="Button_Click"/>
+        <Button Height="30" Width="90" Content="Non" Style="{StaticResource GreenBtn}" Margin="168,100,40,18" Click="Button_Click_1"/>
 
     </Grid>
 </Window>

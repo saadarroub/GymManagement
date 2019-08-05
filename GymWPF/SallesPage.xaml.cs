@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 using System.ComponentModel;
+using System.Windows.Media.Effects;
 
 namespace GymWPF
 {
@@ -174,8 +175,12 @@ namespace GymWPF
             int id = int.Parse(row.Row[0].ToString());
 
 
-            MessageBoxResult messageBoxResult = MessageBox.Show("voulez vous vraiment supprimer ?", "Message" , MessageBoxButton.YesNo);
-            if (messageBoxResult == MessageBoxResult.Yes)
+          
+            ConfirmForm c = new ConfirmForm("voulez vous vraiment supprimer ?");
+            c.Owner = dade;
+            dade.Opacity = 0.5;
+            dade.Effect = new BlurEffect();
+            if ((bool)c.ShowDialog())
             {
                 DataRow r = ds.Tables["Salle"].Rows.Find(id);
                 r.Delete();
@@ -185,7 +190,11 @@ namespace GymWPF
                 SalleName.Text = null;
                 ListViewSalles.UnselectAll();
                 ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
+
+
             }
+            dade.Opacity = 1;
+            dade.Effect = null;
         }
     }
 }

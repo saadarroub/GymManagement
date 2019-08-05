@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Media.Effects;
 
 namespace GymWPF
 {
@@ -197,8 +198,13 @@ namespace GymWPF
             int index = ListViewSports.Items.IndexOf(item);
             DataRowView row = ListViewSports.Items.GetItemAt(index) as DataRowView;
 
-            MessageBoxResult messageBoxResult = MessageBox.Show("voulez vous vraiment supprimer ?", "Message", MessageBoxButton.YesNo);
-            if (messageBoxResult == MessageBoxResult.Yes)
+            
+
+            ConfirmForm c = new ConfirmForm("voulez vous vraiment supprimer ?");
+            c.Owner = dade;
+            dade.Opacity = 0.5;
+            dade.Effect = new BlurEffect();
+            if ((bool)c.ShowDialog())
             {
                 cn.Open();
                 cmd.Connection = cn;
@@ -211,8 +217,10 @@ namespace GymWPF
                 SallesComboBox.SelectedIndex = -1;
                 ListViewSports.UnselectAll();
                 loaded();
-                
+
             }
+            dade.Opacity = 1;
+            dade.Effect = null;
         }
     }
 }

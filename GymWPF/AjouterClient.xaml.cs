@@ -151,6 +151,11 @@ namespace GymWPF
                 finally
                 {
                     cn.Close();
+
+                    NomTextBox.Text = null;
+                    PrenomTextBox.Text = null;
+                    TelTextBox.Text = null;
+                    image.Source = null;
                 }
             }  
         }
