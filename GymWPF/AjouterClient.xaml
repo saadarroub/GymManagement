@@ -59,7 +59,7 @@
                 <TextBlock Text="&#xf00d;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="14"/>
             </Grid>
         </Button>
-        <Border Height="37" Width="200" Background="#414141" CornerRadius="15" BorderBrush="#FFFFFF" BorderThickness="2" VerticalAlignment="Bottom" Margin="0 0 0 35" Name="borderMessage" Visibility="Collapsed">
+        <Border Height="37" Padding="20 0 20 0" Background="#414141" HorizontalAlignment="Center" CornerRadius="15" BorderBrush="#FFFFFF" BorderThickness="2" VerticalAlignment="Bottom" Margin="0 0 0 35" Name="borderMessage" Visibility="Collapsed">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
             </Border.Effect>
