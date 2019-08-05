@@ -42,5 +42,11 @@
 
         </StackPanel>
         <Button Name="AjouterPricipaleUtilisateur" Width="270" Height="27" Content="Ajouter Utilisateur Pricipale de Votre application" Margin="0 0 0 20" Padding="5 0" VerticalAlignment="Bottom" HorizontalAlignment="Center"  Style="{StaticResource CamoflableBtn2}" Cursor="Hand" Click="AjouterPricipaleUtilisateur_Click"/>
+        <Border Height="37" Padding="20 0 20 0" Background="#414141" HorizontalAlignment="Center" CornerRadius="15" BorderBrush="#FFFFFF" BorderThickness="2" VerticalAlignment="Bottom" Margin="0 0 0 35" Name="borderMessage" Visibility="Collapsed">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </Border.Effect>
+            <TextBlock Name="messageContent" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="14" FontFamily="Segoe UI Light"/>
+        </Border>
     </Grid>
 </Page>
