@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Media.Effects;
 
 namespace GymWPF
 {
@@ -139,8 +140,14 @@ namespace GymWPF
             var item = (sender as FrameworkElement).DataContext;
             int index = ListViewUtilisateurs.Items.IndexOf(item);
             DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
-            MessageBoxResult messageBoxResult = MessageBox.Show("voulez vous vraiment supprimer ?", "Message", MessageBoxButton.YesNo);
-            if (messageBoxResult == MessageBoxResult.Yes)
+            
+               
+
+            ConfirmForm c = new ConfirmForm("voulez vous vraiment supprimer ?");
+            c.Owner = dade;
+            dade.Opacity = 0.5;
+            dade.Effect = new BlurEffect();
+            if ((bool)c.ShowDialog())
             {
                 cn.Open();
                 cmd.Connection = cn;
@@ -155,6 +162,8 @@ namespace GymWPF
                 loaded();
 
             }
+            dade.Opacity = 1;
+            dade.Effect = null;
         }
 
         public DepensesPage(MainApp d, string ConnectedSalle, string ConnectedSport, string iduser)

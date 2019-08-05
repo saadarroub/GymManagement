@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace GymWPF
 {
     /// <summary>
@@ -19,9 +20,28 @@ namespace GymWPF
     /// </summary>
     public partial class ConfirmForm : Window
     {
-        public ConfirmForm()
+
+        string msg1;
+        public ConfirmForm(string msg)
         {
+            this.msg1 = msg;
             InitializeComponent();
+            mssg.Text = msg;
         }
+       
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+            this.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            this.Close();
+        }
+
+       
     }
 }

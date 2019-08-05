@@ -87,6 +87,10 @@ namespace GymWPF
             {     
                 cn.Open();
                 cmd.Connection = cn;
+                if (dt != null)
+                {
+                    dt.Clear();
+                }
                 cmd.CommandText = "select c.IdClient as id,c.nom+' '+c.prenom as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient where s.IdSalle='" + ConnectedSalle.ToString() + "' and s.IdType='" + ConnectedSport.ToString() + "'";
                 dr = cmd.ExecuteReader();
                 dt.Load(dr);
@@ -203,17 +207,23 @@ namespace GymWPF
             DataRowView row = ListClient.Items.GetItemAt(index) as DataRowView;
             int id = int.Parse(row.Row[0].ToString());
 
-            MessageBoxResult messageBoxResult = MessageBox.Show("voulez vous vraiment supprimer ?", "Message", MessageBoxButton.YesNo);
-            if (messageBoxResult == MessageBoxResult.Yes)
+            ConfirmForm c = new ConfirmForm("voulez vous vraiment supprimer ?");
+            c.Owner = dade;
+            dade.Opacity = 0.5;
+            dade.Effect = new BlurEffect();
+            if((bool)c.ShowDialog())
             {
                 cn.Open();
-                cmd.Connection = cn;
-                cmd.CommandText = "delete from Clients where IdClient = '" + id + "'";
-                cmd.ExecuteNonQuery();
-                cn.Close();
-                MessageBox.Show("ok");
-                loaded();
+            cmd.Connection = cn;
+            cmd.CommandText = "delete from Clients where IdClient = '" + id + "'";
+            cmd.ExecuteNonQuery();
+            cn.Close();
+            loaded();
             }
+            dade.Opacity =1;
+            dade.Effect = null;
+
+           
         }
 
         private void AjouterClientBtn_Click(object sender, RoutedEventArgs e)

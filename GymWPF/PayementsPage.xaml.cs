@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Media.Effects;
 
 namespace GymWPF
 {
@@ -76,8 +77,13 @@ namespace GymWPF
             int index = ListPayments.Items.IndexOf(item);
             DataRowView row = ListPayments.Items.GetItemAt(index) as DataRowView;
 
-            MessageBoxResult messageBoxResult = MessageBox.Show("voulez vous vraiment supprimer ?", "Message", MessageBoxButton.YesNo);
-            if (messageBoxResult == MessageBoxResult.Yes)
+          
+               
+            ConfirmForm c = new ConfirmForm("voulez vous vraiment supprimer ?");
+            c.Owner = this;
+            this.Opacity = 0.5;
+            this.Effect = new BlurEffect();
+            if ((bool)c.ShowDialog())
             {
                 cn.Open();
                 cmd.Connection = cn;
@@ -91,6 +97,9 @@ namespace GymWPF
                 loaded();
 
             }
+            this.Opacity = 1;
+            this.Effect = null;
+
         }
 
         private void Modifier_Click(object sender, RoutedEventArgs e)

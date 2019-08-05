@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Media.Effects;
 
 namespace GymWPF
 {
@@ -41,6 +42,8 @@ namespace GymWPF
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             loaded();
+            da.SelectCommand.CommandText = "select * from Utilisateur";
+            da.Fill(ds, "users");
         }
 
         public void loaded()
@@ -67,6 +70,7 @@ namespace GymWPF
             cn.Close();
         }
 
+        
         private void BtnAjouter_Click(object sender, RoutedEventArgs e)
         {
             if (BtnAjouter.Content.ToString() == "Nouveau")
@@ -92,8 +96,20 @@ namespace GymWPF
                 }
                 else
                 {
+                     
+                    for (int i = 0; i < ds.Tables["users"].Rows.Count; i++)
+                    {
+                        if (ds.Tables["users"].Rows[i][3].ToString() == UserNameTextBox.Text)
+                        {
+                            string msg = "le pseudo est deja exist";
+                            MessageForm m = new MessageForm(msg);
+                            m.ShowDialog();
+                            return;
+                        }
+                    }
                     try
                     {
+                       
                         cn.Open();
                         cmd.Connection = cn;
 
@@ -179,6 +195,7 @@ namespace GymWPF
 
         }
 
+       
         private void BtnModifier_Click(object sender, RoutedEventArgs e)
         {
             if (NomTextBox.Text == "" || UserNameTextBox.Text == "" || PrenomTextBox.Text == "" || PassTextBox.Text == "" || SportsComboBox.SelectedIndex == -1 || ch1.IsChecked == false && ch2.IsChecked == false)
@@ -189,6 +206,20 @@ namespace GymWPF
             }
             else
             {
+                for (int i = 0; i < ds.Tables["users"].Rows.Count; i++)
+                {
+                    int index = ListViewUtilisateurs.SelectedIndex;
+                    DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
+                    string psd = row.Row[3].ToString();
+
+                    if (ds.Tables["users"].Rows[i][3].ToString() == UserNameTextBox.Text && psd != UserNameTextBox.Text)
+                    {
+                        string msg = "le pseudo est deja exist";
+                        MessageForm m = new MessageForm(msg);
+                        m.ShowDialog();
+                        return;
+                    }
+                }
                 try
                 {
                     int index = ListViewUtilisateurs.SelectedIndex;
@@ -248,8 +279,19 @@ namespace GymWPF
             DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
 
            
-                MessageBoxResult messageBoxResult = MessageBox.Show("voulez vous vraiment supprimer ?", "Message", MessageBoxButton.YesNo);
-                if (messageBoxResult == MessageBoxResult.Yes)
+            ConfirmForm c = new ConfirmForm("voulez vous vraiment supprimer ?");
+            c.Owner = dade;
+            dade.Opacity = 0.5;
+            dade.Effect = new BlurEffect();
+            if (iduser == row.Row[0].ToString())
+            {
+                string msg = " admin connecter ";
+                MessageForm m = new MessageForm(msg);
+                m.ShowDialog();
+            }
+            else
+            {
+                if ((bool)c.ShowDialog())
                 {
                     cn.Open();
                     cmd.Connection = cn;
@@ -266,8 +308,13 @@ namespace GymWPF
                     ch2.IsChecked = false;
                     ListViewUtilisateurs.UnselectAll();
                     loaded();
+
                 }
-                       
+                
+            }
+            dade.Opacity = 1;
+            dade.Effect = null;
+
         }
     }
 }

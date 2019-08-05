@@ -64,6 +64,8 @@ namespace GymWPF
                     imageName = fl.FileName;
                     ImageSourceConverter isc = new ImageSourceConverter();
                     image.SetValue(Image.SourceProperty, isc.ConvertFromString(imageName));
+
+                    
                 }
                 fl = null;
             }
@@ -104,7 +106,9 @@ namespace GymWPF
                         cn.Open();
                         cmd.Connection = cn;
                         cmd.CommandText = "insert into Clients values('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "',@img)";
+                        cmd.Parameters.Clear();
                         cmd.Parameters.AddWithValue("img", imgByte);
+
                         cmd.ExecuteNonQuery();
 
                         cmd.CommandText = "select MAX(IdClient) from Clients";
@@ -120,9 +124,11 @@ namespace GymWPF
                     }
                     else
                     {
+
                         cn.Open();
                         cmd.Connection = cn;
                         cmd.CommandText = "insert into Clients values('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "',NULL)";
+                        cmd.Parameters.Clear();
                         cmd.ExecuteNonQuery();
 
                         cmd.CommandText = "select MAX(IdClient) from Clients";
@@ -145,6 +151,11 @@ namespace GymWPF
                 finally
                 {
                     cn.Close();
+
+                    NomTextBox.Text = null;
+                    PrenomTextBox.Text = null;
+                    TelTextBox.Text = null;
+                    image.Source = null;
                 }
             }  
         }
