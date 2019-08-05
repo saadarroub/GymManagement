@@ -16,7 +16,7 @@ using System.Data.SqlClient;
 using Microsoft.Win32;
 using System.IO;
 using System.Drawing.Imaging;
-
+using System.Windows.Media.Animation;
 
 namespace GymWPF
 {
@@ -117,9 +117,8 @@ namespace GymWPF
                         cmd.Parameters.AddWithValue("img", imgByte);
                         cmd.ExecuteNonQuery();
 
-                        string msg = "Client modifier avec success";
-                        MessageForm m = new MessageForm(msg);
-                        m.ShowDialog(); 
+                        messageContent.Text = "Bien modifié";
+                        animateBorder(borderMessage);
 
                     }
                     else
@@ -129,9 +128,8 @@ namespace GymWPF
                         cmd.CommandText = "update Clients set nom = '" + NomTextBox.Text + "', prenom ='" + PrenomTextBox.Text + "', Tel ='" + TelTextBox.Text + "', img = NULL  where IdClient = '" + id + "'";
                         cmd.ExecuteNonQuery();
 
-                        string msg = "Client modifier avec success";
-                        MessageForm m = new MessageForm(msg);
-                        m.ShowDialog();
+                        messageContent.Text = "Bien modifié";
+                        animateBorder(borderMessage);
                     }
                 }
                 catch (Exception ex)
@@ -170,6 +168,11 @@ namespace GymWPF
                 MessageForm m = new MessageForm(msg);
                 m.ShowDialog();
             }
+        }
+
+        public void animateBorder(Border c)
+        {
+            ((Storyboard)GridGlobal.Resources["animate"]).Begin(c);
         }
     }
 }

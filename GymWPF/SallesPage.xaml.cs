@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.ComponentModel;
 using System.Windows.Media.Effects;
+using System.Windows.Media.Animation;
 
 namespace GymWPF
 {
@@ -99,9 +100,8 @@ namespace GymWPF
                         SqlCommandBuilder cb = new SqlCommandBuilder(da);
                         da.Update(ds, "Salle");
 
-                        string msg = "Salle ajouter avec success";
-                        MessageForm m = new MessageForm(msg);
-                        m.ShowDialog();
+                        messageContent.Text = "Bien ajoutée";
+                        animateBorder(borderMessage);
 
                         ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
                         ListViewSalles.UnselectAll();
@@ -144,9 +144,8 @@ namespace GymWPF
                         SqlCommandBuilder cb = new SqlCommandBuilder(da);
                         da.Update(ds, "Salle");
 
-                        string msg = "Salle modifier avec success";
-                        MessageForm m = new MessageForm(msg);
-                        m.ShowDialog();
+                        messageContent.Text = "Bien modifiée";
+                        animateBorder(borderMessage);
 
                         ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
                         BtnAjouter.Content = "Ajouter";
@@ -186,6 +185,10 @@ namespace GymWPF
                 r.Delete();
                 SqlCommandBuilder cb = new SqlCommandBuilder(da);
                 da.Update(ds, "Salle");
+
+                messageContent.Text = "Bien supprimée";
+                animateBorder(borderMessage);
+
                 BtnAjouter.Content = "Ajouter";
                 SalleName.Text = null;
                 ListViewSalles.UnselectAll();
@@ -195,6 +198,10 @@ namespace GymWPF
             }
             dade.Opacity = 1;
             dade.Effect = null;
+        }
+        public void animateBorder(Border c)
+        {
+            ((Storyboard)GridGlobal.Resources["animate"]).Begin(c);
         }
     }
 }

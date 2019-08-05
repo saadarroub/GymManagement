@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Media.Effects;
+using System.Windows.Media.Animation;
 
 namespace GymWPF
 {
@@ -136,9 +137,8 @@ namespace GymWPF
 
                         cmd.ExecuteNonQuery();
 
-                        string msg = "Utilisateur ajouter avec success";
-                        MessageForm m = new MessageForm(msg);
-                        m.ShowDialog();
+                        messageContent.Text = "Bien ajouté";
+                        animateBorder(borderMessage);
 
                     }
                     catch (Exception ex)
@@ -245,9 +245,8 @@ namespace GymWPF
                     cmd.CommandText = "update UtilisateurSportSalle set IdSalle = '" + IdSalle + "', IdType = '" + SportsComboBox.SelectedValue + "' where IdUser = '" + id + "'";
                     cmd.ExecuteNonQuery();
 
-                    string msg = "Utilisateur modifier avec success";
-                    MessageForm m = new MessageForm(msg);
-                    m.ShowDialog();
+                    messageContent.Text = "Bien modifié";
+                    animateBorder(borderMessage);
                 }
                 catch (Exception ex)
                 {
@@ -298,6 +297,10 @@ namespace GymWPF
                     cmd.CommandText = "delete from Utilisateur where IdUser = '" + row.Row[0].ToString() + "'";
                     cmd.ExecuteNonQuery();
                     cn.Close();
+
+                    messageContent.Text = "Bien supprimé";
+                    animateBorder(borderMessage);
+
                     BtnAjouter.Content = "Ajouter";
                     NomTextBox.Text = null;
                     PrenomTextBox.Text = null;
@@ -315,6 +318,10 @@ namespace GymWPF
             dade.Opacity = 1;
             dade.Effect = null;
 
+        }
+        public void animateBorder(Border c)
+        {
+            ((Storyboard)GridGlobal.Resources["animate"]).Begin(c);
         }
     }
 }

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Media.Effects;
+using System.Windows.Media.Animation;
 
 namespace GymWPF
 {
@@ -107,12 +108,11 @@ namespace GymWPF
                             SallesComboBox.SelectedIndex = -1;
 
 
-                            string msg = "Sport ajouter avec success";
-                            MessageForm m = new MessageForm(msg);
-                            m.ShowDialog();
+                        messageContent.Text = "Bien ajouté";
+                        animateBorder(borderMessage);
 
-                        
-                       
+
+
                     }
                     catch (Exception ex)
                     {
@@ -176,9 +176,8 @@ namespace GymWPF
                     loaded();
 
 
-                    string msg = "Sport modifier avec success";
-                    MessageForm m = new MessageForm(msg);
-                    m.ShowDialog();
+                    messageContent.Text = "Bien modifié";
+                    animateBorder(borderMessage);
 
 
                 }
@@ -211,6 +210,10 @@ namespace GymWPF
                 cmd.CommandText = "delete from Type_Sport where IdType = '" + row.Row[0].ToString() + "'";
                 cmd.ExecuteNonQuery();
                 cn.Close();
+
+                messageContent.Text = "Bien supprimé";
+                animateBorder(borderMessage);
+
                 BtnAjouter.Content = "Ajouter";
                 SportName.Text = null;
                 SportPrix.Text = null;
@@ -221,6 +224,10 @@ namespace GymWPF
             }
             dade.Opacity = 1;
             dade.Effect = null;
+        }
+        public void animateBorder(Border c)
+        {
+            ((Storyboard)GridGlobal.Resources["animate"]).Begin(c);
         }
     }
 }

@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace GymWPF
 {
@@ -218,7 +219,11 @@ namespace GymWPF
             cmd.CommandText = "delete from Clients where IdClient = '" + id + "'";
             cmd.ExecuteNonQuery();
             cn.Close();
-            loaded();
+
+                messageContent.Text = "Bien supprimé";
+                animateBorder(borderMessage);
+
+                loaded();
             }
             dade.Opacity =1;
             dade.Effect = null;
@@ -232,6 +237,11 @@ namespace GymWPF
             dade.Effect = new BlurEffect();
             AjouterClient ac = new AjouterClient(dade, ConnectedSalle, ConnectedSport);
             ac.ShowDialog();
+        }
+        public void animateBorder(Border c)
+        {
+            ((Storyboard)GridGlobal.Resources["animate"]).Begin(c);
+
         }
     }
 }
