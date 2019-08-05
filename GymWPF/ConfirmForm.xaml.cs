@@ -26,7 +26,6 @@ namespace GymWPF
         {
             this.msg1 = msg;
             InitializeComponent();
-            mssg.Text = msg;
         }
        
 
@@ -42,6 +41,9 @@ namespace GymWPF
             this.Close();
         }
 
-       
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            mssg.Text = msg1;
+        }
     }
 }
