@@ -10,7 +10,27 @@
       Background="#272727" Foreground="White"
       Loaded="Page_Loaded">
 
-    <Grid>
+    <Grid Name="GridGlobal">
+        <Grid.Resources>
+            <Storyboard x:Key="animate">
+                <ObjectAnimationUsingKeyFrames BeginTime="0:0:0" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                            <Visibility>Visible</Visibility>
+                        </DiscreteObjectKeyFrame.Value>
+                    </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+                <DoubleAnimation BeginTime="0:0:0.0" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.2"/>
+                <DoubleAnimation BeginTime="0:0:2.0" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5"/>
+                <ObjectAnimationUsingKeyFrames BeginTime="0:0:2.5" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                            <Visibility>Hidden</Visibility>
+                        </DiscreteObjectKeyFrame.Value>
+                    </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+        </Grid.Resources>
         <StackPanel>
             <TextBlock Text="Gestion des Depenses" FontFamily="Segoe UI Light" FontSize="36" Foreground="#FFFFCC00" Margin="30 30 0 10"/>
             <WrapPanel Margin="0 0 0 20">
@@ -60,11 +80,11 @@
                 </ListView.View>
             </ListView>
         </StackPanel>
-        <Border Height="37" Width="200" Background="#414141" CornerRadius="15" BorderBrush="#FFFFFF" BorderThickness="2" VerticalAlignment="Bottom" Margin="0 0 0 35">
+        <Border Name="borderMessage" Height="37" Width="200" Background="#414141" CornerRadius="15" BorderBrush="#FFFFFF" BorderThickness="2" VerticalAlignment="Bottom" Margin="0 0 0 35" Visibility="Collapsed">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
             </Border.Effect>
-            <TextBlock Text="Bien ajoute" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="14" FontFamily="Segoe UI Light"/>
+            <TextBlock Name="messageContent" Text="Bien ajoute" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="14" FontFamily="Segoe UI Light"/>
         </Border>
     </Grid>
 </Page>

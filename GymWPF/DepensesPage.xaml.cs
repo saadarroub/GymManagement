@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Media.Effects;
+using System.Windows.Media.Animation;
 
 namespace GymWPF
 {
@@ -110,9 +111,8 @@ namespace GymWPF
                     cmd.CommandText = "update Depenses set  Depense ='" + DepensesTextBox.Text + "', date_dep = '" + DateTimePicker.Text + "', prix ='" + PrixTextBox.Text + "' where IdDep = '" + id + "'";
                     cmd.ExecuteNonQuery();
 
-                    string msg = "Dépense modifier avec success";
-                    MessageForm m = new MessageForm(msg);
-                    m.ShowDialog();
+                    messageContent.Text = "Bien modifiée";
+                    animateBorder(borderMessage);
                 }
                 catch (Exception ex)
                 {
@@ -154,6 +154,10 @@ namespace GymWPF
                 cmd.CommandText = "delete from Depenses where IdDep = '" + row.Row[0].ToString() + "'";
                 cmd.ExecuteNonQuery();
                 cn.Close();
+
+                messageContent.Text = "Bien supprimée";
+                animateBorder(borderMessage);
+
                 BtnAjouter.Content = "Ajouter";
                 DepensesTextBox.Text = null;
                 DateTimePicker.Text = null;
@@ -202,9 +206,8 @@ namespace GymWPF
                         cmd.CommandText = "insert into Depenses values ('" + DepensesTextBox.Text + "','" + DateTimePicker.Text + "','" + PrixTextBox.Text + "','" + ConnectedSalle + "','" + ConnectedSport + "','" + iduser + "')";
                         cmd.ExecuteNonQuery();
 
-                        string msg = "Dépense ajouter avec success";
-                        MessageForm m = new MessageForm(msg);
-                        m.ShowDialog();
+                        messageContent.Text = "Bien ajoutée";
+                        animateBorder(borderMessage);
                     }
                     catch (Exception ex)
                     {
@@ -224,6 +227,11 @@ namespace GymWPF
                
             }
                
+        }
+
+        public void animateBorder(Border c)
+        {
+            ((Storyboard)GridGlobal.Resources["animate"]).Begin(c);
         }
     }
 }

@@ -8,9 +8,30 @@
 
         Title="ModifierClient" Height="342" Width="647"  WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#272727" BorderThickness="1"  
         Loaded="Window_Loaded" BorderBrush="#ffcc00">
-   
-    <Grid >
-        
+
+    <Grid Name="GridGlobal">
+
+        <Grid.Resources>
+            <Storyboard x:Key="animate">
+                <ObjectAnimationUsingKeyFrames BeginTime="0:0:0" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                            <Visibility>Visible</Visibility>
+                        </DiscreteObjectKeyFrame.Value>
+                    </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+                <DoubleAnimation BeginTime="0:0:0.0" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.2"/>
+                <DoubleAnimation BeginTime="0:0:2.0" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5"/>
+                <ObjectAnimationUsingKeyFrames BeginTime="0:0:2.5" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                            <Visibility>Hidden</Visibility>
+                        </DiscreteObjectKeyFrame.Value>
+                    </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+        </Grid.Resources>
+
         <StackPanel>
             <TextBlock Text="Modifier Client" FontFamily="Segoe UI Light" FontSize="28" Foreground="#FFFFCC00" Margin="30 30 0 0"/>
             <WrapPanel Height="206">
@@ -40,11 +61,11 @@
                 <TextBlock Text="&#xf00d;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="14"/>
             </Grid>
         </Button>
-        <Border Height="37" Width="200" Background="#414141" CornerRadius="15" BorderBrush="#FFFFFF" BorderThickness="2" VerticalAlignment="Bottom" Margin="0 0 0 35">
+        <Border Name="borderMessage" Height="37" Width="200" Background="#414141" CornerRadius="15" BorderBrush="#FFFFFF" BorderThickness="2" VerticalAlignment="Bottom" Margin="0 0 0 35" Visibility="Collapsed">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
             </Border.Effect>
-            <TextBlock Text="Bien ajoute" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="14" FontFamily="Segoe UI Light"/>
+            <TextBlock Name="messageContent" Text="Bien ajoute" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="14" FontFamily="Segoe UI Light"/>
         </Border>
     </Grid>
 </Window>

@@ -7,8 +7,27 @@
         mc:Ignorable="d"
         Title="AjouterClient" Height="342" Width="647" ResizeMode="NoResize" BorderBrush="#ffcc00" WindowStartupLocation="CenterScreen" Background="#272727"  BorderThickness="1" WindowStyle="None" >
 
-    <Grid Background="#272727">
-        
+    <Grid Background="#272727" Name="gridContainer">
+        <Grid.Resources>
+            <Storyboard x:Key="animate">
+                <ObjectAnimationUsingKeyFrames BeginTime="0:0:0" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                            <Visibility>Visible</Visibility>
+                        </DiscreteObjectKeyFrame.Value>
+                    </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+                <DoubleAnimation BeginTime="0:0:0.0" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.2"/>
+                <DoubleAnimation BeginTime="0:0:2.0" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5"/>
+                <ObjectAnimationUsingKeyFrames BeginTime="0:0:2.5" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                            <Visibility>Hidden</Visibility>
+                        </DiscreteObjectKeyFrame.Value>
+                    </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+        </Grid.Resources>
         <StackPanel>
             
             <TextBlock Text="Ajouter Client" FontFamily="Segoe UI Light" FontSize="28" Foreground="#FFFFCC00" Margin="30 30 0 0"/>
@@ -40,11 +59,11 @@
                 <TextBlock Text="&#xf00d;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="14"/>
             </Grid>
         </Button>
-        <Border Height="37" Width="200" Background="#414141" CornerRadius="15" BorderBrush="#FFFFFF" BorderThickness="2" VerticalAlignment="Bottom" Margin="0 0 0 35">
+        <Border Height="37" Width="200" Background="#414141" CornerRadius="15" BorderBrush="#FFFFFF" BorderThickness="2" VerticalAlignment="Bottom" Margin="0 0 0 35" Name="borderMessage" Visibility="Collapsed">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
             </Border.Effect>
-            <TextBlock Text="Bien ajoute" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="14" FontFamily="Segoe UI Light"/>
+            <TextBlock Name="messageContent" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="14" FontFamily="Segoe UI Light"/>
         </Border>
     </Grid>
 </Window>

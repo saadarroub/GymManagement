@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Media.Effects;
+using System.Windows.Media.Animation;
 
 namespace GymWPF
 {
@@ -90,6 +91,10 @@ namespace GymWPF
                 cmd.CommandText = "delete from Payments where IdPayment = '" + row.Row[0].ToString() + "'";
                 cmd.ExecuteNonQuery();
                 cn.Close();
+
+                messageContent.Text = "Bien supprimé";
+                animateBorder(borderMessage);
+
                 ajouter.Content = "Ajouter";
                 NomTextBox.Text = null;
                 PrixTextBox.Text = null;
@@ -124,9 +129,8 @@ namespace GymWPF
                     cmd.CommandText = "update  Payments set date_Payment ='" + NomTextBox.Text + "', Prix ='" + PrixTextBox.Text + "' where IdPayment ='" + id + "'";
                     cmd.ExecuteNonQuery();
 
-                    string msg = "Payement modifier avec success";
-                    MessageForm m = new MessageForm(msg);
-                    m.ShowDialog();
+                    messageContent.Text = "Bien modifié";
+                    animateBorder(borderMessage);
 
 
                 }
@@ -183,9 +187,8 @@ namespace GymWPF
                         cmd.CommandText = "insert into Payments values ('" + NomTextBox.Text + "','" + id.ToString() + "','" + ConnectedSalle.ToString() + "','" + ConnectedSport.ToString() + "','" + PrixTextBox.Text + "')";
                         cmd.ExecuteNonQuery();
 
-                        string msg = "Payement ajouter avec success";
-                        MessageForm m = new MessageForm(msg);
-                        m.ShowDialog();
+                        messageContent.Text = "Bien ajouté";
+                        animateBorder(borderMessage);
                     }
                     catch (Exception ex)
                     {
@@ -205,6 +208,11 @@ namespace GymWPF
             }
 
               
+        }
+
+        public void animateBorder(Border c)
+        {
+            ((Storyboard)GridGlobal.Resources["animate"]).Begin(c);
         }
     }
 }

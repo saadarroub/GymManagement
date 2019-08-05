@@ -17,8 +17,7 @@ using Microsoft.Win32;
 using System.IO;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
-
+using System.Windows.Media.Animation;
 
 namespace GymWPF
 {
@@ -117,9 +116,12 @@ namespace GymWPF
                         cmd.CommandText = "insert into SportClients values ('" + id + "','" + ConnectedSalle + "','" + ConnectedSport + "')";
                         cmd.ExecuteNonQuery();
 
-                        string msg = "Client ajouté avec success";
-                        MessageForm m = new MessageForm(msg);
-                        m.ShowDialog();
+                        //string msg = "Client ajouté avec success";
+                        //MessageForm m = new MessageForm(msg);
+                        //m.ShowDialog();
+
+                        messageContent.Text = "Bien ajouté";
+                        animateBorder(borderMessage);
 
                     }
                     else
@@ -137,9 +139,12 @@ namespace GymWPF
                         cmd.CommandText = "insert into SportClients values ('" + id + "','" + ConnectedSalle + "','" + ConnectedSport + "')";
                         cmd.ExecuteNonQuery();
 
-                        string msg = "Client ajouté avec success";
-                        MessageForm m = new MessageForm(msg);
-                        m.ShowDialog();
+                        //string msg = "Client ajouté avec success";
+                        //MessageForm m = new MessageForm(msg);
+                        //m.ShowDialog();
+
+                        messageContent.Text = "Bien ajouté";
+                        animateBorder(borderMessage);
                     }
                 }
                 catch (Exception ex)
@@ -158,6 +163,11 @@ namespace GymWPF
                     image.Source = null;
                 }
             }  
+        }
+
+        public void animateBorder(Border c)
+        {
+            ((Storyboard)gridContainer.Resources["animate"]).Begin(c);
         }
     }
 }
