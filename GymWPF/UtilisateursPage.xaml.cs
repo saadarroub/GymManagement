@@ -91,9 +91,8 @@ namespace GymWPF
                 {
                 if (NomTextBox.Text == "" || UserNameTextBox.Text == "" || PrenomTextBox.Text == "" || PassTextBox.Text == "" || SportsComboBox.SelectedIndex == -1 || ch1.IsChecked == false && ch2.IsChecked == false)
                 {
-                    string msg = "Merci de remplire tout les champs";
-                    MessageForm m = new MessageForm(msg);
-                    m.ShowDialog();
+                    messageContent.Text = "Merci de remplire tout les champs";
+                    animateBorder(borderMessage);
                 }
                 else
                 {
@@ -102,9 +101,8 @@ namespace GymWPF
                     {
                         if (ds.Tables["users"].Rows[i][3].ToString() == UserNameTextBox.Text)
                         {
-                            string msg = "le pseudo est deja exist";
-                            MessageForm m = new MessageForm(msg);
-                            m.ShowDialog();
+                            messageContent.Text = "le pseudo est deja exist";
+                            animateBorder(borderMessage);
                             return;
                         }
                     }
@@ -198,11 +196,16 @@ namespace GymWPF
        
         private void BtnModifier_Click(object sender, RoutedEventArgs e)
         {
-            if (NomTextBox.Text == "" || UserNameTextBox.Text == "" || PrenomTextBox.Text == "" || PassTextBox.Text == "" || SportsComboBox.SelectedIndex == -1 || ch1.IsChecked == false && ch2.IsChecked == false)
+            if (ListViewUtilisateurs.SelectedIndex == -1)
             {
-                string msg = "Merci de remplire tout les champs";
-                MessageForm m = new MessageForm(msg);
-                m.ShowDialog();
+                messageContent.Text = "veuillez selectioner une ligne";
+                animateBorder(borderMessage);
+            }
+            else
+            { if (NomTextBox.Text == "" || UserNameTextBox.Text == "" || PrenomTextBox.Text == "" || PassTextBox.Text == "" || SportsComboBox.SelectedIndex == -1 || ch1.IsChecked == false && ch2.IsChecked == false)
+            {
+                messageContent.Text = "Merci de remplire tout les champs";
+                animateBorder(borderMessage);
             }
             else
             {
@@ -214,9 +217,8 @@ namespace GymWPF
 
                     if (ds.Tables["users"].Rows[i][3].ToString() == UserNameTextBox.Text && psd != UserNameTextBox.Text)
                     {
-                        string msg = "le pseudo est deja exist";
-                        MessageForm m = new MessageForm(msg);
-                        m.ShowDialog();
+                        messageContent.Text = "le pseudo est deja exist";
+                        animateBorder(borderMessage);
                         return;
                     }
                 }
@@ -268,7 +270,11 @@ namespace GymWPF
                     ListViewUtilisateurs.UnselectAll();
                     loaded();
                 }
-            }           
+            }   
+
+            }
+
+                   
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -284,9 +290,8 @@ namespace GymWPF
             dade.Effect = new BlurEffect();
             if (iduser == row.Row[0].ToString())
             {
-                string msg = " admin connecter ";
-                MessageForm m = new MessageForm(msg);
-                m.ShowDialog();
+                messageContent.Text = "Vous ne pauvez pas supprimer cet utilisateur";
+                animateBorder(borderMessage);
             }
             else
             {

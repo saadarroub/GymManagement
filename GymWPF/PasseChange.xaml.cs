@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Media.Animation;
 
 namespace GymWPF
 {
@@ -88,9 +89,8 @@ namespace GymWPF
         {
             if (UsertextBox.Text=="" || OldPassTextBox.Password=="")
             {
-                string msg = "Merci de saisir tout les informations";
-                MessageForm m = new MessageForm(msg);
-                m.ShowDialog();
+                messageContent.Text = "Merci de saisir tout les informations";
+                animateBorder(borderMessage);
             }
             else
             {
@@ -106,17 +106,15 @@ namespace GymWPF
                         cmd.CommandText = "update Utilisateur set Password_User = '" + NewPassTextBox.Password + "' where UserName ='" + UsertextBox.Text + "'";
                         cmd.ExecuteNonQuery();
 
-                        string msg = "mot de passe modifier avec success";
-                        MessageForm m = new MessageForm(msg);
-                        m.ShowDialog();
+                        messageContent.Text = "Bien modifié";
+                        animateBorder(borderMessage);
 
 
                     }
                     else
                     {
-                        string msg = "Merci de confirmer votre mot de passe";
-                        MessageForm m = new MessageForm(msg);
-                        m.ShowDialog();
+                        messageContent.Text = "Merci de confirmer votre mot de passe";
+                        animateBorder(borderMessage);
                     }
 
 
@@ -141,7 +139,10 @@ namespace GymWPF
         {
             changePass();
         }
+        public void animateBorder(Border c)
+        {
+            ((Storyboard)GridGlobal.Resources["animate"]).Begin(c);
+        }
 
-       
     }
 }

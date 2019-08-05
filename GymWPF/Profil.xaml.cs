@@ -44,7 +44,7 @@ namespace GymWPF
 
             if (ds.Tables["infos"].Rows.Count != 0 )
             {
-                UserName.Text = ds.Tables["infos"].Rows[0][0].ToString() + " " + ds.Tables["infos"].Rows[0][1].ToString();
+                UserName.Text =  ds.Tables["infos"].Rows[0][1].ToString().ToUpper();
                 SalleName.Text = ds.Tables["infos"].Rows[0][2].ToString();
                 SportName.Text = ds.Tables["infos"].Rows[0][3].ToString();
                 if (Convert.ToBoolean(ds.Tables["infos"].Rows[0][4]) == true)
@@ -60,6 +60,7 @@ namespace GymWPF
                     ToolTip3 = "admin3";
                     ToolTip4 = "admin4";
                     ToolTip5 = "admin5";
+
                 }
                 else 
                 {

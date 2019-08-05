@@ -86,9 +86,8 @@ namespace GymWPF
                 {
                     if (SalleName.Text == "")
                     {
-                        string msg = "Merci de remplire tout les champs";
-                        MessageForm m = new MessageForm(msg);
-                        m.ShowDialog();
+                        messageContent.Text = "Merci de remplire tout les champs";
+                        animateBorder(borderMessage);
                     }
                     
                     else 
@@ -120,8 +119,13 @@ namespace GymWPF
 
         private void BtnModifier_Click(object sender, RoutedEventArgs e)
         {
-            if (ListViewSalles.SelectedIndex != -1)
+            if (ListViewSalles.SelectedIndex == -1)
             {
+                messageContent.Text = "veuillez selectioner une ligne";
+                animateBorder(borderMessage);
+            }
+            else
+            {            
                 int index = ListViewSalles.SelectedIndex;
             DataRowView row = ListViewSalles.Items.GetItemAt(index) as DataRowView;
             int id = int.Parse(row.Row[0].ToString());
@@ -130,9 +134,8 @@ namespace GymWPF
                 {
                     if (SalleName.Text == "")
                     {
-                        string msg = "Merci de remplire tout les champs";
-                        MessageForm m = new MessageForm(msg);
-                        m.ShowDialog();
+                        messageContent.Text = "Merci de remplire tout les champs";
+                        animateBorder(borderMessage);
                     }
                     else
                     {

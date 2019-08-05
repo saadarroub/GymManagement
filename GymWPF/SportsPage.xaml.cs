@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Animation;
+using System.Text.RegularExpressions;
 
 namespace GymWPF
 {
@@ -81,9 +82,8 @@ namespace GymWPF
             {
                 if (SportName.Text == "" || SportPrix.Text == "" ||  SallesComboBox.SelectedIndex == -1 )
                 {
-                    string msg = "Merci de remplire tout les champs";
-                    MessageForm m = new MessageForm(msg);
-                    m.ShowDialog();
+                    messageContent.Text = "Merci de remplire tout les champs";
+                    animateBorder(borderMessage);
                 }
                 else
                 {
@@ -144,11 +144,17 @@ namespace GymWPF
 
         private void BtnModifier_Click(object sender, RoutedEventArgs e)
         {
-            if (SportName.Text == "" || SportPrix.Text == "" || SallesComboBox.SelectedIndex == -1)
+            if (ListViewSports.SelectedIndex == -1)
             {
-                string msg = "Merci de remplire tout les champs";
-                MessageForm m = new MessageForm(msg);
-                m.ShowDialog();
+                messageContent.Text = "veuillez selectioner une ligne";
+                animateBorder(borderMessage);
+            }
+            else
+            {
+                 if (SportName.Text == "" || SportPrix.Text == "" || SallesComboBox.SelectedIndex == -1)
+            {
+                messageContent.Text = "Merci de remplire tout les champs";
+                animateBorder(borderMessage);
             }
             else
             {
@@ -187,7 +193,9 @@ namespace GymWPF
                     MessageForm m = new MessageForm(msg);
                     m.ShowDialog();
                 }
+            }    
             }
+           
            
         }
 
@@ -228,6 +236,12 @@ namespace GymWPF
         public void animateBorder(Border c)
         {
             ((Storyboard)GridGlobal.Resources["animate"]).Begin(c);
+        }
+
+        private void SportPrix_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex reg = new Regex(@"\D");
+            e.Handled = reg.IsMatch(e.Text);
         }
     }
 }

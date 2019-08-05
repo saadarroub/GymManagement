@@ -11,7 +11,27 @@
       PreviewKeyDown="Page_PreviewKeyDown"
       Loaded="Page_Loaded">
 
-    <Grid>
+    <Grid Name="GridGlobal">
+        <Grid.Resources>
+            <Storyboard x:Key="animate">
+                <ObjectAnimationUsingKeyFrames BeginTime="0:0:0" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                            <Visibility>Visible</Visibility>
+                        </DiscreteObjectKeyFrame.Value>
+                    </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+                <DoubleAnimation BeginTime="0:0:0.0" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.2"/>
+                <DoubleAnimation BeginTime="0:0:2.0" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5"/>
+                <ObjectAnimationUsingKeyFrames BeginTime="0:0:2.5" Storyboard.TargetProperty="Visibility">
+                    <DiscreteObjectKeyFrame KeyTime="0">
+                        <DiscreteObjectKeyFrame.Value>
+                            <Visibility>Hidden</Visibility>
+                        </DiscreteObjectKeyFrame.Value>
+                    </DiscreteObjectKeyFrame>
+                </ObjectAnimationUsingKeyFrames>
+            </Storyboard>
+        </Grid.Resources>
         <Image  Height="117" Width="117" VerticalAlignment="Top"  HorizontalAlignment="Center"  Source="/resource/fitness-facilities.png" Margin="0 30 0 0" Stretch="Fill" >
             <Image.Effect>
                 <DropShadowEffect Direction="250" RenderingBias="Quality" ShadowDepth="0" BlurRadius="10" Opacity="0.5"/>
