@@ -964,6 +964,7 @@
                     <ControlTemplate TargetType="Button">
                         <Border Name="border" 
                             BorderThickness="0"
+                                CornerRadius="2"
                             Background="{TemplateBinding Background}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
@@ -1068,6 +1069,29 @@
                 </EventTrigger>
             </Style.Triggers>
 
+        </Style>
+        <!-- Profil Scall tooltip -->
+        <Style x:Key="ScallToolTip" TargetType="TextBlock">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.05" Storyboard.TargetProperty="FontSize" To="35" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetProperty="FontSize" To="25" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
         </Style>
 
     </Application.Resources>

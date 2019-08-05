@@ -27,12 +27,12 @@
                 <TextBlock Name="SportName" Text="Taekwondo" FontSize="16" Foreground="#f1c40f" Margin="10 5 0 0" />
             </WrapPanel>
             <Grid Margin="0 30 0 0">
-                <WrapPanel HorizontalAlignment="Center">
-                    <TextBlock Name="icon1" Text="&#xf594;"  Margin="20 0 0 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="29" Foreground="#c7c7c7"/>
-                    <TextBlock Name="icon2" Text="&#xf21e;"  Margin="20 0 0 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="29" Foreground="#c7c7c7"/>
-                    <TextBlock Name="icon3" Text="&#xf509;"  Margin="20 0 0 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="29" Foreground="#c7c7c7"/>
-                    <TextBlock Name="icon4" Text="&#xf0c0;"  Margin="20 0 0 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="29" Foreground="#c7c7c7"/>
-                    <TextBlock Name="icon5" Text="&#xf218;"  Margin="20 0 20 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="29" Foreground="#c7c7c7"/>
+                <WrapPanel HorizontalAlignment="Center" Height="80">
+                    <TextBlock Name="icon1" Style="{StaticResource ScallToolTip}" Text="&#xf594;"  Margin="20 0 0 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25" Foreground="#c7c7c7"/>
+                    <TextBlock Name="icon2" Style="{StaticResource ScallToolTip}" Text="&#xf21e;"  Margin="20 0 0 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25" Foreground="#c7c7c7"/>
+                    <TextBlock Name="icon3" Style="{StaticResource ScallToolTip}" Text="&#xf509;"  Margin="20 0 0 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25" Foreground="#c7c7c7"/>
+                    <TextBlock Name="icon4" Style="{StaticResource ScallToolTip}" Text="&#xf0c0;"  Margin="20 0 0 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25" Foreground="#c7c7c7"/>
+                    <TextBlock Name="icon5" Style="{StaticResource ScallToolTip}" Text="&#xf218;"  Margin="20 0 20 0" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="25" Foreground="#c7c7c7"/>
                 </WrapPanel>
             </Grid>
             <Grid Margin="0 10 0 0">
