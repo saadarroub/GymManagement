@@ -86,9 +86,8 @@ namespace GymWPF
         {
             if (NomTextBox.Text==""|| PrenomTextBox.Text=="")
             {
-                string msg = "Merci de remplire tout les champs";
-                MessageForm m = new MessageForm(msg);
-                m.ShowDialog();
+                messageContent.Text = "Merci de remplire tout les champs";
+                animateBorder(borderMessage);
             }
             else
             {
