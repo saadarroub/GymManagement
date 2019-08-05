@@ -841,11 +841,9 @@
             </Trigger>
         </ControlTemplate.Triggers>-->
         </ControlTemplate>
-
         <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
             <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}" />
         </ControlTemplate>
-
         <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
             <Setter Property="SnapsToDevicePixels" Value="true"/>
             <Setter Property="OverridesDefaultStyle" Value="true"/>
@@ -934,7 +932,6 @@
             <Style.Triggers>
             </Style.Triggers>
         </Style>
-
         <!-- SimpleStyles: ComboBoxItem -->
         <Style x:Key="{x:Type ComboBoxItem}" TargetType="{x:Type ComboBoxItem}">
             <Setter Property="SnapsToDevicePixels" Value="true"/>
@@ -960,8 +957,118 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!--RedBtn-->
+        <Style x:Key="RedBtn" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderThickness="0"
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
 
+            <Setter Property="Button.Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#de2e43"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Button.Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="White"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Button.MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                                From="#de2e43" To="#EC3047" Duration="0:0:0" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
 
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="Button.MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                                From="#EC3047" To="#de2e43" Duration="0:0:0" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+
+                </EventTrigger>
+            </Style.Triggers>
+
+        </Style>
+        <!-- Style Hover textblock Btn  APP -->
+        <Style x:Key="TextHoverBtn" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+                            BorderThickness="0"
+                            Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="Black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="Button.Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#272727"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Button.Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="#979797"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="Button.MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)"
+                                                From="#979797" To="#FFFFFF" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="Button.MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Foreground).(SolidColorBrush.Color)"
+                                                From="#FFFFFF" To="#979797" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+
+                </EventTrigger>
+            </Style.Triggers>
+
+        </Style>
 
     </Application.Resources>
 </Application>

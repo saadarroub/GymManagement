@@ -31,7 +31,7 @@
                         </TextBlock.Style>
                     </TextBlock>
                 </Grid>
-                <Button Name="AjouterClientBtn" Style="{StaticResource CamoflableBtn}" Margin="100 10 0 10" Click="AjouterClientBtn_Click">
+                <Button Name="AjouterClientBtn" Style="{StaticResource TextHoverBtn}" Margin="100 10 0 10" Click="AjouterClientBtn_Click">
                     <WrapPanel>
                         <TextBlock Text=" Ajouter Client"  Margin="0 10 0 10" FontFamily="Segoe UI Light" FontSize="16"/>
                         <TextBlock Text="&#xf055;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="29" Margin="10 5 10 5"/>
@@ -72,5 +72,11 @@
                 <Button Name="SupprimerClientModalBtn" Click="SupprimerClientModalBtn_Click"  Content="Supprimer" Height="30" Style="{StaticResource CamoflableBtn2}"/>
             </StackPanel>
         </Grid>
+        <Border Height="37" Width="200" Background="#414141" CornerRadius="15" BorderBrush="#FFFFFF" BorderThickness="2" VerticalAlignment="Bottom" Margin="0 0 0 35">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </Border.Effect>
+            <TextBlock Text="Bien ajoute" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="14" FontFamily="Segoe UI Light"/>
+        </Border>
     </Grid>
 </Page>

@@ -8,34 +8,41 @@
       d:DesignHeight="603" d:DesignWidth="839"
       Title="SallesPage" Background="#FF272727"
       Loaded="Page_Loaded">
-    
-    <StackPanel>
-        <TextBlock Text="Gestion des Salles" FontFamily="Segoe UI Light" FontSize="36" Foreground="#FFFFCC00" Margin="30 30 0 0"/>
-                <WrapPanel Margin="0 30 0 0">
-                    <TextBlock Text="Nom Salle :" FontFamily="Segoe UI Light" FontSize="24" Foreground="White" Margin="40 10 30 10"/>
-            <TextBox Name="SalleName" Width="197" Height="30" Background="#333333" BorderBrush="#c7c7c7" Margin="20 10 10 10" FontSize="18" Foreground="White" VerticalContentAlignment="Center" Padding="5,0"/>
-                    <Button Name="BtnAjouter" Content="Ajouter" Width="147" Height="37" Style="{StaticResource GreenBtn}" Margin="20 10 0 10" Click="BtnAjouter_Click"/>
-                    <Button Name="BtnModifier" Content="Modifier" Width="147" Height="37" Style="{StaticResource GreenBtn}" Margin="20 10 0 10" Click="BtnModifier_Click"/>
-                </WrapPanel>
-                <TextBlock Text="Liste des Salles" FontFamily="Segoe UI Light" FontSize="24" Foreground="White" Margin="20 30 0 0"/>
-        <ListView ItemContainerStyle="{StaticResource ListItemHover}" Name = "ListViewSalles" Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="342" Margin="20 20 20 0" ItemsSource="{Binding}" SelectionChanged="ListViewSalles_SelectionChanged" SelectionMode="Single">
-            <ListView.View>
-                <GridView ColumnHeaderContainerStyle="{StaticResource ListViewHeader}">
-                    <GridViewColumn Header = "ID"  Width = "100" DisplayMemberBinding="{Binding Path=IdSalle}"/>
-                    <GridViewColumn Header = "Nom de Salle"  Width = "300" DisplayMemberBinding="{Binding Path=nom_Salle}"/>
-                    <GridViewColumn Header = "Supprimer"  Width = "100" >
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Button Style="{StaticResource ListViewBtnDelete}" Click="Button_Click" Name="btnRemove">
-                                    <Grid Height="30" Width="50">
-                                        <TextBlock Text="&#xf2ed;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="19" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Grid>
-                                </Button>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-    </StackPanel>
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Gestion des Salles" FontFamily="Segoe UI Light" FontSize="36" Foreground="#FFFFCC00" Margin="30 30 0 0"/>
+            <WrapPanel Margin="0 30 0 0">
+                <TextBlock Text="Nom Salle :" FontFamily="Segoe UI Light" FontSize="24" Foreground="White" Margin="40 10 30 10"/>
+                <TextBox Name="SalleName" Width="197" Height="30" Background="#333333" BorderBrush="#c7c7c7" Margin="20 10 10 10" FontSize="18" Foreground="White" VerticalContentAlignment="Center" Padding="5,0"/>
+                <Button Name="BtnAjouter" Content="Ajouter" Width="147" Height="37" Style="{StaticResource GreenBtn}" Margin="20 10 0 10" Click="BtnAjouter_Click"/>
+                <Button Name="BtnModifier" Content="Modifier" Width="147" Height="37" Style="{StaticResource GreenBtn}" Margin="20 10 0 10" Click="BtnModifier_Click"/>
+            </WrapPanel>
+            <TextBlock Text="Liste des Salles" FontFamily="Segoe UI Light" FontSize="24" Foreground="White" Margin="20 30 0 0"/>
+            <ListView ItemContainerStyle="{StaticResource ListItemHover}" Name = "ListViewSalles" Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="342" Margin="20 20 20 0" ItemsSource="{Binding}" SelectionChanged="ListViewSalles_SelectionChanged" SelectionMode="Single">
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource ListViewHeader}">
+                        <GridViewColumn Header = "ID"  Width = "100" DisplayMemberBinding="{Binding Path=IdSalle}"/>
+                        <GridViewColumn Header = "Nom de Salle"  Width = "300" DisplayMemberBinding="{Binding Path=nom_Salle}"/>
+                        <GridViewColumn Header = "Supprimer"  Width = "100" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Style="{StaticResource ListViewBtnDelete}" Click="Button_Click" Name="btnRemove">
+                                        <Grid Height="30" Width="50">
+                                            <TextBlock Text="&#xf2ed;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="19" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        <Border Height="37" Width="200" Background="#414141" CornerRadius="15" BorderBrush="#FFFFFF" BorderThickness="2" VerticalAlignment="Bottom" Margin="0 0 0 35">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="25"/>
+            </Border.Effect>
+            <TextBlock Text="Bien ajoute" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="14" FontFamily="Segoe UI Light"/>
+        </Border>
+    </Grid>
 </Page>
