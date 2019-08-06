@@ -51,7 +51,7 @@
                     </Border.Effect>
                     <TextBlock Text="124 Clients" FontSize="29" Margin="10 0 0 0" Foreground="White"/>
                 </Border>
-                <Border CornerRadius="5" Background="#e74c3c" Margin="50 0 0 0"  Height="90" Width="340">
+                <Border CornerRadius="5" Background="#e74c3c" Margin="50 0 0 0"  Height="90" Width="340" RenderTransformOrigin="0.5,0.5" >
                     <Border.Effect>
                         <DropShadowEffect Opacity="0.5" ShadowDepth="0" BlurRadius="10"/>
                     </Border.Effect>

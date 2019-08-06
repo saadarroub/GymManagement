@@ -50,31 +50,31 @@ namespace GymWPF
                 if (Convert.ToBoolean(ds.Tables["infos"].Rows[0][4]) == true)
                 {
                     Acsess.Text = "Admin";
-                    icon1.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                    icon2.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                    icon3.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                    icon4.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                    icon5.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                    ToolTip1 = "admin1";
-                    ToolTip2 = "admin2";
-                    ToolTip3 = "admin3";
-                    ToolTip4 = "admin4";
-                    ToolTip5 = "admin5";
+                    icon1.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
+                    icon2.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
+                    icon3.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
+                    icon4.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
+                    icon5.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
+                    ToolTip1 = "Vous avez l'access a Ajouter, Modifier et Supprimer Une Salle";
+                    ToolTip2 = "Vous avez l'access a Ajouter, Modifier et Supprimer Un Sport. Tu peut affecter Un Sport a tout les Salles";
+                    ToolTip3 = "Vous avez l'access pour ajouter un nouveau Utilisateur, determiner son Rolle. Supprimer et Modifier tout les Utilisateur";
+                    ToolTip4 = "vous avez l'access a Ajouter ,Modifier et Supprimer un Clients a partir de votre Salle et Sport";
+                    ToolTip5 = "Vous avez l'access de gestioner votre depenses a partir de votre Salle et Sport";
 
                 }
                 else 
                 {
                     Acsess.Text = "Editeur";
-                    icon1.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-                    icon2.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-                    icon3.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-                    icon4.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                    icon5.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                    ToolTip1 = "Editeur1";
-                    ToolTip2 = "Editeur2";
-                    ToolTip3 = "Editeur3";
-                    ToolTip4 = "Editeur4";
-                    ToolTip5 = "Editeur5";
+                    icon1.Foreground = new SolidColorBrush(Color.FromRgb(255, 52, 73));
+                    icon2.Foreground = new SolidColorBrush(Color.FromRgb(255, 52, 73));
+                    icon3.Foreground = new SolidColorBrush(Color.FromRgb(255, 52, 73));
+                    icon4.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
+                    icon5.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
+                    ToolTip1 = "Pas d'access";
+                    ToolTip2 = "Pas d'access";
+                    ToolTip3 = "Pas d'access";
+                    ToolTip4 = "vous avez l'access a Ajouter ,Modifier et Supprimer un Clients a partir de votre Salle et Sport";
+                    ToolTip5 = "Vous avez l'access de gestioner votre depenses a partir de votre Salle et Sport";
                 }
                 
             }
@@ -86,16 +86,16 @@ namespace GymWPF
                 da.Fill(ds, "users");
                 Acsess.Text = "Admin Principale";
                 UserName.Text = ds.Tables["users"].Rows[0][1].ToString() + " " + ds.Tables["users"].Rows[0][2].ToString();
-                icon1.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                icon2.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                icon3.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                icon4.Foreground = new SolidColorBrush(Color.FromRgb(255, 155, 0));
-                icon5.Foreground = new SolidColorBrush(Color.FromRgb(255, 155, 0));
-                ToolTip1 = "Admin Principale1";
-                ToolTip2 = "Admin Principale2";
-                ToolTip3 = "Admin Principale3";
-                ToolTip4 = "Admin Principale4";
-                ToolTip5 = "Admin Principale5";
+                icon1.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
+                icon2.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
+                icon3.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
+                icon4.Foreground = new SolidColorBrush(Color.FromRgb(255, 174, 52));
+                icon5.Foreground = new SolidColorBrush(Color.FromRgb(255, 174, 52));
+                ToolTip1 = "Vous avez l'access a Ajouter, Modifier et Supprimer Une Salle";
+                ToolTip2 = "Vous avez l'access a Ajouter, Modifier et Supprimer Un Sport. Tu peut affecter Un Sport a tout les Salles";
+                ToolTip3 = "Vous avez l'access pour ajouter un nouveau Utilisateur, determiner son Rolle. Supprimer et Modifier tout les Utilisateur";
+                ToolTip4 = "vous avez l'access a Consulter la liste des Clients de tout les Salles et Sports";
+                ToolTip5 = "Vous avez l'access a Consulter les depenses de tout les salles";
             }
             
 
