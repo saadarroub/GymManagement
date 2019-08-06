@@ -65,8 +65,6 @@ namespace GymWPF
                     imageName = fl.FileName;
                     ImageSourceConverter isc = new ImageSourceConverter();
                     image.SetValue(Image.SourceProperty, isc.ConvertFromString(imageName));
-
-                    
                 }
                 fl = null;
             }
