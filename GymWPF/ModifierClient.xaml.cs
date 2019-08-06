@@ -49,7 +49,7 @@ namespace GymWPF
         {
             dade.Effect = null;
             dade.Opacity = 1;
-            this.Hide();
+            this.Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
