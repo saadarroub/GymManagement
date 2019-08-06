@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
+using System.Windows.Media.Animation;
 
 namespace GymWPF
 {
@@ -30,7 +31,9 @@ namespace GymWPF
         SqlDataReader dr;
         //------------------------------------//
 
-        string ConnectedSalle, ConnectedSport, iduser, nom, prenom;
+        string ConnectedSalle, ConnectedSport, iduser, nom, prenom ,ToolTip1, ToolTip2 , ToolTip3, ToolTip4, ToolTip5;
+
+        
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -51,7 +54,12 @@ namespace GymWPF
                     icon2.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                     icon3.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                     icon4.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                    icon5.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));                  
+                    icon5.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                    ToolTip1 = "admin1";
+                    ToolTip2 = "admin2";
+                    ToolTip3 = "admin3";
+                    ToolTip4 = "admin4";
+                    ToolTip5 = "admin5";
 
                 }
                 else 
@@ -62,6 +70,11 @@ namespace GymWPF
                     icon3.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
                     icon4.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                     icon5.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
+                    ToolTip1 = "Editeur1";
+                    ToolTip2 = "Editeur2";
+                    ToolTip3 = "Editeur3";
+                    ToolTip4 = "Editeur4";
+                    ToolTip5 = "Editeur5";
                 }
                 
             }
@@ -78,9 +91,69 @@ namespace GymWPF
                 icon3.Foreground = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                 icon4.Foreground = new SolidColorBrush(Color.FromRgb(255, 155, 0));
                 icon5.Foreground = new SolidColorBrush(Color.FromRgb(255, 155, 0));
+                ToolTip1 = "Admin Principale1";
+                ToolTip2 = "Admin Principale2";
+                ToolTip3 = "Admin Principale3";
+                ToolTip4 = "Admin Principale4";
+                ToolTip5 = "Admin Principale5";
             }
+            
 
+        }
+        
 
+        private void Icon1_MouseEnter(object sender, MouseEventArgs e)
+        {
+            animateBorderIn(BorderToolTip);
+            ToolTipTextBlock.Text = ToolTip1;
+        }
+        private void Icon1_MouseLeave(object sender, MouseEventArgs e)
+        {
+            animateBorderOut(BorderToolTip);
+        }
+
+        private void Icon2_MouseEnter(object sender, MouseEventArgs e)
+        {
+            animateBorderIn(BorderToolTip);
+            ToolTipTextBlock.Text = ToolTip2;
+        }
+
+        private void Icon2_MouseLeave(object sender, MouseEventArgs e)
+        {
+            animateBorderOut(BorderToolTip);
+        }
+
+        private void Icon3_MouseEnter(object sender, MouseEventArgs e)
+        {
+            animateBorderIn(BorderToolTip);
+            ToolTipTextBlock.Text = ToolTip3;
+        }
+
+        private void Icon3_MouseLeave(object sender, MouseEventArgs e)
+        {
+            animateBorderOut(BorderToolTip);
+        }
+
+        private void Icon4_MouseEnter(object sender, MouseEventArgs e)
+        {
+            animateBorderIn(BorderToolTip);
+            ToolTipTextBlock.Text = ToolTip4;
+        }
+
+        private void Icon4_MouseLeave(object sender, MouseEventArgs e)
+        {
+            animateBorderOut(BorderToolTip);
+        }
+
+        private void Icon5_MouseEnter(object sender, MouseEventArgs e)
+        {
+            animateBorderIn(BorderToolTip);
+            ToolTipTextBlock.Text = ToolTip5;
+        }
+
+        private void Icon5_MouseLeave(object sender, MouseEventArgs e)
+        {
+            animateBorderOut(BorderToolTip);
         }
 
         MainApp mv;
@@ -94,5 +167,14 @@ namespace GymWPF
             this.mv = mv;
             InitializeComponent();
         }
+        public void animateBorderIn(Border c)
+        {
+            ((Storyboard)App.Current.Resources["ToolTipAnimationGoIn"]).Begin(c);
+        }
+        public void animateBorderOut(Border c)
+        {
+            ((Storyboard)App.Current.Resources["ToolTipAnimationGoOut"]).Begin(c);
+        }
+
     }
 }

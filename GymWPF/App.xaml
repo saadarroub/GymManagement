@@ -6,6 +6,7 @@
     <Application.Resources>
         <FontFamily x:Key="FontAwesomeSolid">/Resource/Fonts/fa-solid-900.ttf#Font Awesome 5 Free Solid</FontFamily>
         <FontFamily x:Key="FontAwesomeRegular">/Resource/Fonts/fa-regular-400.ttf#Font Awesome 5 Free Regular</FontFamily>
+        
         <!--Style btn Close App-->
         <Style x:Key="CloseAppbtnStyle" TargetType="{x:Type Button}">
             <Setter Property="Template">
@@ -1093,6 +1094,27 @@
                 </EventTrigger>
             </Style.Triggers>
         </Style>
+        <!-- Profil Scall tooltip IN / OUT -->
+        <Storyboard x:Key="ToolTipAnimationGoIn">
+            <ObjectAnimationUsingKeyFrames BeginTime="0:0:0" Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.1"/>
 
+        </Storyboard>
+        <Storyboard x:Key="ToolTipAnimationGoOut">
+            <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.1"/>
+            <ObjectAnimationUsingKeyFrames BeginTime="0:0:2.5" Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Hidden</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
     </Application.Resources>
 </Application>
