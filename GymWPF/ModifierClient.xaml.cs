@@ -27,6 +27,8 @@ namespace GymWPF
     {
         MainApp dade;
         string id, ConnectedSalle, ConnectedSport;
+        string strName, imageName;
+
 
 
         //declaration --------------------------------------
@@ -126,7 +128,7 @@ namespace GymWPF
                     {
                         cn.Open();
                         cmd.Connection = cn;
-                        cmd.CommandText = "update Clients set nom = '" + NomTextBox.Text + "', prenom ='" + PrenomTextBox.Text + "', Tel ='" + TelTextBox.Text + "', img = NULL  where IdClient = '" + id + "'";
+                        cmd.CommandText = "update Clients set nom = '" + NomTextBox.Text + "', prenom ='" + PrenomTextBox.Text + "', Tel ='" + TelTextBox.Text + "'  where IdClient = '" + id + "'";
                         cmd.ExecuteNonQuery();
 
                         messageContent.Text = "Bien modifié";
@@ -151,21 +153,21 @@ namespace GymWPF
             }
            
         }
-        string strName, imageName;
-
+        FileDialog fl;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                FileDialog fl = new OpenFileDialog();
+                fl = new OpenFileDialog();
                 fl.InitialDirectory = Environment.SpecialFolder.MyPictures.ToString();
-                fl.ShowDialog();
+                if (fl.ShowDialog() == true)
                 {
                     strName = fl.SafeFileName;
                     imageName = fl.FileName;
                     ImageSourceConverter isc = new ImageSourceConverter();
                     image.SetValue(Image.SourceProperty, isc.ConvertFromString(imageName));
                 }
+               
                 fl = null;
             }
             catch (Exception ex)
@@ -175,6 +177,8 @@ namespace GymWPF
                 m.ShowDialog();
             }
         }
+
+       
 
         public void animateBorder(Border c)
         {

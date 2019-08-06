@@ -59,14 +59,16 @@ namespace GymWPF
             {
                 FileDialog fl = new OpenFileDialog();
                 fl.InitialDirectory = Environment.SpecialFolder.MyPictures.ToString();
-                fl.ShowDialog();
+                if(fl.ShowDialog() == true)
                 {
-                    strName = fl.SafeFileName;
                     imageName = fl.FileName;
                     ImageSourceConverter isc = new ImageSourceConverter();
                     image.SetValue(Image.SourceProperty, isc.ConvertFromString(imageName));
+                   
+                    MessageBox.Show(System.IO.Path.Combine(Environment.CurrentDirectory,@"../../Resource/avatar.png"));
                 }
-                fl = null;
+
+
             }
             catch (Exception ex)
             {
@@ -125,11 +127,16 @@ namespace GymWPF
                     }
                     else
                     {
+                        FileStream fs = new FileStream(System.IO.Path.Combine(Environment.CurrentDirectory, @"../../Resource/avatar.png"), FileMode.Open, FileAccess.Read);
+                        byte[] imgByte = new byte[fs.Length];
+                        fs.Read(imgByte, 0, Convert.ToInt32(fs.Length));
+                        fs.Close();
 
                         cn.Open();
                         cmd.Connection = cn;
-                        cmd.CommandText = "insert into Clients values('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "',NULL)";
+                        cmd.CommandText = "insert into Clients values('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "',@img)";
                         cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("img", imgByte);
                         cmd.ExecuteNonQuery();
 
                         cmd.CommandText = "select MAX(IdClient) from Clients";
@@ -154,12 +161,13 @@ namespace GymWPF
                 }
                 finally
                 {
+                    
                     cn.Close();
 
                     NomTextBox.Text = null;
                     PrenomTextBox.Text = null;
                     TelTextBox.Text = null;
-                    image.Source = null;
+                    image.Source = new BitmapImage(new Uri("/Resource/avatar.png",UriKind.Relative));
 
                     dade.MainFrame.Navigate(new ClientsPage(dade, ConnectedSalle, ConnectedSport));
 

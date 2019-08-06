@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:GymWPF"
         mc:Ignorable="d"
         Title="AjouterClient" Height="342" Width="647" ResizeMode="NoResize" BorderBrush="#ffcc00" WindowStartupLocation="CenterScreen" Background="#272727"  BorderThickness="1" WindowStyle="None" >
+    
 
     <Grid Background="#272727" Name="gridContainer">
         <Grid.Resources>
