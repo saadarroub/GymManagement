@@ -34,8 +34,10 @@ namespace GymWPF
 
 
         string ConnectedSalle, ConnectedSport,id;
-
+        DateTime last;
         MainApp dade;
+
+        int count;
         public PayementsPage(MainApp d, string id, string ConnectedSalle, string ConnectedSport)
         {
             this.ConnectedSalle = ConnectedSalle;
@@ -49,16 +51,38 @@ namespace GymWPF
         {
             cn.Open();
             cmd.Connection = cn;
-            cmd.CommandText = "select p.IdPayment as ID,c.nom+' '+c.prenom as clinet,s.nom_Salle as salle,t.nom_Type as sport,p.date_Payment as date,p.Prix as prix,c.IdClient,s.IdSalle,t.IdType from Payments p join Clients c on p.IdClient=c.IdClient join Salle s on p.IdSalle=s.IdSalle join Type_Sport t on p.IdType=t.IdType where c.IdClient='" + id+"' and s.IdSalle = '"+ConnectedSalle+"' and t.IdType = '"+ConnectedSport+"'";
+            cmd.CommandText = "select p.IdPayment as ID,c.nom+' '+c.prenom as clinet,s.nom_Salle as salle,t.nom_Type as sport,p.date_Payment as date,p.Prix as prix,c.IdClient,s.IdSalle,t.IdType from Payments p join Clients c on p.IdClient=c.IdClient join Salle s on p.IdSalle=s.IdSalle join Type_Sport t on p.IdType=t.IdType where c.IdClient='" + id+"' and s.IdSalle = '"+ConnectedSalle+"' and t.IdType = '"+ConnectedSport+ "' order by p.date_Payment DESC";
             dr = cmd.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(dr);
             ListPayments.DataContext = dt;
+
+            count = ListPayments.Items.Count;
+            if (count != 0)
+            {
+                DataRowView row = ListPayments.Items.GetItemAt(0) as DataRowView;
+                last = DateTime.Parse(row.Row[4].ToString());
+            }
+            if (count == 0)
+            {
+                cmd.CommandText = "update Clients set LastPay = NULL  where IdClient = '" + id.ToString() + "'";
+                cmd.ExecuteNonQuery();
+            }
+            if(count >= 1)
+            {
+                DataRowView row1 = ListPayments.Items.GetItemAt(0) as DataRowView;
+
+                cmd.CommandText = "update Clients set LastPay = '" + row1.Row[4].ToString() + "'  where IdClient = '" + id.ToString() + "'";
+                cmd.ExecuteNonQuery();
+            }
+
+
+
             cn.Close();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            loaded();
+            loaded();            
         }
 
         private void ListPayments_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -102,6 +126,8 @@ namespace GymWPF
                 ListPayments.UnselectAll();
                 loaded();
 
+                
+
             }
             this.Opacity = 1;
             this.Effect = null;
@@ -127,19 +153,31 @@ namespace GymWPF
                 {
                     int index = ListPayments.SelectedIndex;
                     DataRowView row = ListPayments.Items.GetItemAt(index) as DataRowView;
-                    int id = int.Parse(row.Row[0].ToString());
+                    int idpay = int.Parse(row.Row[0].ToString());
 
                     cn.Open();
                     cmd.Connection = cn;
 
-                    cmd.CommandText = "update  Payments set date_Payment ='" + NomTextBox.Text + "', Prix ='" + PrixTextBox.Text + "' where IdPayment ='" + id + "'";
+                    cmd.CommandText = "update  Payments set date_Payment ='" + NomTextBox.Text + "', Prix ='" + PrixTextBox.Text + "' where IdPayment ='" + idpay + "'";
                     cmd.ExecuteNonQuery();
 
                     messageContent.Text = "Bien modifié";
                     animateBorder(borderMessage);
 
+                        if (count == 1)
+                        {
+                            cmd.CommandText = "update Clients set LastPay = '" + NomTextBox.Text + "'  where IdClient = '" + id.ToString() + "'";
+                            cmd.ExecuteNonQuery();
+                        }
 
-                }
+                        else if (DateTime.Parse(NomTextBox.Text) > last)
+                        {
+                            cmd.CommandText = "update Clients set LastPay = '" + NomTextBox.Text + "'  where IdClient = '" + id.ToString() + "'";
+                            cmd.ExecuteNonQuery();
+                        }
+
+
+                    }
                 catch (Exception ex)
                 {
                     string msg = ex.Message;
@@ -196,13 +234,22 @@ namespace GymWPF
                 {
                     try
                     {
-                        cn.Open();
-                        cmd.Connection = cn;
-                        cmd.CommandText = "insert into Payments values ('" + NomTextBox.Text + "','" + id.ToString() + "','" + ConnectedSalle.ToString() + "','" + ConnectedSport.ToString() + "','" + PrixTextBox.Text + "')";
-                        cmd.ExecuteNonQuery();
+                        
+                            cn.Open();
+                            cmd.Connection = cn;
+                            cmd.CommandText = "insert into Payments values ('" + NomTextBox.Text + "','" + id.ToString() + "','" + ConnectedSalle.ToString() + "','" + ConnectedSport.ToString() + "','" + PrixTextBox.Text + "')";
+                            cmd.ExecuteNonQuery();
+
 
                         messageContent.Text = "Bien ajouté";
                         animateBorder(borderMessage);
+
+                        if (DateTime.Parse(NomTextBox.Text) > last)
+                        {
+                            cmd.CommandText = "update Clients set LastPay = '" + NomTextBox.Text + "'  where IdClient = '" + id.ToString() + "'";
+                            cmd.ExecuteNonQuery();
+                        }                     
+                           
                     }
                     catch (Exception ex)
                     {

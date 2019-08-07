@@ -48,7 +48,6 @@ namespace GymWPF
         {
             dade.Effect = null;
             dade.Opacity = 1;
-            dade.MainFrame.Navigate(new ClientsPage(dade, ConnectedSalle, ConnectedSport));
             this.Close();
 
         }
@@ -64,8 +63,6 @@ namespace GymWPF
                     imageName = fl.FileName;
                     ImageSourceConverter isc = new ImageSourceConverter();
                     image.SetValue(Image.SourceProperty, isc.ConvertFromString(imageName));
-                   
-                    MessageBox.Show(System.IO.Path.Combine(Environment.CurrentDirectory,@"../../Resource/avatar.png"));
                 }
 
 
@@ -105,7 +102,7 @@ namespace GymWPF
 
                         cn.Open();
                         cmd.Connection = cn;
-                        cmd.CommandText = "insert into Clients values('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "',@img)";
+                        cmd.CommandText = "insert into Clients(nom, prenom, Tel, img) values('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "',@img)";
                         cmd.Parameters.Clear();
                         cmd.Parameters.AddWithValue("img", imgByte);
 
@@ -134,7 +131,7 @@ namespace GymWPF
 
                         cn.Open();
                         cmd.Connection = cn;
-                        cmd.CommandText = "insert into Clients values('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "',@img)";
+                        cmd.CommandText = "insert into Clients(nom, prenom, Tel, img) values('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "',@img)";
                         cmd.Parameters.Clear();
                         cmd.Parameters.AddWithValue("img", imgByte);
                         cmd.ExecuteNonQuery();
