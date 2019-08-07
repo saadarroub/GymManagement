@@ -60,7 +60,8 @@ namespace GymWPF
                 MainAppNavBtnToSprorts.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
                 MainAppNavBtnToUsers.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
             }
-            profil = new Profil(this , ConnectedSalle, ConnectedSport, iduser, nom, prenom);
+
+            profil = new Profil(this, ConnectedSalle, ConnectedSport, iduser, nom, prenom);
             MainFrame.Navigate(profil);
         }
 
@@ -136,8 +137,10 @@ namespace GymWPF
 
         private void MenuProfilBtn_Click(object sender, RoutedEventArgs e)
         {
+
             HideShowRecNavBtn();
             HideShowMenuPanel();
+            profil = new Profil(this, ConnectedSalle, ConnectedSport, iduser, nom, prenom);
             MainFrame.Navigate(profil);
         }
 

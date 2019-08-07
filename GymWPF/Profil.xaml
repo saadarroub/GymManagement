@@ -55,7 +55,7 @@
                     <Border.Effect>
                         <DropShadowEffect Opacity="0.5" ShadowDepth="0" BlurRadius="10"/>
                     </Border.Effect>
-                    <TextBlock Text="18 Notifications" FontSize="29" Margin="10 0 0 0" Foreground="White"/>
+                    <TextBlock Name="nots" Text="18 Notifications" FontSize="29" Margin="10 0 0 0" Foreground="White"/>
                 </Border>
             </WrapPanel>
         </StackPanel>
