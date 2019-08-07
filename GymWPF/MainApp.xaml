@@ -31,6 +31,20 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Background="#1c1c1c">
+                    <Grid Height="230">
+                        <Border Opacity="1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="#333333"/>
+                                    <GradientStop Color="#FF1C1C1C" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+
+                        </Border>
+                        <Polygon Points="75,0 225,0 300,150 225,300 75,300 0,150"  Fill="White"/>
+                        <TextBlock Text="LAATARSI" Foreground="White"/>
+                        <TextBlock Text="SALAHEDDINE" Foreground="White"/>
+                    </Grid>
                     <Button Name="MainAppNavBtnToSalles"  BorderBrush="White" Foreground="White" 
                         Height="37" Width="200" HorizontalContentAlignment="Left" 
                         Style="{StaticResource MainAppNavBtn}" BorderThickness="10" Margin="0 17 0 0"
@@ -90,7 +104,7 @@
             </Grid>
 
         </StackPanel>
-        <StackPanel Name="MenuPanel" Height="90" Width="167" VerticalAlignment="Top" Margin="378  47 0 0" Background="#333333" Visibility="Collapsed">
+        <StackPanel Name="MenuPanel" Height="90" Width="167" VerticalAlignment="Top" Margin="378  47 0 0" Background="#333333" Visibility="Visible">
             <StackPanel.Effect>
                 <DropShadowEffect Direction="270" BlurRadius="10" Opacity="0.5"/>
             </StackPanel.Effect>
