@@ -93,7 +93,7 @@ namespace GymWPF
                 da.SelectCommand.CommandText = "select * from Utilisateur where IdUser = '"+iduser+"'";
                 da.Fill(ds, "users");
                 Acsess.Text = "Admin Principale";
-                UserName.Text = ds.Tables["users"].Rows[0][1].ToString() + " " + ds.Tables["users"].Rows[0][2].ToString();
+                UserName.Text = ds.Tables["users"].Rows[0][2].ToString().ToUpper();
                 icon1.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
                 icon2.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
                 icon3.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
@@ -114,7 +114,6 @@ namespace GymWPF
                 {
                       ts = DateTime.Now - DateTime.Parse(ds.Tables["Clients"].Rows[i][6].ToString());
                         int count = int.Parse(ts.Days.ToString());
-                    MessageBox.Show(count.ToString());
                         if (count >= 28 && count == 30)
                         {
                             cpt1++;
@@ -133,6 +132,7 @@ namespace GymWPF
                         nots.Text = (cpt1 + cpt2 + cpt3).ToString();
                     }      
             }
+            
         }
         
 

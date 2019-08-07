@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace GymWPF
 {
@@ -19,6 +21,13 @@ namespace GymWPF
     /// </summary>
     public partial class MainApp : Window
     {
+        //Declaration -------------------------//
+        SqlConnection cn = new SqlConnection("Data Source=.;Initial Catalog=NSS_Salle_Application;Integrated Security=True");
+        SqlCommand cmd = new SqlCommand();
+        SqlDataAdapter da = new SqlDataAdapter("", "Data Source=.;Initial Catalog=NSS_Salle_Application;Integrated Security=True");
+        DataSet ds = new DataSet();
+        SqlDataReader dr;
+        //------------------------------------//
 
         SallesPage salles;
         SportsPage sports;
@@ -33,6 +42,9 @@ namespace GymWPF
 
         public MainApp(string nom,string prenom, bool valid,string ConnectedSalle,string ConnectedSport,string iduser)
         {
+            da.SelectCommand.CommandText = "select u.Nom,u.Prenom,s.nom_Salle,t.nom_Type,u.Valide,s.IdSalle,t.IdType,u.IdUser from Utilisateur u join UtilisateurSportSalle us on u.IdUser = us.IdUser join Salle s on s.IdSalle = us.IdSalle join Type_Sport t on t.IdType = us.IdType where s.IdSalle = '" + ConnectedSalle + "' and t.IdType = '" + ConnectedSport + "' and u.IdUser = '" + iduser + "'";
+            da.Fill(ds, "infos");
+
             this.nom = nom;
             this.prenom = prenom;
             this.valid = valid;
@@ -41,16 +53,20 @@ namespace GymWPF
             this.iduser = iduser;
             InitializeComponent();
 
+
+
             
-            
-            
-            
+
+
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-           UserName.Text = nom+' '+prenom;
-           
-             if (valid == false)
+            UserName.Text = nom.ToUpper() + ' ' + prenom.ToUpper();
+
+            da.SelectCommand.CommandText = "select u.Nom,u.Prenom,s.nom_Salle,t.nom_Type,u.Valide,s.IdSalle,t.IdType,u.IdUser from Utilisateur u join UtilisateurSportSalle us on u.IdUser = us.IdUser join Salle s on s.IdSalle = us.IdSalle join Type_Sport t on t.IdType = us.IdType where s.IdSalle = '" + ConnectedSalle + "' and t.IdType = '" + ConnectedSport + "' and u.IdUser = '" + iduser + "'";
+            da.Fill(ds, "infos");
+
+            if (valid == false)
             {
                 MainAppNavBtnToSalles.IsEnabled = false;
                 MainAppNavBtnToSprorts.IsEnabled = false;
@@ -63,6 +79,30 @@ namespace GymWPF
 
             profil = new Profil(this, ConnectedSalle, ConnectedSport, iduser, nom, prenom);
             MainFrame.Navigate(profil);
+
+            if (ds.Tables["infos"].Rows.Count != 0)
+            {
+                
+                if (Convert.ToBoolean(ds.Tables["infos"].Rows[0][4]) == true)
+                {
+                    Acsess.Text = "ADMIN";
+
+
+                }
+                else
+                {
+                    Acsess.Text = "EDITEUR";
+
+                }
+
+            }
+            else
+            {
+
+
+                Acsess.Text = "ADMIN PRINCIPALE";
+
+            }
         }
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
