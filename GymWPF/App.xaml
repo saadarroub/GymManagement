@@ -480,7 +480,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ListViewItem}">
-                        <Border Name="border"     
+                        <Border Name="border"  
                                 BorderBrush="Transparent"
                                 BorderThickness="0"
                                 Background="{TemplateBinding Background}"
