@@ -33,14 +33,22 @@ namespace GymWPF
 
         string ConnectedSalle, ConnectedSport, iduser, nom, prenom ,ToolTip1, ToolTip2 , ToolTip3, ToolTip4, ToolTip5;
 
+
+        TimeSpan ts;
+
+        int cpt1, cpt2, cpt3;
         
 
+        string soon, end, mcha;
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            
 
             da.SelectCommand.CommandText = "select u.Nom,u.Prenom,s.nom_Salle,t.nom_Type,u.Valide,s.IdSalle,t.IdType,u.IdUser from Utilisateur u join UtilisateurSportSalle us on u.IdUser = us.IdUser join Salle s on s.IdSalle = us.IdSalle join Type_Sport t on t.IdType = us.IdType where s.IdSalle = '" + ConnectedSalle + "' and t.IdType = '" + ConnectedSport + "' and u.IdUser = '" + iduser + "'";
             da.Fill(ds, "infos");
 
+            da.SelectCommand.CommandText = "select * from Clients c join SportClients s on c.IdClient = s.IdClient where IdSalle = '"+ConnectedSalle+"' and IdType = '"+ConnectedSport+"'";
+            da.Fill(ds, "Clients");
 
             if (ds.Tables["infos"].Rows.Count != 0 )
             {
@@ -97,8 +105,33 @@ namespace GymWPF
                 ToolTip4 = "vous avez l'access a Consulter la liste des Clients de tout les Salles et Sports";
                 ToolTip5 = "Vous avez l'access a Consulter les depenses de tout les salles";
             }
+
             
 
+            for (int i = 0; i < ds.Tables["Clients"].Rows.Count ; i++)
+            {
+                if (ds.Tables["Clients"].Rows[i][6].ToString() != "")
+                {
+                      ts = DateTime.Now - DateTime.Parse(ds.Tables["Clients"].Rows[i][6].ToString());
+                        int count = int.Parse(ts.Days.ToString());
+                        if (count <= -2 && count == 0)
+                        {
+                            cpt1++;
+                            soon = ds.Tables["Clients"].Rows[i][6].ToString() + "soon";
+                        }
+                        if (count > 0 && count <= 10)
+                        {
+                            cpt2++;
+                            end = ds.Tables["Clients"].Rows[i][6].ToString() + "end";
+                        }
+                        if (count > 10)
+                        {
+                            cpt3++;
+                            mcha = ds.Tables["Clients"].Rows[i][6].ToString() + "mcha";
+                        }
+                        nots.Text = (cpt1 + cpt2 + cpt3).ToString();
+                    }      
+            }
         }
         
 
