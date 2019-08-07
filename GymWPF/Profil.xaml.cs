@@ -114,17 +114,18 @@ namespace GymWPF
                 {
                       ts = DateTime.Now - DateTime.Parse(ds.Tables["Clients"].Rows[i][6].ToString());
                         int count = int.Parse(ts.Days.ToString());
-                        if (count <= -2 && count == 0)
+                    MessageBox.Show(count.ToString());
+                        if (count >= 28 && count == 30)
                         {
                             cpt1++;
                             soon = ds.Tables["Clients"].Rows[i][6].ToString() + "soon";
                         }
-                        if (count > 0 && count <= 10)
+                        if (count > 30 && count <= 40)
                         {
                             cpt2++;
                             end = ds.Tables["Clients"].Rows[i][6].ToString() + "end";
                         }
-                        if (count > 10)
+                        if (count > 40)
                         {
                             cpt3++;
                             mcha = ds.Tables["Clients"].Rows[i][6].ToString() + "mcha";

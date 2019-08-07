@@ -41,7 +41,7 @@
                             </Border.Background>
 
                         </Border>
-                        <Polygon Points="75,0 225,0 300,150 225,300 75,300 0,150"  Fill="White"/>
+                        <Polygon Points=""  Fill="White"/>
                         <TextBlock Text="LAATARSI" Foreground="White"/>
                         <TextBlock Text="SALAHEDDINE" Foreground="White"/>
                     </Grid>
