@@ -222,7 +222,7 @@
     <Resource Include="Resource\profil.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resource\shelby.jpg" />
+    <Resource Include="Resource\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
