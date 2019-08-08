@@ -165,7 +165,7 @@ namespace GymWPF
                     }
                     else
                     {
-                        back.Source = new BitmapImage(new Uri("/Resource/profil.png", UriKind.Relative));
+                        back.Source = new BitmapImage(new Uri("/Resource/profil.jpg", UriKind.Relative));
                     }
 
 
@@ -213,7 +213,7 @@ namespace GymWPF
                 }
                 else
                 {
-                    back.Source = new BitmapImage(new Uri("/Resource/profil.png", UriKind.Relative));
+                    back.Source = new BitmapImage(new Uri("/Resource/profil.jpg", UriKind.Relative));
                 }
 
 
