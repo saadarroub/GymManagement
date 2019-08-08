@@ -34,6 +34,7 @@ namespace GymWPF
         //------------------------------------//
 
         string ConnectedSalle, ConnectedSport, iduser, nom, prenom ,ToolTip1, ToolTip2 , ToolTip3, ToolTip4, ToolTip5;
+        bool SlideDown_Up = false;
 
 
         TimeSpan ts;
@@ -44,7 +45,21 @@ namespace GymWPF
         string soon, end, mcha;
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
+            if (SlideDown_Up == true)
+            {
+                SlideDown(BoderNotif);
+                ((Storyboard)App.Current.Resources["ToolTipAnimationGoOut"]).Begin(nots);
+                ((Storyboard)App.Current.Resources["ToolTipAnimationGoIn"]).Begin(ListViewNotif);
+
+            }
+            if (SlideDown_Up == false)
+            {
+                SlideUp(BoderNotif);
+                ((Storyboard)App.Current.Resources["ToolTipAnimationGoOut"]).Begin(ListViewNotif);
+                ((Storyboard)App.Current.Resources["ToolTipAnimationGoIn"]).Begin(nots);
+            }
+
 
             da.SelectCommand.CommandText = "select u.Nom,u.Prenom,s.nom_Salle,t.nom_Type,u.Valide,s.IdSalle,t.IdType,u.IdUser from Utilisateur u join UtilisateurSportSalle us on u.IdUser = us.IdUser join Salle s on s.IdSalle = us.IdSalle join Type_Sport t on t.IdType = us.IdType where s.IdSalle = '" + ConnectedSalle + "' and t.IdType = '" + ConnectedSport + "' and u.IdUser = '" + iduser + "'";
             da.Fill(ds, "infos");
@@ -156,7 +171,7 @@ namespace GymWPF
                 ToolTip1 = "Vous avez l'access a Ajouter, Modifier et Supprimer Une Salle";
                 ToolTip2 = "Vous avez l'access a Ajouter, Modifier et Supprimer Un Sport. Tu peut affecter Un Sport a tout les Salles";
                 ToolTip3 = "Vous avez l'access pour ajouter un nouveau Utilisateur, determiner son Rolle. Supprimer et Modifier tout les Utilisateur";
-                ToolTip4 = "vous avez l'access a Consulter la liste des Clients de tout les Salles et Sports";
+                ToolTip4 = "Vous avez l'access a Consulter la liste des Clients de tout les Salles et Sports, Modifier les informations d'un Client ou le Supprimer";
                 ToolTip5 = "Vous avez l'access a Consulter les depenses de tout les salles";
 
                 for (int i = 0; i < ds.Tables["Clientsprin"].Rows.Count; i++)
@@ -236,6 +251,25 @@ namespace GymWPF
         }
 
         string strName, imageName;
+
+        private void NotifBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SlideDown_Up = !SlideDown_Up;
+            if (SlideDown_Up == true)
+            {
+                SlideDown(BoderNotif);
+                ((Storyboard)App.Current.Resources["ToolTipAnimationGoOut"]).Begin(nots);
+                ((Storyboard)App.Current.Resources["ToolTipAnimationGoIn"]).Begin(ListViewNotif);
+
+            }
+            if (SlideDown_Up == false)
+            {
+                SlideUp(BoderNotif);
+                ((Storyboard)App.Current.Resources["ToolTipAnimationGoOut"]).Begin(ListViewNotif);
+                ((Storyboard)App.Current.Resources["ToolTipAnimationGoIn"]).Begin(nots);
+            }
+        }
+
         private void AddBackImageBtn_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -343,6 +377,15 @@ namespace GymWPF
         {
             ((Storyboard)App.Current.Resources["ToolTipAnimationGoOut"]).Begin(c);
         }
+        public void SlideDown(Border c)
+        {
+            ((Storyboard)App.Current.Resources["SlideDown"]).Begin(c);
+        }
+        public void SlideUp(Border c)
+        {
+            ((Storyboard)App.Current.Resources["SlideUp"]).Begin(c);
+        }
+
 
     }
 }
