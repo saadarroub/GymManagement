@@ -49,10 +49,10 @@ namespace GymWPF
             da.SelectCommand.CommandText = "select u.Nom,u.Prenom,s.nom_Salle,t.nom_Type,u.Valide,s.IdSalle,t.IdType,u.IdUser from Utilisateur u join UtilisateurSportSalle us on u.IdUser = us.IdUser join Salle s on s.IdSalle = us.IdSalle join Type_Sport t on t.IdType = us.IdType where s.IdSalle = '" + ConnectedSalle + "' and t.IdType = '" + ConnectedSport + "' and u.IdUser = '" + iduser + "'";
             da.Fill(ds, "infos");
 
-            da.SelectCommand.CommandText = "select * from Clients c join SportClients s on c.IdClient = s.IdClient where IdSalle = '"+ConnectedSalle+"' and IdType = '"+ConnectedSport+"'";
+            da.SelectCommand.CommandText = "select * from Clients c join SportClients s on c.IdClient = s.IdClient where IdSalle = '"+ConnectedSalle+"' and IdType = '"+ConnectedSport+ "' and Active = '" + true + "'";
             da.Fill(ds, "Clients");
 
-            da.SelectCommand.CommandText = "select * from Clients c join SportClients s on c.IdClient = s.IdClient ";
+            da.SelectCommand.CommandText = "select * from Clients c join SportClients s on c.IdClient = s.IdClient and Active = '" + true + "'";
             da.Fill(ds, "Clientsprin");
 
             if (ds.Tables["infos"].Rows.Count != 0 )
@@ -98,6 +98,13 @@ namespace GymWPF
                             nots.Text = (cpt1 + cpt2 + cpt3).ToString();
                         }
                     }
+
+                    cn.Open();
+                    cmd.Connection = cn;
+                    cmd.CommandText = "select count(*) from Clients c join SportClients s on c.IdClient = s.IdClient where IdSalle = '" + ConnectedSalle + "' and IdType = '" + ConnectedSport + "' and Active = '"+true+"'";
+                    int nbClients = int.Parse(cmd.ExecuteScalar().ToString());
+                    nbClient.Text = nbClients.ToString();
+                    cn.Close();
                 }
                 else 
                 {
@@ -137,8 +144,15 @@ namespace GymWPF
                             nots.Text = (cpt1 + cpt2 + cpt3).ToString();
                         }
                     }
+                    
                 }
-                
+                cn.Open();
+                cmd.Connection = cn;
+                cmd.CommandText = "select count(*) from Clients c join SportClients s on c.IdClient = s.IdClient where IdSalle = '" + ConnectedSalle + "' and IdType = '" + ConnectedSport + "' and Active = '" + true + "'";
+                int nbClients2 = int.Parse(cmd.ExecuteScalar().ToString());
+                nbClient.Text = nbClients2.ToString();
+                cn.Close();
+
             }
             else
             {
@@ -158,6 +172,8 @@ namespace GymWPF
                 ToolTip3 = "Vous avez l'access pour ajouter un nouveau Utilisateur, determiner son Rolle. Supprimer et Modifier tout les Utilisateur";
                 ToolTip4 = "vous avez l'access a Consulter la liste des Clients de tout les Salles et Sports";
                 ToolTip5 = "Vous avez l'access a Consulter les depenses de tout les salles";
+
+               
 
                 for (int i = 0; i < ds.Tables["Clientsprin"].Rows.Count; i++)
                 {
@@ -183,6 +199,12 @@ namespace GymWPF
                         nots.Text = (cpt1 + cpt2 + cpt3).ToString();
                     }
                 }
+                cn.Open();
+                cmd.Connection = cn;
+                cmd.CommandText = "select count(*) from Clients c join SportClients s on c.IdClient = s.IdClient where  Active = '" + true + "'";
+                int nbClients3 = int.Parse(cmd.ExecuteScalar().ToString());
+                nbClient.Text = nbClients3.ToString();
+                cn.Close();
             }
 
             

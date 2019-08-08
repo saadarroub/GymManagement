@@ -78,8 +78,21 @@ namespace GymWPF
             {
                 AjouterClientBtn.IsEnabled = false;
                 AjouterClientBtn.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+
+                PayementsClientModalBtn.IsEnabled = false;
+                ModifierClientModalBtn.IsEnabled = false;
+               
+
+                PayementsClientModalBtn.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+                ModifierClientModalBtn.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
+
+
                 cn.Open();
                 cmd.Connection = cn;
+                if (dt != null)
+                {
+                    dt.Clear();
+                }
                 cmd.CommandText = "select c.IdClient as id,c.nom+' '+c.prenom as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient ";
                 dr = cmd.ExecuteReader();
                 dt.Load(dr);
@@ -202,6 +215,40 @@ namespace GymWPF
             {
                 MenuClientModal.Visibility = Visibility.Visible;
             }
+
+            if (ListClient.SelectedIndex != -1)
+            {
+                int index = ListClient.SelectedIndex;
+                DataRowView row = ListClient.Items.GetItemAt(index) as DataRowView;
+                int id = int.Parse(row.Row[0].ToString());
+
+                cn.Open();
+                cmd.Connection = cn;
+                cmd.CommandText = "select Active from Clients where IdClient = '" + id + "'";
+                if (cmd.ExecuteScalar().ToString() == "")
+                {
+                    cn.Close();
+                }
+                else
+                {
+                    bool active = Convert.ToBoolean(cmd.ExecuteScalar().ToString());
+                    cn.Close();
+                    if (active == true)
+                    {
+                        icon.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
+                        state.Text = "Activé";
+                        OnOffClientModalBtn.ToolTip = "Desactiver";
+                    }
+
+                    else
+                    {
+                        icon.Foreground = new SolidColorBrush(Color.FromRgb(255, 52, 73));
+                        state.Text = "Desactivé";
+                        OnOffClientModalBtn.ToolTip = "Activer";
+                    }
+                }
+            }
+               
         }
 
         private void SupprimerClientModalBtn_Click(object sender, RoutedEventArgs e)
@@ -241,7 +288,54 @@ namespace GymWPF
             ac.ShowDialog();
         }
 
-       
+        private void OnOffClientModalBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (ListClient.SelectedIndex != -1)
+            {
+                int index = ListClient.SelectedIndex;
+                DataRowView row = ListClient.Items.GetItemAt(index) as DataRowView;
+                int id = int.Parse(row.Row[0].ToString());
+                try
+                {
+                    if (state.Text == "Activé")
+                    {
+                        icon.Foreground = new SolidColorBrush(Color.FromRgb(255, 52, 73));
+                        state.Text = "Desactivé";
+
+                        cn.Open();
+                        cn = cmd.Connection;
+                        cmd.CommandText = "update Clients set Active = '" + false + "' where IdClient = '" + id + "'";
+                        cmd.ExecuteNonQuery();
+                        cn.Close();
+
+                        messageContent.Text = "Client Desactivé";
+                        animateBorder(borderMessage);
+                    }
+                    else if (state.Text == "Desactivé")
+                    {
+                        icon.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
+                        state.Text = "Activé";
+
+
+                        cn.Open();
+                        cn = cmd.Connection;
+                        cmd.CommandText = "update Clients set Active = '" + true + "' where IdClient = '" + id + "'";
+                        cmd.ExecuteNonQuery();
+                        cn.Close();
+
+                        messageContent.Text = "Client Activé";
+                        animateBorder(borderMessage);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    string msg = ex.Message;
+                    MessageForm m = new MessageForm(msg);
+                    m.ShowDialog();
+                }
+               
+            }
+        }
 
         public void animateBorder(Border c)
         {
