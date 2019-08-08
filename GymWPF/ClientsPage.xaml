@@ -88,15 +88,15 @@
             <!--</ScrollViewer>-->
 
         </StackPanel>
-        <Grid Name="MenuClientModal" Background="#333333"  Height="120" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Visibility="Collapsed" RenderTransformOrigin="0.5,0.5" >
+        <Grid Name="MenuClientModal" Background="#333333"  Height="120" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Visibility="Visible" RenderTransformOrigin="0.5,0.5" >
             
             <StackPanel>
                 <Button Name="PayementsClientModalBtn" Click="PayementsClientModalBtn_Click" Content="Payements"  Height="30" Style="{StaticResource CamoflableBtn2}"/>
                 <Button Name="ModifierClientModalBtn" Click="ModifierClientModalBtn_Click" Content="Modifier" Height="30" Style="{StaticResource CamoflableBtn2}"/>
                 <Button Name="OnOffClientModalBtn" Click="OnOffClientModalBtn_Click"  Height="30" Style="{StaticResource CamoflableBtn2}">
                     <Grid Height="30" Width="100">
-                        <TextBlock Name="state" Text="Activer" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                        <TextBlock Name="icon" Text="&#xf111;" FontSize="14" FontFamily="{StaticResource FontAwesomeSolid}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 10 0"/>
+                        <TextBlock Name="state" Text="Desactive" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBlock Name="icon" Text="&#xf111;" FontSize="14" FontFamily="{StaticResource FontAwesomeSolid}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 5 0"/>
                     </Grid>
                 </Button>
                 <Button Name="SupprimerClientModalBtn" Click="SupprimerClientModalBtn_Click"  Content="Supprimer" Height="30" Style="{StaticResource CamoflableBtn2}"/>
