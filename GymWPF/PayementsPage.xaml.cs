@@ -49,6 +49,7 @@ namespace GymWPF
 
         private void loaded()
         {
+            //NomTextBox.Language = System.Windows.Markup.XmlLanguage.GetLanguage("fr");
             cn.Open();
             cmd.Connection = cn;
             cmd.CommandText = "select p.IdPayment as ID,c.nom+' '+c.prenom as clinet,s.nom_Salle as salle,t.nom_Type as sport,p.date_Payment as date,p.Prix as prix,c.IdClient,s.IdSalle,t.IdType from Payments p join Clients c on p.IdClient=c.IdClient join Salle s on p.IdSalle=s.IdSalle join Type_Sport t on p.IdType=t.IdType where c.IdClient='" + id+"' and s.IdSalle = '"+ConnectedSalle+"' and t.IdType = '"+ConnectedSport+ "' order by p.date_Payment DESC";
