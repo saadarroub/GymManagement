@@ -41,21 +41,33 @@
                 </WrapPanel>
             </Grid>
             <Grid Margin="0 10 0 0">
-                <TextBlock Name="Acsess" Text="Admin Pricipale" FontSize="24" Foreground="White" HorizontalAlignment="Center" FontFamily="Segoe UI Light"/>
+                <TextBlock Name="Acsess" Text="Admin Pricipale" FontSize="24" Foreground="White" HorizontalAlignment="Center" FontFamily="Segoe UI Light" Visibility="Collapsed"/>
             </Grid>
             <Rectangle Fill="#f1c40f" Height="1" Margin="30 10 30 0"/>
             <WrapPanel Margin="0 40 0 0">
-                <Border CornerRadius="5" Background="#1abc9c" Margin="50 0 0 0"  Height="90" Width="340">
+                <Border CornerRadius="5" Background="#1abc9c" Margin="50 0 0 0"  Height="100" Width="340">
                     <Border.Effect>
                         <DropShadowEffect Opacity="0.5" ShadowDepth="0" BlurRadius="10"/>
                     </Border.Effect>
-                    <TextBlock Text="124 Clients" FontSize="29" Margin="10 0 0 0" Foreground="White"/>
+                    <Grid>
+                        <Grid.Effect>
+                            <DropShadowEffect ShadowDepth="0" Opacity="0.3"/>
+                        </Grid.Effect>
+                        <TextBlock  Text="CLIENTS" FontSize="18" Margin="10 0 0 0" Foreground="White"/>
+                        <TextBlock  Text="100" FontSize="60" Margin="0 0 0 0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                    </Grid>
                 </Border>
-                <Border CornerRadius="5" Background="#e74c3c" Margin="50 0 0 0"  Height="90" Width="340" RenderTransformOrigin="0.5,0.5" >
+                <Border CornerRadius="5" Background="#e74c3c" Margin="50 0 0 0"  Height="100" Width="340" RenderTransformOrigin="0.5,0.5" >
                     <Border.Effect>
                         <DropShadowEffect Opacity="0.5" ShadowDepth="0" BlurRadius="10"/>
                     </Border.Effect>
-                    <TextBlock Name="nots" Text="18 Notifications" FontSize="29" Margin="10 0 0 0" Foreground="White"/>
+                    <Grid>
+                        <Grid.Effect>
+                            <DropShadowEffect ShadowDepth="0" Opacity="0.3"/>
+                        </Grid.Effect>
+                        <TextBlock  Text="NOTIFICATIONS" FontSize="18" Margin="10 0 0 0" Foreground="White"/>
+                        <TextBlock Name="nots" Text="19" FontSize="60" Margin="0 0 0 0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                    </Grid>
                 </Border>
             </WrapPanel>
         </StackPanel>

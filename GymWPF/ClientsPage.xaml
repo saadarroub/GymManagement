@@ -62,27 +62,29 @@
             </WrapPanel>
 
             <!--<ScrollViewer ScrollChanged="ScrollViewer_ScrollChanged">-->
-            <WrapPanel Height="440" MouseWheel="WrapPanel_MouseWheel"  PreviewMouseWheel="WrapPanel_PreviewMouseWheel">
+            <Grid Height="440">
+                <WrapPanel Height="440" MouseWheel="WrapPanel_MouseWheel"  PreviewMouseWheel="WrapPanel_PreviewMouseWheel" HorizontalAlignment="Center">
                     <ListBox Name="ListClient" ItemContainerStyle="{StaticResource ListBoxItemsHover}" MouseDown="ListClient_MouseDown" SelectionChanged="ListClient_SelectionChanged" Background="#272727" BorderBrush="{x:Null}" ItemsSource="{Binding}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                            <Border  Height="200" Width="140" Margin="10" Padding="5"  BorderThickness="1" BorderBrush="#ffcc00">
+                                <Border  Height="260" Width="182" Margin="10" Padding="5"  BorderThickness="2" BorderBrush="#ffcc00" CornerRadius="1">
                                     <Grid>
-                                        <TextBlock Text="{Binding id}" VerticalAlignment="Bottom" Margin="5 0 0 15" FontFamily="Segoe UI Light" FontSize="14" Foreground="White" Visibility="Hidden"/>
-                                        <Image Name="images" Source="{Binding Path=Photo}" Stretch="Fill" Height="140" Width="120" VerticalAlignment="Top" Margin="0 15 0 0" />
-                                        <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Margin="5 0 0 15" FontFamily="Segoe UI Light" FontSize="14" />
-                                        <TextBlock Text="{Binding Tel}" VerticalAlignment="Bottom" Margin="5 0 0 0" />
+                                        <TextBlock Text="{Binding id}" VerticalAlignment="Bottom" Margin="5 0 0 15" FontFamily="Segoe UI Light" FontSize="14" Foreground="White" Visibility="Collapsed"/>
+                                        <Image Name="images" Source="{Binding Path=Photo}" Stretch="UniformToFill" Height="200" Width="auto" VerticalAlignment="Top"  HorizontalAlignment="Center" />
+                                        <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Margin="2 0 0 20" FontFamily="Segoe UI Light" FontSize="18" />
+                                        <TextBlock Text="{Binding Tel}" VerticalAlignment="Bottom" Margin="10 0 0 0"  FontFamily="Segoe UI Light" FontSize="14"/>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                            <WrapPanel Width="810"  MouseDown="WrapPanel_MouseDown"/>
+                                <WrapPanel Width="810"  MouseDown="WrapPanel_MouseDown"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                     </ListBox>
-            </WrapPanel>
+                </WrapPanel>
+            </Grid>
             <!--</ScrollViewer>-->
 
         </StackPanel>
