@@ -114,13 +114,13 @@ namespace GymWPF
 
                         if (ch1.IsChecked == true)
                         {
-                            cmd.CommandText = "insert into Utilisateur values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + UserNameTextBox.Text + "','" + PassTextBox.Text + "','" + true + "')";
+                            cmd.CommandText = "insert into Utilisateur(Nom, Prenom, UserName, Password_User, Valide) values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + UserNameTextBox.Text + "','" + PassTextBox.Text + "','" + true + "')";
                             cmd.ExecuteNonQuery();
 
                         }
                         else if (ch1.IsChecked == false)
                         {
-                            cmd.CommandText = "insert into Utilisateur values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + UserNameTextBox.Text + "','" + PassTextBox.Text + "','" + false + "')";
+                            cmd.CommandText = "insert into Utilisateur(Nom, Prenom, UserName, Password_User, Valide) values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + UserNameTextBox.Text + "','" + PassTextBox.Text + "','" + false + "')";
                             cmd.ExecuteNonQuery();
                         }
 

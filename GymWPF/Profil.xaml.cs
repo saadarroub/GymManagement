@@ -52,6 +52,9 @@ namespace GymWPF
             da.SelectCommand.CommandText = "select * from Clients c join SportClients s on c.IdClient = s.IdClient where IdSalle = '"+ConnectedSalle+"' and IdType = '"+ConnectedSport+"'";
             da.Fill(ds, "Clients");
 
+            da.SelectCommand.CommandText = "select * from Clients c join SportClients s on c.IdClient = s.IdClient ";
+            da.Fill(ds, "Clientsprin");
+
             if (ds.Tables["infos"].Rows.Count != 0 )
             {
                 UserName.Text =  ds.Tables["infos"].Rows[0][1].ToString().ToUpper();
@@ -71,6 +74,30 @@ namespace GymWPF
                     ToolTip4 = "vous avez l'access a Ajouter ,Modifier et Supprimer un Clients a partir de votre Salle et Sport";
                     ToolTip5 = "Vous avez l'access de gestioner votre depenses a partir de votre Salle et Sport";
 
+                    for (int i = 0; i < ds.Tables["Clients"].Rows.Count; i++)
+                    {
+                        if (ds.Tables["Clients"].Rows[i][6].ToString() != "")
+                        {
+                            ts = DateTime.Now - DateTime.Parse(ds.Tables["Clients"].Rows[i][6].ToString());
+                            int count = int.Parse(ts.Days.ToString());
+                            if (count >= 28 && count == 30)
+                            {
+                                cpt1++;
+                                soon = ds.Tables["Clients"].Rows[i][6].ToString() + "soon";
+                            }
+                            if (count > 30 && count <= 40)
+                            {
+                                cpt2++;
+                                end = ds.Tables["Clients"].Rows[i][6].ToString() + "end";
+                            }
+                            if (count > 40)
+                            {
+                                cpt3++;
+                                mcha = ds.Tables["Clients"].Rows[i][6].ToString() + "mcha";
+                            }
+                            nots.Text = (cpt1 + cpt2 + cpt3).ToString();
+                        }
+                    }
                 }
                 else 
                 {
@@ -85,6 +112,31 @@ namespace GymWPF
                     ToolTip3 = "Pas d'access";
                     ToolTip4 = "vous avez l'access a Ajouter ,Modifier et Supprimer un Clients a partir de votre Salle et Sport";
                     ToolTip5 = "Vous avez l'access de gestioner votre depenses a partir de votre Salle et Sport";
+
+                    for (int i = 0; i < ds.Tables["Clients"].Rows.Count; i++)
+                    {
+                        if (ds.Tables["Clients"].Rows[i][6].ToString() != "")
+                        {
+                            ts = DateTime.Now - DateTime.Parse(ds.Tables["Clients"].Rows[i][6].ToString());
+                            int count = int.Parse(ts.Days.ToString());
+                            if (count >= 28 && count == 30)
+                            {
+                                cpt1++;
+                                soon = ds.Tables["Clients"].Rows[i][6].ToString() + "soon";
+                            }
+                            if (count > 30 && count <= 40)
+                            {
+                                cpt2++;
+                                end = ds.Tables["Clients"].Rows[i][6].ToString() + "end";
+                            }
+                            if (count > 40)
+                            {
+                                cpt3++;
+                                mcha = ds.Tables["Clients"].Rows[i][6].ToString() + "mcha";
+                            }
+                            nots.Text = (cpt1 + cpt2 + cpt3).ToString();
+                        }
+                    }
                 }
                 
             }
@@ -106,34 +158,36 @@ namespace GymWPF
                 ToolTip3 = "Vous avez l'access pour ajouter un nouveau Utilisateur, determiner son Rolle. Supprimer et Modifier tout les Utilisateur";
                 ToolTip4 = "vous avez l'access a Consulter la liste des Clients de tout les Salles et Sports";
                 ToolTip5 = "Vous avez l'access a Consulter les depenses de tout les salles";
-            }
 
-            
-
-            for (int i = 0; i < ds.Tables["Clients"].Rows.Count ; i++)
-            {
-                if (ds.Tables["Clients"].Rows[i][6].ToString() != "")
+                for (int i = 0; i < ds.Tables["Clientsprin"].Rows.Count; i++)
                 {
-                      ts = DateTime.Now - DateTime.Parse(ds.Tables["Clients"].Rows[i][6].ToString());
+                    if (ds.Tables["Clientsprin"].Rows[i][6].ToString() != "")
+                    {
+                        ts = DateTime.Now - DateTime.Parse(ds.Tables["Clientsprin"].Rows[i][6].ToString());
                         int count = int.Parse(ts.Days.ToString());
                         if (count >= 28 && count == 30)
                         {
                             cpt1++;
-                            soon = ds.Tables["Clients"].Rows[i][6].ToString() + "soon";
+                            soon = ds.Tables["Clientsprin"].Rows[i][6].ToString() + "soon";
                         }
                         if (count > 30 && count <= 40)
                         {
                             cpt2++;
-                            end = ds.Tables["Clients"].Rows[i][6].ToString() + "end";
+                            end = ds.Tables["Clientsprin"].Rows[i][6].ToString() + "end";
                         }
                         if (count > 40)
                         {
                             cpt3++;
-                            mcha = ds.Tables["Clients"].Rows[i][6].ToString() + "mcha";
+                            mcha = ds.Tables["Clientsprin"].Rows[i][6].ToString() + "mcha";
                         }
                         nots.Text = (cpt1 + cpt2 + cpt3).ToString();
-                    }      
+                    }
+                }
             }
+
+            
+
+            
 
             da.SelectCommand.CommandText = "select * from Utilisateur";
             da.Fill(ds, "users");
@@ -212,10 +266,6 @@ namespace GymWPF
                     }
                     
                 }
-               
-
-
-
             }
             catch (Exception ex)
             {
