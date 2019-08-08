@@ -193,28 +193,27 @@ namespace GymWPF
                     imageName = fl.FileName;
                     ImageSourceConverter isc = new ImageSourceConverter();
                     back.SetValue(Image.SourceProperty, isc.ConvertFromString(imageName));
-                }
-                if (imageName != null)
-                {
-                    FileStream fs = new FileStream(imageName, FileMode.Open, FileAccess.Read);
-                    byte[] imgByte = new byte[fs.Length];
-                    fs.Read(imgByte, 0, Convert.ToInt32(fs.Length));
-                    fs.Close();
+                    if (imageName != null)
+                    {
+                        FileStream fs = new FileStream(imageName, FileMode.Open, FileAccess.Read);
+                        byte[] imgByte = new byte[fs.Length];
+                        fs.Read(imgByte, 0, Convert.ToInt32(fs.Length));
+                        fs.Close();
 
 
-                    cn.Open();
-                    cmd.Connection = cn;
-                    cmd.CommandText = "update Utilisateur set imaBack = @img where IdUser = '" + iduser + "'";
-                    cmd.Parameters.Clear();
-                    cmd.Parameters.AddWithValue("img", imgByte);
-                    cmd.ExecuteNonQuery();
-                    cn.Close();
+                        cn.Open();
+                        cmd.Connection = cn;
+                        cmd.CommandText = "update Utilisateur set imaBack = @img where IdUser = '" + iduser + "'";
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("img", imgByte);
+                        cmd.ExecuteNonQuery();
+                        cn.Close();
 
+                    }
+                    
                 }
-                else
-                {
-                    back.Source = new BitmapImage(new Uri("/Resource/profil.jpg", UriKind.Relative));
-                }
+               
+
 
 
             }
