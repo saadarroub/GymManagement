@@ -56,7 +56,7 @@
                             <DropShadowEffect ShadowDepth="0" Opacity="0.3"/>
                         </Grid.Effect>
                         <TextBlock  Text="CLIENTS" FontSize="18" Margin="10 0 0 0" Foreground="White"/>
-                        <TextBlock  Text="100" FontSize="60" Margin="0 0 0 0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                        <TextBlock  Text="-" FontSize="60" Margin="0 0 0 0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                     </Grid>
                 </Border>
                 <Border CornerRadius="5" Background="#e74c3c" Margin="50 0 0 0"  Height="100" Width="340" RenderTransformOrigin="0.5,0.5" >
@@ -68,7 +68,7 @@
                             <DropShadowEffect ShadowDepth="0" Opacity="0.3"/>
                         </Grid.Effect>
                         <TextBlock  Text="NOTIFICATIONS" FontSize="18" Margin="10 0 0 0" Foreground="White"/>
-                        <TextBlock Name="nots" Text="19" FontSize="60" Margin="0 0 0 0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                        <TextBlock Name="nots" Text="-" FontSize="60" Margin="0 0 0 0" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                     </Grid>
                 </Border>
             </WrapPanel>
