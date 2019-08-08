@@ -88,7 +88,7 @@
             <!--</ScrollViewer>-->
 
         </StackPanel>
-        <Grid Name="MenuClientModal" Background="#333333"  Height="120" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Visibility="Visible" RenderTransformOrigin="0.5,0.5" >
+        <Grid Name="MenuClientModal" Background="#333333"  Height="120" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left"  Visibility="Collapsed" RenderTransformOrigin="0.5,0.5" >
             
             <StackPanel>
                 <Button Name="PayementsClientModalBtn" Click="PayementsClientModalBtn_Click" Content="Payements"  Height="30" Style="{StaticResource CamoflableBtn2}"/>
