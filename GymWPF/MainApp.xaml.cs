@@ -136,7 +136,7 @@ namespace GymWPF
                     }
                     else
                     {
-                        ProfilImage.Source = new BitmapImage(new Uri("/Resource/avatar.png", UriKind.Relative));
+                        ProfilImage.Source = new BitmapImage(new Uri("/Resource/user.png", UriKind.Relative));
                     }
 
 
@@ -262,7 +262,7 @@ namespace GymWPF
                 }
                 else
                 {
-                   ProfilImage.Source = new BitmapImage(new Uri("/Resource/avatar.png", UriKind.Relative));
+                   ProfilImage.Source = new BitmapImage(new Uri("/Resource/user.png", UriKind.Relative));
                 }
 
 

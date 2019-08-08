@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
+using Microsoft.Win32;
+using System.IO;
 using System.Windows.Media.Animation;
 
 namespace GymWPF
@@ -132,7 +134,44 @@ namespace GymWPF
                         nots.Text = (cpt1 + cpt2 + cpt3).ToString();
                     }      
             }
-            
+
+            da.SelectCommand.CommandText = "select * from Utilisateur";
+            da.Fill(ds, "users");
+
+            DataTable dataTable = ds.Tables["users"];
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+
+                if (row[0].ToString() == iduser)
+                {
+                    if (row[7].ToString() != "")
+                    {
+                        byte[] blob = (byte[])row[7];
+                        MemoryStream stream = new MemoryStream();
+                        stream.Write(blob, 0, blob.Length);
+                        stream.Position = 0;
+
+                        System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
+                        BitmapImage bi = new BitmapImage();
+                        bi.BeginInit();
+
+                        MemoryStream ms = new MemoryStream();
+                        img.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+                        ms.Seek(0, SeekOrigin.Begin);
+                        bi.StreamSource = ms;
+                        bi.EndInit();
+                        back.Source = bi;
+                    }
+                    else
+                    {
+                        back.Source = new BitmapImage(new Uri("/Resource/profil.png", UriKind.Relative));
+                    }
+
+
+                }
+            }
+
         }
         
 
@@ -141,6 +180,52 @@ namespace GymWPF
             animateBorderIn(BorderToolTip);
             ToolTipTextBlock.Text = ToolTip1;
         }
+
+        string strName, imageName;
+        private void AddBackImageBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                FileDialog fl = new OpenFileDialog();
+                fl.InitialDirectory = Environment.SpecialFolder.MyPictures.ToString();
+                if (fl.ShowDialog() == true)
+                {
+                    imageName = fl.FileName;
+                    ImageSourceConverter isc = new ImageSourceConverter();
+                    back.SetValue(Image.SourceProperty, isc.ConvertFromString(imageName));
+                }
+                if (imageName != null)
+                {
+                    FileStream fs = new FileStream(imageName, FileMode.Open, FileAccess.Read);
+                    byte[] imgByte = new byte[fs.Length];
+                    fs.Read(imgByte, 0, Convert.ToInt32(fs.Length));
+                    fs.Close();
+
+
+                    cn.Open();
+                    cmd.Connection = cn;
+                    cmd.CommandText = "update Utilisateur set imaBack = @img where IdUser = '" + iduser + "'";
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.AddWithValue("img", imgByte);
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
+
+                }
+                else
+                {
+                    back.Source = new BitmapImage(new Uri("/Resource/profil.png", UriKind.Relative));
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                string msg = ex.Message;
+                MessageForm m = new MessageForm(msg);
+                m.ShowDialog();
+            }
+        }
+
         private void Icon1_MouseLeave(object sender, MouseEventArgs e)
         {
             animateBorderOut(BorderToolTip);

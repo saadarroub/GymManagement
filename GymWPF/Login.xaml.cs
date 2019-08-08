@@ -69,8 +69,8 @@ namespace GymWPF
                     string nom = dr[1].ToString();
                     string prenom = dr[2].ToString();
 
-                    string ConnectedSalle = dr[7].ToString();
-                    string ConnectedSport = dr[8].ToString();
+                    string ConnectedSalle = dr[8].ToString();
+                    string ConnectedSport = dr[9].ToString();
 
                     bool valid = (bool)dr[5];
 
