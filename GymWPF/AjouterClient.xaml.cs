@@ -65,7 +65,6 @@ namespace GymWPF
                     image.SetValue(Image.SourceProperty, isc.ConvertFromString(imageName));
                 }
 
-
             }
             catch (Exception ex)
             {
