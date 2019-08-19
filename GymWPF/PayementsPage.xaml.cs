@@ -64,7 +64,7 @@ namespace GymWPF
                 DataRowView row = ListPayments.Items.GetItemAt(0) as DataRowView;
                 last = DateTime.Parse(row.Row[4].ToString());
             }
-            if (count == 0)
+            if (count < 1)
             {
                 cmd.CommandText = "update Clients set LastPay = NULL  where IdClient = '" + id.ToString() + "'";
                 cmd.ExecuteNonQuery();
