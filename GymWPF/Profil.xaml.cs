@@ -40,10 +40,17 @@ namespace GymWPF
 
         TimeSpan ts;
 
-        int cpt1, cpt2, cpt3;
-        
-
+        int cpt1, cpt2, cpt3; 
         string soon, end, mcha;
+
+        public class notifications
+        {
+            public string nom { get; set; }
+            public string state { get; set; }
+        }
+
+        List<notifications> notif = new List<notifications>();
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -149,19 +156,23 @@ namespace GymWPF
                             if (count >= 28 && count == 30)
                             {
                                 cpt1++;
-                                soon = ds.Tables["Clients"].Rows[i][6].ToString() + "soon";
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][2].ToString(), state = "soon" });
+
                             }
                             if (count > 30 && count <= 40)
                             {
                                 cpt2++;
-                                end = ds.Tables["Clients"].Rows[i][6].ToString() + "end";
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][2].ToString(), state = "end" });
+
                             }
                             if (count > 40)
                             {
                                 cpt3++;
-                                mcha = ds.Tables["Clients"].Rows[i][6].ToString() + "mcha";
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][2].ToString(), state = "mcha" });
+
                             }
                             nots.Text = (cpt1 + cpt2 + cpt3).ToString();
+                            ListViewNotif.ItemsSource = notif;
                         }
                     }
                     
