@@ -67,7 +67,7 @@ namespace GymWPF
         {
           
             loaded();
-            ((Storyboard)App.Current.Resources["FadeIn"]).Begin(GridGlobal);
+            
         }
 
        
