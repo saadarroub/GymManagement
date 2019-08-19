@@ -1123,5 +1123,13 @@
         <Storyboard x:Key="SlideUp">
             <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Height" From="290" To="100" Duration="0:0:0.3"/>
         </Storyboard>
+        <Storyboard x:Key="FadeIn">
+            <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Margin" From="0,-100,0,0" To="0,0,0,0" Duration="0:0:0.3"/>
+            <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Opacity" From="0" To="100" Duration="0:0:0.3"/>
+        </Storyboard>
+        <Storyboard x:Key="FadeOut">
+            <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Margin" From="0,0,0,0" To="0,1000,0,0" Duration="0:0:0.3"/>
+            <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Opacity" From="100" To="0" Duration="0:0:0.3"/>
+        </Storyboard>
     </Application.Resources>
 </Application>

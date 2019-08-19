@@ -66,7 +66,8 @@ namespace GymWPF
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
           
-            loaded();            
+            loaded();
+            ((Storyboard)App.Current.Resources["FadeIn"]).Begin(GridGlobal);
         }
 
        
