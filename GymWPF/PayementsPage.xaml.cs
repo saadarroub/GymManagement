@@ -57,24 +57,25 @@ namespace GymWPF
             DataTable dt = new DataTable();
             dt.Load(dr);
             ListPayments.DataContext = dt;
-
+            //count = dt.Rows.Count;
             count = ListPayments.Items.Count;
-            if (count != 0)
-            {
-                DataRowView row = ListPayments.Items.GetItemAt(0) as DataRowView;
-                last = DateTime.Parse(row.Row[4].ToString());
-            }
-            if (count < 1)
+
+            if (count == 0)
             {
                 cmd.CommandText = "update Clients set LastPay = NULL  where IdClient = '" + id.ToString() + "'";
                 cmd.ExecuteNonQuery();
             }
-            if(count >= 1)
+            if (count >= 1)
             {
                 DataRowView row1 = ListPayments.Items.GetItemAt(0) as DataRowView;
 
                 cmd.CommandText = "update Clients set LastPay = '" + row1.Row[4].ToString() + "'  where IdClient = '" + id.ToString() + "'";
                 cmd.ExecuteNonQuery();
+            }
+            if (count != 0)
+            {
+                DataRowView row = ListPayments.Items.GetItemAt(0) as DataRowView;
+                last = DateTime.Parse(row.Row[4].ToString());
             }
 
 
