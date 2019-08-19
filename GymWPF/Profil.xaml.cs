@@ -110,19 +110,24 @@ namespace GymWPF
                             if (count >= 28 && count == 30)
                             {
                                 cpt1++;
-                                soon = ds.Tables["Clients"].Rows[i][6].ToString() + "soon";
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1] + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "soon" });
+
                             }
                             if (count > 30 && count <= 40)
                             {
                                 cpt2++;
-                                end = ds.Tables["Clients"].Rows[i][6].ToString() + "end";
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1] + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "end" });
+
                             }
                             if (count > 40)
                             {
                                 cpt3++;
-                                mcha = ds.Tables["Clients"].Rows[i][6].ToString() + "mcha";
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1] + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "mcha" });
+
                             }
                             nots.Text = (cpt1 + cpt2 + cpt3).ToString();
+                            ListViewNotif.ItemsSource = notif;
+
                         }
                     }
 
@@ -156,19 +161,21 @@ namespace GymWPF
                             if (count >= 28 && count == 30)
                             {
                                 cpt1++;
-                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][2].ToString(), state = "soon" });
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1]+" "+ ds.Tables["Clients"].Rows[i][2].ToString(), state = "soon" });
 
                             }
                             if (count > 30 && count <= 40)
                             {
                                 cpt2++;
-                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][2].ToString(), state = "end" });
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1] + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "end" });
+
 
                             }
                             if (count > 40)
                             {
                                 cpt3++;
-                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][2].ToString(), state = "mcha" });
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1] + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "mcha" });
+
 
                             }
                             nots.Text = (cpt1 + cpt2 + cpt3).ToString();
@@ -215,19 +222,24 @@ namespace GymWPF
                         if (count >= 28 && count == 30)
                         {
                             cpt1++;
-                            soon = ds.Tables["Clientsprin"].Rows[i][6].ToString() + "soon";
+                            notif.Add(new notifications() { nom = ds.Tables["Clientsprin"].Rows[i][1] + " " + ds.Tables["Clientsprin"].Rows[i][2].ToString(), state = "soon" });
+
                         }
                         if (count > 30 && count <= 40)
                         {
                             cpt2++;
-                            end = ds.Tables["Clientsprin"].Rows[i][6].ToString() + "end";
+                            notif.Add(new notifications() { nom = ds.Tables["Clientsprin"].Rows[i][1] + " " + ds.Tables["Clientsprin"].Rows[i][2].ToString(), state = "end" });
+
                         }
                         if (count > 40)
                         {
                             cpt3++;
-                            mcha = ds.Tables["Clientsprin"].Rows[i][6].ToString() + "mcha";
+                            notif.Add(new notifications() { nom = ds.Tables["Clientsprin"].Rows[i][1] + " " + ds.Tables["Clientsprin"].Rows[i][2].ToString(), state = "mcha" });
+
                         }
                         nots.Text = (cpt1 + cpt2 + cpt3).ToString();
+                        ListViewNotif.ItemsSource = notif;
+
                     }
                 }
                 cn.Open();
