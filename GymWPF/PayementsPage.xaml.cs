@@ -280,14 +280,16 @@ namespace GymWPF
 
                         messageContent.Text = "Bien ajouté";
                         animateBorder(borderMessage);
+                        MessageBox.Show("ok1");
 
                         if (DateTime.Parse(NomTextBox.Text.ToString(), new System.Globalization.CultureInfo("fr")) > date)
                         {
                             cmd.Parameters.Clear();
                             cmd.CommandText = "update Clients set LastPay = @b  where IdClient = '" + id.ToString() + "'";
                             cmd.Parameters.AddWithValue("@b", DateTime.Parse(NomTextBox.Text.ToString(), new System.Globalization.CultureInfo("fr")));
-
+                            MessageBox.Show("ok1");
                             cmd.ExecuteNonQuery();
+                            MessageBox.Show("ok2");
                         }                     
                            
                     }
