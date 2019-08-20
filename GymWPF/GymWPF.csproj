@@ -80,6 +80,9 @@
     <Compile Include="PayementsPage.xaml.cs">
       <DependentUpon>PayementsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Preferences.xaml.cs">
+      <DependentUpon>Preferences.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PricipaleUtilisateur.xaml.cs">
       <DependentUpon>PricipaleUtilisateur.xaml</DependentUpon>
     </Compile>
@@ -153,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PayementsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Preferences.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
