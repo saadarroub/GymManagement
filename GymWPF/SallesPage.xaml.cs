@@ -34,18 +34,25 @@ namespace GymWPF
         //------------------------------------//
         
         MainApp dade;
-        public SallesPage(MainApp dade)
+        string ConnectedSalle;
+        public SallesPage(MainApp dade, string ConnectedSalle)
         {
+            this.ConnectedSalle = ConnectedSalle;
             InitializeComponent();
             this.dade = dade;
             
         }
         public void LoadResoource()
         {           
-            da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
-            da.MissingSchemaAction = MissingSchemaAction.AddWithKey;
-            da.Fill(ds, "Salle");
-            ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
+           
+            cn.Open();
+            cmd.Connection = cn;
+            cmd.CommandText = "select IdSalle,nom_Salle from Salle";
+            dr = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(dr);
+            ListViewSalles.DataContext = dt;
+            cn.Close();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -56,17 +63,14 @@ namespace GymWPF
         private void ListViewSalles_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             
-            int index = ListViewSalles.SelectedIndex;
-            if(index >= 0)
+            if(ListViewSalles.SelectedIndex != -1)
             {
-                BtnAjouter.Content = "Nouveau";
+                int index = ListViewSalles.SelectedIndex;
                 DataRowView row = ListViewSalles.Items.GetItemAt(index) as DataRowView;
+
+                BtnAjouter.Content = "Nouveau";
                 SalleName.Text = row.Row[1].ToString();
             }
-            else
-            {
-                SalleName.Text = "";
-            }             
             
                 
         }
@@ -92,19 +96,19 @@ namespace GymWPF
                     
                     else 
                     {
-                        DataRow r = ds.Tables["Salle"].NewRow();
-                        r[1] = SalleName.Text;
-                        ds.Tables["Salle"].Rows.Add(r);
-                        da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
-                        SqlCommandBuilder cb = new SqlCommandBuilder(da);
-                        da.Update(ds, "Salle");
+                        cn.Open();
+                        cmd.Connection = cn;
+                        cmd.CommandText = "insert into Salle values ('" + SalleName.Text + "')";
+                        cmd.ExecuteNonQuery();
+                        cn.Close();
 
                         messageContent.Text = "Bien ajoutée";
                         animateBorder(borderMessage);
 
-                        ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
                         ListViewSalles.UnselectAll();
                         SalleName.Text = null;
+                        LoadResoource();
+
                     }
                 }
                 catch (Exception ex)
@@ -139,21 +143,19 @@ namespace GymWPF
                     }
                     else
                     {
-                        DataRow r = ds.Tables["Salle"].Rows.Find(id.ToString());
-                        r.BeginEdit();
-                        r[1] = SalleName.Text;
-                        r.EndEdit();
-                        da.SelectCommand.CommandText = "select IdSalle,nom_Salle from Salle";
-                        SqlCommandBuilder cb = new SqlCommandBuilder(da);
-                        da.Update(ds, "Salle");
+                        cn.Open();
+                        cmd.Connection = cn;
+                        cmd.CommandText = "update Salle set nom_Salle = '"+SalleName.Text+ "' where IdSalle = '"+id+"'";
+                        cmd.ExecuteNonQuery();
+                        cn.Close();
 
                         messageContent.Text = "Bien modifiée";
                         animateBorder(borderMessage);
 
-                        ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
                         BtnAjouter.Content = "Ajouter";
                         SalleName.Text = null;
                         ListViewSalles.UnselectAll();
+                        LoadResoource();
                     }
                    
                 }
@@ -182,23 +184,36 @@ namespace GymWPF
             c.Owner = dade;
             dade.Opacity = 0.5;
             dade.Effect = new BlurEffect();
-            if ((bool)c.ShowDialog())
+            if (ConnectedSalle == row.Row[0].ToString())
             {
-                DataRow r = ds.Tables["Salle"].Rows.Find(id);
-                r.Delete();
-                SqlCommandBuilder cb = new SqlCommandBuilder(da);
-                da.Update(ds, "Salle");
-
-                messageContent.Text = "Bien supprimée";
+                messageContent.Text = "Vous ne pauvez pas supprimer cet salle";
                 animateBorder(borderMessage);
-
-                BtnAjouter.Content = "Ajouter";
-                SalleName.Text = null;
-                ListViewSalles.UnselectAll();
-                ListViewSalles.DataContext = ds.Tables["Salle"].DefaultView;
-
-
             }
+            else
+            {
+                if ((bool)c.ShowDialog())
+                {
+                    cn.Open();
+                    cmd.Connection = cn;
+
+                    cmd.CommandText = "delete from Utilisateur where IdUser in (select u.IdUser from Utilisateur u join UtilisateurSportSalle us on u.IdUser = us.IdUser where us.IdSalle = '" + id + "')";
+                    cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = "delete from Salle where IdSalle = '" + id + "'";
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
+
+                    messageContent.Text = "Bien supprimée";
+                    animateBorder(borderMessage);
+
+                    BtnAjouter.Content = "Ajouter";
+                    SalleName.Text = null;
+                    ListViewSalles.UnselectAll();
+                    LoadResoource();
+
+                }
+            }
+            
             dade.Opacity = 1;
             dade.Effect = null;
         }
