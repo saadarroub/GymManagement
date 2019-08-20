@@ -57,29 +57,38 @@ namespace GymWPF
             DataTable dt = new DataTable();
             dt.Load(dr);
             ListPayments.DataContext = dt;
-            //count = dt.Rows.Count;
+
+           // count = dt.Rows.Count;          
+
+            cn.Close();
+
+
+        }
+        public void coutItems()
+        {
             count = ListPayments.Items.Count;
 
+            cn.Open();
+            cmd.Connection = cn;
             if (count == 0)
             {
                 cmd.CommandText = "update Clients set LastPay = NULL  where IdClient = '" + id.ToString() + "'";
                 cmd.ExecuteNonQuery();
             }
-            if (count >= 1)
-            {
-                DataRowView row1 = ListPayments.Items.GetItemAt(0) as DataRowView;
-
-                cmd.CommandText = "update Clients set LastPay = '" + row1.Row[4].ToString() + "'  where IdClient = '" + id.ToString() + "'";
-                cmd.ExecuteNonQuery();
-            }
+            
             if (count != 0)
             {
                 DataRowView row = ListPayments.Items.GetItemAt(0) as DataRowView;
                 last = DateTime.Parse(row.Row[4].ToString());
+
+                if (count >= 1)
+                {
+                    DataRowView row1 = ListPayments.Items.GetItemAt(0) as DataRowView;
+
+                    cmd.CommandText = "update Clients set LastPay = '" + row1.Row[4].ToString() + "'  where IdClient = '" + id.ToString() + "'";
+                    cmd.ExecuteNonQuery();
+                }
             }
-
-
-
             cn.Close();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -131,6 +140,7 @@ namespace GymWPF
                 
 
             }
+            coutItems();
             this.Opacity = 1;
             this.Effect = null;
 
@@ -153,7 +163,11 @@ namespace GymWPF
             {
                 try
                 {
-                    int index = ListPayments.SelectedIndex;
+                        DataRowView row1 = ListPayments.Items.GetItemAt(0) as DataRowView;
+                       DateTime date = DateTime.Parse(row1.Row[4].ToString());
+
+
+                        int index = ListPayments.SelectedIndex;
                     DataRowView row = ListPayments.Items.GetItemAt(index) as DataRowView;
                     int idpay = int.Parse(row.Row[0].ToString());
 
@@ -172,7 +186,7 @@ namespace GymWPF
                             cmd.ExecuteNonQuery();
                         }
 
-                        else if (DateTime.Parse(NomTextBox.Text) > last)
+                        else if (DateTime.Parse(NomTextBox.Text) > date)
                         {
                             cmd.CommandText = "update Clients set LastPay = '" + NomTextBox.Text + "'  where IdClient = '" + id.ToString() + "'";
                             cmd.ExecuteNonQuery();
@@ -200,7 +214,8 @@ namespace GymWPF
 
             }
           
-           
+            coutItems();
+
         }
 
         private void CloseBtn_Click(object sender, RoutedEventArgs e)
@@ -216,6 +231,7 @@ namespace GymWPF
             e.Handled = reg.IsMatch(e.Text);
         }
 
+        DateTime date;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (ajouter.Content.ToString() == "Nouveau")
@@ -236,8 +252,14 @@ namespace GymWPF
                 {
                     try
                     {
+                        if(ListPayments.SelectedIndex != -1)
+                        {
+                            DataRowView row1 = ListPayments.Items.GetItemAt(0) as DataRowView;
+                             date = DateTime.Parse(row1.Row[4].ToString());
+                        }
                         
-                            cn.Open();
+
+                        cn.Open();
                             cmd.Connection = cn;
                             cmd.CommandText = "insert into Payments values ('" + NomTextBox.Text + "','" + id.ToString() + "','" + ConnectedSalle.ToString() + "','" + ConnectedSport.ToString() + "','" + PrixTextBox.Text + "')";
                             cmd.ExecuteNonQuery();
@@ -246,7 +268,7 @@ namespace GymWPF
                         messageContent.Text = "Bien ajouté";
                         animateBorder(borderMessage);
 
-                        if (DateTime.Parse(NomTextBox.Text) > last)
+                        if (DateTime.Parse(NomTextBox.Text) > date)
                         {
                             cmd.CommandText = "update Clients set LastPay = '" + NomTextBox.Text + "'  where IdClient = '" + id.ToString() + "'";
                             cmd.ExecuteNonQuery();
@@ -270,7 +292,6 @@ namespace GymWPF
                
             }
 
-              
         }
 
         public void animateBorder(Border c)
