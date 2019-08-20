@@ -231,5 +231,11 @@
   <ItemGroup>
     <Resource Include="Resource\user.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\SHIFTUPv2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\facebook.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

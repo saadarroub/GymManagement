@@ -133,7 +133,7 @@
                     <TextBlock Text="Profil" HorizontalAlignment="Left" Margin="10 0 0 0"/>
                 </Grid>
             </Button>
-            <Button Name="MenuPreferencesBtn" Style="{StaticResource CamoflableBtn2}"  Height="30" Width="167">
+            <Button Name="MenuPreferencesBtn" Style="{StaticResource CamoflableBtn2}"  Height="30" Width="167" Click="MenuPreferencesBtn_Click">
                 <Grid Width="167">
                     <TextBlock Text="Preferences" HorizontalAlignment="Left" Margin="10 0 0 0"/>
                 </Grid>

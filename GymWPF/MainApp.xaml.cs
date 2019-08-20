@@ -38,6 +38,7 @@ namespace GymWPF
         ClientsPage clients;
         DepensesPage depenses;
         Profil profil;
+        Preferences preferences;
 
         string nom, prenom, ConnectedSalle, ConnectedSport,iduser;
         bool valid;
@@ -236,6 +237,16 @@ namespace GymWPF
         }
 
         string strName, imageName;
+
+        private void MenuPreferencesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            HideShowRecNavBtn();
+            HideShowMenuPanel();
+            preferences = new Preferences();
+            MainFrame.Navigate(preferences);
+            ((Storyboard)App.Current.Resources["FadeIn"]).Begin(preferences.GridGlobal);
+        }
+
         private void AddProfilImageBtn_Click(object sender, RoutedEventArgs e)
         {
             try
