@@ -49,10 +49,11 @@ namespace GymWPF
 
         private void loaded()
         {
-            //NomTextBox.Language = System.Windows.Markup.XmlLanguage.GetLanguage("fr");
+            NomTextBox.Language = System.Windows.Markup.XmlLanguage.GetLanguage("fr");
+
             cn.Open();
             cmd.Connection = cn;
-            cmd.CommandText = "select p.IdPayment as ID,c.nom+' '+c.prenom as clinet,s.nom_Salle as salle,t.nom_Type as sport,p.date_Payment as date,p.Prix as prix,c.IdClient,s.IdSalle,t.IdType from Payments p join Clients c on p.IdClient=c.IdClient join Salle s on p.IdSalle=s.IdSalle join Type_Sport t on p.IdType=t.IdType where c.IdClient='" + id+"' and s.IdSalle = '"+ConnectedSalle+"' and t.IdType = '"+ConnectedSport+ "' order by p.date_Payment DESC";
+            cmd.CommandText = "select p.IdPayment as ID,c.nom+' '+c.prenom as clinet,s.nom_Salle as salle,t.nom_Type as sport,FORMAT(p.date_Payment, 'dd MMM yyyy') as date,p.Prix as prix,c.IdClient,s.IdSalle,t.IdType from Payments p join Clients c on p.IdClient=c.IdClient join Salle s on p.IdSalle=s.IdSalle join Type_Sport t on p.IdType=t.IdType where c.IdClient='" + id+"' and s.IdSalle = '"+ConnectedSalle+"' and t.IdType = '"+ConnectedSport+ "' order by p.date_Payment DESC";
             dr = cmd.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(dr);
@@ -173,22 +174,31 @@ namespace GymWPF
 
                     cn.Open();
                     cmd.Connection = cn;
+                        cmd.Parameters.Clear();
+                    cmd.CommandText = "update  Payments set date_Payment =@a, Prix ='" +double.Parse(PrixTextBox.Text) + "' where IdPayment ='" + idpay + "'";
+                        cmd.Parameters.AddWithValue("@a", DateTime.Parse(NomTextBox.Text.ToString(), new System.Globalization.CultureInfo("fr")));
 
-                    cmd.CommandText = "update  Payments set date_Payment ='" + NomTextBox.Text + "', Prix ='" + PrixTextBox.Text + "' where IdPayment ='" + idpay + "'";
-                    cmd.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
 
                     messageContent.Text = "Bien modifié";
                     animateBorder(borderMessage);
 
                         if (count == 1)
                         {
-                            cmd.CommandText = "update Clients set LastPay = '" + NomTextBox.Text + "'  where IdClient = '" + id.ToString() + "'";
+                            cmd.Parameters.Clear();
+                            cmd.CommandText = "update Clients set LastPay = @b  where IdClient = '" + id.ToString() + "'";
+                            cmd.Parameters.AddWithValue("@b", DateTime.Parse(NomTextBox.Text.ToString(), new System.Globalization.CultureInfo("fr")));
+
                             cmd.ExecuteNonQuery();
                         }
 
                         else if (DateTime.Parse(NomTextBox.Text) > date)
                         {
-                            cmd.CommandText = "update Clients set LastPay = '" + NomTextBox.Text + "'  where IdClient = '" + id.ToString() + "'";
+                            cmd.Parameters.Clear();
+
+                            cmd.CommandText = "update Clients set LastPay = @c  where IdClient = '" + id.ToString() + "'";
+                            cmd.Parameters.AddWithValue("@c", DateTime.Parse(NomTextBox.Text.ToString(), new System.Globalization.CultureInfo("fr")));
+
                             cmd.ExecuteNonQuery();
                         }
 
@@ -261,8 +271,11 @@ namespace GymWPF
 
                         cn.Open();
                             cmd.Connection = cn;
-                            cmd.CommandText = "insert into Payments values ('" + NomTextBox.Text + "','" + id.ToString() + "','" + ConnectedSalle.ToString() + "','" + ConnectedSport.ToString() + "','" + PrixTextBox.Text + "')";
-                            cmd.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
+                            cmd.CommandText = "insert into Payments values (@a,'" + id.ToString() + "','" + ConnectedSalle.ToString() + "','" + ConnectedSport.ToString() + "','" +double.Parse(PrixTextBox.Text) + "')";
+                        cmd.Parameters.AddWithValue("@a", DateTime.Parse(NomTextBox.Text.ToString(), new System.Globalization.CultureInfo("fr")));
+
+                        cmd.ExecuteNonQuery();
 
 
                         messageContent.Text = "Bien ajouté";
@@ -270,7 +283,10 @@ namespace GymWPF
 
                         if (DateTime.Parse(NomTextBox.Text) > date)
                         {
-                            cmd.CommandText = "update Clients set LastPay = '" + NomTextBox.Text + "'  where IdClient = '" + id.ToString() + "'";
+                            cmd.Parameters.Clear();
+                            cmd.CommandText = "update Clients set LastPay = @b  where IdClient = '" + id.ToString() + "'";
+                            cmd.Parameters.AddWithValue("@b", DateTime.Parse(NomTextBox.Text.ToString(), new System.Globalization.CultureInfo("fr")));
+
                             cmd.ExecuteNonQuery();
                         }                     
                            

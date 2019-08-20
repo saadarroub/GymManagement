@@ -40,6 +40,7 @@ namespace GymWPF
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            DateTimePicker.Language = System.Windows.Markup.XmlLanguage.GetLanguage("fr");
             
             if (ConnectedSalle.ToString() == "" && ConnectedSport.ToString() == "")
             {
@@ -52,7 +53,7 @@ namespace GymWPF
                 BtnModifier.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
                 cn.Open();
                 cmd.Connection = cn;
-                cmd.CommandText = "select d.IdDep as IdDep, d.Depense as Depense,d.date_dep as date_dep,d.prix as prix,u.UserName as UserName,s.nom_Salle as nom_Salle,t.nom_Type as nom_Type,d.IdSalle,d.IdType,d.IdUser from Depenses d join Utilisateur u on d.IdUser=u.IdUser join Salle s on d.IdSalle=s.IdSalle join Type_Sport t on d.IdType=t.IdType ";
+                cmd.CommandText = "select d.IdDep as IdDep, d.Depense as Depense,FORMAT(d.date_dep, 'dd MMM yyyy') as date_dep,d.prix as prix,u.UserName as UserName,s.nom_Salle as nom_Salle,t.nom_Type as nom_Type,d.IdSalle,d.IdType,d.IdUser from Depenses d join Utilisateur u on d.IdUser=u.IdUser join Salle s on d.IdSalle=s.IdSalle join Type_Sport t on d.IdType=t.IdType ";
                 dr = cmd.ExecuteReader();
                 DataTable dt = new DataTable();
                 dt.Load(dr);
@@ -69,7 +70,7 @@ namespace GymWPF
         {
             cn.Open();
             cmd.Connection = cn;
-            cmd.CommandText = "select d.IdDep as IdDep, d.Depense as Depense,d.date_dep as date_dep,d.prix as prix,u.UserName as UserName,s.nom_Salle as nom_Salle,t.nom_Type as nom_Type,d.IdSalle,d.IdType,d.IdUser from Depenses d join Utilisateur u on d.IdUser=u.IdUser join Salle s on d.IdSalle=s.IdSalle join Type_Sport t on d.IdType=t.IdType where d.IdSalle='" + ConnectedSalle+"' and d.IdType='"+ConnectedSport+"' and d.IdUser='"+iduser+"'";
+            cmd.CommandText = "select d.IdDep as IdDep, d.Depense as Depense,FORMAT(d.date_dep, 'dd MMM yyyy') as date_dep,d.prix as prix,u.UserName as UserName,s.nom_Salle as nom_Salle,t.nom_Type as nom_Type,d.IdSalle,d.IdType,d.IdUser from Depenses d join Utilisateur u on d.IdUser=u.IdUser join Salle s on d.IdSalle=s.IdSalle join Type_Sport t on d.IdType=t.IdType  where d.IdSalle='" + ConnectedSalle+"' and d.IdType='"+ConnectedSport+"' and d.IdUser='"+iduser+"'";
             dr = cmd.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(dr);
@@ -115,8 +116,11 @@ namespace GymWPF
 
                     cn.Open();
                     cmd.Connection = cn;
-                    cmd.CommandText = "update Depenses set  Depense ='" + DepensesTextBox.Text + "', date_dep = '" + DateTimePicker.Text + "', prix ='" + PrixTextBox.Text + "' where IdDep = '" + id + "'";
-                    cmd.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
+                    cmd.CommandText = "update Depenses set  Depense ='" + DepensesTextBox.Text + "', date_dep = @a, prix = @b where IdDep = '" + id + "'";
+                        cmd.Parameters.AddWithValue("@a", DateTime.Parse(DateTimePicker.Text.ToString(), new System.Globalization.CultureInfo("fr")));
+                        cmd.Parameters.AddWithValue("@b",double.Parse(PrixTextBox.Text));
+                        cmd.ExecuteNonQuery();
 
                     messageContent.Text = "Bien modifiée";
                     animateBorder(borderMessage);
@@ -202,13 +206,13 @@ namespace GymWPF
                 BtnAjouter.Content = "Ajouter";
                 DepensesTextBox.Text = null;
                 DateTimePicker.Text = null;
-                PrixTextBox.Text = null;                
+                PrixTextBox.Text = null;
                 ListViewUtilisateurs.UnselectAll();
             }
             else if (BtnAjouter.Content.ToString() == "Ajouter")
 
             {
-                if (DepensesTextBox.Text=="" || DateTimePicker.Text=="" || PrixTextBox.Text=="")
+                if (DepensesTextBox.Text == "" || DateTimePicker.Text == "" || PrixTextBox.Text == "")
                 {
                     messageContent.Text = "Merci de remplire tout les champs";
                     animateBorder(borderMessage);
@@ -219,9 +223,11 @@ namespace GymWPF
                     {
                         cn.Open();
                         cmd.Connection = cn;
-                        cmd.CommandText = "insert into Depenses values ('" + DepensesTextBox.Text + "','" + DateTimePicker.Text + "','" + PrixTextBox.Text + "','" + ConnectedSalle + "','" + ConnectedSport + "','" + iduser + "')";
-                        cmd.ExecuteNonQuery();
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = "insert into Depenses values ('" + DepensesTextBox.Text + "', @a ,'" + double.Parse(PrixTextBox.Text) + "','" + ConnectedSalle + "','" + ConnectedSport + "','" + iduser + "')";
 
+                        cmd.Parameters.AddWithValue("@a", DateTime.Parse(DateTimePicker.Text.ToString(), new System.Globalization.CultureInfo("fr")));
+                        cmd.ExecuteNonQuery();
                         messageContent.Text = "Bien ajoutée";
                         animateBorder(borderMessage);
                     }
@@ -240,9 +246,9 @@ namespace GymWPF
                         loaded();
                     }
                 }
-               
+
             }
-               
+
         }
 
         public void animateBorder(Border c)
