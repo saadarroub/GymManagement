@@ -199,6 +199,7 @@ namespace GymWPF
             HideShowRecNavBtn(RecSalles);
             salles = new SallesPage(this);
             MainFrame.Navigate(salles);
+            ((Storyboard)App.Current.Resources["FadeIn"]).Begin(salles.GridGlobal);
         }
 
         private void MainAppNavBtnToSprorts_Click(object sender, RoutedEventArgs e)
@@ -206,6 +207,7 @@ namespace GymWPF
             HideShowRecNavBtn(RecSports);
             sports = new SportsPage(this);
             MainFrame.Navigate(sports);
+            ((Storyboard)App.Current.Resources["FadeIn"]).Begin(sports.GridGlobal);
         }
 
         private void MainAppNavBtnToUsers_Click(object sender, RoutedEventArgs e)
@@ -213,6 +215,7 @@ namespace GymWPF
             HideShowRecNavBtn(RecUsers);
             utilisateurs = new UtilisateursPage(this, iduser);
             MainFrame.Navigate(utilisateurs);
+            ((Storyboard)App.Current.Resources["FadeIn"]).Begin(utilisateurs.GridGlobal);
         }
 
         private void MenuProfilBtn_Click(object sender, RoutedEventArgs e)
@@ -222,6 +225,7 @@ namespace GymWPF
             HideShowMenuPanel();
             profil = new Profil(this, ConnectedSalle, ConnectedSport, iduser, nom, prenom);
             MainFrame.Navigate(profil);
+            ((Storyboard)App.Current.Resources["FadeIn"]).Begin(profil.GridGlobal);
         }
 
         private void MenuDeconnexionBtn_Click(object sender, RoutedEventArgs e)
@@ -279,6 +283,7 @@ namespace GymWPF
             HideShowRecNavBtn(RecClients);
             clients = new ClientsPage(this, ConnectedSalle, ConnectedSport);
             MainFrame.Navigate(clients);
+            ((Storyboard)App.Current.Resources["FadeIn"]).Begin(clients.GridGlobal);
         }
 
         
@@ -288,6 +293,7 @@ namespace GymWPF
             HideShowRecNavBtn(RecDepenses);
             depenses = new DepensesPage(this , ConnectedSalle, ConnectedSport, iduser);
             MainFrame.Navigate(depenses);
+            ((Storyboard)App.Current.Resources["FadeIn"]).Begin(depenses.GridGlobal);
         }
 
         private void ShowHideMenuBtn_Click(object sender, RoutedEventArgs e)
@@ -302,5 +308,7 @@ namespace GymWPF
             MenuPanel.Visibility = Visibility.Collapsed;
             
         }
+
+        
     }
 }

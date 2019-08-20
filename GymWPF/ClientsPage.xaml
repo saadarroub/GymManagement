@@ -11,7 +11,7 @@
       Loaded="Page_Loaded">
     
 
-    <Grid Name="GridGlobal" Margin="0,10,0,0" >
+    <Grid Name="GridGlobal"  >
 
         <Grid.Resources>
             <Storyboard x:Key="animate">

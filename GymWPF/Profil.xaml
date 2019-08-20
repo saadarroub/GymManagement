@@ -10,7 +10,7 @@
       Title="Profil"
       Loaded="Page_Loaded">
 
-    <Grid>
+    <Grid Name="GridGlobal">
 
         <Image Name="back"  Source="/Resource/profil.jpg" Stretch="UniformToFill" HorizontalAlignment="Center" />
         <Rectangle Opacity="0.8">
