@@ -34,8 +34,10 @@ namespace GymWPF
         //------------------------------------//
 
         MainApp dade;
-        public SportsPage(MainApp dade)
+        string ConnectedSport;
+        public SportsPage(MainApp dade, string ConnectedSport)
         {
+            this.ConnectedSport = ConnectedSport;
             InitializeComponent();
             this.dade = dade;
         }
@@ -211,25 +213,39 @@ namespace GymWPF
             c.Owner = dade;
             dade.Opacity = 0.5;
             dade.Effect = new BlurEffect();
-            if ((bool)c.ShowDialog())
+            if (ConnectedSport == row.Row[0].ToString())
             {
-                cn.Open();
-                cmd.Connection = cn;
-                cmd.CommandText = "delete from Type_Sport where IdType = '" + row.Row[0].ToString() + "'";
-                cmd.ExecuteNonQuery();
-                cn.Close();
-
-                messageContent.Text = "Bien supprimé";
+                messageContent.Text = "Vous ne pauvez pas supprimer cet Sport";
                 animateBorder(borderMessage);
+            }
+            else
+            {
+                if ((bool)c.ShowDialog())
+                {
+                    cn.Open();
+                    cmd.Connection = cn;
 
-                BtnAjouter.Content = "Ajouter";
-                SportName.Text = null;
-                SportPrix.Text = null;
-                SallesComboBox.SelectedIndex = -1;
-                ListViewSports.UnselectAll();
-                loaded();
+                    cmd.CommandText = "delete from Utilisateur where IdUser in (select u.IdUser from Utilisateur u join UtilisateurSportSalle us on u.IdUser = us.IdUser where us.IdType = '" + row.Row[0].ToString() + "')";
+                    cmd.ExecuteNonQuery();
+
+                    cmd.CommandText = "delete from Type_Sport where IdType = '" + row.Row[0].ToString() + "'";
+                    cmd.ExecuteNonQuery();
+                    cn.Close();
+
+                    messageContent.Text = "Bien supprimé";
+                    animateBorder(borderMessage);
+
+                    BtnAjouter.Content = "Ajouter";
+                    SportName.Text = null;
+                    SportPrix.Text = null;
+                    SallesComboBox.SelectedIndex = -1;
+                    ListViewSports.UnselectAll();
+                    loaded();
+
+                }
 
             }
+           
             dade.Opacity = 1;
             dade.Effect = null;
         }

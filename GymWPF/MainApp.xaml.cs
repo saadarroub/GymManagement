@@ -197,7 +197,7 @@ namespace GymWPF
         private void MainAppNavBtnToSalles_Click(object sender, RoutedEventArgs e)
         {
             HideShowRecNavBtn(RecSalles);
-            salles = new SallesPage(this);
+            salles = new SallesPage(this, ConnectedSalle) ;
             MainFrame.Navigate(salles);
             ((Storyboard)App.Current.Resources["FadeIn"]).Begin(salles.GridGlobal);
         }
@@ -205,7 +205,7 @@ namespace GymWPF
         private void MainAppNavBtnToSprorts_Click(object sender, RoutedEventArgs e)
         {
             HideShowRecNavBtn(RecSports);
-            sports = new SportsPage(this);
+            sports = new SportsPage(this, ConnectedSport);
             MainFrame.Navigate(sports);
             ((Storyboard)App.Current.Resources["FadeIn"]).Begin(sports.GridGlobal);
         }
