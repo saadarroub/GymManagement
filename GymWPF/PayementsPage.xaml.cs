@@ -165,7 +165,7 @@ namespace GymWPF
                 try
                 {
                         DataRowView row1 = ListPayments.Items.GetItemAt(0) as DataRowView;
-                       DateTime date = DateTime.Parse(row1.Row[4].ToString());
+                       DateTime date = DateTime.Parse(row1.Row[4].ToString(), new System.Globalization.CultureInfo("fr"));
 
 
                         int index = ListPayments.SelectedIndex;
@@ -192,7 +192,7 @@ namespace GymWPF
                             cmd.ExecuteNonQuery();
                         }
 
-                        else if (DateTime.Parse(NomTextBox.Text) > date)
+                        else if (DateTime.Parse(NomTextBox.Text.ToString(), new System.Globalization.CultureInfo("fr")) > date)
                         {
                             cmd.Parameters.Clear();
 
@@ -265,7 +265,7 @@ namespace GymWPF
                         if(ListPayments.SelectedIndex != -1)
                         {
                             DataRowView row1 = ListPayments.Items.GetItemAt(0) as DataRowView;
-                             date = DateTime.Parse(row1.Row[4].ToString());
+                             date = DateTime.Parse(row1.Row[4].ToString(), new System.Globalization.CultureInfo("fr"));
                         }
                         
 
@@ -281,7 +281,7 @@ namespace GymWPF
                         messageContent.Text = "Bien ajouté";
                         animateBorder(borderMessage);
 
-                        if (DateTime.Parse(NomTextBox.Text) > date)
+                        if (DateTime.Parse(NomTextBox.Text.ToString(), new System.Globalization.CultureInfo("fr")) > date)
                         {
                             cmd.Parameters.Clear();
                             cmd.CommandText = "update Clients set LastPay = @b  where IdClient = '" + id.ToString() + "'";
