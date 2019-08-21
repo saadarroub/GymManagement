@@ -57,14 +57,14 @@
             <ListView ItemContainerStyle="{StaticResource ListItemHover}" Name = "ListViewUtilisateurs" Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="362" Margin="20 10 20 0" ItemsSource="{Binding}" SelectionChanged="ListViewUtilisateurs_SelectionChanged">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource ListViewHeader}">
-                        <GridViewColumn Header = "ID"  Width = "30" DisplayMemberBinding="{Binding Path=IdDep}"/>
+                        <GridViewColumn Header = "ID"  Width = "0" DisplayMemberBinding="{Binding Path=IdDep}"/>
                         <GridViewColumn Header = "Description"  Width = "200" DisplayMemberBinding="{Binding Path=Depense}"/>
-                        <GridViewColumn Header = "Date"  Width = "100" DisplayMemberBinding="{Binding Path=date_dep}"/>
-                        <GridViewColumn Header = "Prix"  Width = "80" DisplayMemberBinding="{Binding Path=prix}"/>
-                        <GridViewColumn Header = "Utlisateur"  Width = "100" DisplayMemberBinding="{Binding Path=UserName}"/>
-                        <GridViewColumn Header = "Salle"  Width = "100" DisplayMemberBinding="{Binding Path=nom_Salle}"/>
-                        <GridViewColumn Header = "Sport"  Width = "100" DisplayMemberBinding="{Binding Path=nom_Type}"/>
-                        <GridViewColumn Header = "Supprimer"  Width = "80">
+                        <GridViewColumn Header = "Date"  Width = "130" DisplayMemberBinding="{Binding Path=date_dep}"/>
+                        <GridViewColumn Header = "Prix"  Width = "130" DisplayMemberBinding="{Binding Path=prix}"/>
+                        <GridViewColumn Header = "Utlisateur"  Width = "90" DisplayMemberBinding="{Binding Path=UserName}"/>
+                        <GridViewColumn Header = "Salle"  Width = "80" DisplayMemberBinding="{Binding Path=nom_Salle}"/>
+                        <GridViewColumn Header = "Sport"  Width = "80" DisplayMemberBinding="{Binding Path=nom_Type}"/>
+                        <GridViewColumn  Width = "50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Style="{StaticResource ListViewBtnDelete}" Click="Button_Click" Name="delete">

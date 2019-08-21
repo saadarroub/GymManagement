@@ -48,11 +48,11 @@
             <ListView ItemContainerStyle="{StaticResource ListItemHover}" Name = "ListViewSports"  Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="291" Margin="20 20 20 0" ItemsSource="{Binding}" SelectionChanged="ListViewSports_SelectionChanged">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource ListViewHeader}">
-                        <GridViewColumn Header = "ID"  Width = "100" DisplayMemberBinding="{Binding Path=IdType}"/>
+                        <GridViewColumn Header = "ID"  Width = "0" DisplayMemberBinding="{Binding Path=IdType}"/>
                         <GridViewColumn Header = "Nom de Salle"  Width = "200" DisplayMemberBinding="{Binding Path=nom_Salle}"/>
                         <GridViewColumn Header = "Sport"  Width = "200" DisplayMemberBinding="{Binding Path=nom_Type}"/>
-                        <GridViewColumn Header = "Prix"  Width = "97" DisplayMemberBinding="{Binding Path=prix}"/>
-                        <GridViewColumn Header = "Supprimer"  Width = "100">
+                        <GridViewColumn Header = "Prix"  Width = "310" DisplayMemberBinding="{Binding Path=prix}"/>
+                        <GridViewColumn  Width = "50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Style="{StaticResource ListViewBtnDelete}" Click="Button_Click" Name="btnRemove">

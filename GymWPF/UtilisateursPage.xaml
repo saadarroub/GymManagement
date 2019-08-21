@@ -76,13 +76,13 @@
             <ListView ItemContainerStyle="{StaticResource ListItemHover}" Name = "ListViewUtilisateurs" Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="332" Margin="20 10 20 0" ItemsSource="{Binding}" SelectionChanged="ListViewUtilisateurs_SelectionChanged">
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource ListViewHeader}">
-                        <GridViewColumn Header = "ID"  Width = "100" DisplayMemberBinding="{Binding Path=IdUser}"/>
+                        <GridViewColumn Header = "ID"  Width = "0" DisplayMemberBinding="{Binding Path=IdUser}"/>
                         <GridViewColumn Header = "Nom "  Width = "100" DisplayMemberBinding="{Binding Path=Nom}"/>
-                        <GridViewColumn Header = "Prenom"  Width = "100" DisplayMemberBinding="{Binding Path=Prenom}"/>
+                        <GridViewColumn Header = "Prenom"  Width = "140" DisplayMemberBinding="{Binding Path=Prenom}"/>
                         <GridViewColumn Header = "Pseudo"  Width = "100" DisplayMemberBinding="{Binding Path=UserName}"/>
                         <GridViewColumn Header = "Mot de pass"  Width = "120" DisplayMemberBinding="{Binding Path=Password_User}"/>
-                        <GridViewColumn Header = "Sport"  Width = "120" DisplayMemberBinding="{Binding Path=Sport}"/>
-                        <GridViewColumn Header = "Supprimer"  Width = "120">
+                        <GridViewColumn Header = "Sport"  Width = "250" DisplayMemberBinding="{Binding Path=Sport}"/>
+                        <GridViewColumn  Width = "50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Style="{StaticResource ListViewBtnDelete}" Click="Button_Click">

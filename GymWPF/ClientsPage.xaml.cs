@@ -94,7 +94,7 @@ namespace GymWPF
                 {
                     dt.Clear();
                 }
-                cmd.CommandText = "select c.IdClient as id,c.nom+' '+c.prenom as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient ";
+                cmd.CommandText = "select c.IdClient as id,UPPER(c.nom) +' '+ UPPER(c.prenom) as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient";
                 dr = cmd.ExecuteReader();
                 dt.Load(dr);
                 ListClient.DataContext = dt;
@@ -108,7 +108,7 @@ namespace GymWPF
                 {
                     dt.Clear();
                 }
-                cmd.CommandText = "select c.IdClient as id,c.nom+' '+c.prenom as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient where s.IdSalle='" + ConnectedSalle.ToString() + "' and s.IdType='" + ConnectedSport.ToString() + "'";
+                cmd.CommandText = "select c.IdClient as id,UPPER(c.nom) +' '+ UPPER(c.prenom) as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient where s.IdSalle='" + ConnectedSalle.ToString() + "' and s.IdType='" + ConnectedSport.ToString() + "'";
                 dr = cmd.ExecuteReader();
                 dt.Load(dr);
                 ListClient.DataContext = dt;

@@ -485,7 +485,7 @@
                                 BorderThickness="0"
                                 Background="{TemplateBinding Background}"
                                 Height="40">
-                            <GridViewRowPresenter HorizontalAlignment="Stretch" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Width="Auto" Margin="0" Content="{TemplateBinding Content}"/>
+                            <GridViewRowPresenter HorizontalAlignment="Stretch" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Width="Auto" Margin="10 0 0 0" Content="{TemplateBinding Content}"/>
                         </Border>
                         <!--<ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="True">

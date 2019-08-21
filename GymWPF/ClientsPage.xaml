@@ -57,7 +57,7 @@
                         </TextBlock.Style>
                     </TextBlock>
                 </Grid>
-                <Button Name="AjouterClientBtn" Style="{StaticResource TextHoverBtn}" Margin="100 10 0 10" Click="AjouterClientBtn_Click">
+                <Button Name="AjouterClientBtn" Style="{StaticResource TextHoverBtn}" Margin="50 10 0 10" Click="AjouterClientBtn_Click">
                     <WrapPanel>
                         <TextBlock Text=" Ajouter Client"  Margin="0 10 0 10" FontFamily="Segoe UI Light" FontSize="16"/>
                         <TextBlock Text="&#xf055;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="29" Margin="10 5 10 5"/>
@@ -75,8 +75,9 @@
                                     <Grid>
                                         <TextBlock Text="{Binding id}" VerticalAlignment="Bottom" Margin="5 0 0 15" FontFamily="Segoe UI Light" FontSize="14" Foreground="White" Visibility="Collapsed"/>
                                         <Image Name="images" Source="{Binding Path=Photo}" Stretch="UniformToFill" Height="200" Width="auto" VerticalAlignment="Top"  HorizontalAlignment="Center" />
-                                        <TextBlock Text="{Binding Title}" VerticalAlignment="Bottom" Margin="2 0 0 20" FontFamily="Segoe UI Light" FontSize="18" />
-                                        <TextBlock Text="{Binding Tel}" VerticalAlignment="Bottom" Margin="10 0 0 0"  FontFamily="Segoe UI Light" FontSize="14"/>
+                                        <TextBlock ToolTip="{Binding Title}" Text="{Binding Title}" VerticalAlignment="Bottom" Margin="0 0 0 20"  FontFamily="Segoe UI" FontSize="14" FontWeight="Regular"/>
+                                        <TextBlock Text="Tel:" VerticalAlignment="Bottom" Margin="10 0 0 0"  FontFamily="Segoe UI Light" FontSize="14"/>
+                                        <TextBlock Text="{Binding Tel}" VerticalAlignment="Bottom" Margin="35 0 0 0"  FontFamily="Segoe UI Light" FontSize="14"/>
                                     </Grid>
                                 </Border>
                             </DataTemplate>
