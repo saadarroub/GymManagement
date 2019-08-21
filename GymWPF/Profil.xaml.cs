@@ -40,7 +40,10 @@ namespace GymWPF
 
         TimeSpan ts;
 
-        int cpt1, cpt2, cpt3; 
+
+        int cpt1, cpt2, cpt3, cpt4; 
+        string soon, end, mcha;
+
 
         public class notifications
         {
@@ -92,13 +95,24 @@ namespace GymWPF
             da.SelectCommand.CommandText = "select * from Clients c join SportClients s on c.IdClient = s.IdClient and Active = '" + true + "'";
             da.Fill(ds, "Clientsprin");
 
+            da.SelectCommand.CommandText = "select * from Payments p join Clients c on p.IdClient = c.IdClient where IdSalle = '" + ConnectedSalle + "' and IdType = '" + ConnectedSport + "' and Active = '" + true + "'";
+            da.Fill(ds, "PriceTest");
+
             if (ds.Tables["infos"].Rows.Count != 0 )
             {
+
                 UserName.Text =  ds.Tables["infos"].Rows[0][1].ToString().ToUpper();
                 SalleName.Text = ds.Tables["infos"].Rows[0][2].ToString();
                 SportName.Text = ds.Tables["infos"].Rows[0][3].ToString();
                 if (Convert.ToBoolean(ds.Tables["infos"].Rows[0][4]) == true)
                 {
+                    cn.Open();
+                    cmd.Connection = cn;
+                    cmd.CommandText = "select prix from SportSalle where IdSalle = '" + ConnectedSalle + "' and IdType = '" + ConnectedSport + "'";
+                    double price = double.Parse(cmd.ExecuteScalar().ToString());
+                    cn.Close();
+
+
                     Acsess.Text = "Admin";
                     icon1.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
                     icon2.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
@@ -135,11 +149,21 @@ namespace GymWPF
                                 notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1] + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "mcha" });
 
                             }
-                            nots.Text = (cpt1 + cpt2 + cpt3).ToString();
-                            ListViewNotif.ItemsSource = notif;
 
                         }
                     }
+
+                    for (int i = 0; i < ds.Tables["PriceTest"].Rows.Count; i++)
+                    {
+                        if(double.Parse(ds.Tables["PriceTest"].Rows[i][5].ToString()) < price)
+                        {
+                            cpt4++;
+                            notif.Add(new notifications() { nom = ds.Tables["PriceTest"].Rows[i][7] + " " + ds.Tables["PriceTest"].Rows[i][8].ToString() + " " + "dans la date" + " " + ds.Tables["PriceTest"].Rows[i][1], state = "price na9es" });
+
+                        }
+                    }
+                    nots.Text = (cpt1 + cpt2 + cpt3 + cpt4).ToString();
+                    ListViewNotif.ItemsSource = notif;
 
                     cn.Open();
                     cmd.Connection = cn;
@@ -150,6 +174,13 @@ namespace GymWPF
                 }
                 else 
                 {
+                    cn.Open();
+                    cmd.Connection = cn;
+                    cmd.CommandText = "select prix from SportSalle where IdSalle = '" + ConnectedSalle + "' and IdType = '" + ConnectedSport + "'";
+                    double price = double.Parse(cmd.ExecuteScalar().ToString());
+                    cn.Close();
+
+
                     Acsess.Text = "Editeur";
                     icon1.Foreground = new SolidColorBrush(Color.FromRgb(255, 52, 73));
                     icon2.Foreground = new SolidColorBrush(Color.FromRgb(255, 52, 73));
@@ -188,11 +219,21 @@ namespace GymWPF
 
 
                             }
-                            nots.Text = (cpt1 + cpt2 + cpt3).ToString();
-                            ListViewNotif.ItemsSource = notif;
+                           
                         }
                     }
-                    
+
+                    for (int i = 0; i < ds.Tables["PriceTest"].Rows.Count; i++)
+                    {
+                        if (double.Parse(ds.Tables["PriceTest"].Rows[i][5].ToString()) < price)
+                        {
+                            cpt4++;
+                            notif.Add(new notifications() { nom = ds.Tables["PriceTest"].Rows[i][7] + " " + ds.Tables["PriceTest"].Rows[i][8].ToString()+" "+"dans la date"+" "+ ds.Tables["PriceTest"].Rows[i][1], state = "price na9es" });
+
+                        }
+                    }
+                    nots.Text = (cpt1 + cpt2 + cpt3 + cpt4).ToString();
+                    ListViewNotif.ItemsSource = notif;
                 }
                 cn.Open();
                 cmd.Connection = cn;
