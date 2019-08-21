@@ -37,8 +37,12 @@
         <StackPanel MouseDown="Page_MouseDown">
             <TextBlock Text="Gestion des Clients et Payements" FontFamily="Segoe UI Light" FontSize="36" Foreground="#FFFFCC00" Margin="30 30 0 0"/>
             <WrapPanel Margin="0 20 0 0">
-                
-                <Grid Margin="147 10 0 10">
+                <TextBlock Margin="10 0 0 0" Text="Filtrer par :" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" FontFamily="Segoe UI Light" Foreground="#bdc3c7" />
+                <RadioButton ToolTip="Tout les Clients" Margin="10 0 0 0" Style="{StaticResource RadioGray}"  Height="30" Width="30"  FontSize="22" GroupName="x" IsChecked="True"/>
+                <RadioButton ToolTip="Clients Activé"  Margin="10 0 0 0" Style="{StaticResource RadioGreen}"  Height="30" Width="30"  FontSize="22" GroupName="x" />
+                <RadioButton ToolTip="Clients Desactivé"  Margin="10 0 0 0" Style="{StaticResource RadioRed}"  Height="30" Width="30"  FontSize="22" GroupName="x" />
+
+                <Grid Margin="80 10 0 10">
                     <TextBox Name="search" Width="297" Height="37" Background="#333333" BorderBrush="#c7c7c7" Margin="5" Padding="10 0 0 0" Foreground="White" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged"/>
                     <TextBlock IsHitTestVisible="False" Text="&#xf002; Search" VerticalAlignment="Center" HorizontalAlignment="Left" FontFamily="{StaticResource FontAwesomeSolid}" Margin="20,0,0,0" Foreground="DarkGray">
                         <TextBlock.Style>

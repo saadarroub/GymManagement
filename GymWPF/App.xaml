@@ -1125,10 +1125,10 @@
         </Storyboard>
         <Storyboard x:Key="FadeIn">
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00">
-                <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0, -500,0,0" />
-                <SplineThicknessKeyFrame KeyTime="00:00:0.2" Value="0, 0,0,0" />
+                <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0, -200,0,0" />
+                <SplineThicknessKeyFrame KeyTime="00:00:0.3" Value="0, 0,0,0" />
             </ThicknessAnimationUsingKeyFrames>
-            <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.3"/>
+            <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5"/>
         </Storyboard>
         <Storyboard x:Key="FadeOut">
             <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00">
@@ -1137,5 +1137,95 @@
             </ThicknessAnimationUsingKeyFrames>
             <DoubleAnimation BeginTime="0:0:0" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.3"/>
         </Storyboard>
+        <Style x:Key="RadioRed" TargetType="{x:Type RadioButton}" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <BulletDecorator Background="Transparent" Cursor="Hand">
+                            <BulletDecorator.Bullet>
+                                <Grid Height="30" Width="30">
+                                    <!--Define size of the Bullet-->
+                                    <!--The two borders-->
+                                    <Border Name="RadioOuter" Background="Transparent" BorderBrush="Gainsboro" BorderThickness="2" CornerRadius="10" Height="20" Width="20" />
+                                    <Border CornerRadius="10" Margin="4" Name="RadioMark" Background="#e74c3c" Visibility="Hidden" Height="10" Width="10" />
+                                </Grid>
+                            </BulletDecorator.Bullet>
+                            <!--Text element-->
+                            <TextBlock Margin="10,0,0,0" Foreground="White"  FontSize="20">
+                        <ContentPresenter />
+                            </TextBlock>
+                        </BulletDecorator>
+                        <!--If item is checked, trigger the visibility of the mark-->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <!--If item is checked, trigger the visibility of the mark and change the color of the selected bullet into a darker gray for better highlighting-->
+                                <Setter TargetName="RadioMark" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="RadioOuter" Property="BorderBrush" Value="#e74c3c" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RadioGreen" TargetType="{x:Type RadioButton}" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <BulletDecorator Background="Transparent" Cursor="Hand">
+                            <BulletDecorator.Bullet>
+                                <Grid Height="30" Width="30">
+                                    <!--Define size of the Bullet-->
+                                    <!--The two borders-->
+                                    <Border Name="RadioOuter" Background="Transparent" BorderBrush="Gainsboro" BorderThickness="2" CornerRadius="10" Height="20" Width="20" />
+                                    <Border CornerRadius="10" Margin="4" Name="RadioMark" Background="#2ecc71" Visibility="Hidden" Height="10" Width="10" />
+                                </Grid>
+                            </BulletDecorator.Bullet>
+                            <!--Text element-->
+                            <TextBlock Margin="10,0,0,0" Foreground="White"  FontSize="20">
+                        <ContentPresenter />
+                            </TextBlock>
+                        </BulletDecorator>
+                        <!--If item is checked, trigger the visibility of the mark-->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <!--If item is checked, trigger the visibility of the mark and change the color of the selected bullet into a darker gray for better highlighting-->
+                                <Setter TargetName="RadioMark" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="RadioOuter" Property="BorderBrush" Value="#2ecc71" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RadioGray" TargetType="{x:Type RadioButton}" >
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <BulletDecorator Background="Transparent" Cursor="Hand">
+                            <BulletDecorator.Bullet>
+                                <Grid Height="30" Width="30">
+                                    <!--Define size of the Bullet-->
+                                    <!--The two borders-->
+                                    <Border Name="RadioOuter" Background="Transparent" BorderBrush="Gainsboro" BorderThickness="2" CornerRadius="10" Height="20" Width="20" />
+                                    <Border CornerRadius="10" Margin="4" Name="RadioMark" Background="#bdc3c7" Visibility="Hidden" Height="10" Width="10" />
+                                </Grid>
+                            </BulletDecorator.Bullet>
+                            <!--Text element-->
+                            <TextBlock Margin="10,0,0,0" Foreground="White"  FontSize="20">
+                        <ContentPresenter />
+                            </TextBlock>
+                        </BulletDecorator>
+                        <!--If item is checked, trigger the visibility of the mark-->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="true">
+                                <!--If item is checked, trigger the visibility of the mark and change the color of the selected bullet into a darker gray for better highlighting-->
+                                <Setter TargetName="RadioMark" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="RadioOuter" Property="BorderBrush" Value="#bdc3c7" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
