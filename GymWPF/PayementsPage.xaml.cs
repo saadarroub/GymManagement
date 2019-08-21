@@ -80,13 +80,15 @@ namespace GymWPF
             if (count != 0)
             {
                 DataRowView row = ListPayments.Items.GetItemAt(0) as DataRowView;
-                last = DateTime.Parse(row.Row[4].ToString());
+                last = DateTime.Parse(row.Row[4].ToString(),  new System.Globalization.CultureInfo("fr"));
 
                 if (count >= 1)
                 {
                     DataRowView row1 = ListPayments.Items.GetItemAt(0) as DataRowView;
+                    cmd.Parameters.Clear();
 
-                    cmd.CommandText = "update Clients set LastPay = '" + row1.Row[4].ToString() + "'  where IdClient = '" + id.ToString() + "'";
+                    cmd.CommandText = "update Clients set LastPay = @x  where IdClient = '" + id.ToString() + "'";
+                    cmd.Parameters.AddWithValue("@x",DateTime.Parse(row1.Row[4].ToString(), new System.Globalization.CultureInfo("fr")));
                     cmd.ExecuteNonQuery();
                 }
             }
