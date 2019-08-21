@@ -41,7 +41,6 @@ namespace GymWPF
         TimeSpan ts;
 
         int cpt1, cpt2, cpt3; 
-        string soon, end, mcha;
 
         public class notifications
         {
@@ -50,6 +49,17 @@ namespace GymWPF
         }
 
         List<notifications> notif = new List<notifications>();
+        MainApp mv;
+        public Profil(MainApp mv, string ConnectedSalle, string ConnectedSport, string iduser, string nom, string prenom)
+        {
+            this.nom = nom;
+            this.prenom = prenom;
+            this.ConnectedSalle = ConnectedSalle;
+            this.ConnectedSport = ConnectedSport;
+            this.iduser = iduser;
+            this.mv = mv;
+            InitializeComponent();
+        }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -300,7 +310,7 @@ namespace GymWPF
             ToolTipTextBlock.Text = ToolTip1;
         }
 
-        string strName, imageName;
+        string  imageName;
 
         private void NotifBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -408,17 +418,8 @@ namespace GymWPF
             animateBorderOut(BorderToolTip);
         }
 
-        MainApp mv;
-        public Profil(MainApp mv, string ConnectedSalle, string ConnectedSport, string iduser, string nom, string prenom)
-        {
-            this.nom = nom;
-            this.prenom = prenom;
-            this.ConnectedSalle = ConnectedSalle;
-            this.ConnectedSport = ConnectedSport;
-            this.iduser = iduser;
-            this.mv = mv;
-            InitializeComponent();
-        }
+        
+        
         public void animateBorderIn(Border c)
         {
             ((Storyboard)App.Current.Resources["ToolTipAnimationGoIn"]).Begin(c);
