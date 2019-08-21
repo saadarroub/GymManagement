@@ -53,7 +53,7 @@ namespace GymWPF
                 BtnModifier.Foreground = new SolidColorBrush(Color.FromRgb(128, 128, 128));
                 cn.Open();
                 cmd.Connection = cn;
-                cmd.CommandText = "select d.IdDep as IdDep, d.Depense as Depense,FORMAT(d.date_dep, 'dd MMM yyyy') as date_dep,d.prix as prix,u.UserName as UserName,s.nom_Salle as nom_Salle,t.nom_Type as nom_Type,d.IdSalle,d.IdType,d.IdUser from Depenses d join Utilisateur u on d.IdUser=u.IdUser join Salle s on d.IdSalle=s.IdSalle join Type_Sport t on d.IdType=t.IdType ";
+                cmd.CommandText = "select d.IdDep as IdDep, d.Depense as Depense,convert(varchar, d.date_dep, 103) as date_dep,d.prix as prix,u.UserName as UserName,s.nom_Salle as nom_Salle,t.nom_Type as nom_Type,d.IdSalle,d.IdType,d.IdUser from Depenses d join Utilisateur u on d.IdUser=u.IdUser join Salle s on d.IdSalle=s.IdSalle join Type_Sport t on d.IdType=t.IdType ";
                 dr = cmd.ExecuteReader();
                 DataTable dt = new DataTable();
                 dt.Load(dr);
@@ -70,7 +70,7 @@ namespace GymWPF
         {
             cn.Open();
             cmd.Connection = cn;
-            cmd.CommandText = "select d.IdDep as IdDep, d.Depense as Depense,FORMAT(d.date_dep, 'dd MMM yyyy') as date_dep,d.prix as prix,u.UserName as UserName,s.nom_Salle as nom_Salle,t.nom_Type as nom_Type,d.IdSalle,d.IdType,d.IdUser from Depenses d join Utilisateur u on d.IdUser=u.IdUser join Salle s on d.IdSalle=s.IdSalle join Type_Sport t on d.IdType=t.IdType  where d.IdSalle='" + ConnectedSalle+"' and d.IdType='"+ConnectedSport+"' and d.IdUser='"+iduser+"'";
+            cmd.CommandText = "select d.IdDep as IdDep, d.Depense as Depense,convert(varchar, d.date_dep, 103) as date_dep,d.prix as prix,u.UserName as UserName,s.nom_Salle as nom_Salle,t.nom_Type as nom_Type,d.IdSalle,d.IdType,d.IdUser from Depenses d join Utilisateur u on d.IdUser=u.IdUser join Salle s on d.IdSalle=s.IdSalle join Type_Sport t on d.IdType=t.IdType  where d.IdSalle='" + ConnectedSalle+"' and d.IdType='"+ConnectedSport+"' and d.IdUser='"+iduser+"'";
             dr = cmd.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(dr);

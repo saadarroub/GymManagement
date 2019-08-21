@@ -94,7 +94,11 @@ namespace GymWPF
                 {
                     dt.Clear();
                 }
-                cmd.CommandText = "select c.IdClient as id,UPPER(c.nom) +' '+ UPPER(c.prenom) as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient";
+
+                
+
+                cmd.CommandText = "select c.IdClient as id,UPPER(c.nom) +' '+ UPPER(c.prenom) as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType, c.Active as Active from Clients c join SportClients s on c.IdClient=s.IdClient order by c.IdClient DESC";
+
                 dr = cmd.ExecuteReader();
                 dt.Load(dr);
                 ListClient.DataContext = dt;
@@ -108,7 +112,9 @@ namespace GymWPF
                 {
                     dt.Clear();
                 }
-                cmd.CommandText = "select c.IdClient as id,UPPER(c.nom) +' '+ UPPER(c.prenom) as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType from Clients c join SportClients s on c.IdClient=s.IdClient where s.IdSalle='" + ConnectedSalle.ToString() + "' and s.IdType='" + ConnectedSport.ToString() + "'";
+
+                cmd.CommandText = "select c.IdClient as id,UPPER(c.nom) +' '+ UPPER(c.prenom) as Title,c.Tel as Tel,c.img as Photo,s.IdClient,s.IdType, c.Active as Active from Clients c join SportClients s on c.IdClient=s.IdClient where s.IdSalle='" + ConnectedSalle.ToString() + "' and s.IdType='" + ConnectedSport.ToString() + "' order by c.IdClient DESC";
+
                 dr = cmd.ExecuteReader();
                 dt.Load(dr);
                 ListClient.DataContext = dt;
@@ -185,7 +191,19 @@ namespace GymWPF
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dt.DefaultView.RowFilter = "Title like '%" + search.Text + "%'";
+            if (ch1.IsChecked == true)
+            {
+                dt.DefaultView.RowFilter = "Title like '%" + search.Text + "%'";
+            }
+            if (ch2.IsChecked == true)
+            {
+                dt.DefaultView.RowFilter = "Title like '%" + search.Text + "%' and Active = '" + true + "'";
+            }
+            if (ch3.IsChecked == true)
+            {
+                dt.DefaultView.RowFilter = "Title like '%" + search.Text + "%' and Active = '" + false + "'";
+            }
+
         }
 
         private void WrapPanel_MouseWheel(object sender, MouseWheelEventArgs e)
@@ -336,6 +354,27 @@ namespace GymWPF
                 }
                
             }
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            dt.DefaultView.RowFilter = "";
+
+        }
+
+        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
+        {
+            loaded();
+
+            dt.DefaultView.RowFilter = "Active = '"+ true +"'";
+        }
+
+        private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
+        {
+            loaded();
+
+            dt.DefaultView.RowFilter = "Active = '" + false + "'";
+
         }
 
         public void animateBorder(Border c)

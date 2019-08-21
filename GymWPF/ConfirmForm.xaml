@@ -10,7 +10,8 @@
         BorderThickness="1"
 
         Title="ConfirmForm" Height="150" Width="367" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded"
+        >
     <Grid>
         <TextBlock x:Name="mssg" Text="Vous voullez vraiment supprimer ?" Foreground="White" FontSize="18" TextWrapping="Wrap" MaxWidth="300" Margin="0 10 0 0" TextAlignment="Center" />
         <Button Height="30" Width="90" Content="Oui" Style="{StaticResource RedBtn}" Margin="70,108,205,10" Click="Button_Click" />

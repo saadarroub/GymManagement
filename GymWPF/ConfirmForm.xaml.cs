@@ -45,5 +45,7 @@ namespace GymWPF
         {
             mssg.Text = msg1;
         }
+
+        
     }
 }
