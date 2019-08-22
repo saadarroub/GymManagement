@@ -120,7 +120,7 @@
 
                 </StackPanel>
 
-                <Frame Grid.Column="1" Name="MainFrame" NavigationUIVisibility="Hidden" />
+                <Frame Grid.Column="1" Name="MainFrame" NavigationUIVisibility="Hidden" Navigating="MainFrame_Navigating" />
             </Grid>
 
         </StackPanel>
