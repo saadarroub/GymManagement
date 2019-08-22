@@ -254,6 +254,10 @@ namespace GymWPF
             {
                 e.Cancel = true;
             }
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                e.Cancel = true;
+            }
         }
 
         private void AddProfilImageBtn_Click(object sender, RoutedEventArgs e)

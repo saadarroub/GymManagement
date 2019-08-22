@@ -201,7 +201,7 @@ namespace GymWPF
         {
             if (ch1.IsChecked == true)
             {
-                dt.DefaultView.RowFilter = "Title like '%" + search.Text + "%'";
+                dt.DefaultView.RowFilter = "Title like ('%" + search.Text.Trim() + "%')";
             }
             if (ch2.IsChecked == true)
             {
