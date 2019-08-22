@@ -145,7 +145,7 @@ namespace GymWPF
                         if(double.Parse(ds.Tables["PriceTest"].Rows[i][5].ToString()) < price)
                         {
                             cpt4++;
-                            notif.Add(new notifications() { nom = ds.Tables["PriceTest"].Rows[i][7] + " " + ds.Tables["PriceTest"].Rows[i][8].ToString() + " " + "dans la date" + " " + ds.Tables["PriceTest"].Rows[i][1], state = "price na9es" });
+                            notif.Add(new notifications() { nom = ds.Tables["PriceTest"].Rows[i][7] + " " + ds.Tables["PriceTest"].Rows[i][8].ToString() , state = "price na9es dans la date" + " " + ds.Tables["PriceTest"].Rows[i][1] });
 
                         }
                     }
@@ -215,7 +215,7 @@ namespace GymWPF
                         if (double.Parse(ds.Tables["PriceTest"].Rows[i][5].ToString()) < price)
                         {
                             cpt4++;
-                            notif.Add(new notifications() { nom = ds.Tables["PriceTest"].Rows[i][7] + " " + ds.Tables["PriceTest"].Rows[i][8].ToString()+" "+"dans la date"+" "+ ds.Tables["PriceTest"].Rows[i][1], state = "price na9es" });
+                            notif.Add(new notifications() { nom = ds.Tables["PriceTest"].Rows[i][7] + " " + ds.Tables["PriceTest"].Rows[i][8].ToString(), state = "price na9es dans la date" + " " + ds.Tables["PriceTest"].Rows[i][1] });
 
                         }
                     }

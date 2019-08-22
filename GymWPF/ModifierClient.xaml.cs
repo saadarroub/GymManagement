@@ -17,6 +17,7 @@ using Microsoft.Win32;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Windows.Media.Animation;
+using System.Text.RegularExpressions;
 
 namespace GymWPF
 {
@@ -153,6 +154,13 @@ namespace GymWPF
             }
            
         }
+
+        private void TelTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex reg = new Regex(@"\D");
+            e.Handled = reg.IsMatch(e.Text);
+        }
+
         FileDialog fl;
         private void Button_Click(object sender, RoutedEventArgs e)
         {

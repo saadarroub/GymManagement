@@ -46,7 +46,7 @@
                     </WrapPanel>
                     <WrapPanel Margin="0 10">
                         <TextBlock Text="Tel :" FontFamily="Segoe UI Light" FontSize="18"  Height="30" Foreground="White" Margin="20 5 10 0"/>
-                        <TextBox Name="TelTextBox" Width="167" Height="30"  Margin="76 5 10 0" Background="#333333" BorderBrush="#c7c7c7" FontSize="16" VerticalContentAlignment="Center" Padding="5 0 5 0" Foreground="White"/>
+                        <TextBox PreviewTextInput="TelTextBox_PreviewTextInput" Name="TelTextBox" Width="167" Height="30"  Margin="76 5 10 0" Background="#333333" BorderBrush="#c7c7c7" FontSize="16" VerticalContentAlignment="Center" Padding="5 0 5 0" Foreground="White"/>
                     </WrapPanel>
                 </StackPanel>
                 <StackPanel Height="206" Width="176">
