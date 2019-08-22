@@ -18,6 +18,7 @@ using System.IO;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
+using System.Text.RegularExpressions;
 
 namespace GymWPF
 {
@@ -78,6 +79,12 @@ namespace GymWPF
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             insertclient();
+        }
+
+        private void TelTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex reg = new Regex(@"\D");
+            e.Handled = reg.IsMatch(e.Text);
         }
 
         private void insertclient()
