@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace GymWPF
 {
@@ -23,6 +24,16 @@ namespace GymWPF
         public Preferences()
         {
             InitializeComponent();
+        }
+
+        private void BtnFacebook_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("www.facebook.com/ShiftUpIT");
+        }
+
+        private void BtnWebsite_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://shiftup-it.com");
         }
     }
 }
