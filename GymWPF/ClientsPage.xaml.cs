@@ -28,6 +28,7 @@ namespace GymWPF
         MainApp dade;
         Point p2;
         string ConnectedSalle, ConnectedSport;
+        bool isPostBack = false;
 
         public ClientsPage(MainApp dade ,string ConnectedSalle, string ConnectedSport)
         {
@@ -75,6 +76,12 @@ namespace GymWPF
         DataTable dt = new DataTable();
         private void loaded()
         {
+            if (isPostBack == false)
+            {
+                ch1.IsChecked = true;
+                isPostBack = true;
+            }
+
             if (ConnectedSalle.ToString() == "" && ConnectedSport.ToString() == "")
             {
                 AjouterClientBtn.IsEnabled = false;
@@ -120,6 +127,7 @@ namespace GymWPF
                 ListClient.DataContext = dt;
                 cn.Close();                
             }
+
         }
 
         //public class TodoItem
@@ -358,7 +366,16 @@ namespace GymWPF
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            loaded();
+
             dt.DefaultView.RowFilter = "";
+
+            ListClient.UnselectAll();
+            if (MenuClientModal.Visibility == Visibility.Visible)
+            {
+                MenuClientModal.Visibility = Visibility.Collapsed;
+            }
+            
 
         }
 
@@ -367,6 +384,12 @@ namespace GymWPF
             loaded();
 
             dt.DefaultView.RowFilter = "Active = '"+ true +"'";
+
+            ListClient.UnselectAll();
+            if (MenuClientModal.Visibility == Visibility.Visible)
+            {
+                MenuClientModal.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
@@ -374,6 +397,12 @@ namespace GymWPF
             loaded();
 
             dt.DefaultView.RowFilter = "Active = '" + false + "'";
+
+            ListClient.UnselectAll();
+            if (MenuClientModal.Visibility == Visibility.Visible)
+            {
+                MenuClientModal.Visibility = Visibility.Collapsed;
+            }
 
         }
 

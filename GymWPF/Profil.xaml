@@ -84,8 +84,8 @@
                             <ListView ItemContainerStyle="{StaticResource ListItemHover}" Name = "ListViewNotif" Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="250" Margin="5 0 5 0"  VerticalAlignment="Top"  SelectionMode="Single" Visibility="Collapsed" ItemsSource="{Binding}">
                                 <ListView.View>
                                     <GridView ColumnHeaderContainerStyle="{StaticResource ListViewHeader}">
-                                        <GridViewColumn Header = "Nom"  Width = "200" DisplayMemberBinding="{Binding nom}"/>
-                                        <GridViewColumn Header = "Statut"  Width = "140" DisplayMemberBinding="{Binding state}"/>
+                                        <GridViewColumn Header = "Nom"  Width = "180" DisplayMemberBinding="{Binding nom}"/>
+                                        <GridViewColumn Header = "Statut"  Width = "auto" DisplayMemberBinding="{Binding state}"/>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
