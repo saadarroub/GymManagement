@@ -84,7 +84,7 @@ namespace GymWPF
             {
                 if (SportName.Text == "" || SportPrix.Text == "" ||  SallesComboBox.SelectedIndex == -1 )
                 {
-                    messageContent.Text = "Merci de remplire tout les champs";
+                    messageContent.Text = "Merci De Remplir Tous Les Champs";
                     animateBorder(borderMessage);
                 }
                 else
@@ -110,7 +110,7 @@ namespace GymWPF
                             SallesComboBox.SelectedIndex = -1;
 
 
-                        messageContent.Text = "Bien ajouté";
+                        messageContent.Text = "Sport Bien Ajouté";
                         animateBorder(borderMessage);
 
 
@@ -148,14 +148,14 @@ namespace GymWPF
         {
             if (ListViewSports.SelectedIndex == -1)
             {
-                messageContent.Text = "veuillez selectioner une ligne";
+                messageContent.Text = "Veuillez Sélectionner Une Ligne";
                 animateBorder(borderMessage);
             }
             else
             {
                  if (SportName.Text == "" || SportPrix.Text == "" || SallesComboBox.SelectedIndex == -1)
             {
-                messageContent.Text = "Merci de remplire tout les champs";
+                messageContent.Text = "Merci De Remplir Tous Les Champs";
                 animateBorder(borderMessage);
             }
             else
@@ -184,7 +184,7 @@ namespace GymWPF
                     loaded();
 
 
-                    messageContent.Text = "Bien modifié";
+                    messageContent.Text = "Sport Bien Modifié";
                     animateBorder(borderMessage);
 
 
@@ -209,13 +209,13 @@ namespace GymWPF
 
             
 
-            ConfirmForm c = new ConfirmForm("voulez vous vraiment supprimer ?");
+            ConfirmForm c = new ConfirmForm("Tout Utilisateur Ou Client Lié à Cet Sport Sera Supprimé, Voulez Vous Vraiment Continuer?");
             c.Owner = dade;
             dade.Opacity = 0.5;
             dade.Effect = new BlurEffect();
             if (ConnectedSport == row.Row[0].ToString())
             {
-                messageContent.Text = "Vous ne pauvez pas supprimer cet Sport";
+                messageContent.Text = "Vous Ne Pouvez Pas Supprimer Le Sport De Salle Connecté";
                 animateBorder(borderMessage);
             }
             else

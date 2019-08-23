@@ -134,19 +134,19 @@ namespace GymWPF
                             if (count >= 28 && count == 30)
                             {
                                 cpt1++;
-                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "soon" });
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "L'abonnement De Cette Personne Se Termine Très Bientôt" });
 
                             }
                             if (count > 30 && count <= 40)
                             {
                                 cpt2++;
-                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "end" });
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "L'abonnement De Cette Personne Est Terminé" });
 
                             }
                             if (count > 40)
                             {
                                 cpt3++;
-                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "mcha" });
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "Vous Pouvez Désactiver Cette Personne, Car Son Abonnement Est Terminé Il y A Longtemps" });
 
                             }
 
@@ -158,7 +158,7 @@ namespace GymWPF
                         if(double.Parse(ds.Tables["PriceTest"].Rows[i][5].ToString()) < price)
                         {
                             cpt4++;
-                            notif.Add(new notifications() { nom = ds.Tables["PriceTest"].Rows[i][7].ToString() + " " + ds.Tables["PriceTest"].Rows[i][8].ToString() , state = "price na9es dans la date" + " " + ds.Tables["PriceTest"].Rows[i][1].ToString() });
+                            notif.Add(new notifications() { nom = ds.Tables["PriceTest"].Rows[i][7].ToString() + " " + ds.Tables["PriceTest"].Rows[i][8].ToString() , state = " À Un Paiement Inferieur Au Montant Convenu Dans La Date: " + " " + ds.Tables["PriceTest"].Rows[i][1].ToString() });
 
                         }
                     }
@@ -202,20 +202,20 @@ namespace GymWPF
                             if (count >= 28 && count == 30)
                             {
                                 cpt1++;
-                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() +" "+ ds.Tables["Clients"].Rows[i][2].ToString(), state = "soon" });
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() +" "+ ds.Tables["Clients"].Rows[i][2].ToString(), state = "L'abonnement De Cette Personne Se Termine Très Bientôt" });
 
                             }
                             if (count > 30 && count <= 40)
                             {
                                 cpt2++;
-                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "end" });
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "L'abonnement De Cette Personne Est Terminé" });
 
 
                             }
                             if (count > 40)
                             {
                                 cpt3++;
-                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "mcha" });
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "Vous Pouvez Désactiver Cette Personne, Car Son Abonnement Est Terminé Il Y A Longtemps" });
 
 
                             }
@@ -228,7 +228,7 @@ namespace GymWPF
                         if (double.Parse(ds.Tables["PriceTest"].Rows[i][5].ToString()) < price)
                         {
                             cpt4++;
-                            notif.Add(new notifications() { nom = ds.Tables["PriceTest"].Rows[i][7].ToString() + " " + ds.Tables["PriceTest"].Rows[i][8].ToString(), state = "price na9es dans la date" + " " +ds.Tables["PriceTest"].Rows[i][1].ToString() });
+                            notif.Add(new notifications() { nom = ds.Tables["PriceTest"].Rows[i][7].ToString() + " " + ds.Tables["PriceTest"].Rows[i][8].ToString(), state = " À Un Paiement Inferieur Au Montant Convenu Dans La Date: " + " " +ds.Tables["PriceTest"].Rows[i][1].ToString() });
 
                         }
                     }
@@ -273,19 +273,19 @@ namespace GymWPF
                         if (count >= 28 && count == 30)
                         {
                             cpt1++;
-                            notif.Add(new notifications() { nom = ds.Tables["Clientsprin"].Rows[i][1].ToString() + " " + ds.Tables["Clientsprin"].Rows[i][2].ToString(), state = "soon" });
+                            notif.Add(new notifications() { nom = ds.Tables["Clientsprin"].Rows[i][1].ToString() + " " + ds.Tables["Clientsprin"].Rows[i][2].ToString(), state = "L'abonnement De Cette Personne Se Termine Très Bientôt" });
 
                         }
                         if (count > 30 && count <= 40)
                         {
                             cpt2++;
-                            notif.Add(new notifications() { nom = ds.Tables["Clientsprin"].Rows[i][1].ToString() + " " + ds.Tables["Clientsprin"].Rows[i][2].ToString(), state = "end" });
+                            notif.Add(new notifications() { nom = ds.Tables["Clientsprin"].Rows[i][1].ToString() + " " + ds.Tables["Clientsprin"].Rows[i][2].ToString(), state = "L'abonnement De Cette Personne Est Terminé" });
 
                         }
                         if (count > 40)
                         {
                             cpt3++;
-                            notif.Add(new notifications() { nom = ds.Tables["Clientsprin"].Rows[i][1].ToString() + " " + ds.Tables["Clientsprin"].Rows[i][2].ToString(), state = "mcha" });
+                            notif.Add(new notifications() { nom = ds.Tables["Clientsprin"].Rows[i][1].ToString() + " " + ds.Tables["Clientsprin"].Rows[i][2].ToString(), state = "Vous Pouvez Désactiver Cette Personne, Car Son Abonnement Est Terminé Il Y A Longtemps" });
 
                         }
                         nots.Text = (cpt1 + cpt2 + cpt3).ToString();

@@ -89,7 +89,7 @@ namespace GymWPF
         {
             if (UsertextBox.Text=="" || OldPassTextBox.Password=="")
             {
-                messageContent.Text = "Merci de saisir tout les informations";
+                messageContent.Text = "Merci De Saisir Toutes Les Informations";
                 animateBorder(borderMessage);
             }
             else
@@ -106,14 +106,14 @@ namespace GymWPF
                         cmd.CommandText = "update Utilisateur set Password_User = '" + NewPassTextBox.Password.Replace("'", "''") + "' where UserName ='" + UsertextBox.Text.Replace("'","''") + "'";
                         cmd.ExecuteNonQuery();
 
-                        messageContent.Text = "Bien modifié";
+                        messageContent.Text = "Mot De Passe Bien Modifiée";
                         animateBorder(borderMessage);
 
 
                     }
                     else
                     {
-                        messageContent.Text = "Merci de confirmer votre mot de passe";
+                        messageContent.Text = "Merci De Confirmer Votre Mot De Passe";
                         animateBorder(borderMessage);
                     }
 

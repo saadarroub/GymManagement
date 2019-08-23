@@ -80,7 +80,7 @@ namespace GymWPF
                 }
                 else
                 {
-                    messageContent.Text = "Nom d'utilisateur ou mot de passe incorrect";
+                    messageContent.Text = "Nom D'Utilisateur Ou Mot De Passe Incorrect";
                     animateBorder(borderMessage);
                 }
                 dr.Close();

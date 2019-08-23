@@ -91,7 +91,7 @@ namespace GymWPF
         {
             if (NomTextBox.Text==""|| PrenomTextBox.Text=="")
             {
-                messageContent.Text = "Merci de remplire tout les champs";
+                messageContent.Text = "Merci De Remplir Tous Les Champs";
                 animateBorder(borderMessage);
             }
             else
@@ -124,7 +124,7 @@ namespace GymWPF
                         //MessageForm m = new MessageForm(msg);
                         //m.ShowDialog();
 
-                        messageContent.Text = "Bien ajouté";
+                        messageContent.Text = "Client Bien Ajouté";
                         animateBorder(borderMessage);
 
                     }
@@ -152,7 +152,7 @@ namespace GymWPF
                         //MessageForm m = new MessageForm(msg);
                         //m.ShowDialog();
 
-                        messageContent.Text = "Bien ajouté";
+                        messageContent.Text = "Client Bien Ajouté";
                         animateBorder(borderMessage);
                     }
                 }

@@ -96,14 +96,14 @@ namespace GymWPF
         {
             if (ListViewUtilisateurs.SelectedIndex == -1)
             {
-                messageContent.Text = "veuillez selectioner une ligne";
+                messageContent.Text = "Veuillez Selectioner Une Ligne";
                 animateBorder(borderMessage);
             }
             else
             {
              if (DepensesTextBox.Text == "" || DateTimePicker.Text == "" || PrixTextBox.Text == "")
             {
-                messageContent.Text = "Merci de remplire tout les champs";
+                messageContent.Text = "Merci De Remplir Tous Les Champs";
                 animateBorder(borderMessage);
             }
             else
@@ -122,7 +122,7 @@ namespace GymWPF
                         cmd.Parameters.AddWithValue("@b",double.Parse(PrixTextBox.Text));
                         cmd.ExecuteNonQuery();
 
-                    messageContent.Text = "Bien modifiée";
+                    messageContent.Text = "Bien Modifiée";
                     animateBorder(borderMessage);
                 }
                 catch (Exception ex)
@@ -157,7 +157,7 @@ namespace GymWPF
             
                
 
-            ConfirmForm c = new ConfirmForm("voulez vous vraiment supprimer ?");
+            ConfirmForm c = new ConfirmForm("Cette Dépense Sera Définitivement Supprimée, Voulez Vous Vraiment Continuer?");
             c.Owner = dade;
             dade.Opacity = 0.5;
             dade.Effect = new BlurEffect();
@@ -169,7 +169,7 @@ namespace GymWPF
                 cmd.ExecuteNonQuery();
                 cn.Close();
 
-                messageContent.Text = "Bien supprimée";
+                messageContent.Text = "Bien Supprimée";
                 animateBorder(borderMessage);
 
                 BtnAjouter.Content = "Ajouter";
@@ -214,7 +214,7 @@ namespace GymWPF
             {
                 if (DepensesTextBox.Text == "" || DateTimePicker.Text == "" || PrixTextBox.Text == "")
                 {
-                    messageContent.Text = "Merci de remplire tout les champs";
+                    messageContent.Text = "Merci De Remplir Tous Les Champs";
                     animateBorder(borderMessage);
                 }
                 else
@@ -228,7 +228,7 @@ namespace GymWPF
 
                         cmd.Parameters.AddWithValue("@a", DateTime.Parse(DateTimePicker.Text.ToString(), new System.Globalization.CultureInfo("fr")));
                         cmd.ExecuteNonQuery();
-                        messageContent.Text = "Bien ajoutée";
+                        messageContent.Text = "Bien Ajoutée";
                         animateBorder(borderMessage);
                     }
                     catch (Exception ex)

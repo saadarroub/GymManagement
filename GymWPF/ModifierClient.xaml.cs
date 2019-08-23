@@ -100,7 +100,7 @@ namespace GymWPF
         {
             if (NomTextBox.Text == "" || PrenomTextBox.Text == "")
             {
-                messageContent.Text = "Merci de remplire tout les champs";
+                messageContent.Text = "Merci De Remplir Tous Les Champs";
                 animateBorder(borderMessage);
             }
             else
@@ -121,7 +121,7 @@ namespace GymWPF
                         cmd.Parameters.AddWithValue("img", imgByte);
                         cmd.ExecuteNonQuery();
 
-                        messageContent.Text = "Bien modifié";
+                        messageContent.Text = "Client Bien Modifié";
                         animateBorder(borderMessage);
 
                     }
@@ -132,7 +132,7 @@ namespace GymWPF
                         cmd.CommandText = "update Clients set nom = '" + NomTextBox.Text.Replace("'","''") + "', prenom ='" + PrenomTextBox.Text.Replace("'","''") + "', Tel ='" + TelTextBox.Text.Replace("'","''") + "'  where IdClient = '" + id + "'";
                         cmd.ExecuteNonQuery();
 
-                        messageContent.Text = "Bien modifié";
+                        messageContent.Text = "Client Bien Modifié";
                         animateBorder(borderMessage);
                     }
                 }

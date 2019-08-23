@@ -119,7 +119,7 @@ namespace GymWPF
 
           
                
-            ConfirmForm c = new ConfirmForm("voulez vous vraiment supprimer ?");
+            ConfirmForm c = new ConfirmForm("Cette Dépense Sera Définitivement Supprimée, Voulez Vous Vraiment Continuer?");
             c.Owner = this;
             this.Opacity = 0.5;
             this.Effect = new BlurEffect();
@@ -131,7 +131,7 @@ namespace GymWPF
                 cmd.ExecuteNonQuery();
                 cn.Close();
 
-                messageContent.Text = "Bien supprimé";
+                messageContent.Text = "Paiement Bien Supprimée";
                 animateBorder(borderMessage);
 
                 ajouter.Content = "Ajouter";
@@ -153,13 +153,13 @@ namespace GymWPF
         {
             if (ListPayments.SelectedIndex == -1)
             {
-                messageContent.Text = "veuillez selectioner une ligne";
+                messageContent.Text = "Veuillez Sélectionner Une Ligne";
                 animateBorder(borderMessage);
             }
             else
             {  if (PrixTextBox.Text == "" || NomTextBox.Text == "")
             {
-                messageContent.Text = "Merci de remplire tout les champs";
+                messageContent.Text = "Merci De Remplir tous Les Champs";
                 animateBorder(borderMessage);
             }
             else
@@ -182,7 +182,7 @@ namespace GymWPF
 
                         cmd.ExecuteNonQuery();
 
-                    messageContent.Text = "Bien modifié";
+                    messageContent.Text = "Paiement Bien Modifiée";
                     animateBorder(borderMessage);
 
                         if (count == 1)
@@ -257,7 +257,7 @@ namespace GymWPF
             {
                 if (PrixTextBox.Text=="" || NomTextBox.Text=="")
                 {
-                    messageContent.Text = "Merci de remplire tout les champs";
+                    messageContent.Text = "Merci De Remplir tous Les Champs";
                     animateBorder(borderMessage);
                 }
                 else
@@ -280,7 +280,7 @@ namespace GymWPF
                         cmd.ExecuteNonQuery();
 
 
-                        messageContent.Text = "Bien ajouté";
+                        messageContent.Text = "Paiement Bien Ajoutée";
                         animateBorder(borderMessage);
 
                         if (DateTime.Parse(NomTextBox.Text.ToString(), new System.Globalization.CultureInfo("fr")) > date)

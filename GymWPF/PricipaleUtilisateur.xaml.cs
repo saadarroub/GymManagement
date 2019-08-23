@@ -48,7 +48,7 @@ namespace GymWPF
                 {
                     if (NomtextBox.Text =="" || PrenomtextBox.Text =="" || UsertextBox.Text =="" || Pass.Text =="")
                     {
-                    messageContent.Text = "Merci de remplire tout les champs";
+                    messageContent.Text = "Merci de remplir tous les champs";
                     animateBorder(borderMessage);
                 }
                 else

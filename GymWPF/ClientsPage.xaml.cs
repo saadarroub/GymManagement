@@ -265,13 +265,13 @@ namespace GymWPF
                     {
                         icon.Foreground = new SolidColorBrush(Color.FromRgb(52, 255, 72));
                         state.Text = "Activé";
-                        OnOffClientModalBtn.ToolTip = "Desactiver";
+                        OnOffClientModalBtn.ToolTip = "Désactiver";
                     }
 
                     else
                     {
                         icon.Foreground = new SolidColorBrush(Color.FromRgb(255, 52, 73));
-                        state.Text = "Desactivé";
+                        state.Text = "Désactivé";
                         OnOffClientModalBtn.ToolTip = "Activer";
                     }
                 }
@@ -285,7 +285,7 @@ namespace GymWPF
             DataRowView row = ListClient.Items.GetItemAt(index) as DataRowView;
             int id = int.Parse(row.Row[0].ToString());
 
-            ConfirmForm c = new ConfirmForm("voulez vous vraiment supprimer ?");
+            ConfirmForm c = new ConfirmForm("Tout Paiement Lié À Ce Client Sera Supprimé, Voulez Vous Vraiment Continuer?");
             c.Owner = dade;
             dade.Opacity = 0.5;
             dade.Effect = new BlurEffect();
@@ -297,7 +297,7 @@ namespace GymWPF
             cmd.ExecuteNonQuery();
             cn.Close();
 
-                messageContent.Text = "Bien supprimé";
+                messageContent.Text = "Client Bien Supprimé";
                 animateBorder(borderMessage);
 
                 loaded();
@@ -336,7 +336,7 @@ namespace GymWPF
                         cmd.ExecuteNonQuery();
                         cn.Close();
 
-                        messageContent.Text = "Client Desactivé";
+                        messageContent.Text = "Client Désactivé";
                         animateBorder(borderMessage);
                     }
                     else if (state.Text == "Desactivé")

@@ -91,7 +91,7 @@ namespace GymWPF
                 {
                 if (NomTextBox.Text.Replace("'","''") == "" || UserNameTextBox.Text.Replace("'","''") == "" || PrenomTextBox.Text.Replace("'","''") == "" || PassTextBox.Text.Replace("'","''") == "" || SportsComboBox.SelectedIndex == -1 || ch1.IsChecked == false && ch2.IsChecked == false)
                 {
-                    messageContent.Text = "Merci de remplire tout les champs";
+                    messageContent.Text = "Merci De Remplir Tous Les Champs";
                     animateBorder(borderMessage);
                 }
                 else
@@ -101,7 +101,7 @@ namespace GymWPF
                     {
                         if (ds.Tables["users"].Rows[i][3].ToString().ToLower() == UserNameTextBox.Text.ToLower())
                         {
-                            messageContent.Text = "le nom d'utilisateur est deja exist";
+                            messageContent.Text = "Le Nom D'Utilisateur Existe Déja";
                             animateBorder(borderMessage);
                             return;
                         }
@@ -135,7 +135,7 @@ namespace GymWPF
 
                         cmd.ExecuteNonQuery();
 
-                        messageContent.Text = "Bien ajouté";
+                        messageContent.Text = "Utilisateur Bien Ajouté";
                         animateBorder(borderMessage);
 
                     }
@@ -198,13 +198,13 @@ namespace GymWPF
         {
             if (ListViewUtilisateurs.SelectedIndex == -1)
             {
-                messageContent.Text = "veuillez selectioner une ligne";
+                messageContent.Text = "Veuillez Sélectionner Une Ligne";
                 animateBorder(borderMessage);
             }
             else
             { if (NomTextBox.Text == "" || UserNameTextBox.Text == "" || PrenomTextBox.Text == "" || PassTextBox.Text == "" || SportsComboBox.SelectedIndex == -1 || ch1.IsChecked == false && ch2.IsChecked == false)
             {
-                messageContent.Text = "Merci de remplire tout les champs";
+                messageContent.Text = "Merci De Remplir Tous Les Champs";
                 animateBorder(borderMessage);
             }
             else
@@ -217,7 +217,7 @@ namespace GymWPF
 
                     if (ds.Tables["users"].Rows[i][3].ToString().ToLower() == UserNameTextBox.Text.ToLower() && psd != UserNameTextBox.Text.ToLower())
                     {
-                        messageContent.Text = "le pseudo est deja exist";
+                        messageContent.Text = "Le Pseudo Existe Déja";
                         animateBorder(borderMessage);
                         return;
                     }
@@ -247,7 +247,7 @@ namespace GymWPF
                     cmd.CommandText = "update UtilisateurSportSalle set IdSalle = '" + IdSalle + "', IdType = '" + SportsComboBox.SelectedValue + "' where IdUser = '" + id + "'";
                     cmd.ExecuteNonQuery();
 
-                    messageContent.Text = "Bien modifié";
+                    messageContent.Text = "Utilisateur Bien Modifié";
                     animateBorder(borderMessage);
                 }
                 catch (Exception ex)
@@ -284,13 +284,13 @@ namespace GymWPF
             DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
 
            
-            ConfirmForm c = new ConfirmForm("voulez vous vraiment supprimer ?");
+            ConfirmForm c = new ConfirmForm("Cet Utilisateur Sera Définitivement Supprimé, Voulez-Vous Vraiment Continuer?");
             c.Owner = dade;
             dade.Opacity = 0.5;
             dade.Effect = new BlurEffect();
             if (iduser == row.Row[0].ToString())
             {
-                messageContent.Text = "Vous ne pauvez pas supprimer cet utilisateur";
+                messageContent.Text = "Vous Ne Pouvez Pas Supprimé L'utilisateur Connecté";
                 animateBorder(borderMessage);
             }
             else
@@ -303,7 +303,7 @@ namespace GymWPF
                     cmd.ExecuteNonQuery();
                     cn.Close();
 
-                    messageContent.Text = "Bien supprimé";
+                    messageContent.Text = "Utilisateur Bien Supprimé";
                     animateBorder(borderMessage);
 
                     BtnAjouter.Content = "Ajouter";

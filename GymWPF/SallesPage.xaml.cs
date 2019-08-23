@@ -90,7 +90,7 @@ namespace GymWPF
                 {
                     if (SalleName.Text == "")
                     {
-                        messageContent.Text = "Merci de remplire tout les champs";
+                        messageContent.Text = "Merci De Remplir Tous Les Champs";
                         animateBorder(borderMessage);
                     }
                     
@@ -102,7 +102,7 @@ namespace GymWPF
                         cmd.ExecuteNonQuery();
                         cn.Close();
 
-                        messageContent.Text = "Bien ajoutée";
+                        messageContent.Text = "Salle Bien Ajoutée";
                         animateBorder(borderMessage);
 
                         ListViewSalles.UnselectAll();
@@ -125,7 +125,7 @@ namespace GymWPF
         {
             if (ListViewSalles.SelectedIndex == -1)
             {
-                messageContent.Text = "veuillez selectioner une ligne";
+                messageContent.Text = "Veuillez Sélectionner Une Ligne";
                 animateBorder(borderMessage);
             }
             else
@@ -138,7 +138,7 @@ namespace GymWPF
                 {
                     if (SalleName.Text == "")
                     {
-                        messageContent.Text = "Merci de remplire tout les champs";
+                        messageContent.Text = "Merci De Remplir Tous Les Champs";
                         animateBorder(borderMessage);
                     }
                     else
@@ -149,7 +149,7 @@ namespace GymWPF
                         cmd.ExecuteNonQuery();
                         cn.Close();
 
-                        messageContent.Text = "Bien modifiée";
+                        messageContent.Text = "Salle Bien Modifiée";
                         animateBorder(borderMessage);
 
                         BtnAjouter.Content = "Ajouter";
@@ -180,13 +180,13 @@ namespace GymWPF
 
 
           
-            ConfirmForm c = new ConfirmForm("voulez vous vraiment supprimer ?");
+            ConfirmForm c = new ConfirmForm("Tout Utilisateur Ou Client Ou Sport Lié à Cet Salle Sera Supprimé, Voulez Vous Vraiment Continuer?");
             c.Owner = dade;
             dade.Opacity = 0.5;
             dade.Effect = new BlurEffect();
             if (ConnectedSalle == row.Row[0].ToString())
             {
-                messageContent.Text = "Vous ne pauvez pas supprimer cet salle";
+                messageContent.Text = "Vous Ne Pouvez Pas Supprimer La Salle Connecté";
                 animateBorder(borderMessage);
             }
             else
@@ -203,7 +203,7 @@ namespace GymWPF
                     cmd.ExecuteNonQuery();
                     cn.Close();
 
-                    messageContent.Text = "Bien supprimée";
+                    messageContent.Text = "Salle Bien Supprimée";
                     animateBorder(borderMessage);
 
                     BtnAjouter.Content = "Ajouter";
