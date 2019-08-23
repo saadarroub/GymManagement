@@ -42,7 +42,7 @@ namespace GymWPF
         {
             valid1.Visibility = Visibility.Hidden;
             valid2.Visibility = Visibility.Hidden;
-            mw.connexionFrame.GoBack();
+            mw.connexionFrame.Navigate(new Login(mw));
             
         }
 
