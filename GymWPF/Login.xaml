@@ -39,16 +39,16 @@
         </Image>
         <StackPanel Height="300" Width="400">
 
-            <Grid Height="50">
-                <TextBlock Text="Nom Utilisateur" Foreground="White" FontFamily="Segoe UI Light" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Grid Height="50" Width="297">
+                <TextBlock Text="Nom Utilisateur" Foreground="White" FontFamily="Segoe UI Light" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
             </Grid>
-            <Grid Height="50">
+            <Grid Height="50" >
 
                 <TextBox Name="UsertextBox" Height="37" Width="297" Background="#FF272727" BorderBrush="#FF909090" Foreground="White" SelectionBrush="#FF909090" Padding="30,0,0,0"   VerticalContentAlignment="Center" FontFamily="Yu Gothic UI Light" FontSize="16"/>
                 <Label Width="20" Height="20" HorizontalAlignment="Left" Margin="60,15,0,15" Content="&#xf508;" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="12" Background="{x:Null}" Foreground="#FFFFCC00" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Padding="0"/>
             </Grid>
-            <Grid Height="50">
-                <TextBlock Text="Mot de Passe" Foreground="White" FontFamily="Segoe UI Light" FontSize="22" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <Grid Height="50" Width="297">
+                <TextBlock Text="Mot de Passe" Foreground="White" FontFamily="Segoe UI Light" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
             </Grid>
             <Grid Height="50">
                 <PasswordBox Name="PassTextBox" Height="37" Width="297" Background="#FF272727" BorderBrush="#FF909090" Foreground="White" SelectionBrush="#FF909090" Padding="30,0,0,0"   VerticalContentAlignment="Center" FontFamily="Yu Gothic UI Light" FontSize="9"/>
