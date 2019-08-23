@@ -15,7 +15,7 @@
                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="{StaticResource FontAwesomeSolid}" FontSize="12" 
                    HorizontalAlignment="Right" Margin="0 0 47 0" Click="MinimizeAppBtn_Click"/>
         </Grid>
-        <Frame Name="connexionFrame" Height="600" NavigationUIVisibility="Hidden" />
+        <Frame Name="connexionFrame" Height="600" NavigationUIVisibility="Hidden" Navigating="ConnexionFrame_Navigating" />
 
     </StackPanel>
 </Window>

@@ -57,5 +57,17 @@ namespace GymWPF
             connexionFrame.Navigate(l);
 
         }
+
+        private void ConnexionFrame_Navigating(object sender, NavigatingCancelEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Forward)
+            {
+                e.Cancel = true;
+            }
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }
