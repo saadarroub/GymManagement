@@ -98,12 +98,12 @@ namespace GymWPF
                 {
                     cn.Open();
                     cmd.Connection = cn;
-                    cmd.CommandText = "select * from Utilisateur where UserName = '" + UsertextBox.Text + "' and Password_User = '" + OldPassTextBox.Password + "'";
+                    cmd.CommandText = "select * from Utilisateur where UserName = '" + UsertextBox.Text.Replace("'","''") + "' and Password_User = '" + OldPassTextBox.Password.Replace("'", "''") + "'";
                     dr = cmd.ExecuteReader();
                     if (dr.Read() && NewPassTextBox.Password == ConfirmNewPassTextBox.Password && NewPassTextBox.Password.Length >= 8)
                     {
                         dr.Close();
-                        cmd.CommandText = "update Utilisateur set Password_User = '" + NewPassTextBox.Password + "' where UserName ='" + UsertextBox.Text + "'";
+                        cmd.CommandText = "update Utilisateur set Password_User = '" + NewPassTextBox.Password.Replace("'", "''") + "' where UserName ='" + UsertextBox.Text.Replace("'","''") + "'";
                         cmd.ExecuteNonQuery();
 
                         messageContent.Text = "Bien modifié";

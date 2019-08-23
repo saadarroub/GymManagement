@@ -117,7 +117,7 @@ namespace GymWPF
 
                         cn.Open();
                         cmd.Connection = cn;
-                        cmd.CommandText = "update Clients set nom = '" + NomTextBox.Text + "', prenom ='" + PrenomTextBox.Text + "', Tel ='" + TelTextBox.Text + "', img = @img  where IdClient = '" + id + "'";
+                        cmd.CommandText = "update Clients set nom = '" + NomTextBox.Text.Replace("'","''") + "', prenom ='" + PrenomTextBox.Text.Replace("'","''") + "', Tel ='" + TelTextBox.Text.Replace("'","''") + "', img = @img  where IdClient = '" + id + "'";
                         cmd.Parameters.AddWithValue("img", imgByte);
                         cmd.ExecuteNonQuery();
 
@@ -129,7 +129,7 @@ namespace GymWPF
                     {
                         cn.Open();
                         cmd.Connection = cn;
-                        cmd.CommandText = "update Clients set nom = '" + NomTextBox.Text + "', prenom ='" + PrenomTextBox.Text + "', Tel ='" + TelTextBox.Text + "'  where IdClient = '" + id + "'";
+                        cmd.CommandText = "update Clients set nom = '" + NomTextBox.Text.Replace("'","''") + "', prenom ='" + PrenomTextBox.Text.Replace("'","''") + "', Tel ='" + TelTextBox.Text.Replace("'","''") + "'  where IdClient = '" + id + "'";
                         cmd.ExecuteNonQuery();
 
                         messageContent.Text = "Bien modifié";

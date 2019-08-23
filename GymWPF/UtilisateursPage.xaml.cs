@@ -89,7 +89,7 @@ namespace GymWPF
             else if (BtnAjouter.Content.ToString() == "Ajouter")
             
                 {
-                if (NomTextBox.Text == "" || UserNameTextBox.Text == "" || PrenomTextBox.Text == "" || PassTextBox.Text == "" || SportsComboBox.SelectedIndex == -1 || ch1.IsChecked == false && ch2.IsChecked == false)
+                if (NomTextBox.Text.Replace("'","''") == "" || UserNameTextBox.Text.Replace("'","''") == "" || PrenomTextBox.Text.Replace("'","''") == "" || PassTextBox.Text.Replace("'","''") == "" || SportsComboBox.SelectedIndex == -1 || ch1.IsChecked == false && ch2.IsChecked == false)
                 {
                     messageContent.Text = "Merci de remplire tout les champs";
                     animateBorder(borderMessage);
@@ -114,13 +114,13 @@ namespace GymWPF
 
                         if (ch1.IsChecked == true)
                         {
-                            cmd.CommandText = "insert into Utilisateur(Nom, Prenom, UserName, Password_User, Valide) values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + UserNameTextBox.Text + "','" + PassTextBox.Text + "','" + true + "')";
+                            cmd.CommandText = "insert into Utilisateur(Nom, Prenom, UserName, Password_User, Valide) values ('" + NomTextBox.Text.Replace("'","''") + "','" + PrenomTextBox.Text.Replace("'","''") + "','" + UserNameTextBox.Text.Replace("'","''") + "','" + PassTextBox.Text.Replace("'", "''") + "','" + true + "')";
                             cmd.ExecuteNonQuery();
 
                         }
                         else if (ch1.IsChecked == false)
                         {
-                            cmd.CommandText = "insert into Utilisateur(Nom, Prenom, UserName, Password_User, Valide) values ('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + UserNameTextBox.Text + "','" + PassTextBox.Text + "','" + false + "')";
+                            cmd.CommandText = "insert into Utilisateur(Nom, Prenom, UserName, Password_User, Valide) values ('" + NomTextBox.Text.Replace("'","''") + "','" + PrenomTextBox.Text.Replace("'","''") + "','" + UserNameTextBox.Text.Replace("'","''") + "','" + PassTextBox.Text.Replace("'","''") + "','" + false + "')";
                             cmd.ExecuteNonQuery();
                         }
 
@@ -232,12 +232,12 @@ namespace GymWPF
                     cmd.Connection = cn;
                     if (ch1.IsChecked == true)
                     {
-                        cmd.CommandText = "update Utilisateur set Nom = '" + NomTextBox.Text + "' , Prenom = '" + PrenomTextBox.Text + "' , UserName = '" + UserNameTextBox.Text + "',Password_User = '" + PassTextBox.Text + "', Valide = '"+true+"' where IdUser = '" + id + "'";
+                        cmd.CommandText = "update Utilisateur set Nom = '" + NomTextBox.Text.Replace("'","''") + "' , Prenom = '" + PrenomTextBox.Text.Replace("'","''") + "' , UserName = '" + UserNameTextBox.Text.Replace("'","''") + "',Password_User = '" + PassTextBox.Text.Replace("'","''") + "', Valide = '"+true+"' where IdUser = '" + id + "'";
                         cmd.ExecuteNonQuery();
                     }
                     else
                     {
-                        cmd.CommandText = "update Utilisateur set Nom = '" + NomTextBox.Text + "' , Prenom = '" + PrenomTextBox.Text + "' , UserName = '" + UserNameTextBox.Text + "',Password_User = '" + PassTextBox.Text + "', Valide = '" + false + "' where IdUser = '" + id + "'";
+                        cmd.CommandText = "update Utilisateur set Nom = '" + NomTextBox.Text.Replace("'","''") + "' , Prenom = '" + PrenomTextBox.Text.Replace("'","''") + "' , UserName = '" + UserNameTextBox.Text.Replace("'","''") + "',Password_User = '" + PassTextBox.Text.Replace("'","''") + "', Valide = '" + false + "' where IdUser = '" + id + "'";
                         cmd.ExecuteNonQuery();
                     }
 

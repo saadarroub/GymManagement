@@ -94,7 +94,7 @@ namespace GymWPF
                         
                             cn.Open();
                             cmd.Connection = cn;
-                            cmd.CommandText = "insert into Type_Sport values ('" + SportName.Text + "')";
+                            cmd.CommandText = "insert into Type_Sport values ('" + SportName.Text.Replace("'","''") + "')";
                             cmd.ExecuteNonQuery();
 
                             cmd.CommandText = "select MAX(IdType) from Type_Sport";
@@ -168,7 +168,7 @@ namespace GymWPF
 
                     cn.Open();
                     cmd.Connection = cn;
-                    cmd.CommandText = "update Type_Sport set nom_Type = '" + SportName.Text + "' where IdType ='" + id + "'";
+                    cmd.CommandText = "update Type_Sport set nom_Type = '" + SportName.Text.Replace("'","''") + "' where IdType ='" + id + "'";
                     cmd.ExecuteNonQuery();
 
                     cmd.CommandText = "update  SportSalle set IdSalle ='" + SallesComboBox.SelectedValue + "', prix ='" +double.Parse(SportPrix.Text) + "' where IdType ='" + id + "'";

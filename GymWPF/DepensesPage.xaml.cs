@@ -117,7 +117,7 @@ namespace GymWPF
                     cn.Open();
                     cmd.Connection = cn;
                         cmd.Parameters.Clear();
-                    cmd.CommandText = "update Depenses set  Depense ='" + DepensesTextBox.Text + "', date_dep = @a, prix = @b where IdDep = '" + id + "'";
+                    cmd.CommandText = "update Depenses set  Depense ='" + DepensesTextBox.Text.Replace("'","''") + "', date_dep = @a, prix = @b where IdDep = '" + id + "'";
                         cmd.Parameters.AddWithValue("@a", DateTime.Parse(DateTimePicker.Text.ToString(), new System.Globalization.CultureInfo("fr")));
                         cmd.Parameters.AddWithValue("@b",double.Parse(PrixTextBox.Text));
                         cmd.ExecuteNonQuery();
@@ -224,7 +224,7 @@ namespace GymWPF
                         cn.Open();
                         cmd.Connection = cn;
                         cmd.Parameters.Clear();
-                        cmd.CommandText = "insert into Depenses values ('" + DepensesTextBox.Text + "', @a ,'" + double.Parse(PrixTextBox.Text) + "','" + ConnectedSalle + "','" + ConnectedSport + "','" + iduser + "')";
+                        cmd.CommandText = "insert into Depenses values ('" + DepensesTextBox.Text.Replace("'","''") + "', @a ,'" + double.Parse(PrixTextBox.Text.Replace("'","''")) + "','" + ConnectedSalle + "','" + ConnectedSport + "','" + iduser + "')";
 
                         cmd.Parameters.AddWithValue("@a", DateTime.Parse(DateTimePicker.Text.ToString(), new System.Globalization.CultureInfo("fr")));
                         cmd.ExecuteNonQuery();

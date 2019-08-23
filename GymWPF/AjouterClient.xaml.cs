@@ -108,7 +108,7 @@ namespace GymWPF
 
                         cn.Open();
                         cmd.Connection = cn;
-                        cmd.CommandText = "insert into Clients(nom, prenom, Tel, img) values('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "',@img)";
+                        cmd.CommandText = "insert into Clients(nom, prenom, Tel, img) values('" + NomTextBox.Text.Replace("'","''") + "','" + PrenomTextBox.Text.Replace("'","''") + "','" + TelTextBox.Text.Replace("'","''") + "',@img)";
                         cmd.Parameters.Clear();
                         cmd.Parameters.AddWithValue("img", imgByte);
 
@@ -137,7 +137,7 @@ namespace GymWPF
 
                         cn.Open();
                         cmd.Connection = cn;
-                        cmd.CommandText = "insert into Clients(nom, prenom, Tel, img) values('" + NomTextBox.Text + "','" + PrenomTextBox.Text + "','" + TelTextBox.Text + "',@img)";
+                        cmd.CommandText = "insert into Clients(nom, prenom, Tel, img) values('" + NomTextBox.Text.Replace("'","''") + "','" + PrenomTextBox.Text.Replace("'","''") + "','" + TelTextBox.Text.Replace("'","''") + "',@img)";
                         cmd.Parameters.Clear();
                         cmd.Parameters.AddWithValue("img", imgByte);
                         cmd.ExecuteNonQuery();

@@ -98,7 +98,7 @@ namespace GymWPF
                     {
                         cn.Open();
                         cmd.Connection = cn;
-                        cmd.CommandText = "insert into Salle values ('" + SalleName.Text + "')";
+                        cmd.CommandText = "insert into Salle values ('" + SalleName.Text.Replace("'","''") + "')";
                         cmd.ExecuteNonQuery();
                         cn.Close();
 
@@ -145,7 +145,7 @@ namespace GymWPF
                     {
                         cn.Open();
                         cmd.Connection = cn;
-                        cmd.CommandText = "update Salle set nom_Salle = '"+SalleName.Text+ "' where IdSalle = '"+id+"'";
+                        cmd.CommandText = "update Salle set nom_Salle = '"+SalleName.Text.Replace("'","''")+ "' where IdSalle = '"+id+"'";
                         cmd.ExecuteNonQuery();
                         cn.Close();
 

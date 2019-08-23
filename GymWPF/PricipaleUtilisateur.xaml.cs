@@ -55,7 +55,7 @@ namespace GymWPF
                 {
                     cn.Open();
                     cmd.Connection = cn;
-                    cmd.CommandText = "insert into Utilisateur(Nom,Prenom,UserName,Password_User,Valide) values('" + NomtextBox.Text + "','" + PrenomtextBox.Text + "','" + UsertextBox.Text + "','" + Pass.Text + "','" + true + "')";
+                    cmd.CommandText = "insert into Utilisateur(Nom,Prenom,UserName,Password_User,Valide) values('" + NomtextBox.Text.Replace("'","''") + "','" + PrenomtextBox.Text.Replace("'","''") + "','" + UsertextBox.Text.Replace("'","''") + "','" + Pass.Text.Replace("'","''") + "','" + true + "')";
                     cmd.ExecuteNonQuery();
 
                     //dire hna yrjer l conexion page
