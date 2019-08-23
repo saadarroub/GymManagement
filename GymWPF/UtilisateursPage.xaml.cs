@@ -99,9 +99,9 @@ namespace GymWPF
                      
                     for (int i = 0; i < ds.Tables["users"].Rows.Count; i++)
                     {
-                        if (ds.Tables["users"].Rows[i][3].ToString() == UserNameTextBox.Text)
+                        if (ds.Tables["users"].Rows[i][3].ToString().ToLower() == UserNameTextBox.Text.ToLower())
                         {
-                            messageContent.Text = "le pseudo est deja exist";
+                            messageContent.Text = "le nom d'utilisateur est deja exist";
                             animateBorder(borderMessage);
                             return;
                         }
