@@ -81,7 +81,7 @@
                         </Button>
                         <Grid Margin="0 35 0 0">
                             <TextBlock Name="nots" Text="0" FontSize="60"  Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
-                            <ListView ItemContainerStyle="{StaticResource ListItemHover}" Name = "ListViewNotif" Background="#FF333333" Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="250" Margin="5 0 5 0"  VerticalAlignment="Top"  SelectionMode="Single" Visibility="Collapsed" ItemsSource="{Binding}">
+                            <ListView ItemContainerStyle="{StaticResource ListItemNotif}" Name = "ListViewNotif" Background="#FF333333"  Foreground="White" FontSize="18" BorderBrush="{x:Null}" Height="250" Margin="5 0 5 0" SelectionMode="Extended" VerticalAlignment="Top"  Visibility="Collapsed" ItemsSource="{Binding}">
                                 <ListView.View>
                                     <GridView ColumnHeaderContainerStyle="{StaticResource ListViewHeader}">
                                         <GridViewColumn Header = "Nom"  Width = "180" DisplayMemberBinding="{Binding nom}"/>
