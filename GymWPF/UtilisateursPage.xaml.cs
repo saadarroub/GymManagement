@@ -213,9 +213,9 @@ namespace GymWPF
                 {
                     int index = ListViewUtilisateurs.SelectedIndex;
                     DataRowView row = ListViewUtilisateurs.Items.GetItemAt(index) as DataRowView;
-                    string psd = row.Row[3].ToString();
+                    string psd = row.Row[3].ToString().ToLower();
 
-                    if (ds.Tables["users"].Rows[i][3].ToString() == UserNameTextBox.Text && psd != UserNameTextBox.Text)
+                    if (ds.Tables["users"].Rows[i][3].ToString().ToLower() == UserNameTextBox.Text.ToLower() && psd != UserNameTextBox.Text.ToLower())
                     {
                         messageContent.Text = "le pseudo est deja exist";
                         animateBorder(borderMessage);
