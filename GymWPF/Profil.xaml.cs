@@ -95,7 +95,7 @@ namespace GymWPF
             da.SelectCommand.CommandText = "select * from Clients c join SportClients s on c.IdClient = s.IdClient and Active = '" + true + "'";
             da.Fill(ds, "Clientsprin");
 
-            da.SelectCommand.CommandText = "select * from Payments p join Clients c on p.IdClient = c.IdClient where IdSalle = '" + ConnectedSalle + "' and IdType = '" + ConnectedSport + "' and Active = '" + true + "'";
+            da.SelectCommand.CommandText = "select p.IdPayment,convert(varchar, p.date_Payment, 103),p.IdClient,p.IdSalle,p.IdType,p.Prix,c.IdClient,c.nom,c.prenom,c.Tel,c.img,c.Active,c.LastPay from Payments p join Clients c on p.IdClient = c.IdClient  where IdSalle = '" + ConnectedSalle + "' and IdType = '" + ConnectedSport + "' and Active = '" + true + "'";
             da.Fill(ds, "PriceTest");
 
             if (ds.Tables["infos"].Rows.Count != 0 )
@@ -134,19 +134,19 @@ namespace GymWPF
                             if (count >= 28 && count == 30)
                             {
                                 cpt1++;
-                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1] + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "soon" });
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "soon" });
 
                             }
                             if (count > 30 && count <= 40)
                             {
                                 cpt2++;
-                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1] + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "end" });
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "end" });
 
                             }
                             if (count > 40)
                             {
                                 cpt3++;
-                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1] + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "mcha" });
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "mcha" });
 
                             }
 
@@ -158,7 +158,7 @@ namespace GymWPF
                         if(double.Parse(ds.Tables["PriceTest"].Rows[i][5].ToString()) < price)
                         {
                             cpt4++;
-                            notif.Add(new notifications() { nom = ds.Tables["PriceTest"].Rows[i][7] + " " + ds.Tables["PriceTest"].Rows[i][8].ToString() , state = "price na9es dans la date" + " " + ds.Tables["PriceTest"].Rows[i][1] });
+                            notif.Add(new notifications() { nom = ds.Tables["PriceTest"].Rows[i][7].ToString() + " " + ds.Tables["PriceTest"].Rows[i][8].ToString() , state = "price na9es dans la date" + " " + ds.Tables["PriceTest"].Rows[i][1].ToString() });
 
                         }
                     }
@@ -202,20 +202,20 @@ namespace GymWPF
                             if (count >= 28 && count == 30)
                             {
                                 cpt1++;
-                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1]+" "+ ds.Tables["Clients"].Rows[i][2].ToString(), state = "soon" });
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() +" "+ ds.Tables["Clients"].Rows[i][2].ToString(), state = "soon" });
 
                             }
                             if (count > 30 && count <= 40)
                             {
                                 cpt2++;
-                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1] + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "end" });
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "end" });
 
 
                             }
                             if (count > 40)
                             {
                                 cpt3++;
-                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1] + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "mcha" });
+                                notif.Add(new notifications() { nom = ds.Tables["Clients"].Rows[i][1].ToString() + " " + ds.Tables["Clients"].Rows[i][2].ToString(), state = "mcha" });
 
 
                             }
@@ -228,7 +228,7 @@ namespace GymWPF
                         if (double.Parse(ds.Tables["PriceTest"].Rows[i][5].ToString()) < price)
                         {
                             cpt4++;
-                            notif.Add(new notifications() { nom = ds.Tables["PriceTest"].Rows[i][7] + " " + ds.Tables["PriceTest"].Rows[i][8].ToString(), state = "price na9es dans la date" + " " + ds.Tables["PriceTest"].Rows[i][1] });
+                            notif.Add(new notifications() { nom = ds.Tables["PriceTest"].Rows[i][7].ToString() + " " + ds.Tables["PriceTest"].Rows[i][8].ToString(), state = "price na9es dans la date" + " " +ds.Tables["PriceTest"].Rows[i][1].ToString() });
 
                         }
                     }
@@ -273,19 +273,19 @@ namespace GymWPF
                         if (count >= 28 && count == 30)
                         {
                             cpt1++;
-                            notif.Add(new notifications() { nom = ds.Tables["Clientsprin"].Rows[i][1] + " " + ds.Tables["Clientsprin"].Rows[i][2].ToString(), state = "soon" });
+                            notif.Add(new notifications() { nom = ds.Tables["Clientsprin"].Rows[i][1].ToString() + " " + ds.Tables["Clientsprin"].Rows[i][2].ToString(), state = "soon" });
 
                         }
                         if (count > 30 && count <= 40)
                         {
                             cpt2++;
-                            notif.Add(new notifications() { nom = ds.Tables["Clientsprin"].Rows[i][1] + " " + ds.Tables["Clientsprin"].Rows[i][2].ToString(), state = "end" });
+                            notif.Add(new notifications() { nom = ds.Tables["Clientsprin"].Rows[i][1].ToString() + " " + ds.Tables["Clientsprin"].Rows[i][2].ToString(), state = "end" });
 
                         }
                         if (count > 40)
                         {
                             cpt3++;
-                            notif.Add(new notifications() { nom = ds.Tables["Clientsprin"].Rows[i][1] + " " + ds.Tables["Clientsprin"].Rows[i][2].ToString(), state = "mcha" });
+                            notif.Add(new notifications() { nom = ds.Tables["Clientsprin"].Rows[i][1].ToString() + " " + ds.Tables["Clientsprin"].Rows[i][2].ToString(), state = "mcha" });
 
                         }
                         nots.Text = (cpt1 + cpt2 + cpt3).ToString();
