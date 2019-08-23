@@ -477,6 +477,7 @@
         </Style>
         <!-- List View Item Style -->
         <Style  x:Key="ListItemHover" TargetType="{x:Type ListViewItem}">
+            <!--<Setter Property="Focusable" Value="False"/>-->
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ListViewItem}">
@@ -553,6 +554,87 @@
 
                 </EventTrigger>
                
+            </Style.Triggers>
+        </Style>
+        <!-- List View Item Notif Style -->
+        <Style  x:Key="ListItemNotif" TargetType="{x:Type ListViewItem}">
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <Border Name="border"  
+                                BorderBrush="Transparent"
+                                BorderThickness="0"
+                                Background="{TemplateBinding Background}"
+                                Height="40">
+                            <GridViewRowPresenter HorizontalAlignment="Stretch" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Width="Auto" Margin="10 0 0 0" Content="{TemplateBinding Content}"/>
+                        </Border>
+                        <!--<ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Foreground" Value="#ffcc00"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>-->
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ListViewItem.Background">
+                <Setter.Value>
+                    <SolidColorBrush Color="#272727"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ListViewItem.Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="White"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="ListViewItem.MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(ListViewItem.Background).(SolidColorBrush.Color)"
+                                                From="#272727" To="#5b5b5b" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="ListViewItem.MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(ListViewItem.Background).(SolidColorBrush.Color)"
+                                                From="#5b5b5b" To="#272727" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+
+                </EventTrigger>
+                <EventTrigger RoutedEvent="ListViewItem.Selected">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(ListViewItem.Foreground).(SolidColorBrush.Color)"
+                                                From="White" To="#ffcc00" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+
+                </EventTrigger>
+                <EventTrigger RoutedEvent="ListViewItem.Unselected">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(ListViewItem.Foreground).(SolidColorBrush.Color)"
+                                                From="#ffcc00" To="White" Duration="0:0:0.2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+
+                </EventTrigger>
+
             </Style.Triggers>
         </Style>
         <!-- List View Header Style -->
@@ -637,6 +719,7 @@
         </Style>
         <!-- List Box Items hover -->
         <Style x:Key="ListBoxItemsHover" TargetType="{x:Type ListBoxItem}">
+            
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListBoxItem">
