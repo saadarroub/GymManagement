@@ -61,7 +61,7 @@ namespace GymWPF
             {
                 cn.Open();
                 cmd.Connection = cn;
-                cmd.CommandText = "select * from Utilisateur u left join UtilisateurSportSalle us on u.IdUser=us.IdUser where u.UserName = '" + UsertextBox.Text + "' and Password_User = '" + PassTextBox.Password.ToString() + "'";
+                cmd.CommandText = "select * from Utilisateur u left join UtilisateurSportSalle us on u.IdUser=us.IdUser where u.UserName = '" + UsertextBox.Text.Replace("'","''") + "' and Password_User = '" + PassTextBox.Password.Replace("'", "''") + "'";
                 dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {

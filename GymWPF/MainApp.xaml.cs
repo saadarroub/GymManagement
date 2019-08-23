@@ -16,6 +16,7 @@ using System.Data;
 using Microsoft.Win32;
 using System.IO;
 using System.Windows.Media.Animation;
+using System.Windows.Navigation;
 
 namespace GymWPF
 {
@@ -245,6 +246,18 @@ namespace GymWPF
             preferences = new Preferences();
             MainFrame.Navigate(preferences);
             ((Storyboard)App.Current.Resources["FadeIn"]).Begin(preferences.GridGlobal);
+        }
+
+        private void MainFrame_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Forward)
+            {
+                e.Cancel = true;
+            }
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                e.Cancel = true;
+            }
         }
 
         private void AddProfilImageBtn_Click(object sender, RoutedEventArgs e)

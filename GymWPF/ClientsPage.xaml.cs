@@ -201,15 +201,16 @@ namespace GymWPF
         {
             if (ch1.IsChecked == true)
             {
-                dt.DefaultView.RowFilter = "Title like '%" + search.Text + "%'";
+               
+                dt.DefaultView.RowFilter = "Title like '%" + search.Text.Replace("'","''") + "%'";
             }
             if (ch2.IsChecked == true)
             {
-                dt.DefaultView.RowFilter = "Title like '%" + search.Text + "%' and Active = '" + true + "'";
+                dt.DefaultView.RowFilter = "Title like '%" + search.Text.Replace("'", "''") + "%' and Active = '" + true + "'";
             }
             if (ch3.IsChecked == true)
             {
-                dt.DefaultView.RowFilter = "Title like '%" + search.Text + "%' and Active = '" + false + "'";
+                dt.DefaultView.RowFilter = "Title like '%" + search.Text.Replace("'", "''") + "%' and Active = '" + false + "'";
             }
 
         }
@@ -411,5 +412,21 @@ namespace GymWPF
             ((Storyboard)GridGlobal.Resources["animate"]).Begin(c);
 
         }
+        //public string AddQuotationToString(string String_In)
+        //{
+        //    string String_Out;
+        //    string[] ArrString = new string[] {String_In};
+        //    for(int i = 0; i < ArrString.Count(); i++)
+        //    {
+        //        if(ArrString[i] == "'")
+        //        {
+        //            ArrString.Resize(ref ArrString, ArrString.Count() + 1);
+        //            ArrString.SetValue("'", i + 1);
+        //        }
+        //    }
+
+        //    String_Out = ArrString.ToString();
+        //    return String_Out;
+        //}
     }
 }
