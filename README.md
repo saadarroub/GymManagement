@@ -1,4 +1,4 @@
-# organize-appoitments
+# gym_management
 # Login
 ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/30563109/90434114-cb76e500-e0c4-11ea-82c5-11f857eb433c.gif)
 # Profil
